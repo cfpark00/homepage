@@ -1,0 +1,145 @@
+# Project Structure - Academic Homepage Monorepo
+Last Updated: 2025-08-21 19:06
+
+## Root Directory
+/Users/cfpark00/mysite/
+├── apps/                        # Applications
+│   └── web/                     # Next.js web application
+│       ├── app/                 # App router pages
+│       │   ├── (default)/       # Main layout group (with nav/footer)
+│       │   │   ├── layout.tsx   # Main layout with navigation
+│       │   │   ├── page.tsx     # Homepage
+│       │   │   ├── blog/        # Blog section
+│       │   │   │   ├── page.tsx # Blog listing
+│       │   │   │   └── [slug]/  # Dynamic blog posts
+│       │   │   │       └── page.tsx
+│       │   │   ├── cv/          # CV/Resume page
+│       │   │   │   └── page.tsx # Toggle between traditional/timeline views
+│       │   │   ├── news/        # News and updates
+│       │   │   │   └── page.tsx
+│       │   │   ├── ongoing/     # Current research projects
+│       │   │   │   └── page.tsx # "Ongoing Stuff..." page
+│       │   │   ├── projects/    # Research projects showcase
+│       │   │   │   └── page.tsx
+│       │   │   └── publications/# Publications listing
+│       │   │       └── page.tsx
+│       │   ├── simple/          # Standalone 1990s-style page
+│       │   │   ├── layout.tsx   # Minimal layout (no nav/footer)
+│       │   │   └── page.tsx     # Raw HTML aesthetic
+│       │   └── icon.png         # Sparrow favicon (in (default)/)
+│       ├── components/          # React components
+│       │   ├── chat-box.tsx    # Unified chat widget (Virtual/Real Core) - COMMENTED OUT
+│       │   ├── cv-timeline.tsx # Timeline view for CV
+│       │   ├── cv-traditional.tsx # Traditional CV view
+│       │   ├── flying-publications.tsx # Animated floating publication images
+│       │   ├── navigation.tsx  # Main navigation bar
+│       │   └── theme-provider.tsx # Dark mode provider
+│       ├── content/            # Content files
+│       │   └── blog/           # Blog posts in MDX
+│       │       ├── adaptive-width-cnns.mdx
+│       │       └── welcome-to-my-blog.mdx
+│       ├── lib/                # Utility functions
+│       │   ├── blog.ts         # Blog post utilities
+│       │   └── publications-data.ts # Publications database
+│       ├── public/             # Static assets
+│       │   ├── images/         # Image assets
+│       │   │   ├── profile.jpg # Profile picture (rectangular)
+│       │   │   ├── profile-square.jpg # Square profile picture
+│       │   │   ├── orchestra.png # Orchestra logo
+│       │   │   └── publications/ # Publication thumbnails/GIFs
+│       │   ├── CFPark_CV.pdf   # Downloadable CV
+│       │   ├── favicon.png     # Favicon copy
+│       │   └── sparrow.png     # Original sparrow icon
+│       ├── components.json     # shadcn/ui config
+│       ├── next.config.mjs     # Next.js config
+│       ├── package.json        # Dependencies
+│       ├── postcss.config.js   # PostCSS config
+│       ├── tailwind.config.ts  # Tailwind config
+│       └── tsconfig.json       # TypeScript config
+│
+├── packages/                   # Shared packages
+│   └── ui/                     # UI component library
+│       ├── src/
+│       │   ├── components/     # shadcn/ui components
+│       │   │   ├── badge.tsx
+│       │   │   ├── button.tsx
+│       │   │   ├── card.tsx
+│       │   │   ├── input.tsx
+│       │   │   ├── navigation-menu.tsx
+│       │   │   ├── progress.tsx
+│       │   │   ├── scroll-area.tsx
+│       │   │   ├── select.tsx
+│       │   │   ├── sonner.tsx  # Toast notifications
+│       │   │   └── tabs.tsx
+│       │   ├── lib/            # Utilities
+│       │   │   └── utils.ts    # cn() helper
+│       │   ├── styles/         # Global styles
+│       │   │   └── globals.css # Tailwind + CSS variables
+│       │   ├── hooks/          # Custom hooks (empty)
+│       │   └── index.ts        # Package exports
+│       ├── components.json     # shadcn/ui config
+│       ├── package.json        # Dependencies
+│       ├── tailwind.config.ts  # Tailwind config
+│       └── tsconfig.json       # TypeScript config
+│
+├── claude_notes/              # Documentation
+│   ├── logs/                  # Daily logs
+│   │   └── 2025-08-21/
+│   │       ├── 13-00_academic_homepage_build.md
+│   │       ├── 14-43_website_refinements.md
+│   │       ├── 18-47_news_page_development.md
+│   │       ├── 18-53_final_ui_refinements.md
+│   │       ├── 18-54_cv_timeline_accuracy_fixes.md
+│   │       └── 19-06_publication_fixes_and_ui_updates.md
+│   └── structure.txt          # This file
+│
+├── .eslintrc.json             # ESLint config
+├── .gitignore                 # Git ignore rules
+├── .prettierrc                # Prettier config
+├── package.json               # Root package.json
+├── pnpm-workspace.yaml        # pnpm workspace config
+├── README.md                  # Project documentation
+├── SHADCN_TIPS.md            # shadcn/ui tips
+└── turbo.json                # Turbo build config
+
+## Key Changes from Previous Structure
+
+### Route Organization
+- Moved all main pages to `(default)/` route group for shared layout
+- Isolated `/simple` page with its own minimal layout
+- Removed `(main)/` route group (consolidated into `(default)/`)
+
+### Asset Organization
+- Created `/public/images/` directory for all images
+- Moved profile picture and orchestra logo to proper locations
+- CV PDF accessible at root public level
+
+### Component Updates
+- `chat-box.tsx` now supports dual mode (Virtual/Real Core)
+- Added `sonner.tsx` for toast notifications
+- Navigation order: Home, CV, Ongoing, Publications, Blog, News (Research hidden)
+
+### Content Structure
+- Blog posts remain in `/content/blog/`
+- Publications data in `/lib/publications-data.ts`
+- CV data embedded in component
+
+### Page Features
+- Homepage: Two-column hero with profile image right, flying publications animation (50% transparent sections)
+- CV: Rectangular profile image left of header
+- Ongoing: Square thumbnail cards with thin text
+- Simple: True standalone 1990s HTML page with rectangular profile image floating left
+- ChatBox and Newsletter components commented out (not deployment ready)
+
+## Navigation Flow
+- Persistent top bar on all pages except /simple
+- Email copies to clipboard with toast
+- /simple has no navigation, just back link
+- Footer minimal padding (py-3/4)
+
+## Styling System
+- Tailwind CSS with custom theme
+- CSS variables for theming
+- Dark mode support throughout
+- Special raw HTML styling for /simple page
+- Toast notifications bottom-right
