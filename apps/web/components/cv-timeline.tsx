@@ -39,8 +39,14 @@ function convertToTimelineEvents(data: CVData): TimelineEvent[] {
   data.education.forEach((edu) => {
     const isCompleted = !edu.period.toLowerCase().includes('present')
     const year = parseYear(edu.period, isCompleted) // Use end year for completed education
+    // Special handling for Ph.D. completion
+    let month = undefined
+    if (edu.period.includes("May 29, 2025")) {
+      month = 5 // May
+    }
     events.push({
       year: year,
+      month: month,
       title: `${isCompleted ? 'Completed: ' : 'Started: '}${edu.degree}`,
       subtitle: edu.institution,
       description: edu.description,
@@ -53,8 +59,14 @@ function convertToTimelineEvents(data: CVData): TimelineEvent[] {
   // Add experience events - use start year for positions
   data.experience.forEach((exp) => {
     const isOngoing = exp.period.toLowerCase().includes('present')
+    // Special handling for postdoc start date
+    let month = undefined
+    if (exp.period.includes("May 30, 2025")) {
+      month = 5.5 // Late May (after Ph.D.)
+    }
     events.push({
       year: parseYear(exp.period, false), // Always use start year for positions
+      month: month,
       title: `${isOngoing ? 'Current: ' : 'Started: '}${exp.position}`,
       subtitle: exp.institution,
       type: "work",
@@ -107,8 +119,20 @@ function convertToTimelineEvents(data: CVData): TimelineEvent[] {
     icon: Sparkles,
   })
 
-  // Sort by year (newest first)
-  return events.sort((a, b) => b.year - a.year)
+  // Sort by year (newest first), then by month if available
+  return events.sort((a, b) => {
+    if (b.year !== a.year) {
+      return b.year - a.year
+    }
+    // If same year, sort by month (later months first)
+    if (a.month !== undefined && b.month !== undefined) {
+      return b.month - a.month
+    }
+    // If one has month and other doesn't, prioritize the one with month
+    if (a.month !== undefined) return -1
+    if (b.month !== undefined) return 1
+    return 0
+  })
 }
 
 export function TimelineView({ data }: { data: CVData }) {

@@ -10,7 +10,7 @@ export default function BlogPage() {
 
   return (
     <div className="container py-8 md:py-12">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-4xl">
         <div className="mb-8">
           <h1 className="mb-4 text-4xl font-bold">Blog</h1>
         </div>

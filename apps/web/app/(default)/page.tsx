@@ -14,15 +14,24 @@ export default function HomePage() {
       <FlyingPublications />
       <section className="relative overflow-hidden bg-background/50 py-12 md:py-20">
         <div className="container relative">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-4xl">
             <div className="flex flex-col lg:flex-row items-center gap-12">
-              {/* Text content on the left */}
-              <div className="flex-1 text-center lg:text-left">
+              {/* Profile image - appears first on mobile, on the right on desktop */}
+              <div className="flex-shrink-0 lg:order-2">
+                <img 
+                  src="/images/profile.jpg" 
+                  alt="Core Francisco Park"
+                  className="h-64 w-48 lg:h-80 lg:w-64 rounded-lg object-cover shadow-2xl"
+                />
+              </div>
+              
+              {/* Text content - appears second on mobile, on the left on desktop */}
+              <div className="flex-1 text-center lg:text-left lg:order-1">
                 <h1 className="mb-3 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
                   Core Francisco Park
                 </h1>
                 <p className="mb-6 text-sm text-muted-foreground">
-                  If you think good academics have bad websites... <Link href="/simple" className="underline hover:text-foreground">corefranciscopark.com/simple</Link>
+                  If you think good academics should not have fancy websites: <Link href="/simple" className="underline hover:text-foreground">corefranciscopark.com/simple</Link>
                 </p>
                 <p className="mb-4 text-lg text-muted-foreground sm:text-xl">
                   Ph.D. Candidate at Harvard Physics exploring the intersection of
@@ -82,22 +91,13 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              
-              {/* Profile image on the right */}
-              <div className="flex-shrink-0">
-                <img 
-                  src="/images/profile.jpg" 
-                  alt="Core Francisco Park"
-                  className="h-64 w-48 lg:h-80 lg:w-64 rounded-lg object-cover shadow-2xl"
-                />
-              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* <section className="py-12 md:py-20 relative z-10 bg-background/50">
-        <div className="container mx-auto max-w-6xl space-y-8">
+        <div className="container mx-auto max-w-4xl space-y-8">
           <ChatBox />
           
           {/* Stay Updated - Redesigned */}

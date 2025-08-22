@@ -4,7 +4,7 @@ export default function SimplePage() {
   return (
     <>
       <p>
-        <Link href="/">Okay sure, good academics can have good websites...</Link>
+        <Link href="/">Okay fine, good academics can have fancy websites...</Link>
       </p>
       <img 
         src="/images/profile.jpg" 
@@ -64,7 +64,7 @@ export default function SimplePage() {
       
       <hr />
       <p>
-        <Link href="/">Okay sure, good academics can have good websites...</Link>
+        <Link href="/">Okay fine, good academics can have fancy websites...</Link>
       </p>
     </>
   )

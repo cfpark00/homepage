@@ -36,7 +36,7 @@ const ongoingProjects: OngoingProject[] = [
 export default function OngoingPage() {
   return (
     <div className="container py-8 md:py-12">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-4xl">
         <div className="mb-8">
           <h1 className="text-3xl font-bold">Ongoing Stuff...</h1>
         </div>

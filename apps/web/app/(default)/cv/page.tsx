@@ -38,7 +38,7 @@ const cvData: CVData = {
     {
       degree: "Ph.D. in Physics",
       institution: "Harvard University",
-      period: "2019 - 2025",
+      period: "2019 - May 29, 2025",
       description: "Machine Learning for Physical Sciences",
       advisor: "Advisors: Aravinthan Samuel, Douglas Finkbeiner, Hidenori Tanaka, Michael Brenner",
       gpa: "GPA: 3.945/4.0",
@@ -69,7 +69,7 @@ const cvData: CVData = {
     {
       position: "Postdoctoral Fellow",
       institution: "Harvard University",
-      period: "May 2025 - Present",
+      period: "May 30, 2025 - Present",
       responsibilities: [
         "Working with Dr. Venkatesh Murthy and Dr. Hidenori Tanaka",
         "Research on AI and neuroscience",
@@ -78,7 +78,7 @@ const cvData: CVData = {
     {
       position: "Research Intern",
       institution: "NTT Research",
-      period: "Jan 2025, Jul 2024 - Sep 2024",
+      period: "Jan 2025 (1 month), Jul - Aug 2024 (2 months)",
       responsibilities: [
         "Understanding Mechanisms and Capabilities of AI",
         "Supervisor: Hidenori Tanaka",

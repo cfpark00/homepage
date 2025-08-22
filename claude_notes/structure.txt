@@ -1,5 +1,5 @@
 # Project Structure - Academic Homepage Monorepo
-Last Updated: 2025-08-21 19:06
+Last Updated: 2025-08-21 19:42
 
 ## Root Directory
 /Users/cfpark00/mysite/
@@ -90,12 +90,17 @@ Last Updated: 2025-08-21 19:06
 │   │       ├── 18-47_news_page_development.md
 │   │       ├── 18-53_final_ui_refinements.md
 │   │       ├── 18-54_cv_timeline_accuracy_fixes.md
-│   │       └── 19-06_publication_fixes_and_ui_updates.md
+│   │       ├── 19-06_publication_fixes_and_ui_updates.md
+│   │       └── 19-42_vercel_deployment_setup.md
 │   └── structure.txt          # This file
 │
 ├── .eslintrc.json             # ESLint config
+├── .git/                      # Git repository (initialized 2025-08-21)
 ├── .gitignore                 # Git ignore rules
 ├── .prettierrc                # Prettier config
+├── .vercel/                   # Vercel configuration
+│   └── project.json           # Vercel project settings
+├── CFPark_CV.pdf              # Updated CV (source for public version)
 ├── package.json               # Root package.json
 ├── pnpm-workspace.yaml        # pnpm workspace config
 ├── README.md                  # Project documentation
@@ -143,3 +148,17 @@ Last Updated: 2025-08-21 19:06
 - Dark mode support throughout
 - Special raw HTML styling for /simple page
 - Toast notifications bottom-right
+
+## Deployment Configuration
+- **Git Repository**: git@github.com:cfpark00/homepage.git
+- **Vercel Project**: "homepage" (not "mysite")
+- **Vercel Settings** (for monorepo):
+  - Root Directory: `apps/web`
+  - Framework Preset: Next.js
+  - Build Command: `pnpm build`
+  - Output Directory: `.next`
+  - Install Command: `pnpm install`
+- **Production URLs**:
+  - https://homepage-delta-roan.vercel.app
+  - https://homepage-core-francisco-parks-projects.vercel.app
+  - Custom domain: corefranciscopark.com (SSL certificates in progress)

@@ -9,7 +9,6 @@ import { useTheme } from "next-themes"
 import { useState } from "react"
 
 const navigation = [
-  { name: "Home", href: "/" },
   { name: "CV", href: "/cv" },
   { name: "Ongoing", href: "/ongoing" },
   // { name: "Research", href: "/projects" }, // Hidden until deployment ready
