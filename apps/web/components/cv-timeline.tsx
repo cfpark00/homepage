@@ -13,7 +13,7 @@ type TimelineEvent = {
   title: string
   subtitle: string
   description?: string
-  type: "education" | "work" | "award" | "milestone"
+  type: "education" | "work" | "award" | "milestone" | "service" | "extracurricular"
   icon: any
   details?: string[]
   skills?: string[]
@@ -86,6 +86,43 @@ function convertToTimelineEvents(data: CVData): TimelineEvent[] {
         icon: Trophy,
       })
     }
+  })
+
+  // Add service events
+  data.service.membership.forEach((item) => {
+    const year = parseYear(item.period, false)
+    events.push({
+      year: year,
+      title: `Joined ${item.organization}`,
+      subtitle: "Professional Membership",
+      type: "service",
+      icon: Users,
+    })
+  })
+
+  // Add major reviewing milestones
+  const totalPapers = data.service.reviewing.reduce((sum, item) => sum + item.count, 0)
+  if (totalPapers > 0) {
+    events.push({
+      year: 2024,
+      title: `Reviewed ${totalPapers} papers`,
+      subtitle: "Peer Review",
+      description: "Peer reviewer for NeurIPS, ICML, ICLR, and various workshops",
+      type: "service",
+      icon: Users,
+    })
+  }
+
+  // Add extracurricular events
+  data.extracurricular.forEach((item) => {
+    const year = parseInt(item.year)
+    events.push({
+      year: year,
+      title: item.activity,
+      subtitle: item.achievement || "Participant",
+      type: "extracurricular",
+      icon: Sparkles,
+    })
   })
 
   // Add milestone events based on actual publications
@@ -232,14 +269,18 @@ export function TimelineView({ data }: { data: CVData }) {
     education: "bg-blue-500",
     work: "bg-green-500",
     award: "bg-yellow-500",
-    milestone: "bg-purple-500"
+    milestone: "bg-purple-500",
+    service: "bg-orange-500",
+    extracurricular: "bg-pink-500"
   }
 
   const typeGradients = {
     education: "from-blue-500/20 to-blue-500/5",
     work: "from-green-500/20 to-green-500/5",
     award: "from-yellow-500/20 to-yellow-500/5",
-    milestone: "from-purple-500/20 to-purple-500/5"
+    milestone: "from-purple-500/20 to-purple-500/5",
+    service: "from-orange-500/20 to-orange-500/5",
+    extracurricular: "from-pink-500/20 to-pink-500/5"
   }
 
   return (

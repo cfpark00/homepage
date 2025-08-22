@@ -41,9 +41,9 @@ export default function PublicationsPage() {
   const typeColors = {
     journal: "bg-blue-500",
     conference: "bg-green-500",
-    preprint: "bg-yellow-500",
+    preprint: "bg-amber-500",
     book: "bg-purple-500",
-    thesis: "bg-gray-500",
+    thesis: "bg-purple-500",
   }
 
   return (

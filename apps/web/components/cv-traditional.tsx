@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card"
 import { Badge } from "@workspace/ui/components/badge"
-import { GraduationCap, Briefcase, Award, BookOpen } from "lucide-react"
+import { GraduationCap, Briefcase, Award, BookOpen, Users, Activity } from "lucide-react"
 import type { CVData } from "@/app/(default)/cv/page"
 
 export function TraditionalView({ data }: { data: CVData }) {
@@ -130,6 +130,65 @@ export function TraditionalView({ data }: { data: CVData }) {
           </CardContent>
         </Card>
       </div>
+
+      <Card className="mt-8">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Users className="h-5 w-5" />
+            Professional Activities
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <h4 className="font-semibold text-sm mb-2">Membership</h4>
+              <ul className="space-y-1">
+                {data.service.membership.map((item, index) => (
+                  <li key={index} className="flex justify-between text-sm">
+                    <span>{item.organization}</span>
+                    <span className="text-muted-foreground">{item.period}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-sm mb-2">Peer Review (30 papers total)</h4>
+              <ul className="space-y-1">
+                {data.service.reviewing.map((item, index) => (
+                  <li key={index} className="flex justify-between text-sm">
+                    <span>{item.venue}</span>
+                    <span className="text-muted-foreground">{item.count} papers · {item.year}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-8">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Activity className="h-5 w-5" />
+            Extracurricular Activities
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-2">
+            {data.extracurricular.map((item, index) => (
+              <li key={index} className="border-l-2 border-muted pl-4">
+                <div className="flex justify-between">
+                  <span className="text-sm font-medium">{item.activity}</span>
+                  <span className="text-sm text-muted-foreground">{item.year}</span>
+                </div>
+                {item.achievement && (
+                  <p className="text-xs text-muted-foreground mt-1">{item.achievement}</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
     </>
   )
 }

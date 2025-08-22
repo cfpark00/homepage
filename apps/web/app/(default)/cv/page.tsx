@@ -31,6 +31,22 @@ export type CVData = {
   }>
   skills: Record<string, string[]>
   researchInterests: string[]
+  service: {
+    membership: Array<{
+      organization: string
+      period: string
+    }>
+    reviewing: Array<{
+      venue: string
+      count: number
+      year: string
+    }>
+  }
+  extracurricular: Array<{
+    activity: string
+    year: string
+    achievement?: string
+  }>
 }
 
 const cvData: CVData = {
@@ -131,6 +147,34 @@ const cvData: CVData = {
     "Astrophysics: Cosmology, Image Space Statistics, Bayesian Inference, Fourier Analysis",
     "Neuroscience: Whole-Brain Imaging, Connectomics, Practical Machine Learning",
     "Mechanistic Understanding of ML: Compositional Generalization, Diffusion Models, In-Context Learning"
+  ],
+  service: {
+    membership: [
+      { organization: "Sigma-Xi", period: "Jun 2025 - Present" }
+    ],
+    reviewing: [
+      { venue: "NeurIPS", count: 6, year: "2025" },
+      { venue: "ICML HiDL Workshop", count: 3, year: "2025" },
+      { venue: "ICML MOSS Workshop", count: 2, year: "2025" },
+      { venue: "CoLM", count: 2, year: "2025" },
+      { venue: "ICLR Workshop on Tackling Climate Change with ML", count: 2, year: "2025" },
+      { venue: "ICLR", count: 4, year: "2024" },
+      { venue: "NeurIPS Workshop on Scientific Methods for Understanding Deep Learning", count: 4, year: "2024" },
+      { venue: "ICML Workshop on Mechanistic Interpretability", count: 3, year: "2024" },
+      { venue: "ICLR Workshop on Tackling Climate Change with ML", count: 4, year: "2024" }
+    ]
+  },
+  extracurricular: [
+    { activity: "Harvard AI Safety Team", year: "2024", achievement: "Member" },
+    { activity: "KITP Neurophysics of Locomotion School", year: "2022", achievement: "Summer Student" },
+    { activity: "APCTP-POSTECH Biophysics School", year: "2019", achievement: "Summer Student" },
+    { activity: "KIAS-SNU Physics Winter Camp", year: "2018", achievement: "Best Project Award: Accretion of Supermassive Black Holes" },
+    { activity: "Stockholm International Youth Science Seminar", year: "2018", achievement: "Korean Representative" },
+    { activity: "APCTP-NIMS-KISTI-KASI Summer School on Numerical Relativity", year: "2018", achievement: "Summer Student" },
+    { activity: "APCTP-POSTECH Biophysics School", year: "2018", achievement: "Summer Student" },
+    { activity: "KAIST International Discovery Program", year: "2017", achievement: "Selected Team" },
+    { activity: "Asian Science Camp", year: "2014", achievement: "Korean Representative" },
+    { activity: "Molecular Frontiers Symposium", year: "2013", achievement: "School Representative" }
   ]
 }
 

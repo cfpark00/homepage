@@ -13,6 +13,7 @@ const navigation = [
   { name: "Ongoing", href: "/ongoing" },
   // { name: "Research", href: "/projects" }, // Hidden until deployment ready
   { name: "Publications", href: "/publications" },
+  { name: "Talks", href: "/talks" },
   { name: "Blog", href: "/blog" },
   { name: "News", href: "/news" },
 ]
