@@ -2,11 +2,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@work
 import { Badge } from "@workspace/ui/components/badge"
 import { CalendarDays, Clock, User } from "lucide-react"
 import Link from "next/link"
-
-// Static blog posts data
-const posts: any[] = []
+import { getAllPosts } from "@/lib/blog"
 
 export default function BlogPage() {
+  const posts = getAllPosts()
 
   return (
     <div className="container py-8 md:py-12">

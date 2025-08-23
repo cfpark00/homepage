@@ -4,6 +4,7 @@ import "@workspace/ui/styles/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navigation } from "@/components/navigation"
 import { Toaster } from "@workspace/ui/components/sonner"
+import { GoogleAnalytics } from "@/components/google-analytics"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
+        <GoogleAnalytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

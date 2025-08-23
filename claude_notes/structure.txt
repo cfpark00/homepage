@@ -1,5 +1,5 @@
 # Project Structure - Academic Homepage Monorepo
-Last Updated: 2025-08-22 00:45
+Last Updated: 2025-08-22 01:21
 
 ## Root Directory
 /Users/cfpark00/mysite/
@@ -38,6 +38,7 @@ Last Updated: 2025-08-22 00:45
 │       │   ├── cv-timeline.tsx # Timeline view for CV
 │       │   ├── cv-traditional.tsx # Traditional CV view
 │       │   ├── flying-publications.tsx # Animated floating publication images
+│       │   ├── google-analytics.tsx # Google Analytics GA4 integration
 │       │   ├── navigation.tsx  # Main navigation bar
 │       │   ├── publication-card.tsx # Reusable publication card component
 │       │   ├── research-flow.tsx # React Flow visualization for research tracking
@@ -69,6 +70,8 @@ Last Updated: 2025-08-22 00:45
 │       │   ├── CFPark_CV.pdf   # Downloadable CV
 │       │   ├── favicon.png     # Favicon copy
 │       │   └── sparrow.png     # Original sparrow icon
+│       ├── .env.example        # Environment variables template
+│       ├── .env.local          # Local environment variables (gitignored)
 │       ├── components.json     # shadcn/ui config
 │       ├── next.config.mjs     # Next.js config
 │       ├── package.json        # Dependencies
@@ -120,7 +123,8 @@ Last Updated: 2025-08-22 00:45
 │   │   │   └── 23-04_research_tracking_visualization.md
 │   │   └── 2025-08-22/
 │   │       ├── 00-29_talks_page_development.md
-│   │       └── 00-45_cv_updates_and_deployment.md
+│   │       ├── 00-45_cv_updates_and_deployment.md
+│   │       └── 01-21_google_analytics_integration.md
 │   └── structure.txt          # This file
 │
 ├── .eslintrc.json             # ESLint config
@@ -186,8 +190,11 @@ Last Updated: 2025-08-22 00:45
 - **Vercel Dashboard Settings**:
   - Root Directory: `apps/web`
   - All other settings: Auto-detected
+  - Environment Variables:
+    - `NEXT_PUBLIC_GA_ID`: Google Analytics tracking ID
 - **NO vercel.json file** - Dashboard settings handle everything
 - **Deploy from repository root**:
   - Preview: `vercel`
   - Production: `vercel --prod`
 - **Production URL**: https://www.corefranciscopark.com
+- **Google Analytics**: GA4 tracking integrated (ID: G-ZDH9GPMH57)

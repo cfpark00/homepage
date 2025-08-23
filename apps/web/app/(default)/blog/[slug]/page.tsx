@@ -1,58 +1,36 @@
-"use client"
-
-import { useEffect, useState } from "react"
 import { Badge } from "@workspace/ui/components/badge"
 import { CalendarDays, Clock, User, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@workspace/ui/components/button"
-import { useParams } from "next/navigation"
+import { getPostBySlug, getAllPosts } from "@/lib/blog"
+import { notFound } from "next/navigation"
+import { remark } from 'remark'
+import html from 'remark-html'
 
-export default function BlogPostPage() {
-  const params = useParams()
-  const slug = params.slug as string
-  const [post, setPost] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
-  
-  useEffect(() => {
-    fetch(`/api/blog/${slug}`)
-      .then(res => res.json())
-      .then(data => {
-        setPost(data)
-        setLoading(false)
-      })
-      .catch(() => {
-        setLoading(false)
-      })
-  }, [slug])
+export async function generateStaticParams() {
+  const posts = getAllPosts()
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
 
-  if (loading) {
-    return (
-      <div className="container py-8 md:py-12">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="text-muted-foreground">Loading...</p>
-        </div>
-      </div>
-    )
-  }
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
 
   if (!post) {
-    return (
-      <div className="container py-8 md:py-12">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="mb-4 text-4xl font-bold">Post Not Found</h1>
-          <p className="mb-8 text-muted-foreground">
-            The blog post you're looking for doesn't exist.
-          </p>
-          <Button asChild>
-            <Link href="/blog">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
-            </Link>
-          </Button>
-        </div>
-      </div>
-    )
+    notFound()
   }
+
+  // Convert markdown to HTML
+  const processedContent = await remark()
+    .use(html)
+    .process(post.content)
+  const contentHtml = processedContent.toString()
 
   return (
     <article className="container py-8 md:py-12">
@@ -98,7 +76,7 @@ export default function BlogPostPage() {
         </div>
         
         <div className="prose prose-neutral max-w-none dark:prose-invert">
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </div>
       </div>
     </article>
