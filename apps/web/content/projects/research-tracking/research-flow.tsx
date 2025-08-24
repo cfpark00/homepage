@@ -30,7 +30,7 @@ import {
   CirclePause 
 } from "lucide-react"
 import { TfiThought } from "react-icons/tfi"
-import { researchTree, type ResearchNode } from "@/lib/research-tree-data"
+import { researchTree, type ResearchNode } from "./research-tree-data"
 import { cn } from "@workspace/ui/lib/utils"
 
 interface NodeData {

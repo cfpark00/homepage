@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export default function SimplePage() {
   return (
@@ -6,10 +7,12 @@ export default function SimplePage() {
       <p>
         <Link href="/">Okay fine, good academics can have fancy websites...</Link>
       </p>
-      <img 
+      <Image 
         src="/images/profile.jpg" 
         alt="Core Francisco Park"
-        style={{ width: '120px', height: '160px', objectFit: 'cover', float: 'left', marginRight: '15px', marginBottom: '10px' }}
+        width={120}
+        height={160}
+        style={{ objectFit: 'cover', float: 'left', marginRight: '15px', marginBottom: '10px' }}
       />
       <h1>Core Francisco Park</h1>
       <p>Postdoctoral Fellow, Harvard University (May 2025 - Present)<br />

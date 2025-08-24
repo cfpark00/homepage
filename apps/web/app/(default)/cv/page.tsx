@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card"
 import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
@@ -191,10 +192,13 @@ export default function CVPage() {
               Ph.D. in Physics, Harvard University
             </p>
           </div>
-          <img 
+          <Image 
             src="/images/profile-square.jpg" 
             alt="Core Francisco Park"
+            width={128}
+            height={128}
             className="h-32 w-32 rounded-lg object-cover shadow-lg flex-shrink-0"
+            priority
           />
         </div>
 

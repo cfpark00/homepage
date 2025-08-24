@@ -1,0 +1,26 @@
+{
+  "projects": {
+    "orchestra": {
+      "title": "Orchestra: A Research Platform",
+      "excerpt": "A platform to accelerate and track research using AI Agents.",
+      "isExternal": true,
+      "externalUrl": "https://app.orchestra-ai.org",
+      "thumbnailUrl": "/images/projects/orchestra/orchestra.png"
+    },
+    "research-tracking": {
+      "title": "Research Tracking System",
+      "excerpt": "A system to track questions, experiments, hypotheses, findings, and decisions throughout the research process.",
+      "thumbnailUrl": "/images/projects/research-tracking-system/research-tracking-system.png"
+    },
+    "evolving-research": {
+      "title": "Evolving Research",
+      "excerpt": "Understanding how research and discovery itself has evolved using digital evolution.",
+      "thumbnailUrl": "/images/projects/evolving-research/evolving-research.png"
+    },
+    "llm-dopamine": {
+      "title": "Do LLMs have dopamine?",
+      "excerpt": "Exploring whether large language models have causal internal representations of reward.",
+      "thumbnailUrl": "/images/projects/llm-dopamine/llm-dopamine.png"
+    }
+  }
+}

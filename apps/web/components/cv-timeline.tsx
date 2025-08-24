@@ -198,14 +198,11 @@ export function TimelineView({ data }: { data: CVData }) {
       }
     )
 
-    itemRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref)
-    })
+    const refs = itemRefs.current.filter((ref): ref is HTMLDivElement => ref !== null)
+    refs.forEach((ref) => observer.observe(ref))
 
     return () => {
-      itemRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref)
-      })
+      refs.forEach((ref) => observer.unobserve(ref))
     }
   }, [])
 

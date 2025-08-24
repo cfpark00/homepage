@@ -1,5 +1,5 @@
 # Project Structure Overview
-Last Updated: 2025-08-24
+Last Updated: 2025-08-23
 
 ## Root Directory: /Users/cfpark00/mysite
 Monorepo using pnpm workspaces with Vercel deployment
@@ -12,39 +12,46 @@ Main Next.js application
 #### /app/(default)/
 - blog/
   - page.tsx - Blog listing page
-  - [slug]/page.tsx - Individual blog post page
+  - [slug]/page.tsx - Individual blog post page (uses MDX from content)
 - cv/
-  - page.tsx - CV page
+  - page.tsx - CV page (hardcoded data)
 - news/
-  - page.tsx - News listing page (uses external data)
-- ongoing/
-  - page.tsx - Ongoing work page
+  - page.tsx - News listing page (uses content/news JSON)
 - projects/
-  - page.tsx - Projects listing page
-  - [slug]/page.tsx - Individual project page
+  - page.tsx - Projects page (server component, loads from metadata.json)
+  - [slug]/page.tsx - Individual project page (uses MDX from content)
 - publications/
-  - page.tsx - Publications listing page
+  - page.tsx - Publications listing page (uses lib/publications-data.ts)
 - research-tools/
-  - linen-archive/page.tsx
-  - sankey/page.tsx
+  - page.tsx - Research tools page (hardcoded data)
 - talks/
-  - page.tsx - Talks listing page
+  - page.tsx - Talks listing page (uses lib/talks-data.ts)
+- page.tsx - Home page (hardcoded)
 
 #### /lib/
-- blog.ts - Blog metadata and loading functions
-- news.ts - News data loading functions
-- projects.ts - Projects metadata and loading functions
-- publications-data.ts - Publications data
-- research-tree-data.ts - Research tree visualization data
-- talks-data.ts - Talks data
+- blog.ts - Blog loader (reads from content/blog/metadata.json)
+- news.ts - News loader (reads from content/news JSON files)
+- projects.ts - Projects loader (reads from content/projects/metadata.json)
+- publications-data.ts - Publications data (TypeScript, includes related_projects)
+- talks-data.ts - Talks data (TypeScript)
 
 #### /content/
 - blog/
-  - welcome-to-my-blog/
-    - index.mdx
+  - metadata.json - Blog post metadata (single source of truth)
   - random-walks-visualization/
     - index.mdx
-    - random-walk.tsx
+    - random-walk.tsx (co-located interactive component)
+  - welcome-to-my-blog/
+    - index.mdx
+- projects/
+  - metadata.json - Project metadata (title, excerpt, thumbnailUrl, isExternal, externalUrl)
+  - evolving-research/
+    - index.mdx
+  - research-tracking/
+    - index.mdx
+    - research-flow.tsx (co-located React Flow diagram)
+    - research-tree-data.ts (co-located data model)
+    - research-tree-vertical.json (co-located data)
 - news/
   - YYYY/ (2015-2025)
     - 0winter.json (Jan-Mar)
@@ -59,15 +66,21 @@ Main Next.js application
     - index.mdx
 
 #### /components/
-- mdx-content.tsx - MDX content loader (handles blog and project slugs)
-- share-button.tsx
+- mdx-content.tsx - Dynamic MDX loader (uses Next.js dynamic imports)
+- share-button.tsx - Copy link button with toast notifications
 - google-analytics.tsx
-- publication-card.tsx
-- research-tree-vertical.tsx
+- publication-card.tsx - Domain wrapper around ArticleCard (supports related_projects)
+- project-cards.tsx - Client component for project grid with external link handling
+- cv-timeline.tsx
+- cv-traditional.tsx
+- flying-publications.tsx
+- navigation.tsx - Site navigation (Projects instead of Ongoing)
+- theme-provider.tsx
 
 ### /packages/ui/
 Shared UI component library
 - components/
+  - article-card.tsx - Generic article/publication card
   - card.tsx
   - badge.tsx
   - button.tsx
@@ -76,10 +89,9 @@ Shared UI component library
 
 ### /archive/
 Archived/unused files
-- 2025-01-24/
-  - claude_notes/ (old documentation)
-  - reorganize-layout.js
-  - scratch/research-tree/
+- unused-code/
+  - chat-box.tsx (unused component, only in commented code)
+  - research-tools/ (orphaned page directory, not linked anywhere)
 
 ### /claude_notes/
 AI assistant documentation and logs

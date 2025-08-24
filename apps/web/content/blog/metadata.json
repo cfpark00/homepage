@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "welcome-to-my-blog": {
+      "title": "Welcome to My Blog",
+      "date": "2025-08-22",
+      "excerpt": "An introduction to my personal blog.",
+      "tags": ["test"],
+      "readingTime": "1 min read"
+    },
+    "random-walks-visualization": {
+      "title": "Visualizing Random Walks",
+      "date": "2025-08-23",
+      "excerpt": "Interactive visualization and exploration of random walks in 2D space with real-time statistics.",
+      "tags": ["probability", "visualization", "interactive", "test"],
+      "readingTime": "5 min read"
+    }
+  }
+}

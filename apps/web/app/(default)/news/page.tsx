@@ -28,7 +28,7 @@ export default function NewsPage() {
               <div className="flex items-start gap-1 text-sm text-muted-foreground pt-0.5 w-[120px] flex-shrink-0">
                 <CalendarDays className="h-3.5 w-3.5 mt-0.5" />
                 <span className="whitespace-nowrap">
-                  {new Date(item.date).toLocaleDateString("en-US", {
+                  {new Date(item.date + "T00:00:00").toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
                     day: "numeric",

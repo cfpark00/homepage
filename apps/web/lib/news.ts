@@ -53,6 +53,6 @@ export function getNewsItems(): NewsItem[] {
   
   // Sort all news by date descending (newest first)
   return allNews.sort((a, b) => 
-    new Date(b.date).getTime() - new Date(a.date).getTime()
+    new Date(b.date + "T00:00:00").getTime() - new Date(a.date + "T00:00:00").getTime()
   )
 }

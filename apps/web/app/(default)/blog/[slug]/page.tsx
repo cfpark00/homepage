@@ -7,16 +7,6 @@ import { getBlogPosts, getBlogPost } from '@/lib/blog'
 import MDXContent from '@/components/mdx-content'
 import { ShareButton } from '@/components/share-button'
 
-// Component registry for special interactive components
-const getComponents = (slug: string) => {
-  if (slug === 'random-walks-visualization') {
-    // Dynamically import the RandomWalk component
-    const RandomWalk = require('@/content/blog/random-walks-visualization/random-walk').default
-    return { RandomWalk }
-  }
-  return {}
-}
-
 export async function generateStaticParams() {
   const posts = await getBlogPosts()
   return posts.map((post) => ({
@@ -33,9 +23,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     notFound()
   }
 
-  // Get components for this specific blog post
-  const components = getComponents(slug)
-
   return (
     <article className="container py-8 md:py-12">
       <div className="mx-auto max-w-4xl">
@@ -43,7 +30,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <Button variant="ghost" asChild className="mb-6">
             <Link href="/blog">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back
+              All Posts
             </Link>
           </Button>
           
@@ -59,7 +46,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             </span>
             <span className="flex items-center gap-1">
               <CalendarDays className="h-3 w-3" />
-              {new Date(post.date).toLocaleDateString("en-US", {
+              {new Date(post.date + "T00:00:00").toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -82,7 +69,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
         
         <div className="prose prose-neutral max-w-none dark:prose-invert">
-          <MDXContent slug={slug} type="blog" components={components} />
+          <MDXContent slug={slug} type="blog" />
         </div>
       </div>
     </article>

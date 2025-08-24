@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { PageContainer } from "@workspace/ui/components/page-container"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card"
 import { Button } from "@workspace/ui/components/button"
@@ -10,6 +11,7 @@ import { talks } from "@/lib/talks-data"
 
 export default function TalksPage() {
   const [expandedTalks, setExpandedTalks] = useState<Set<number>>(new Set())
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set())
 
   // Helper function to check if slides URL is Google Slides
   const isGoogleSlides = (url: string | undefined) => {
@@ -18,6 +20,11 @@ export default function TalksPage() {
 
   // Helper function to check if slides URL is a downloadable file (e.g., Keynote on Google Drive)
   const isDownloadableSlides = (url: string | undefined) => {
+    return url ? url.includes('drive.google.com/file') : false
+  }
+
+  // Helper function to check if video URL is Google Drive
+  const isGoogleDriveVideo = (url: string | undefined) => {
     return url ? url.includes('drive.google.com/file') : false
   }
 
@@ -150,31 +157,26 @@ export default function TalksPage() {
                       <div className="w-32 h-20 sm:w-40 sm:h-24 relative overflow-hidden rounded bg-muted">
                         {(() => {
                           const thumbnail = getThumbnailForTalk(talk)
-                          if (thumbnail) {
+                          if (thumbnail && !failedImages.has(thumbnail)) {
                             return (
-                              <img 
+                              <Image 
                                 src={thumbnail} 
                                 alt={talk.title}
+                                width={160}
+                                height={96}
                                 className="object-cover w-full h-full"
-                                onError={(e) => {
-                                  const target = e.target as HTMLImageElement
-                                  target.style.display = 'none'
-                                  if (target.nextSibling) {
-                                    (target.nextSibling as HTMLElement).style.display = 'flex'
-                                  }
+                                onError={() => {
+                                  setFailedImages(prev => new Set(prev).add(thumbnail))
                                 }}
                               />
                             )
                           }
-                          return null
+                          return (
+                            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                              <Presentation className="w-8 h-8" />
+                            </div>
+                          )
                         })()}
-                        <div className="w-full h-full items-center justify-center text-muted-foreground hidden">
-                          {talk.primaryContent === "slides" ? (
-                            <Presentation className="w-8 h-8" />
-                          ) : (
-                            <Play className="w-8 h-8" />
-                          )}
-                        </div>
                       </div>
                     </div>
                     
@@ -237,55 +239,27 @@ export default function TalksPage() {
                               </p>
                             )}
                             
-                            {/* Show content based on primaryContent preference */}
-                            {talk.primaryContent === "slides" ? (
-                              <>
-                                {talk.slidesUrl && talk.slidesUrl.includes('docs.google.com/presentation') && talk.slidesUrl.includes('/embed') && (
-                                  <div className="aspect-video w-full rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-900">
-                                    <iframe
-                                      src={talk.slidesUrl}
-                                      title={`${talk.title} - Slides`}
-                                      className="w-full h-full"
-                                      allowFullScreen
-                                    />
-                                  </div>
-                                )}
-                                {talk.videoUrl && (
-                                  <div className="aspect-video w-full rounded-lg overflow-hidden bg-black">
-                                    <iframe
-                                      src={getYouTubeEmbedUrl(talk.videoUrl)}
-                                      title={talk.title}
-                                      className="w-full h-full"
-                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                      allowFullScreen
-                                    />
-                                  </div>
-                                )}
-                              </>
-                            ) : (
-                              <>
-                                {talk.videoUrl && (
-                                  <div className="aspect-video w-full rounded-lg overflow-hidden bg-black">
-                                    <iframe
-                                      src={getYouTubeEmbedUrl(talk.videoUrl)}
-                                      title={talk.title}
-                                      className="w-full h-full"
-                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                      allowFullScreen
-                                    />
-                                  </div>
-                                )}
-                                {talk.slidesUrl && talk.slidesUrl.includes('docs.google.com/presentation') && talk.slidesUrl.includes('/embed') && (
-                                  <div className="aspect-video w-full rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-900">
-                                    <iframe
-                                      src={talk.slidesUrl}
-                                      title={`${talk.title} - Slides`}
-                                      className="w-full h-full"
-                                      allowFullScreen
-                                    />
-                                  </div>
-                                )}
-                              </>
+                            {/* Always show slides first, then video */}
+                            {talk.slidesUrl && talk.slidesUrl.includes('docs.google.com/presentation') && talk.slidesUrl.includes('/embed') && (
+                              <div className="aspect-video w-full rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-900">
+                                <iframe
+                                  src={talk.slidesUrl}
+                                  title={`${talk.title} - Slides`}
+                                  className="w-full h-full"
+                                  allowFullScreen
+                                />
+                              </div>
+                            )}
+                            {talk.videoUrl && !isGoogleDriveVideo(talk.videoUrl) && (
+                              <div className="aspect-video w-full rounded-lg overflow-hidden bg-black">
+                                <iframe
+                                  src={getYouTubeEmbedUrl(talk.videoUrl)}
+                                  title={talk.title}
+                                  className="w-full h-full"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                />
+                              </div>
                             )}
                             
                             <div className="flex gap-2">
@@ -299,7 +273,7 @@ export default function TalksPage() {
                                   }}
                                 >
                                   <ExternalLink className="mr-2 h-3 w-3" />
-                                  Open in YouTube
+                                  {isGoogleDriveVideo(talk.videoUrl) ? 'View on Google Drive' : 'Open in YouTube'}
                                 </Button>
                               )}
                               {talk.slidesUrl && (

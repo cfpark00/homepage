@@ -56,7 +56,7 @@ export default async function BlogPage() {
                       </span>
                       <span className="flex items-center gap-1">
                         <CalendarDays className="h-3 w-3" />
-                        {new Date(post.date).toLocaleDateString("en-US", {
+                        {new Date(post.date + "T00:00:00").toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "long",
                           day: "numeric",

@@ -1,6 +1,14 @@
 import { Badge } from "@workspace/ui/components/badge"
+import { WarningCard } from "@workspace/ui/components/warning-card"
 import { PublicationCard } from "@/components/publication-card"
+import { ResearchFlow } from "./research-flow"
 import { Target, Users, Sparkles } from "lucide-react"
+
+<div className="not-prose">
+  <WarningCard>
+    Most of this post is semi-placeholder generated with AI assistance
+  </WarningCard>
+</div>
 
 export const markovICLPublication = {
   id: 3,
@@ -51,7 +59,7 @@ Below is a real research process tracking the development of understanding in-co
 showing how questions evolve into experiments, findings lead to pivots, and insights build upon each other.
 
 <div className="my-4 not-prose">
-  <PublicationCard publication={markovICLPublication} compact />
+  <PublicationCard publication={markovICLPublication} />
 </div>
 
 ### Node Types

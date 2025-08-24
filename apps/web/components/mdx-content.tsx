@@ -1,16 +1,14 @@
 'use client'
 
-import { useMDXComponents } from '@mdx-js/react'
 import dynamic from 'next/dynamic'
 import { useMemo } from 'react'
 
 interface MDXContentProps {
   slug: string
   type: 'blog' | 'projects'
-  components?: Record<string, any>
 }
 
-export default function MDXContent({ slug, type, components = {} }: MDXContentProps) {
+export default function MDXContent({ slug, type }: MDXContentProps) {
   // Dynamically import MDX content based on type and slug
   const Content = useMemo(
     () => dynamic(
@@ -27,8 +25,6 @@ export default function MDXContent({ slug, type, components = {} }: MDXContentPr
     ),
     [slug, type]
   )
-
-  const mdxComponents = useMDXComponents(components)
   
-  return <Content components={mdxComponents} />
+  return <Content />
 }

@@ -97,7 +97,9 @@ export function Card({ compact = false }) {
 
 4. **Verify prop usage**: Just because a component accepts a prop doesn't mean it uses it - check the implementation.
 
-## Real Example from Today
+## Real Examples
+
+### Example 1: PublicationCard Icon Alignment
 
 We had a PublicationCard component that rendered perfectly on the publications page but had icon alignment issues in MDX. The problem was:
 
@@ -113,3 +115,22 @@ The fix was simple: add `not-prose` to the wrapper div in MDX:
 ```
 
 This prevented the prose typography styles from interfering with the component's internal flexbox layout.
+
+### Example 2: WarningCard Mysterious Margins
+
+We created a WarningCard component that had unexpected margins (17.5px) when used in MDX. The issue was:
+
+1. The prose wrapper was adding margins to all child elements
+2. The browser inspector showed weird computed values like 17.5px that weren't in our code
+3. Even setting margin classes on the component didn't override the prose styles
+
+The fix: Wrap the component in a `not-prose` div:
+```mdx
+<div className="not-prose">
+  <WarningCard>
+    Your warning message here
+  </WarningCard>
+</div>
+```
+
+**Key Learning**: When you see odd computed values (like 17.5px) that don't match typical Tailwind spacing, it's almost always prose styles interfering. The `not-prose` wrapper is your escape hatch.

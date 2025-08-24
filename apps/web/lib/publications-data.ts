@@ -15,6 +15,7 @@ export type Publication = {
   thumbnail?: string
   significant?: boolean
   related_pubs?: string[]
+  related_projects?: { name: string; url: string }[]
   hide?: boolean
 }
 
@@ -25,7 +26,7 @@ export const publications: Publication[] = [
     title: "Decomposing Elements of Problem Solving: What 'Math' Does RL Teach?",
     authors: ["T. Qin*", "C.F. Park*", "M. Kwun", "A. Walsman", "E. Malach", "N. Anand", "H. Tanaka", "D. Alvarez-Melis"],
     abstract: "Mathematical reasoning tasks have become prominent benchmarks for assessing the reasoning capabilities of LLMs, especially with reinforcement learning (RL) methods such as GRPO showing significant performance gains. However, accuracy metrics alone do not support fine-grained assessment of capabilities and fail to reveal which problem-solving skills have been internalized. To better understand these capabilities, we propose to decompose problem solving into fundamental capabilities: Plan (mapping questions to sequences of steps), Execute (correctly performing solution steps), and Verify (identifying the correctness of a solution). Empirically, we find that GRPO mainly enhances the execution skill-improving execution robustness on problems the model already knows how to solve-a phenomenon we call temperature distillation. More importantly, we show that RL-trained models struggle with fundamentally new problems, hitting a 'coverage wall' due to insufficient planning skills. To explore RL's impact more deeply, we construct a minimal, synthetic solution-tree navigation task as an analogy for mathematical problem-solving. This controlled setup replicates our empirical findings, confirming RL primarily boosts execution robustness. Importantly, in this setting, we identify conditions under which RL can potentially overcome the coverage wall through improved exploration and generalization to new solution paths. Our findings provide insights into the role of RL in enhancing LLM reasoning, expose key limitations, and suggest a path toward overcoming these barriers. Code is available at this https URL.",
-    venue: "preprint",
+    venue: "arXiv",
     year: 2025,
     month: "May",
     type: "preprint",
@@ -38,7 +39,7 @@ export const publications: Publication[] = [
     title: "New News: System-2 Fine-tuning for Robust Integration of New Knowledge",
     authors: ["C.F. Park*", "Z. Zhang*", "H. Tanaka"],
     abstract: `Humans and intelligent animals can effortlessly internalize new information ("news") and accurately extract the implications for performing downstream tasks. While large language models (LLMs) can achieve this through in-context learning (ICL) when the news is explicitly given as context, fine-tuning remains challenging for the models to consolidate learning in weights. In this paper, we introduce New News, a dataset composed of hypothetical yet plausible news spanning multiple domains (mathematics, coding, discoveries, leaderboards, events), accompanied by downstream evaluation questions whose correct answers critically depend on understanding and internalizing the news. We first demonstrate a substantial gap between naive fine-tuning and in-context learning (FT-ICL gap) on our news dataset. To address this gap, we explore a suite of self-play data generation protocols -- paraphrases, implications and Self-QAs -- designed to distill the knowledge from the model with context into the weights of the model without the context, which we term System-2 Fine-tuning (Sys2-FT). We systematically evaluate ICL and Sys2-FT performance across data domains and model scales with the Qwen 2.5 family of models. Our results demonstrate that the self-QA protocol of Sys2-FT significantly improves models' in-weight learning of the news. Furthermore, we discover the contexual shadowing effect, where training with the news in context followed by its rephrases or QAs degrade learning of the news. Finally, we show preliminary evidence of an emerging scaling law of Sys2-FT.`,
-    venue: "preprint",
+    venue: "arXiv",
     year: 2025,
     month: "May",
     type: "preprint",
@@ -58,6 +59,9 @@ export const publications: Publication[] = [
     thumbnail: "/images/publications/markov-icl.png",
     significant: true,
     related_pubs: ["Understanding the Transient Nature of In-Context Learning: The Window of Generalization (NeurIPS 2024 Workshop)"],
+    related_projects: [
+      { name: "Research Tracking System", url: "/projects/research-tracking" }
+    ],
   },
   {
     id: 4,
@@ -101,19 +105,20 @@ export const publications: Publication[] = [
     title: "In-Context Learning Strategies Emerge Rationally",
     authors: ["D. Wurgaft*", "E.S. Lubana*", "C.F. Park", "H. Tanaka", "G. Reddy", "N.D. Goodman"],
     abstract: `Recent work analyzing in-context learning (ICL) has identified a broad set of strategies that describe model behavior in different experimental conditions. We aim to unify these findings by asking why a model learns these disparate strategies in the first place. Specifically, we start with the observation that when trained to learn a mixture of tasks, as is popular in the literature, the strategies learned by a model for performing ICL can be captured by a family of Bayesian predictors: a memorizing predictor, which assumes a discrete prior on the set of seen tasks, and a generalizing predictor, where the prior matches the underlying task distribution. Adopting the normative lens of rational analysis, where a learner's behavior is explained as an optimal adaptation to data given computational constraints, we develop a hierarchical Bayesian framework that almost perfectly predicts Transformer next-token predictions throughout training -- without assuming access to its weights. Under this framework, pretraining is viewed as a process of updating the posterior probability of different strategies, and inference-time behavior as a posterior-weighted average over these strategies' predictions. Our framework draws on common assumptions about neural network learning dynamics, which make explicit a tradeoff between loss and complexity among candidate strategies: beyond how well it explains the data, a model's preference towards implementing a strategy is dictated by its complexity. This helps explain well-known ICL phenomena, while offering novel predictions: e.g., we show a superlinear trend in the timescale for transitioning from generalization to memorization as task diversity increases. Overall, our work advances an explanatory and predictive account of ICL grounded in tradeoffs between strategy loss and complexity.`,
-    venue: "arxiv",
+    venue: "arXiv",
     year: 2025,
     month: "June",
     type: "preprint",
     arxiv: "2506.17859",
     thumbnail: "/images/publications/icl-rational.png",
+    significant: true,
   },
   {
     id: 8,
     title: "Humanity's last exam",
     authors: ["L. Phan", "et al."],
     abstract: `Benchmarks are important tools for tracking the rapid advancements in large language model (LLM) capabilities. However, benchmarks are not keeping pace in difficulty: LLMs now achieve over 90\% accuracy on popular benchmarks like MMLU, limiting informed measurement of state-of-the-art LLM capabilities. In response, we introduce Humanity's Last Exam (HLE), a multi-modal benchmark at the frontier of human knowledge, designed to be the final closed-ended academic benchmark of its kind with broad subject coverage. HLE consists of 2,500 questions across dozens of subjects, including mathematics, humanities, and the natural sciences. HLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading. Each question has a known solution that is unambiguous and easily verifiable, but cannot be quickly answered via internet retrieval. State-of-the-art LLMs demonstrate low accuracy and calibration on HLE, highlighting a significant gap between current LLM capabilities and the expert human frontier on closed-ended academic questions. To inform research and policymaking upon a clear understanding of model capabilities, we publicly release HLE at this https URL.`,
-    venue: "arxiv",
+    venue: "arXiv",
     year: 2025,
     month: "January",
     type: "preprint",

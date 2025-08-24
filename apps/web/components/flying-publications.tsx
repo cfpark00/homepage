@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 interface FlyingImage {
   id: number
@@ -113,9 +114,11 @@ export function FlyingPublications() {
             top: -48,
           }}
         >
-          <img
+          <Image
             src={img.src}
             alt=""
+            width={96}
+            height={96}
             className="w-full h-full object-contain"
             loading="lazy"
           />

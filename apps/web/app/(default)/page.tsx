@@ -5,6 +5,7 @@ import { Button } from "@workspace/ui/components/button"
 import { Card, CardContent } from "@workspace/ui/components/card"
 import { Mail, MapPin, Github, Linkedin, GraduationCap, Bell } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 // import { ChatBox } from "@/components/chat-box"
 import { FlyingPublications } from "@/components/flying-publications"
 
@@ -18,10 +19,13 @@ export default function HomePage() {
             <div className="flex flex-col lg:flex-row items-center gap-12">
               {/* Profile image - appears first on mobile, on the right on desktop */}
               <div className="flex-shrink-0 lg:order-2">
-                <img 
+                <Image 
                   src="/images/profile.jpg" 
                   alt="Core Francisco Park"
+                  width={256}
+                  height={320}
                   className="h-64 w-48 lg:h-80 lg:w-64 rounded-lg object-cover shadow-2xl"
+                  priority
                 />
               </div>
               

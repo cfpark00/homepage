@@ -1,70 +1,61 @@
+import fs from 'fs'
+import path from 'path'
+
 export interface Project {
   slug: string
   title: string
-  subtitle?: string
-  date: string
-  status: 'planning' | 'active' | 'completed' | 'paused'
-  type: 'research' | 'engineering' | 'theoretical'
+  date?: string
   excerpt: string
-  featured?: boolean
-  publications?: string[]
-  visualization?: {
-    type: 'research-flow' | 'timeline' | 'custom'
-    component?: string
-  }
+  isExternal?: boolean
+  externalUrl?: string
+  thumbnailUrl?: string
 }
 
-// Metadata for all projects - this is the single source of truth
-const projectMetadata: Record<string, Omit<Project, 'slug'>> = {
-  'research-tracking': {
-    title: 'Research Tracking System',
-    subtitle: 'Tracking the research process',
-    date: '2025-01-20',
-    status: 'active',
-    type: 'research',
-    excerpt: 'A system to track questions, experiments, hypotheses, findings, and decisions throughout the research process.',
-    featured: true,
-    publications: ['markov-icl'],
-    visualization: {
-      type: 'research-flow',
-      component: 'ResearchFlow'
-    }
-  },
-  'evolving-research': {
-    title: 'Evolving Research',
-    subtitle: 'Digital evolution of discovery',
-    date: '2025-01-22',
-    status: 'planning',
-    type: 'theoretical',
-    excerpt: 'Understanding how research and discovery itself has evolved using digital evolution.',
-    featured: true
-  }
+// Load metadata from JSON file
+function loadMetadata(): Record<string, Omit<Project, 'slug'>> {
+  const metadataPath = path.join(process.cwd(), 'content/projects/metadata.json')
+  const metadataContent = fs.readFileSync(metadataPath, 'utf-8')
+  const metadata = JSON.parse(metadataContent)
+  return metadata.projects
 }
 
 export async function getProjects(): Promise<Project[]> {
-  // Simply return all projects from metadata
-  const projects = Object.entries(projectMetadata)
-    .map(([slug, metadata]) => ({
+  const metadata = loadMetadata()
+  
+  // Return all projects from metadata
+  const projects = Object.entries(metadata)
+    .map(([slug, projectMetadata]) => ({
       slug,
-      ...metadata
+      ...projectMetadata
     }))
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort((a, b) => {
+      // Sort by date if both have dates, otherwise put dateless projects first
+      if (a.date && b.date) {
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
+      }
+      if (a.date && !b.date) return 1
+      if (!a.date && b.date) return -1
+      return 0
+    })
 
   return projects
 }
 
 export async function getProject(slug: string): Promise<Project | null> {
-  if (!projectMetadata[slug]) {
+  const metadata = loadMetadata()
+  const projectMetadata = metadata[slug]
+  
+  if (!projectMetadata) {
     return null
   }
   
   return {
     slug,
-    ...projectMetadata[slug]
+    ...projectMetadata
   }
 }
 
 export async function getFeaturedProjects(): Promise<Project[]> {
   const projects = await getProjects()
-  return projects.filter(project => project.featured)
+  return projects
 }
