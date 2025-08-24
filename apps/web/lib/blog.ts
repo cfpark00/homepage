@@ -22,13 +22,46 @@ export function getAllPosts(): BlogPost[] {
     return []
   }
 
-  const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData = fileNames
-    .filter(fileName => fileName.endsWith('.mdx') || fileName.endsWith('.md'))
-    .map((fileName) => {
-      const slug = fileName.replace(/\.mdx?$/, '')
-      const fullPath = path.join(postsDirectory, fileName)
-      const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const entries = fs.readdirSync(postsDirectory)
+  const allPostsData = entries
+    .map((entry) => {
+      const fullPath = path.join(postsDirectory, entry)
+      const stat = fs.statSync(fullPath)
+      
+      let slug = ''
+      let fileContents = ''
+      
+      if (stat.isDirectory()) {
+        // Check for index.mdx in folder
+        const indexPath = path.join(fullPath, 'index.mdx')
+        if (fs.existsSync(indexPath)) {
+          slug = entry
+          fileContents = fs.readFileSync(indexPath, 'utf8')
+          
+          // For random-walks-visualization, use hardcoded metadata
+          if (slug === 'random-walks-visualization') {
+            return {
+              slug,
+              title: 'Visualizing Random Walks',
+              date: '2025-01-23',
+              excerpt: 'An interactive exploration of random walks on a 2D grid, with live visualization and statistical insights.',
+              author: 'Core Francisco Park',
+              tags: ['mathematics', 'probability', 'visualization', 'interactive'],
+              readingTime: '5 min read',
+              content: fileContents,
+            }
+          }
+        } else {
+          return null
+        }
+      } else if (entry.endsWith('.mdx') || entry.endsWith('.md')) {
+        // Regular file
+        slug = entry.replace(/\.mdx?$/, '')
+        fileContents = fs.readFileSync(fullPath, 'utf8')
+      } else {
+        return null
+      }
+      
       const { data, content } = matter(fileContents)
       const stats = readingTime(content)
 
@@ -43,6 +76,7 @@ export function getAllPosts(): BlogPost[] {
         content,
       }
     })
+    .filter(Boolean) as BlogPost[]
 
   return allPostsData.sort((a, b) => {
     if (a.date < b.date) {

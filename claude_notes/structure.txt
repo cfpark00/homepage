@@ -1,5 +1,5 @@
 # Project Structure - Academic Homepage Monorepo
-Last Updated: 2025-08-22 01:21
+Last Updated: 2025-08-23 18:45
 
 ## Root Directory
 /Users/cfpark00/mysite/
@@ -11,8 +11,8 @@ Last Updated: 2025-08-22 01:21
 │       │   │   ├── page.tsx     # Homepage
 │       │   │   ├── blog/        # Blog section
 │       │   │   │   ├── page.tsx # Blog listing
-│       │   │   │   └── [slug]/  # Dynamic blog posts
-│       │   │   │       └── page.tsx
+│       │   │   │   └── random-walks-visualization/  # Interactive blog post
+│       │   │   │       └── page.tsx # Client-side wrapper for MDX
 │       │   │   ├── cv/          # CV/Resume page
 │       │   │   │   └── page.tsx # Toggle between traditional/timeline views
 │       │   │   ├── news/        # News and updates
@@ -46,7 +46,12 @@ Last Updated: 2025-08-22 01:21
 │       ├── content/            # Content files
 │       │   └── blog/           # Blog posts in MDX
 │       │       ├── adaptive-width-cnns.mdx
-│       │       └── welcome-to-my-blog.mdx
+│       │       ├── welcome-to-my-blog.mdx
+│       │       └── random-walks-visualization/  # Interactive blog post folder
+│       │           ├── index.mdx           # Blog post content
+│       │           ├── random-walk.tsx     # Version 1: Basic visualization
+│       │           ├── random-walk-v2.tsx  # Version 2: Enhanced with zoom/pan
+│       │           └── random-walk-v3.tsx  # Version 3: With analytics plots
 │       ├── lib/                # Utility functions
 │       │   ├── blog.ts         # Blog post utilities
 │       │   ├── publications-data.ts # Publications database
@@ -76,7 +81,7 @@ Last Updated: 2025-08-22 01:21
 │       ├── next.config.mjs     # Next.js config
 │       ├── package.json        # Dependencies
 │       ├── postcss.config.js   # PostCSS config
-│       ├── tailwind.config.ts  # Tailwind config
+│       ├── tailwind.config.ts  # Tailwind config (with Typography plugin)
 │       └── tsconfig.json       # TypeScript config
 │
 ├── packages/                   # Shared packages
@@ -121,10 +126,14 @@ Last Updated: 2025-08-22 01:21
 │   │   │   ├── 21-53_navigation_ui_improvements.md
 │   │   │   ├── 22-52_evolving_research_page_and_container_standardization.md
 │   │   │   └── 23-04_research_tracking_visualization.md
-│   │   └── 2025-08-22/
-│   │       ├── 00-29_talks_page_development.md
-│   │       ├── 00-45_cv_updates_and_deployment.md
-│   │       └── 01-21_google_analytics_integration.md
+│   │   ├── 2025-08-22/
+│   │   │   ├── 00-29_talks_page_development.md
+│   │   │   ├── 00-45_cv_updates_and_deployment.md
+│   │   │   └── 01-21_google_analytics_integration.md
+│   │   └── 2025-08-23/
+│   │       └── 18-39_blog_system_cleanup_and_random_walk_visualization.md
+│   ├── tips/                  # Development tips and guides
+│   │   └── mdx-blog-setup.md # MDX blog infrastructure guide
 │   └── structure.txt          # This file
 │
 ├── .eslintrc.json             # ESLint config
@@ -144,23 +153,35 @@ Last Updated: 2025-08-22 01:21
 
 ## Key Changes from Previous Structure
 
+### Major Cleanup (2025-08-23)
+- **Removed unused API routes**: Deleted entire `/app/api/` directory (blog API never used)
+- **Removed unused packages**: Cleaned up 11+ unused npm packages including:
+  - Form libraries: `@hookform/resolvers`, `react-hook-form`, `zod`
+  - Data fetching: `@tanstack/react-query`
+  - UI components: `@radix-ui/react-accordion`, `recharts`, `cmdk`, `embla-carousel-react`, `react-day-picker`, `vaul`
+- **Removed scratch directory**: Deleted `/scratch/` experimental code
+- **Fixed deprecated patterns**: Updated Next.js config from `images.domains` to `remotePatterns`
+
+### Blog System Overhaul
+- Migrated from dynamic API-based to fully static MDX blog
+- Added support for interactive blog posts with React components
+- Created self-contained blog post folders (content + components)
+- Added Tailwind Typography plugin for proper prose styling
+- Fixed blog listing to properly display posts with metadata
+- Created interactive random walk visualization blog post with 3 versions
+
 ### Route Organization
 - Moved all main pages to `(default)/` route group for shared layout
 - Isolated `/simple` page with its own minimal layout
-- Removed `(main)/` route group (consolidated into `(default)/`)
-
-### Asset Organization
-- Created `/public/images/` directory for all images
-- Moved profile picture and orchestra logo to proper locations
-- CV PDF accessible at root public level
+- Added `/blog/random-walks-visualization/` for interactive blog post
 
 ### Component Updates
-- `chat-box.tsx` now supports dual mode (Virtual/Real Core)
+- `chat-box.tsx` now supports dual mode (Virtual/Real Core) - COMMENTED OUT
 - Added `sonner.tsx` for toast notifications
 - Navigation order: Home, CV, Ongoing, Publications, Talks, Blog, News (Research hidden)
 
 ### Content Structure
-- Blog posts remain in `/content/blog/`
+- Blog posts in `/content/blog/` (both simple MDX and folders with components)
 - Publications data in `/lib/publications-data.ts`
 - CV data embedded in component
 

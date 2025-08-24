@@ -1,0 +1,58 @@
+import RandomWalk from './random-walk'
+
+A random walk is a mathematical formalization of a path consisting of a succession of random steps. It's a fundamental concept in probability theory with applications ranging from physics to finance.
+
+## Interactive Demo
+
+Try the simulation below. Watch how a particle moves randomly on a 2D grid, taking steps in one of four directions (up, down, left, right) with equal probability.
+
+<RandomWalk />
+
+## The Mathematics
+
+In our 2D random walk, at each time step, the walker moves from its current position (x, y) to a new position by adding a displacement vector.
+
+**The new position = current position + displacement**
+
+The displacement vector is chosen uniformly from these four options: 
+- up (0,1)
+- down (0,-1)
+- right (1,0)
+- left (-1,0)
+
+## Key Properties
+
+### Expected Distance from Origin
+
+After t steps, the expected squared distance from the origin follows:
+
+**E[r²] = t**
+
+This means the expected distance grows as √t - much slower than if the walker moved in a straight line!
+
+### Return to Origin
+
+In 2D, a random walker will return to the origin with probability 1 (almost surely), though the expected time to return is infinite. This is known as **Pólya's theorem**.
+
+### Diffusion
+
+Random walks model diffusion processes. The probability distribution of the walker's position after many steps approaches a Gaussian distribution, as predicted by the central limit theorem.
+
+## Applications
+
+Random walks appear everywhere:
+
+- **Physics**: Brownian motion of particles in fluids
+- **Finance**: Stock price models (with modifications)
+- **Computer Science**: Random sampling algorithms, Monte Carlo methods
+- **Biology**: Animal foraging patterns, molecular movement
+- **Networks**: PageRank algorithm, epidemic spreading
+
+## Try This
+
+1. Run multiple walks and observe the variety of paths
+2. Notice how rarely the walker strays very far from the origin
+3. Use "Fast" mode to see the long-term behavior over 1000 steps
+4. Consider: If you ran this forever, would the walker eventually visit every point on the grid?
+
+The beauty of random walks lies in their simplicity - just random steps - yet they exhibit rich mathematical properties and model countless real-world phenomena.
