@@ -1,0 +1,170 @@
+import OptimizerVisualization from './optimizer-visualization-hybrid'
+
+Gradient descent optimizers are the workhorses of modern deep learning, but how do they actually differ in their navigation of loss landscapes? This interactive visualization lets you compare the trajectories and convergence speeds of various optimizers, from classics like SGD to cutting-edge methods like Muon and Shampoo.
+
+## Interactive Visualization
+
+Explore how different optimizers navigate various loss landscapes. Try different landscapes, add noise to simulate stochastic gradients, and watch how each optimizer finds its path to the minimum.
+
+<OptimizerVisualization />
+
+## The Optimizers
+
+This visualization includes seven gradient descent optimizers, from the foundational SGD to modern adaptive methods like AdamW, Muon, and Shampoo.
+
+### SGD (Stochastic Gradient Descent)
+The foundational optimizer - takes steps directly proportional to the negative gradient.
+- **Update rule**: θ(t+1) = θ(t) - α∇f(θ(t))
+- **Behavior**: Follows the steepest descent path, can zigzag in narrow valleys
+- **When to use**: When you have time to tune and want the best final convergence
+- **In the demo**: Watch how it struggles with the Rosenbrock valley!
+
+### SGD with Momentum
+Accelerates SGD by accumulating a velocity vector in directions of persistent gradient.
+- **Update rule**: v(t) = βv(t-1) - α∇f(θ(t)); θ(t+1) = θ(t) + v(t)
+- **Behavior**: Builds up speed in consistent directions, dampens oscillations
+- **When to use**: Almost always better than vanilla SGD, especially for ill-conditioned problems
+- **In the demo**: Notice the smoother trajectories compared to plain SGD
+
+### RMSprop
+Adapts the learning rate for each parameter based on recent gradient magnitudes.
+- **Update rule**: g(t) = βg(t-1) + (1-β)∇f²; θ(t+1) = θ(t) - α∇f/√(g(t) + ε)
+- **Behavior**: Normalizes gradients by their recent magnitude, preventing explosion/vanishing
+- **When to use**: RNNs, non-stationary objectives, online learning
+- **In the demo**: Handles the Rastrigin function's varying gradients well
+
+### Adam (Adaptive Moment Estimation)
+The go-to optimizer for deep learning - combines momentum with adaptive learning rates.
+- **Key idea**: Maintains both first moment (momentum) and second moment (RMSprop-like) estimates
+- **Update**: θ(t+1) = θ(t) - α·m̂(t)/√(v̂(t) + ε) where m̂ and v̂ are bias-corrected moments
+- **When to use**: Default choice for transformers and most deep learning tasks
+- **In the demo**: Often finds a good path quickly but may oscillate near the minimum
+
+### AdamW
+Adam with decoupled weight decay regularization.
+- **Key difference**: Separates weight decay from gradient-based updates
+- **Update**: Applies weight decay directly to parameters: θ(t+1) = (1 - λ)θ(t) - α·m̂(t)/√(v̂(t) + ε)
+- **When to use**: Often superior to Adam for transformer training
+- **In the demo**: Similar to Adam but with subtle differences in convergence
+
+### Muon (2024)
+A breakthrough optimizer that uses orthogonalized momentum for faster training.
+- **Key innovation**: Orthogonalizes momentum updates using Newton-Schulz iterations
+- **Simplified 2D version**: In our demo, we approximate the orthogonalization for visualization
+- **Real-world performance**: 
+  - 2× faster than AdamW for LLM training
+  - Achieved GPT-2 performance with $175 of compute
+  - No learning rate retuning needed when scaling model size
+- **In the demo**: Watch for its unique trajectory patterns from the orthogonalization
+
+### Shampoo
+Second-order optimizer that uses preconditioning matrices for faster convergence.
+- **Key idea**: Approximates the natural gradient using Kronecker-factored preconditioning
+- **Simplified version**: Our 2D demo uses diagonal preconditioning for visualization
+- **When to use**: Large-scale neural network training where second-order information helps
+- **In the demo**: Notice the more direct paths to minima compared to first-order methods
+
+## Understanding the Visualizations
+
+### Loss Landscapes
+
+The demo includes four optimization test functions, each presenting unique challenges:
+
+#### Convex
+A diagonally-oriented elliptical bowl with 4:1 eigenvalue ratio.
+- **Challenge**: Misaligned gradients due to diagonal orientation
+- **Global minimum**: Origin (0, 0)
+- **What to watch**: SGD zigzags along the diagonal, momentum methods overshoot
+
+#### Rosenbrock
+The famous "banana valley" - a narrow, curved valley that's easy to find but hard to navigate.
+- **Challenge**: The valley floor has a very gentle slope
+- **Global minimum**: (1, 1)
+- **What to watch**: SGD zigzags, while momentum methods overshoot
+
+#### Beale
+A function with steep, curved valleys and flat regions.
+- **Challenge**: Steep gradients near valleys, nearly flat elsewhere
+- **Global minimum**: (1, 0.5)
+- **What to watch**: How optimizers handle the dramatic gradient changes
+
+#### Rastrigin
+A highly multi-modal function with a regular grid of local minima.
+- **Challenge**: Many local traps surrounding the global minimum
+- **Global minimum**: Origin (0, 0)
+- **What to watch**: Most optimizers get stuck in local minima without momentum
+
+### Interactive Features
+
+- **Click to Launch**: Click anywhere on the landscape to start optimizers from that point
+- **Optimizer Selection**: Toggle individual optimizers on/off with checkboxes
+- **Compare Trajectories**: Selected optimizers launch simultaneously for direct comparison
+- **Shared Learning Rate**: Adjust the learning rate for all optimizers (log scale slider)
+- **Add Gradient Noise**: Simulate stochastic mini-batch training with adjustable noise level
+- **Animation Speed**: Control how fast the optimization steps are animated
+- **Active Runs Display**: See real-time loss values and convergence status for running optimizers
+- **Advanced Settings**: Fine-tune individual optimizer hyperparameters (momentum, betas, epsilon, etc.)
+
+## Key Insights from the Visualization
+
+### Optimizer Behaviors
+
+1. **Valley Navigation**: In Rosenbrock, watch how momentum-based methods (SGD+Momentum, Adam, AdamW, Muon) navigate the curved valley more efficiently than vanilla SGD
+
+2. **Local Minima**: In Rastrigin, notice how most optimizers get trapped in the nearest local minimum - a fundamental limitation of local gradient methods
+
+3. **Convergence Patterns**: 
+   - SGD: Consistent but slow, follows gradient exactly
+   - SGD+Momentum: Accelerates in consistent directions, smoother paths
+   - RMSprop: Adapts to gradient scale, good for varying landscapes
+   - Adam: Quick initial progress but can oscillate near minima
+   - AdamW: Similar to Adam with better regularization behavior
+   - Muon: Unique patterns from orthogonalized momentum updates
+   - Shampoo: More direct paths using second-order information
+
+### Practical Takeaways
+
+- **Start Simple**: SGD with momentum remains highly competitive with proper tuning
+- **Default to Adam**: For most deep learning tasks, Adam is a safe default
+- **Consider Muon**: For large-scale training where compute cost matters
+- **Landscape Matters**: No optimizer dominates on all landscapes - know your problem!
+
+### The Limits of 2D
+
+Remember that real neural network loss landscapes are:
+- Millions of dimensions (one per parameter)
+- Non-convex with saddle points everywhere
+- Constantly changing (in online/mini-batch settings)
+
+This 2D visualization captures the essence of optimizer behaviors while being simple enough to understand intuitively.
+
+## Technical Notes
+
+### Implementation Details
+
+The visualizations use simplified versions of each optimizer for 2D clarity:
+- Muon's orthogonalization is approximated for 2D using Newton-Schulz iterations
+- Shampoo uses diagonal preconditioning instead of full Kronecker factors
+- All optimizers launch from the same click point for fair comparison
+- Paths are rendered in real-time on HTML5 Canvas for smooth animation
+- Loss values are computed and displayed for each active optimizer
+
+### Hyperparameters
+
+- **Shared learning rate**: Adjustable via log-scale slider (default: 0.003)
+- **PyTorch defaults**: Each optimizer uses standard PyTorch hyperparameter defaults
+- **Advanced settings**: Individual optimizer parameters can be fine-tuned
+- **Noise level**: Simulates stochastic gradients (0 = deterministic, higher = more stochastic)
+
+## Try It Yourself
+
+Experiment with the interactive demo above:
+1. **Select optimizers**: Toggle which optimizers to compare using the checkboxes
+2. **Choose a landscape**: Switch between Convex, Rosenbrock, Beale, and Rastrigin functions
+3. **Click to start**: Click anywhere on the landscape to launch the selected optimizers
+4. **Adjust parameters**: Use the sliders to change learning rate, noise level, and animation speed
+5. **Watch convergence**: Monitor real-time loss values in the "Active Runs" section
+6. **Fine-tune settings**: Expand "Advanced Settings" to adjust individual optimizer hyperparameters
+7. **Compare paths**: Observe how different optimizers navigate the same landscape from the same starting point
+
+The beauty of optimization lies not just in reaching the destination, but in understanding the journey each algorithm takes to get there.

@@ -505,8 +505,8 @@ export default function RandomWalk() {
           {/* Distance vs Time Plot */}
           <div className="border rounded-lg p-4 bg-background">
             <h3 className="text-sm font-semibold mb-2 -mt-1">Distance from Origin vs Steps</h3>
-            <svg width={350} height={150} className="w-full" viewBox="0 0 350 150">
-              <g transform="translate(25, 20)">
+            <svg width={350} height={170} className="w-full" viewBox="0 0 350 170">
+              <g transform="translate(35, 20)">
                 {/* Axes */}
                 <line x1={0} y1={110} x2={320} y2={110} stroke="currentColor" strokeWidth="1" opacity="0.3" />
                 <line x1={0} y1={0} x2={0} y2={110} stroke="currentColor" strokeWidth="1" opacity="0.3" />
@@ -569,9 +569,39 @@ export default function RandomWalk() {
                   </>
                 )}
                 
-                {/* Labels */}
-                <text x={0} y={-5} fontSize="10" fill="currentColor" opacity="0.7">Distance</text>
-                <text x={320} y={125} fontSize="10" fill="currentColor" opacity="0.7" textAnchor="end">Steps</text>
+                {/* Y-axis ticks and labels */}
+                {path.length > 1 && (() => {
+                  const maxDistance = Math.max(...distances, Math.sqrt(path.length - 1) * 1.2)
+                  if (!isFinite(maxDistance) || maxDistance <= 0) return null
+                  return (
+                    <>
+                      <text x={-5} y={113} fontSize="9" fill="currentColor" opacity="0.5" textAnchor="end">0</text>
+                      <text x={-5} y={5} fontSize="9" fill="currentColor" opacity="0.5" textAnchor="end">{maxDistance.toFixed(0)}</text>
+                      <text x={-5} y={60} fontSize="9" fill="currentColor" opacity="0.5" textAnchor="end">{(maxDistance/2).toFixed(0)}</text>
+                      {/* Y-axis tick marks */}
+                      <line x1={-3} y1={110} x2={0} y2={110} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                      <line x1={-3} y1={0} x2={0} y2={0} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                      <line x1={-3} y1={55} x2={0} y2={55} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                    </>
+                  )
+                })()}
+                
+                {/* X-axis ticks and labels */}
+                {path.length > 1 && (
+                  <>
+                    <text x={0} y={125} fontSize="9" fill="currentColor" opacity="0.5">0</text>
+                    <text x={160} y={125} fontSize="9" fill="currentColor" opacity="0.5" textAnchor="middle">{Math.floor((path.length - 1) / 2)}</text>
+                    <text x={320} y={125} fontSize="9" fill="currentColor" opacity="0.5" textAnchor="end">{path.length - 1}</text>
+                    {/* X-axis tick marks */}
+                    <line x1={0} y1={110} x2={0} y2={113} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                    <line x1={160} y1={110} x2={160} y2={113} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                    <line x1={320} y1={110} x2={320} y2={113} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                  </>
+                )}
+                
+                {/* Axis Labels */}
+                <text x={-20} y={55} fontSize="10" fill="currentColor" opacity="0.7" textAnchor="middle" transform="rotate(-90, -20, 55)">Distance</text>
+                <text x={160} y={140} fontSize="10" fill="currentColor" opacity="0.7" textAnchor="middle">Steps</text>
                 
                 {/* Legend */}
                 <g transform="translate(240, 5)">
@@ -587,8 +617,8 @@ export default function RandomWalk() {
           {/* Distribution Plot */}
           <div className="border rounded-lg p-4 bg-background">
             <h3 className="text-sm font-semibold mb-2 -mt-1">Distance Distribution at t={(path.length - 1).toLocaleString()}</h3>
-            <svg width={350} height={150} className="w-full" viewBox="0 0 350 150">
-              <g transform="translate(25, 20)">
+            <svg width={350} height={170} className="w-full" viewBox="0 0 350 170">
+              <g transform="translate(35, 20)">
                 {/* Axes */}
                 <line x1={0} y1={110} x2={320} y2={110} stroke="currentColor" strokeWidth="1" opacity="0.3" />
                 <line x1={0} y1={0} x2={0} y2={110} stroke="currentColor" strokeWidth="1" opacity="0.3" />
@@ -660,9 +690,39 @@ export default function RandomWalk() {
                   </>
                 )}
                 
-                {/* Labels */}
-                <text x={0} y={-5} fontSize="10" fill="currentColor" opacity="0.7">P(r)</text>
-                <text x={320} y={125} fontSize="10" fill="currentColor" opacity="0.7" textAnchor="end">Distance r</text>
+                {/* Y-axis ticks and labels */}
+                {path.length > 1 && (
+                  <>
+                    <text x={-5} y={113} fontSize="9" fill="currentColor" opacity="0.5" textAnchor="end">0</text>
+                    <text x={-5} y={5} fontSize="9" fill="currentColor" opacity="0.5" textAnchor="end">Max</text>
+                    {/* Y-axis tick marks */}
+                    <line x1={-3} y1={110} x2={0} y2={110} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                    <line x1={-3} y1={0} x2={0} y2={0} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                    <line x1={-3} y1={55} x2={0} y2={55} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                  </>
+                )}
+                
+                {/* X-axis ticks and labels */}
+                {path.length > 1 && (() => {
+                  const currentSteps = path.length - 1
+                  const maxR = Math.sqrt(currentSteps) * 4
+                  if (!isFinite(maxR) || maxR <= 0) return null
+                  return (
+                    <>
+                      <text x={0} y={125} fontSize="9" fill="currentColor" opacity="0.5">0</text>
+                      <text x={160} y={125} fontSize="9" fill="currentColor" opacity="0.5" textAnchor="middle">{(maxR/2).toFixed(0)}</text>
+                      <text x={320} y={125} fontSize="9" fill="currentColor" opacity="0.5" textAnchor="end">{maxR.toFixed(0)}</text>
+                      {/* X-axis tick marks */}
+                      <line x1={0} y1={110} x2={0} y2={113} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                      <line x1={160} y1={110} x2={160} y2={113} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                      <line x1={320} y1={110} x2={320} y2={113} stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                    </>
+                  )
+                })()}
+                
+                {/* Axis Labels */}
+                <text x={-20} y={55} fontSize="10" fill="currentColor" opacity="0.7" textAnchor="middle" transform="rotate(-90, -20, 55)">P(r)</text>
+                <text x={160} y={140} fontSize="10" fill="currentColor" opacity="0.7" textAnchor="middle">Distance r</text>
               </g>
             </svg>
           </div>

@@ -13,6 +13,20 @@
       "excerpt": "Interactive visualization and exploration of random walks in 2D space with real-time statistics.",
       "tags": ["probability", "visualization", "interactive", "test"],
       "readingTime": "5 min read"
+    },
+    "gradient-optimizer-comparison": {
+      "title": "Gradient Optimizer Comparison: Racing Through Loss Landscapes",
+      "date": "2025-08-24",
+      "excerpt": "Interactive comparison of gradient descent optimizers including SGD, Adam, Muon, and Shampoo navigating 2D loss landscapes.",
+      "tags": ["machine-learning", "optimization", "visualization", "interactive", "deep-learning"],
+      "readingTime": "8 min read"
+    },
+    "double-pendulum-chaos": {
+      "title": "Double Pendulum Chaos: Visualizing Sensitive Dependence",
+      "date": "2025-08-24",
+      "excerpt": "Interactive simulation of multiple double pendulums demonstrating chaotic behavior and sensitive dependence on initial conditions.",
+      "tags": ["physics", "chaos-theory", "visualization", "interactive", "simulation"],
+      "readingTime": "6 min read"
     }
   }
 }

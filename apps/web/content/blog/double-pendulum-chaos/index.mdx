@@ -1,0 +1,61 @@
+import DoublePendulumSimulation from "./double-pendulum"
+
+The double pendulum is a classic example of chaotic behavior in physics. Even tiny differences in initial conditions lead to dramatically different trajectories over time - a phenomenon known as sensitive dependence on initial conditions, or the butterfly effect.
+
+## Interactive Simulation
+
+Use the controls below to explore how multiple pendulums with slightly different starting positions diverge over time. Adjust the noise level to add random perturbations to each pendulum's initial angle, and watch as they trace completely different paths through space.
+
+<DoublePendulumSimulation />
+
+## Understanding the Chaos
+
+### What Makes It Chaotic?
+
+The double pendulum consists of two connected pendulum arms that swing freely under gravity. While a single pendulum exhibits predictable, periodic motion, the double pendulum's behavior is fundamentally different:
+
+1. **Nonlinear Dynamics**: The equations of motion contain sine and cosine terms that make the system nonlinear
+2. **Sensitive Dependence**: Microscopic differences in initial conditions grow exponentially over time
+3. **Deterministic Chaos**: Despite being fully deterministic (no randomness in the physics), the behavior appears random
+
+### Visualizing Chaos: The Two Plots
+
+#### Phase Space Trajectories (Left Plot)
+The left plot shows the **phase space** of the system - a map of all possible states. Each point represents a configuration with specific angles θ₁ (horizontal) and θ₂ (vertical) for the two pendulum arms. The colored trails show how each pendulum explores this space over time.
+
+Watch how pendulums that start nearly identical (small noise) trace wildly different paths through phase space. This visualization reveals the complex attractors and forbidden regions that characterize the system's dynamics.
+
+#### Lyapunov Divergence (Right Plot)
+The right plot quantifies chaos by measuring the **phase space distance** between pendulums over time. This includes both position (angles) and velocity differences in 4D phase space:
+
+- **Orange line (Actual)**: The measured divergence between pendulums
+- **Green line (Random)**: Expected distance if pendulums were randomly placed - the equilibrium chaos approaches
+- **Gray line (Max)**: Theoretical maximum separation allowed by energy conservation
+
+The initial exponential growth (straight line on log scale) reveals the **Lyapunov exponent** - the rate at which nearby trajectories diverge. Eventually, divergence saturates near the random baseline as chaos fully mixes the trajectories.
+
+### Key Insights from the Visualization
+
+1. **Exponential Divergence**: Initially, the separation grows exponentially - the hallmark of chaos
+2. **Energy Bounds**: The system can't diverge infinitely; energy conservation provides fundamental limits
+3. **Thermalization**: After sufficient time, pendulums become essentially uncorrelated, approaching random separation
+4. **Phase Space Structure**: The left plot reveals the intricate patterns and attractors that emerge from simple physics
+
+### Observing Divergence
+
+Try these experiments:
+
+1. **Minimal Noise**: Set noise to 0.001 and watch nearly identical pendulums diverge exponentially
+2. **Phase Space Patterns**: Observe how different initial angles create distinct trajectory patterns
+3. **Divergence Saturation**: Notice how the orange line approaches the green "random" baseline over time
+4. **Single Pendulum**: With just one pendulum, explore the full phase space without divergence comparisons
+
+### Real-World Applications
+
+Understanding chaotic systems like the double pendulum has applications in:
+- Weather prediction and climate modeling
+- Robotics and control systems
+- Biomechanics and human movement
+- Quantum chaos and fundamental physics
+
+The double pendulum reminds us that deterministic doesn't mean predictable, and that simple rules can generate incredibly complex behavior.

@@ -1,5 +1,5 @@
 # Project Structure Overview
-Last Updated: 2025-08-23
+Last Updated: 2025-08-24
 
 ## Root Directory: /Users/cfpark00/mysite
 Monorepo using pnpm workspaces with Vercel deployment
@@ -9,24 +9,27 @@ Monorepo using pnpm workspaces with Vercel deployment
 ### /apps/web/
 Main Next.js application
 
-#### /app/(default)/
-- blog/
-  - page.tsx - Blog listing page
-  - [slug]/page.tsx - Individual blog post page (uses MDX from content)
-- cv/
-  - page.tsx - CV page (hardcoded data)
-- news/
-  - page.tsx - News listing page (uses content/news JSON)
-- projects/
-  - page.tsx - Projects page (server component, loads from metadata.json)
-  - [slug]/page.tsx - Individual project page (uses MDX from content)
-- publications/
-  - page.tsx - Publications listing page (uses lib/publications-data.ts)
-- research-tools/
-  - page.tsx - Research tools page (hardcoded data)
-- talks/
-  - page.tsx - Talks listing page (uses lib/talks-data.ts)
-- page.tsx - Home page (hardcoded)
+#### /app/
+- layout.tsx - Root layout (added 2025-08-24)
+- not-found.tsx - 404 page (added 2025-08-24)
+- (default)/
+  - blog/
+    - page.tsx - Blog listing page
+    - [slug]/page.tsx - Individual blog post page (uses MDX from content)
+  - cv/
+    - page.tsx - CV page (hardcoded data)
+  - news/
+    - page.tsx - News listing page (uses content/news JSON)
+  - projects/
+    - page.tsx - Projects page (server component, loads from metadata.json)
+    - [slug]/page.tsx - Individual project page (uses MDX from content)
+  - publications/
+    - page.tsx - Publications listing page (uses lib/publications-data.ts)
+  - talks/
+    - page.tsx - Talks listing page (uses lib/talks-data.ts)
+  - page.tsx - Home page (hardcoded)
+- simple/
+  - page.tsx - Simplified academic page
 
 #### /lib/
 - blog.ts - Blog loader (reads from content/blog/metadata.json)
@@ -38,6 +41,14 @@ Main Next.js application
 #### /content/
 - blog/
   - metadata.json - Blog post metadata (single source of truth)
+  - double-pendulum-chaos/
+    - index.mdx
+    - double-pendulum.tsx (co-located interactive component)
+  - gradient-optimizer-comparison/
+    - index.mdx
+    - optimizer-visualization.tsx (original canvas version)
+    - optimizer-visualization-svg.tsx (pure SVG attempt)
+    - optimizer-visualization-hybrid.tsx (final hybrid canvas+SVG, added 2025-08-24)
   - random-walks-visualization/
     - index.mdx
     - random-walk.tsx (co-located interactive component)
@@ -47,11 +58,15 @@ Main Next.js application
   - metadata.json - Project metadata (title, excerpt, thumbnailUrl, isExternal, externalUrl)
   - evolving-research/
     - index.mdx
+  - llm-dopamine/
+    - index.mdx (added 2025-08-24)
   - research-tracking/
     - index.mdx
     - research-flow.tsx (co-located React Flow diagram)
     - research-tree-data.ts (co-located data model)
     - research-tree-vertical.json (co-located data)
+  - llm-dopamine/
+    - index.mdx
 - news/
   - YYYY/ (2015-2025)
     - 0winter.json (Jan-Mar)
@@ -70,28 +85,28 @@ Main Next.js application
 - share-button.tsx - Copy link button with toast notifications
 - google-analytics.tsx
 - publication-card.tsx - Domain wrapper around ArticleCard (supports related_projects)
-- project-cards.tsx - Client component for project grid with external link handling
-- cv-timeline.tsx
-- cv-traditional.tsx
-- flying-publications.tsx
+- project-cards.tsx - Client component for project grid with external link handling (added 2025-08-24)
+- cv-timeline.tsx - Timeline CV view (fixed React hooks cleanup 2025-08-24)
+- cv-traditional.tsx - Traditional CV view
+- flying-publications.tsx - Background animation (converted to Next.js Image 2025-08-24)
 - navigation.tsx - Site navigation (Projects instead of Ongoing)
 - theme-provider.tsx
 
 ### /packages/ui/
 Shared UI component library
 - components/
-  - article-card.tsx - Generic article/publication card
+  - article-card.tsx - Generic article/publication card (added 2025-08-24)
   - card.tsx
   - badge.tsx
   - button.tsx
   - page-container.tsx
+  - warning-card.tsx - Orange warning card with icon for disclaimers (added 2025-08-24)
   - etc.
 
-### /archive/
-Archived/unused files
-- unused-code/
-  - chat-box.tsx (unused component, only in commented code)
-  - research-tools/ (orphaned page directory, not linked anywhere)
+### Removed Files (2025-08-24)
+- /apps/web/app/(default)/ongoing/ - Replaced with projects
+- /apps/web/app/(default)/research-tools/ - Removed unused page
+- /apps/web/components/chat-box.tsx - Removed unused component
 
 ### /claude_notes/
 AI assistant documentation and logs
