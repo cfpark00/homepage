@@ -58,7 +58,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </div>
 
         <div className="prose prose-neutral dark:prose-invert max-w-none">
-          <MDXContent slug={slug} components={components} />
+          <MDXContent slug={slug} type="projects" components={components} />
         </div>
       </div>
     </article>

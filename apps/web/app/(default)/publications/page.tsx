@@ -162,7 +162,7 @@ export default function PublicationsPage() {
                           />
                         </div>
                       </CardHeader>
-                      <CardContent className="pt-0 px-4 sm:pl-0">
+                      <CardContent className="pt-0 pb-3 px-4 sm:pl-0">
                     <div className="mb-2 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                       <div className="flex items-center gap-2">
                         {(pub.arxiv || pub.doi || pub.url) ? (

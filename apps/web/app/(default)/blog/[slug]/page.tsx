@@ -82,7 +82,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
         
         <div className="prose prose-neutral max-w-none dark:prose-invert">
-          <MDXContent slug={slug} components={components} />
+          <MDXContent slug={slug} type="blog" components={components} />
         </div>
       </div>
     </article>

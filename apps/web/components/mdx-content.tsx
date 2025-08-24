@@ -1,28 +1,32 @@
 'use client'
 
 import { useMDXComponents } from '@mdx-js/react'
+import dynamic from 'next/dynamic'
+import { useMemo } from 'react'
 
 interface MDXContentProps {
   slug: string
+  type: 'blog' | 'projects'
   components?: Record<string, any>
 }
 
-export default function MDXContent({ slug, components = {} }: MDXContentProps) {
-  // Dynamically import MDX content based on slug
-  let Content: any = () => <div>Loading...</div>
-  
-  // Blog posts
-  if (slug === 'welcome-to-my-blog') {
-    Content = require('@/content/blog/welcome-to-my-blog/index.mdx').default
-  } else if (slug === 'random-walks-visualization') {
-    Content = require('@/content/blog/random-walks-visualization/index.mdx').default
-  }
-  // Projects
-  else if (slug === 'research-tracking') {
-    Content = require('@/content/projects/research-tracking/index.mdx').default
-  } else if (slug === 'evolving-research') {
-    Content = require('@/content/projects/evolving-research/index.mdx').default
-  }
+export default function MDXContent({ slug, type, components = {} }: MDXContentProps) {
+  // Dynamically import MDX content based on type and slug
+  const Content = useMemo(
+    () => dynamic(
+      () => import(`@/content/${type}/${slug}/index.mdx`)
+        .catch(() => {
+          // Return a component that renders an error message
+          return { 
+            default: () => <div className="text-muted-foreground">Content not found: {type}/{slug}</div> 
+          }
+        }),
+      {
+        loading: () => <div className="text-muted-foreground">Loading content...</div>,
+      }
+    ),
+    [slug, type]
+  )
 
   const mdxComponents = useMDXComponents(components)
   
