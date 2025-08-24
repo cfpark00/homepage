@@ -228,8 +228,8 @@ export default function TalksPage() {
                         </div>
                       </CardHeader>
                       
-                      <CardContent className="pt-0 px-4 sm:pl-0">
-                        {isExpanded && (
+                      {isExpanded && (
+                        <CardContent className="pt-0 px-4 sm:pl-0 pb-4">
                           <div className="mt-3 space-y-3">
                             {talk.description && (
                               <p className="text-sm text-muted-foreground">
@@ -288,7 +288,7 @@ export default function TalksPage() {
                               </>
                             )}
                             
-                            <div className="flex gap-2 pt-2">
+                            <div className="flex gap-2">
                               {talk.videoUrl && (
                                 <Button
                                   variant="outline"
@@ -339,8 +339,8 @@ export default function TalksPage() {
                               )}
                             </div>
                           </div>
-                        )}
-                      </CardContent>
+                        </CardContent>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -1,0 +1,12 @@
+{
+  "news": [
+    {
+      "date": "2022-06-10",
+      "content": "I will be presenting our [work](https://arxiv.org/abs/2204.05435) at [AAS240](https://aas.org/meetings/aas240)."
+    },
+    {
+      "date": "2022-06-01",
+      "content": "American Astronomical Society 240: 'On the Gaussianity of Non-Gaussian probes of Large Scale Structure'."
+    }
+  ]
+}

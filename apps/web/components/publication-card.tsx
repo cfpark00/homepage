@@ -113,7 +113,7 @@ export function PublicationCard({ publication: pub, compact = false }: Publicati
                       >
                         <a
                           href={pub.arxiv ? `https://arxiv.org/abs/${pub.arxiv}` : pub.doi ? `https://doi.org/${pub.doi}` : pub.url}
-                          target="_blank"
+                          target="__blank"
                           rel="noopener noreferrer"
                         >
                           {pub.venue}

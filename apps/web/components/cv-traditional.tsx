@@ -1,6 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card"
 import { Badge } from "@workspace/ui/components/badge"
-import { GraduationCap, Briefcase, Award, BookOpen, Users, Activity } from "lucide-react"
+import { Button } from "@workspace/ui/components/button"
+import { GraduationCap, Briefcase, Award, BookOpen, Users, Activity, FileText, ArrowRight } from "lucide-react"
+import Link from "next/link"
 import type { CVData } from "@/app/(default)/cv/page"
 
 export function TraditionalView({ data }: { data: CVData }) {
@@ -82,6 +84,20 @@ export function TraditionalView({ data }: { data: CVData }) {
           </div>
         </CardContent>
       </Card>
+
+      <Link href="/publications" className="block mb-8">
+        <Card className="transition-colors hover:bg-muted/50 cursor-pointer">
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <FileText className="h-5 w-5" />
+                Publications
+              </span>
+              <ArrowRight className="h-5 w-5" />
+            </CardTitle>
+          </CardHeader>
+        </Card>
+      </Link>
 
       <div className="grid gap-8 md:grid-cols-2">
         <Card>

@@ -1,0 +1,24 @@
+{
+  "news": [
+    {
+      "date": "2024-09-27",
+      "content": "Our [paper](https://arxiv.org/abs/2406.19370) 'Emergence of Hidden Capabilities: Exploring Learning Dynamics in Concept Space' is accepted to NeurIPS 2024 as a Spotlight!"
+    },
+    {
+      "date": "2024-08-01",
+      "content": "Poster at New England Mechanistic Interpretability Workshop 2024: 'Emergence of In-Context Learning Beyond Bayesian retrieval: A mechanistic study'. [Poster](https://docs.google.com/presentation/d/1B2MV71WRGIDFtpVGNoBrGWkVaJ9FjTFsqzsE8hEd_Fo/edit?usp=sharing)."
+    },
+    {
+      "date": "2024-07-25",
+      "content": "NTT Physics & Informatics Laboratory Journal Club: 'Scaling and In-Context Learning of Large Language Models'. [Slides](https://docs.google.com/presentation/d/1chVbiXn_LQukPf1NZW0klsURUFfXBaltaA5T3cn85-0/edit?usp=sharing)."
+    },
+    {
+      "date": "2024-07-03",
+      "content": "Tunadorable made a [video](https://www.youtube.com/watch?v=FoAGwdQUALM) about our [paper](https://arxiv.org/abs/2406.19370): 'Emergence of Hidden Capabilities: Exploring Learning Dynamics in Concept Space'"
+    },
+    {
+      "date": "2024-07-02",
+      "content": "I gave a talk about our project diff4stats at [EAS 2024](https://eas.unige.ch/EAS2024/): 'Probabilistic Completion of Astrophysical Fields for Robust Statistics with Diffusion Models' [slides](https://docs.google.com/presentation/d/1_NTqc1EtjpP3Uai-fFAEavG8rbuMhAwbelipWFt9Ch4/edit?usp=sharing)"
+    }
+  ]
+}

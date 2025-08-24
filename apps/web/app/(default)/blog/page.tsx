@@ -2,10 +2,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@work
 import { Badge } from "@workspace/ui/components/badge"
 import { CalendarDays, Clock, User } from "lucide-react"
 import Link from "next/link"
-import { getAllPosts } from "@/lib/blog"
+import { getBlogPosts } from "@/lib/blog"
+import { ShareButton } from "@/components/share-button"
 
-export default function BlogPage() {
-  const posts = getAllPosts()
+export default async function BlogPage() {
+  const posts = await getBlogPosts()
+  
+  // Collect all unique tags
+  const allTags = new Set<string>()
+  posts.forEach(post => {
+    post.tags.forEach(tag => allTags.add(tag))
+  })
+  const sortedTags = Array.from(allTags).sort()
 
   return (
     <div className="container py-8 md:py-12">
@@ -23,23 +31,28 @@ export default function BlogPage() {
             </CardContent>
           </Card>
         ) : (
-          <div className="space-y-8">
+          <div className="space-y-5">
             {posts.map((post) => (
-              <Card key={post.slug} className="overflow-hidden transition-shadow hover:shadow-lg">
+              <Card key={post.slug} className="relative overflow-hidden transition-shadow hover:shadow-lg">
+                <ShareButton 
+                  url={`/blog/${post.slug}`} 
+                  size="icon" 
+                  className="absolute top-3 right-3 z-10"
+                />
                 <Link href={`/blog/${post.slug}`}>
-                  <CardHeader>
-                    <CardTitle className="text-2xl hover:text-primary">
+                  <CardHeader className="px-6 pt-5 pb-3">
+                    <CardTitle className="text-xl hover:text-primary pr-8">
                       {post.title}
                     </CardTitle>
-                    <CardDescription className="mt-2">
+                    <CardDescription className="mt-1">
                       {post.excerpt}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="px-6 pb-5 pt-0">
                     <div className="mb-4 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <User className="h-3 w-3" />
-                        {post.author}
+                        Core Francisco Park
                       </span>
                       <span className="flex items-center gap-1">
                         <CalendarDays className="h-3 w-3" />
@@ -49,10 +62,12 @@ export default function BlogPage() {
                           day: "numeric",
                         })}
                       </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {post.readingTime}
-                      </span>
+                      {post.readingTime && (
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3 w-3" />
+                          {post.readingTime}
+                        </span>
+                      )}
                     </div>
                     {post.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2">
@@ -68,6 +83,20 @@ export default function BlogPage() {
               </Card>
             ))}
           </div>
+        )}
+        
+        {/* All tags section at the bottom */}
+        {sortedTags.length > 0 && (
+          <>
+            <hr className="my-8 border-t border-border" />
+            <div className="flex flex-wrap gap-2">
+              {sortedTags.map((tag) => (
+                <Badge key={tag} variant="outline">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>

@@ -1,0 +1,28 @@
+{
+  "news": [
+    {
+      "date": "2023-12-09",
+      "content": "I will be presenting two works at [NeurIPS 2023](https://neurips.cc/Conferences/2023) Workshops."
+    },
+    {
+      "date": "2023-12-05",
+      "content": "Our work tracking individual neurons in C.elegans using synthetically augmented data is published in [Nature Methods](https://www.nature.com/articles/s41592-023-02096-3)."
+    },
+    {
+      "date": "2023-11-06",
+      "content": "Our project SmartEM, on optimizing neural imaging with real time deep learning is on the [MIT News](https://news.mit.edu/2023/using-ai-optimize-rapid-neural-imaging-1106)."
+    },
+    {
+      "date": "2023-11-01",
+      "content": "Won 2nd place at the Citadel Datathon competition."
+    },
+    {
+      "date": "2023-10-30",
+      "content": "I gave a talk about our project vdm4cdm_2d at the [AstroAI](https://astroai.cfa.harvard.edu/) lunch talk."
+    },
+    {
+      "date": "2023-10-08",
+      "content": "The paper about our project SmartEM is on [bioarxiv](https://www.biorxiv.org/content/10.1101/2023.10.05.561103v1)."
+    }
+  ]
+}

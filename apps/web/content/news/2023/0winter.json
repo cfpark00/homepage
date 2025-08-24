@@ -1,0 +1,16 @@
+{
+  "news": [
+    {
+      "date": "2023-03-09",
+      "content": "I will present our project targettrack at [COSYNE 2023](https://www.cosyne.org/past-conferences)."
+    },
+    {
+      "date": "2023-03-05",
+      "content": "I will present our project targettrack at [APS March Meeting 2023](https://www.aps.org/meetings/meeting.cfm?name=MAR23)."
+    },
+    {
+      "date": "2023-03-01",
+      "content": "American Physical Society March Meeting 2023: 'Automated neuron tracking using deep learning and targeted augmentation'."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "news": [
+    {
+      "date": "2025-01-01",
+      "content": "Research internship at NTT Research on Understanding Mechanisms and Capabilities of AI with Hidenori Tanaka."
+    },
+    {
+      "date": "2024-12-10",
+      "content": "I will be presenting some of our works at [NeurIPS 2024](https://neurips.cc/Conferences/2024): (1) Our [work](https://arxiv.org/abs/2406.19370) on concept learning and hidden emergence of compositional capabilities will be presented as a spotlight poster! (2) Our [work](https://arxiv.org/abs/2412.01003) on algorithmic phases of in-context learning will be presented at the Workshop on Scientific Methods for Understanding Deep Learning. (3) Our [work](https://drive.google.com/file/d/1DyiOSt1AfTlATqbm3sHjP3klGXrpcwrz/view?usp=sharing) on how LLMs can reorganize their representations in a context dependent way will be presented at the Workshop on Symmetry and Geometry in Neural Representations."
+    },
+    {
+      "date": "2024-12-01",
+      "content": "Our paper 'Competition Dynamics Shape Algorithmic Phases of In-Context Learning' is on [ArXiv](https://arxiv.org/abs/2412.01003)!"
+    },
+    {
+      "date": "2024-11-26",
+      "content": "CBS-NTT Fellow Candidate Talk: 'Towards a Neuroethology of AI: AI as a model system of intelligent phenomena'. [Video](https://drive.google.com/file/d/1lkkj6LKhJ0ODj6W7lQbaP8UjBeYzYyKO/view?usp=sharing), [Slides](https://drive.google.com/file/d/1zuDyKgU4hp_X0KlvkwX70XCyjo_FQRj2/view?usp=sharing)."
+    },
+    {
+      "date": "2024-11-13",
+      "content": "Talk at [Stanford Institute for Theoretical Physics](https://sitp.stanford.edu/): 'Understanding Compositional Generalization with Synthetic Data'. [Slides](https://drive.google.com/file/d/1VMhRHQ5wy-nuhEdXK61ScXC5ZNkBuMQd/view?usp=sharing)."
+    },
+    {
+      "date": "2024-11-13",
+      "content": "Talk at [Insight+Interaction Lab](https://insight.seas.harvard.edu/) at Harvard: 'Understanding Compositional Generalization with Synthetic Data'. [Slides](https://drive.google.com/file/d/1VMhRHQ5wy-nuhEdXK61ScXC5ZNkBuMQd/view?usp=sharing)."
+    },
+    {
+      "date": "2024-10-10",
+      "content": "Our paper 'Dynamics of Concept Learning and Compositional Generalization' is on [ArXiv](https://www.arxiv.org/abs/2410.08309)!"
+    }
+  ]
+}

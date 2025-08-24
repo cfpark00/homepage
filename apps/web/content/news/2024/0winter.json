@@ -1,0 +1,16 @@
+{
+  "news": [
+    {
+      "date": "2024-03-20",
+      "content": "Our follow up paper of our project vdm4cdm_2d is on [arxiv](https://arxiv.org/abs/2403.10648)."
+    },
+    {
+      "date": "2024-03-07",
+      "content": "I gave a [talk](https://youtu.be/kYs1ZQWqz5U?t=3393) about our project vdm4cdm_2d at the [ITC](https://itc.cfa.harvard.edu/) Luncheon: 'Debiasing with Diffusion: Probabilistic reconstruction of Dark Matter field from galaxies'"
+    },
+    {
+      "date": "2024-01-23",
+      "content": "I gave a quick presentation of our project vdm4cdm_3d on using Diffusion Models to generate dark matter fields at the [workshop](https://cd3.ipmu.jp/ai4phys/) 'AI-driven Discovery in Physics and Astrophysics' at [Kavli IPMU](https://www.ipmu.jp/)."
+    }
+  ]
+}

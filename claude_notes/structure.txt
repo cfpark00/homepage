@@ -1,221 +1,135 @@
-# Project Structure - Academic Homepage Monorepo
-Last Updated: 2025-08-23 18:45
+# Project Structure Overview
+Last Updated: 2025-08-24
 
-## Root Directory
-/Users/cfpark00/mysite/
-├── apps/                        # Applications
-│   └── web/                     # Next.js web application
-│       ├── app/                 # App router pages
-│       │   ├── (default)/       # Main layout group (with nav/footer)
-│       │   │   ├── layout.tsx   # Main layout with navigation
-│       │   │   ├── page.tsx     # Homepage
-│       │   │   ├── blog/        # Blog section
-│       │   │   │   ├── page.tsx # Blog listing
-│       │   │   │   └── random-walks-visualization/  # Interactive blog post
-│       │   │   │       └── page.tsx # Client-side wrapper for MDX
-│       │   │   ├── cv/          # CV/Resume page
-│       │   │   │   └── page.tsx # Toggle between traditional/timeline views
-│       │   │   ├── news/        # News and updates
-│       │   │   │   └── page.tsx
-│       │   │   ├── ongoing/     # Current research projects
-│       │   │   │   └── page.tsx # "Ongoing Stuff..." page (3 project cards)
-│       │   │   ├── evolving-research/ # Evolving Research project page
-│       │   │   │   └── page.tsx # Research planning page
-│       │   │   ├── research-tracking/ # Research Tracking System page
-│       │   │   │   └── page.tsx # Research tracking project details
-│       │   │   ├── projects/    # Research projects showcase
-│       │   │   │   └── page.tsx
-│       │   │   ├── publications/# Publications listing
-│       │   │   │   └── page.tsx
-│       │   │   └── talks/        # Talks & Presentations
-│       │   │       └── page.tsx # Expandable cards with video/slides
-│       │   ├── simple/          # Standalone 1990s-style page
-│       │   │   ├── layout.tsx   # Minimal layout (no nav/footer)
-│       │   │   └── page.tsx     # Raw HTML aesthetic
-│       │   └── icon.png         # Sparrow favicon (in (default)/)
-│       ├── components/          # React components
-│       │   ├── chat-box.tsx    # Unified chat widget (Virtual/Real Core) - COMMENTED OUT
-│       │   ├── cv-timeline.tsx # Timeline view for CV
-│       │   ├── cv-traditional.tsx # Traditional CV view
-│       │   ├── flying-publications.tsx # Animated floating publication images
-│       │   ├── google-analytics.tsx # Google Analytics GA4 integration
-│       │   ├── navigation.tsx  # Main navigation bar
-│       │   ├── publication-card.tsx # Reusable publication card component
-│       │   ├── research-flow.tsx # React Flow visualization for research tracking
-│       │   └── theme-provider.tsx # Dark mode provider
-│       ├── content/            # Content files
-│       │   └── blog/           # Blog posts in MDX
-│       │       ├── adaptive-width-cnns.mdx
-│       │       ├── welcome-to-my-blog.mdx
-│       │       └── random-walks-visualization/  # Interactive blog post folder
-│       │           ├── index.mdx           # Blog post content
-│       │           ├── random-walk.tsx     # Version 1: Basic visualization
-│       │           ├── random-walk-v2.tsx  # Version 2: Enhanced with zoom/pan
-│       │           └── random-walk-v3.tsx  # Version 3: With analytics plots
-│       ├── lib/                # Utility functions
-│       │   ├── blog.ts         # Blog post utilities
-│       │   ├── publications-data.ts # Publications database
-│       │   ├── research-tree-data.ts # Research tree TypeScript interface
-│       │   ├── research-tree-vertical.json # 71-node research tree JSON data
-│       │   └── talks-data.ts   # Talks database with video/slides links
-│       ├── public/             # Static assets
-│       │   ├── images/         # Image assets
-│       │   │   ├── profile.jpg # Profile picture (rectangular)
-│       │   │   ├── profile-square.jpg # Square profile picture
-│       │   │   ├── ongoing/     # Ongoing project images
-│       │   │   │   ├── evolving-research/
-│       │   │   │   │   ├── evolving-research.png
-│       │   │   │   │   └── archive/
-│       │   │   │   ├── orchestra/
-│       │   │   │   │   └── orchestra.png
-│       │   │   │   └── research-tracking-system/
-│       │   │   │       └── research-tracking-system.png
-│       │   │   ├── publications/ # Publication thumbnails/GIFs
-│       │   │   └── talks/      # Talk thumbnails (20 PNG files)
-│       │   ├── CFPark_CV.pdf   # Downloadable CV
-│       │   ├── favicon.png     # Favicon copy
-│       │   └── sparrow.png     # Original sparrow icon
-│       ├── .env.example        # Environment variables template
-│       ├── .env.local          # Local environment variables (gitignored)
-│       ├── components.json     # shadcn/ui config
-│       ├── next.config.mjs     # Next.js config
-│       ├── package.json        # Dependencies
-│       ├── postcss.config.js   # PostCSS config
-│       ├── tailwind.config.ts  # Tailwind config (with Typography plugin)
-│       └── tsconfig.json       # TypeScript config
-│
-├── packages/                   # Shared packages
-│   └── ui/                     # UI component library
-│       ├── src/
-│       │   ├── components/     # shadcn/ui components
-│       │   │   ├── badge.tsx
-│       │   │   ├── button.tsx
-│       │   │   ├── card.tsx
-│       │   │   ├── checkbox.tsx
-│       │   │   ├── dialog.tsx
-│       │   │   ├── input.tsx
-│       │   │   ├── navigation-menu.tsx
-│       │   │   ├── page-container.tsx # Standardized page container
-│       │   │   ├── progress.tsx
-│       │   │   ├── scroll-area.tsx
-│       │   │   ├── select.tsx
-│       │   │   ├── sonner.tsx  # Toast notifications
-│       │   │   └── tabs.tsx
-│       │   ├── lib/            # Utilities
-│       │   │   └── utils.ts    # cn() helper
-│       │   ├── styles/         # Global styles
-│       │   │   └── globals.css # Tailwind + CSS variables
-│       │   ├── hooks/          # Custom hooks (empty)
-│       │   └── index.ts        # Package exports
-│       ├── components.json     # shadcn/ui config
-│       ├── package.json        # Dependencies
-│       ├── tailwind.config.ts  # Tailwind config
-│       └── tsconfig.json       # TypeScript config
-│
-├── claude_notes/              # Documentation
-│   ├── logs/                  # Daily logs
-│   │   ├── 2025-08-21/
-│   │   │   ├── 13-00_academic_homepage_build.md
-│   │   │   ├── 14-43_website_refinements.md
-│   │   │   ├── 18-47_news_page_development.md
-│   │   │   ├── 18-53_final_ui_refinements.md
-│   │   │   ├── 18-54_cv_timeline_accuracy_fixes.md
-│   │   │   ├── 19-06_publication_fixes_and_ui_updates.md
-│   │   │   ├── 19-42_vercel_deployment_setup.md
-│   │   │   ├── 21-33_mobile_improvements_and_deployment.md
-│   │   │   ├── 21-53_navigation_ui_improvements.md
-│   │   │   ├── 22-52_evolving_research_page_and_container_standardization.md
-│   │   │   └── 23-04_research_tracking_visualization.md
-│   │   ├── 2025-08-22/
-│   │   │   ├── 00-29_talks_page_development.md
-│   │   │   ├── 00-45_cv_updates_and_deployment.md
-│   │   │   └── 01-21_google_analytics_integration.md
-│   │   └── 2025-08-23/
-│   │       └── 18-39_blog_system_cleanup_and_random_walk_visualization.md
-│   ├── tips/                  # Development tips and guides
-│   │   └── mdx-blog-setup.md # MDX blog infrastructure guide
-│   └── structure.txt          # This file
-│
-├── .eslintrc.json             # ESLint config
-├── .git/                      # Git repository (initialized 2025-08-21)
-├── .gitignore                 # Git ignore rules
-├── .prettierrc                # Prettier config
-├── .vercel/                   # Vercel configuration
-│   └── project.json           # Vercel project settings
-├── CFPark_CV.pdf              # Updated CV (source for public version)
-├── CLAUDE.md                  # Guidelines for AI agents and developers
-├── DEPLOYMENT.md              # Deployment guide
-├── package.json               # Root package.json
-├── pnpm-workspace.yaml        # pnpm workspace config
-├── README.md                  # Project documentation
-├── SHADCN_TIPS.md            # shadcn/ui tips
-└── turbo.json                # Turbo build config
+## Root Directory: /Users/cfpark00/mysite
+Monorepo using pnpm workspaces with Vercel deployment
 
-## Key Changes from Previous Structure
+## Key Directories
 
-### Major Cleanup (2025-08-23)
-- **Removed unused API routes**: Deleted entire `/app/api/` directory (blog API never used)
-- **Removed unused packages**: Cleaned up 11+ unused npm packages including:
-  - Form libraries: `@hookform/resolvers`, `react-hook-form`, `zod`
-  - Data fetching: `@tanstack/react-query`
-  - UI components: `@radix-ui/react-accordion`, `recharts`, `cmdk`, `embla-carousel-react`, `react-day-picker`, `vaul`
-- **Removed scratch directory**: Deleted `/scratch/` experimental code
-- **Fixed deprecated patterns**: Updated Next.js config from `images.domains` to `remotePatterns`
+### /apps/web/
+Main Next.js application
 
-### Blog System Overhaul
-- Migrated from dynamic API-based to fully static MDX blog
-- Added support for interactive blog posts with React components
-- Created self-contained blog post folders (content + components)
-- Added Tailwind Typography plugin for proper prose styling
-- Fixed blog listing to properly display posts with metadata
-- Created interactive random walk visualization blog post with 3 versions
+#### /app/(default)/
+- blog/
+  - page.tsx - Blog listing page
+  - [slug]/page.tsx - Individual blog post page
+- cv/
+  - page.tsx - CV page
+- news/
+  - page.tsx - News listing page (uses external data)
+- ongoing/
+  - page.tsx - Ongoing work page
+- projects/
+  - page.tsx - Projects listing page
+  - [slug]/page.tsx - Individual project page
+- publications/
+  - page.tsx - Publications listing page
+- research-tools/
+  - linen-archive/page.tsx
+  - sankey/page.tsx
+- talks/
+  - page.tsx - Talks listing page
 
-### Route Organization
-- Moved all main pages to `(default)/` route group for shared layout
-- Isolated `/simple` page with its own minimal layout
-- Added `/blog/random-walks-visualization/` for interactive blog post
+#### /lib/
+- blog.ts - Blog metadata and loading functions
+- news.ts - News data loading functions
+- projects.ts - Projects metadata and loading functions
+- publications-data.ts - Publications data
+- research-tree-data.ts - Research tree visualization data
+- talks-data.ts - Talks data
 
-### Component Updates
-- `chat-box.tsx` now supports dual mode (Virtual/Real Core) - COMMENTED OUT
-- Added `sonner.tsx` for toast notifications
-- Navigation order: Home, CV, Ongoing, Publications, Talks, Blog, News (Research hidden)
+#### /content/
+- blog/
+  - welcome-to-my-blog/
+    - index.mdx
+  - random-walks-visualization/
+    - index.mdx
+    - random-walk.tsx
+- news/
+  - YYYY/ (2015-2025)
+    - 0winter.json (Jan-Mar)
+    - 1spring.json (Apr-Jun)
+    - 2summer.json (Jul-Sep)
+    - 3fall.json (Oct-Dec)
+- projects/
+  - research-tracking/
+    - index.mdx
+    - research-flow.tsx
+  - evolving-research/
+    - index.mdx
 
-### Content Structure
-- Blog posts in `/content/blog/` (both simple MDX and folders with components)
-- Publications data in `/lib/publications-data.ts`
-- CV data embedded in component
+#### /components/
+- mdx-content.tsx - MDX content loader (handles blog and project slugs)
+- share-button.tsx
+- google-analytics.tsx
+- publication-card.tsx
+- research-tree-vertical.tsx
 
-### Page Features
-- Homepage: Two-column hero with profile image right, flying publications animation (50% transparent sections)
-- CV: Rectangular profile image left of header
-- Ongoing: Square thumbnail cards with thin text
-- Simple: True standalone 1990s HTML page with rectangular profile image floating left
-- ChatBox and Newsletter components commented out (not deployment ready)
+### /packages/ui/
+Shared UI component library
+- components/
+  - card.tsx
+  - badge.tsx
+  - button.tsx
+  - page-container.tsx
+  - etc.
 
-## Navigation Flow
-- Persistent top bar on all pages except /simple
-- Email copies to clipboard with toast
-- /simple has no navigation, just back link
-- Footer minimal padding (py-3/4)
+### /archive/
+Archived/unused files
+- 2025-01-24/
+  - claude_notes/ (old documentation)
+  - reorganize-layout.js
+  - scratch/research-tree/
 
-## Styling System
-- Tailwind CSS with custom theme
-- CSS variables for theming
-- Dark mode support throughout
-- Special raw HTML styling for /simple page
-- Toast notifications bottom-right
+### /claude_notes/
+AI assistant documentation and logs
+- docs/
+  - blog-system-architecture.md
+- logs/
+  - YYYY-MM-DD/
+    - HH-MM_topic.md
+- tips/
+  - typescript-in-mdx-gotchas.md
+- structure.txt (this file)
 
-## Deployment Configuration
-- **Git Repository**: git@github.com:cfpark00/homepage.git
-- **Vercel Project**: "homepage"
-- **Vercel Dashboard Settings**:
-  - Root Directory: `apps/web`
-  - All other settings: Auto-detected
-  - Environment Variables:
-    - `NEXT_PUBLIC_GA_ID`: Google Analytics tracking ID
-- **NO vercel.json file** - Dashboard settings handle everything
-- **Deploy from repository root**:
-  - Preview: `vercel`
-  - Production: `vercel --prod`
-- **Production URL**: https://www.corefranciscopark.com
-- **Google Analytics**: GA4 tracking integrated (ID: G-ZDH9GPMH57)
+### /resources/
+Static assets and data
+- research-tree.json
+- research-tree-vertical.json
+
+## Configuration Files
+- package.json (root)
+- pnpm-workspace.yaml
+- turbo.json
+- vercel.json
+- CLAUDE.md - AI assistant guidelines
+- DEPLOYMENT.md
+- SHADCN_TIPS.md
+- .env.example
+
+## Content Management Systems
+
+### Blog System (3-layer architecture)
+1. Framework: /blog/[slug]/page.tsx
+2. Content: /content/blog/*/index.mdx
+3. Metadata: /lib/blog.ts
+
+### Projects System (3-layer architecture)
+1. Framework: /projects/[slug]/page.tsx
+2. Content: /content/projects/*/index.mdx
+3. Metadata: /lib/projects.ts
+
+### News System (2-layer architecture)
+1. Framework: /news/page.tsx
+2. Content: /content/news/YYYY/*.json
+
+## Key Differences from Blog
+- Projects don't have tags or reading time
+- Projects use the same MDX framework as blogs
+- Projects content wrapped in prose classes (requires not-prose for components)
+
+## Build & Deploy
+- Platform: Vercel
+- Build: Turborepo
+- Package Manager: pnpm
+- Framework: Next.js 15+ (App Router with async params)

@@ -191,6 +191,7 @@ export default function RandomWalk() {
   }
 
   const handleWheel = (e: React.WheelEvent) => {
+    // Note: preventDefault in onWheel is handled by React, not passive
     e.preventDefault()
     e.stopPropagation()
     
@@ -260,6 +261,34 @@ export default function RandomWalk() {
   const distance = Math.sqrt(Math.pow(path[path.length - 1].x, 2) + Math.pow(path[path.length - 1].y, 2))
 
   return (
+    <>
+    <style>{`
+      @media screen {
+        .rw-print-placeholder {
+          display: none !important;
+        }
+      }
+      @media print {
+        .rw-demo-container {
+          display: none !important;
+        }
+        .rw-print-placeholder {
+          display: block !important;
+          padding: 1rem;
+          margin: 1rem 0;
+          border: 1px solid #ccc;
+          background: #f9f9f9;
+          color: #666;
+          font-family: monospace;
+          font-size: 0.9rem;
+          text-align: center;
+        }
+      }
+    `}</style>
+    <div className="rw-print-placeholder">
+      [INTERACTIVE DEMO]
+    </div>
+    <div className="rw-demo-container">
     <Card className="p-6">
       <div className="space-y-4">
         {/* Warning messages */}
@@ -274,7 +303,7 @@ export default function RandomWalk() {
           </div>
         )}
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-wrap random-walk-controls">
             <Button
               onClick={() => setIsRunning(!isRunning)}
               variant="default"
@@ -319,7 +348,7 @@ export default function RandomWalk() {
           </div>
         </div>
 
-        <div className="flex gap-2 items-center flex-wrap">
+        <div className="flex gap-2 items-center flex-wrap random-walk-controls">
           <Button
             onClick={() => setZoom(z => Math.min(10, z * 1.5))}
             variant="outline"
@@ -369,7 +398,8 @@ export default function RandomWalk() {
         </div>
 
         <div 
-          className="relative overflow-hidden rounded-lg border bg-muted/20 cursor-move"
+          className="relative overflow-hidden rounded-lg border bg-muted/20 cursor-move random-walk-container"
+          data-interactive="true"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -640,5 +670,7 @@ export default function RandomWalk() {
 
       </div>
     </Card>
+    </div>
+    </>
   )
 }

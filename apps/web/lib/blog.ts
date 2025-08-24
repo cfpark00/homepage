@@ -1,117 +1,63 @@
 import fs from 'fs'
 import path from 'path'
-import matter from 'gray-matter'
-import { remark } from 'remark'
-import readingTime from 'reading-time'
 
-const postsDirectory = path.join(process.cwd(), 'content/blog')
-
-export type BlogPost = {
+export interface BlogPost {
   slug: string
   title: string
   date: string
   excerpt: string
-  author: string
   tags: string[]
-  readingTime: string
-  content: string
+  readingTime?: string
 }
 
-export function getAllPosts(): BlogPost[] {
-  if (!fs.existsSync(postsDirectory)) {
-    return []
+// Metadata for all blog posts - this is the single source of truth
+const blogMetadata: Record<string, Omit<BlogPost, 'slug'>> = {
+  'welcome-to-my-blog': {
+    title: 'Welcome to My Blog',
+    date: '2025-01-20',
+    excerpt: 'An introduction to my personal blog and what you can expect to find here.',
+    tags: ['test'],
+    readingTime: '2 min read'
+  },
+  'random-walks-visualization': {
+    title: 'Visualizing Random Walks',
+    date: '2025-08-23',
+    excerpt: 'Interactive visualization and exploration of random walks in 2D space with real-time statistics.',
+    tags: ['probability', 'visualization', 'interactive', 'test'],
+    readingTime: '5 min read'
   }
+}
 
-  const entries = fs.readdirSync(postsDirectory)
-  const allPostsData = entries
-    .map((entry) => {
-      const fullPath = path.join(postsDirectory, entry)
-      const stat = fs.statSync(fullPath)
-      
-      let slug = ''
-      let fileContents = ''
-      
-      if (stat.isDirectory()) {
-        // Check for index.mdx in folder
-        const indexPath = path.join(fullPath, 'index.mdx')
-        if (fs.existsSync(indexPath)) {
-          slug = entry
-          fileContents = fs.readFileSync(indexPath, 'utf8')
-          
-          // For random-walks-visualization, use hardcoded metadata
-          if (slug === 'random-walks-visualization') {
-            return {
-              slug,
-              title: 'Visualizing Random Walks',
-              date: '2025-01-23',
-              excerpt: 'An interactive exploration of random walks on a 2D grid, with live visualization and statistical insights.',
-              author: 'Core Francisco Park',
-              tags: ['mathematics', 'probability', 'visualization', 'interactive'],
-              readingTime: '5 min read',
-              content: fileContents,
-            }
-          }
-        } else {
-          return null
-        }
-      } else if (entry.endsWith('.mdx') || entry.endsWith('.md')) {
-        // Regular file
-        slug = entry.replace(/\.mdx?$/, '')
-        fileContents = fs.readFileSync(fullPath, 'utf8')
-      } else {
-        return null
-      }
-      
-      const { data, content } = matter(fileContents)
-      const stats = readingTime(content)
-
-      return {
-        slug,
-        title: data.title || 'Untitled',
-        date: data.date || new Date().toISOString(),
-        excerpt: data.excerpt || '',
-        author: data.author || 'Anonymous',
-        tags: data.tags || [],
-        readingTime: stats.text,
-        content,
-      }
-    })
-    .filter(Boolean) as BlogPost[]
-
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1
-    } else {
-      return -1
-    }
+export async function getBlogPosts(): Promise<BlogPost[]> {
+  const contentDir = path.join(process.cwd(), 'content/blog')
+  
+  // Get all folders in the blog content directory
+  const folders = fs.readdirSync(contentDir).filter(item => {
+    const itemPath = path.join(contentDir, item)
+    return fs.statSync(itemPath).isDirectory()
   })
+
+  // Map folders to blog posts using metadata
+  const posts = folders
+    .filter(slug => blogMetadata[slug]) // Only include folders with metadata
+    .map(slug => ({
+      slug,
+      ...blogMetadata[slug]
+    }))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+  return posts
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`)
-  const fallbackPath = path.join(postsDirectory, `${slug}.md`)
-  
-  let fileContents: string
-  
-  if (fs.existsSync(fullPath)) {
-    fileContents = fs.readFileSync(fullPath, 'utf8')
-  } else if (fs.existsSync(fallbackPath)) {
-    fileContents = fs.readFileSync(fallbackPath, 'utf8')
-  } else {
-    return null
-  }
-  
-  const { data, content } = matter(fileContents)
-  const stats = readingTime(content)
+export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+  const metadata = blogMetadata[slug]
+  if (!metadata) return null
 
   return {
     slug,
-    title: data.title || 'Untitled',
-    date: data.date || new Date().toISOString(),
-    excerpt: data.excerpt || '',
-    author: data.author || 'Anonymous',
-    tags: data.tags || [],
-    readingTime: stats.text,
-    content,
+    ...metadata
   }
 }
+
+// Export metadata for use in the dynamic page
+export { blogMetadata }

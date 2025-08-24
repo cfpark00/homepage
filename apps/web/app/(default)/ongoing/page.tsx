@@ -60,7 +60,7 @@ const ongoingProjects: OngoingProject[] = [
       "Experiment tracking and versioning",
       "Collaborative research management"
     ],
-    link: "/research-tracking",
+    link: "/projects/research-tracking",
     isExternal: false
   },
   {
@@ -77,7 +77,7 @@ const ongoingProjects: OngoingProject[] = [
       "Dynamic hypothesis generation",
       "Continuous learning integration"
     ],
-    link: "/evolving-research",
+    link: "/projects/evolving-research",
     isExternal: false
   }
 ]

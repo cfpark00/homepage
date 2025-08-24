@@ -1,0 +1,12 @@
+{
+  "news": [
+    {
+      "date": "2023-09-20",
+      "content": "Camels Virtual Telecoms hosted by the Flatiron Institute: 'Mstar2Mcdm using Diffusion Models: Generating Cold Dark Matter density fields'. [Slides](https://docs.google.com/presentation/d/1lFZa7PXMjPOX2M_UYiVIabLNN_njOZ1SqrHXsyN1628/edit?usp=sharing)."
+    },
+    {
+      "date": "2023-07-23",
+      "content": "I will be presenting our project SmartEM at the [ICML 2023](https://icml.cc/Conferences/2023) [Workshop](https://icml-compbio.github.io/) on Computational Biology."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "news": [
+    {
+      "date": "2023-06-24",
+      "content": "I will present our project Whole Brain Imaging at the International C.elegans [conference](https://genetics-gsa.org/celegans2023) 2023."
+    },
+    {
+      "date": "2023-05-25",
+      "content": "Our work on constructing a galactic dustmap with minimal impact on cosmology is published in the [Astrophysical Journal](https://iopscience.iop.org/article/10.3847/1538-4357/acc32c)."
+    },
+    {
+      "date": "2023-04-05",
+      "content": "Our work on quantifying the effect of high-dimensional non-Gaussianity to statistical probes in cosmology is published in the [Astrophysical Journal](https://iopscience.iop.org/article/10.3847/1538-4357/acbe3b)."
+    }
+  ]
+}

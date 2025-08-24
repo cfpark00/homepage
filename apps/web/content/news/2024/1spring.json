@@ -1,0 +1,24 @@
+{
+  "news": [
+    {
+      "date": "2024-07-01",
+      "content": "Summer research internship at NTT Research working on Understanding Mechanisms and Capabilities of AI."
+    },
+    {
+      "date": "2024-06-27",
+      "content": "Our paper 'Emergence of Hidden Capabilities: Exploring Learning Dynamics in Concept Space' from our project concept_learning is on [arxiv](https://arxiv.org/abs/2406.19370)."
+    },
+    {
+      "date": "2024-06-20",
+      "content": "I gave a [talk](https://www.youtube.com/watch?v=-hNFO2Mjgs0) about our project vdm4cdm_3d at the [AstroAI Workshop 2024](https://astroai.cfa.harvard.edu/workshop/): '3D probabilistic reconstruction of the local dark matter from galaxies'"
+    },
+    {
+      "date": "2024-06-17",
+      "content": "A [paper](https://openreview.net/forum?id=7k2Eh7OCoz) from our project vdm4cdm_3d has been accepted at [ICML 2024 Workshop Ai4Science](https://ai4sciencecommunity.github.io/icml24.html): '3D Reconstruction of Dark Matter Fields with Diffusion Models: Towards Application to Galaxy Surveys'"
+    },
+    {
+      "date": "2024-06-16",
+      "content": "A [paper](https://openreview.net/forum?id=OX4cY2yDcE) from our project concept_learning has been accepted at [ICML 2024 Workshop](https://sites.google.com/view/hidimlearning/home) on High-dimensional Learning Dynamics: 'Hidden Learning Dynamics of Capability before Behavior in Diffusion Models'"
+    }
+  ]
+}
