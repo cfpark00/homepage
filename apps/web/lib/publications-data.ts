@@ -1,3 +1,6 @@
+import publicationsData from '@/content/publications/publications.json'
+import publicationsMetadata from '@/content/publications/metadata.json'
+
 export type Publication = {
   id: number
   title: string
@@ -16,9 +19,18 @@ export type Publication = {
   significant?: boolean
   related_pubs?: string[]
   related_projects?: { name: string; url: string }[]
-  hide?: boolean
 }
 
+export type AuthorConfig = {
+  selfName: string
+  authorLinks: Record<string, string>
+}
+
+export const publications: Publication[] = publicationsData.publications as Publication[]
+export const authorConfig: AuthorConfig = publicationsMetadata.authorConfig
+
+// Keep the original array for reference (commented out):
+/*
 export const publications: Publication[] = [
   // 2025 Publications
   {
@@ -349,3 +361,4 @@ export const publications: Publication[] = [
     significant: true,
   },
 ]
+*/
