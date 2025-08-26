@@ -68,7 +68,17 @@ export default function LoginPage() {
       <div className="flex w-full flex-col justify-center px-8 md:px-12 lg:w-1/2 lg:px-16 xl:px-24">
         <div className="mx-auto w-full max-w-md">
           <div className="mb-8 text-center">
-            <h1 className="text-4xl font-bold tracking-tight">Core's Research Portal</h1>
+            <h1 className="text-4xl font-bold tracking-tight">
+              <Link 
+                href={process.env.NODE_ENV === 'development' ? 'http://localhost:3020' : 'https://corefranciscopark.com'}
+                className="hover:underline decoration-2 underline-offset-4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Core
+              </Link>
+              's Research Portal
+            </h1>
             <p className="mt-2 text-sm text-muted-foreground">
               Workspace for collaboration, research tracking and sharing.
             </p>

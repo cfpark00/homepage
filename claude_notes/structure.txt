@@ -1,5 +1,5 @@
 # Project Structure Overview
-Last Updated: 2025-08-26 (18:08)
+Last Updated: 2025-08-26 (18:40)
 
 ## Root Directory: /Users/cfpark00/mysite
 Monorepo using pnpm workspaces with Vercel deployment
@@ -164,6 +164,8 @@ Research portal application with authentication (added 2025-08-26, port 3021 in 
   - middleware.ts - Session management
 - types/
   - database.ts - TypeScript database schema
+- utils/
+  - url.ts - Dynamic URL helper for OAuth redirects (added 2025-08-26)
 
 #### Configuration
 - middleware.ts - Auth middleware for protected routes
