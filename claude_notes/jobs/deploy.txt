@@ -1,0 +1,10 @@
+1. Read CLAUDE.md and /Users/cfpark00/mysite/claude_notes/docs/deployment/DEPLOYMENT.md
+2. Fix type errors until pnpm type-check works.
+3. Run pnpm build from root.
+4. Fix errors until pnpm build works.
+5. git add all changes, commit then push.
+
+
+IMPORTANT:
+- If fixes will change app behavior significantly, check in with the user with different options.
+- If anything significantly unusual. Check with the user, describing the problem.

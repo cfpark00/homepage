@@ -4,8 +4,9 @@ import { createClient } from '@/lib/supabase/server'
 export default async function ProjectPage({
   params
 }: {
-  params: { project_slug: string }
+  params: Promise<{ project_slug: string }>
 }) {
+  const { project_slug } = await params
   const supabase = await createClient()
   
   // Check if user is authenticated
@@ -21,7 +22,7 @@ export default async function ProjectPage({
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">Project: {params.project_slug}</h1>
+        <h1 className="text-4xl font-bold mb-4">Project: {project_slug}</h1>
         <p className="text-muted-foreground">
           Private workspace. Share specific items via public links.
         </p>

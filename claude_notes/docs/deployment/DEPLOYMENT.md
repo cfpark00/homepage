@@ -1,77 +1,144 @@
 # Deployment Guide
 
-This monorepo contains two deployable Next.js applications:
+This monorepo contains two deployable Next.js applications that automatically deploy via Git push:
 - `apps/web` - Main personal website (homepage)
 - `apps/portal` - Portal application with authentication
 
-## Web App (Homepage) Deployment
+## Automatic Deployment (Git-based)
 
-### Setup (One-time)
+### How It Works
 
-1. **Vercel Dashboard Settings**
-   - Go to: https://vercel.com/core-francisco-parks-projects/homepage/settings
-   - Set **Root Directory**: `apps/web`
-   - Keep all other settings as default (Vercel auto-detects Next.js)
-
-2. **Local Setup**
-   - Clone repo
-   - Run `vercel link --project homepage --yes` from repository root
-   - This creates `.vercel/` folder with project link
-
-### Deploy
-
-From repository root (`/Users/cfpark00/mysite`):
+**Simply push to GitHub and both apps deploy automatically!**
 
 ```bash
-# Preview deployment
-vercel
-
-# Production deployment  
-vercel --prod
+git push origin main → Both apps deploy to production
+git push origin feature-branch → Both apps get preview deployments
 ```
 
-## Portal App Deployment
+No manual deployment commands needed! 🚀
 
-### Setup (One-time)
+## Initial Setup
 
-1. **Create New Vercel Project**
-   - Go to Vercel dashboard and create a new project
-   - Import the same repository
-   - Set **Root Directory**: `apps/portal`
-   - Configure environment variables (if using Supabase):
-     - `NEXT_PUBLIC_SUPABASE_URL`
-     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-     - Any other required environment variables
+### Web App (Homepage)
 
-2. **Local Setup**
-   - From repository root, create a separate `.vercel` folder for portal:
-   - Run `vercel link --project [portal-project-name] --yes`
-   - Note: You'll need to manage separate `.vercel` folders or switch between projects
+1. **Connect to GitHub** (if not already connected)
+   - Go to: https://vercel.com/core-francisco-parks-projects/homepage/settings/git
+   - Click "Connect Git Repository"
+   - Select your GitHub repository
+   - Production Branch: `main`
 
-### Deploy
+2. **Configure Settings**
+   - Root Directory: `apps/web`
+   - Framework Preset: Next.js (auto-detected)
+   - Build Command: Default
+   - Output Directory: Default
 
+### Portal App
+
+1. **Create New Project**
+   - Go to: https://vercel.com/new
+   - Import your GitHub repository
+   - Name: `mysite-portal` or similar
+
+2. **Configure Project**
+   - Root Directory: `apps/portal`
+   - Framework Preset: Next.js (auto-detected)
+   
+3. **Add Environment Variables**
+   - `NEXT_PUBLIC_SUPABASE_URL` = [your-supabase-url]
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = [your-supabase-anon-key]
+
+## Daily Workflow
+
+### Production Deployment
 ```bash
-# For portal deployment, ensure correct project is linked
-vercel --prod
+# Make changes
+git add .
+git commit -m "Your changes"
+git push origin main
+
+# ✅ Both apps automatically deploy to production!
+```
+
+### Preview Deployment
+```bash
+# Create feature branch
+git checkout -b feature/new-thing
+git push origin feature/new-thing
+
+# ✅ Both apps get preview URLs automatically!
+```
+
+## Build Optimization (Optional)
+
+To prevent unnecessary builds when only one app changes:
+
+### For Web App
+Settings → General → Ignored Build Step:
+```bash
+git diff HEAD^ HEAD --quiet apps/web packages/ui
+```
+
+### For Portal App
+Settings → General → Ignored Build Step:
+```bash
+git diff HEAD^ HEAD --quiet apps/portal packages/ui
 ```
 
 ## Important Notes
 
-- **NO vercel.json file needed** - Dashboard settings handle everything
-- Always deploy from repository root, not from individual app directories
-- Each app needs its own Vercel project with appropriate Root Directory setting
-- The `.vercel/` folder should be in repository root
-- Dashboard Root Directory setting tells Vercel where each Next.js app lives in the monorepo
+- **NO vercel.json needed** - Dashboard settings handle everything
+- **NO .vercel/ folder needed** - Git integration handles deployment
+- **NO CLI commands needed** - Just git push!
+- Each app has its own Vercel project with appropriate Root Directory
+- Both projects watch the same GitHub repo but build different directories
 
 ## Environment Variables
 
-- **Web App**: Generally doesn't require environment variables
-- **Portal App**: Requires Supabase credentials and potentially other auth-related variables
+- **Web App**: 
+  - `BETA_PASSWORD` (optional, for beta blog access)
+  - Google Analytics ID (if configured)
+
+- **Portal App**: 
+  - `NEXT_PUBLIC_SUPABASE_URL` (required)
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY` (required)
+
+## Custom Domains
+
+In each project's Settings → Domains:
+- **Web App**: `yourdomain.com` or `www.yourdomain.com`
+- **Portal App**: `portal.yourdomain.com`
+
+## Monitoring Deployments
+
+1. **GitHub**: Look for ✓ or ✗ next to commits
+2. **Vercel Dashboard**: See real-time build logs
+3. **Email**: Get notified of deployment status
 
 ## Troubleshooting
 
-If deployments fail with path errors:
-1. Check dashboard Root Directory is set correctly (`apps/web` or `apps/portal`)
-2. Ensure NO vercel.json exists in repository
-3. Verify `.vercel/project.json` exists in repository root
-4. For portal app, ensure all required environment variables are configured in Vercel dashboard
+### If builds fail:
+1. Check Vercel dashboard for error logs
+2. Ensure `pnpm-lock.yaml` is committed and up to date
+3. Verify Root Directory is set correctly
+4. Check environment variables are configured
+
+### To test builds locally:
+```bash
+pnpm build              # Build all apps
+pnpm build --filter=@workspace/web    # Build only web
+pnpm build --filter=@workspace/portal  # Build only portal
+```
+
+## Rollback
+
+If something goes wrong:
+1. Go to Vercel dashboard → project → Deployments
+2. Find a previous working deployment
+3. Click "..." → "Promote to Production"
+
+Or via Git:
+```bash
+git revert HEAD
+git push origin main
+```

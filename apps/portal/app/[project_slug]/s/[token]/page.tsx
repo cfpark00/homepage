@@ -14,12 +14,38 @@ async function verifyShareToken(projectSlug: string, token: string) {
 export default async function SharedItemPage({
   params
 }: {
-  params: { project_slug: string; token: string }
+  params: Promise<{ project_slug: string; token: string }>
 }) {
-  const isValid = await verifyShareToken(params.project_slug, params.token)
+  const { project_slug, token } = await params
+  const isValid = await verifyShareToken(project_slug, token)
   
   if (!isValid) {
     notFound()
+  }
+
+  // Project-specific content based on slug
+  const projectData: Record<string, { title: string; findings: string[] }> = {
+    'neural-scaling': {
+      title: 'Neural Scaling Laws Research',
+      findings: [
+        'Performance scales predictably with model size',
+        'Data requirements follow power law relationships',
+        'Compute-optimal training strategies identified'
+      ]
+    },
+    'quantum-computing': {
+      title: 'Quantum Computing Simulations',
+      findings: [
+        'Quantum supremacy demonstrated for specific algorithms',
+        'Error correction protocols validated at scale',
+        'Novel qubit entanglement patterns discovered'
+      ]
+    }
+  }
+
+  const project = projectData[project_slug] || {
+    title: project_slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+    findings: ['Research findings would be displayed here']
   }
 
   // In production, fetch the specific item this token grants access to
@@ -33,21 +59,21 @@ export default async function SharedItemPage({
         </div>
         
         <h1 className="text-4xl font-bold mb-4">
-          Shared: Neural Scaling Laws Research
+          Shared: {project.title}
         </h1>
         
         <div className="prose dark:prose-invert max-w-none">
           <h2>Abstract</h2>
           <p>
-            This is a publicly shared research artifact from the {params.project_slug} project.
+            This is a publicly shared research artifact from the {project_slug} project.
             The content is accessible to anyone with this link.
           </p>
           
           <h2>Key Findings</h2>
           <ul>
-            <li>Performance scales predictably with model size</li>
-            <li>Data requirements follow power law relationships</li>
-            <li>Compute-optimal training strategies identified</li>
+            {project.findings.map((finding, i) => (
+              <li key={i}>{finding}</li>
+            ))}
           </ul>
           
           <h2>Interactive Visualization</h2>
@@ -64,7 +90,7 @@ export default async function SharedItemPage({
         
         <div className="mt-12 pt-8 border-t">
           <p className="text-sm text-muted-foreground">
-            Share token: {params.token} | Project: {params.project_slug}
+            Share token: {token} | Project: {project_slug}
           </p>
         </div>
       </div>

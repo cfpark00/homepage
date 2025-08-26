@@ -1,5 +1,5 @@
 # Project Structure Overview
-Last Updated: 2025-08-26 (16:54)
+Last Updated: 2025-08-26 (18:08)
 
 ## Root Directory: /Users/cfpark00/mysite
 Monorepo using pnpm workspaces with Vercel deployment
@@ -14,6 +14,9 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 - Uses Supabase for authentication and data storage
 - Google OAuth integration for login
 - Separate from main web app but shares Supabase instance (free tier limitation)
+- Split-screen login page with floating public research links (redesigned 2025-08-26)
+- Public share links at /[project_slug]/s/[token] for sharing research without auth
+- /explore page for browsing public research projects
 
 #### /app/
 - layout.tsx - Root layout (added 2025-08-24)
@@ -176,12 +179,15 @@ Shared UI component library
   - card.tsx - shadcn/ui card components (exported 2025-08-26)
   - badge.tsx
   - button.tsx - shadcn/ui button (exported 2025-08-26)
+  - font-size-selector.tsx - Font size selector for blog posts (added 2025-08-26)
   - input.tsx - shadcn/ui input (exported 2025-08-26)
   - label.tsx - Form label component (added 2025-08-24, exported 2025-08-26)
   - page-container.tsx
   - slider.tsx - Radix UI based slider component (added 2025-08-24)
   - warning-card.tsx - Orange warning card with icon for disclaimers (added 2025-08-24)
   - etc.
+- hooks/
+  - use-font-size.ts - Font size state management hook (added 2025-08-26)
 - index.ts - Main exports (updated 2025-08-26)
 
 ### Removed Files (2025-08-24)
@@ -208,9 +214,10 @@ AI assistant documentation and logs
   - YYYY-MM-DD/
     - HH-MM_topic.md
   - 2025-08-26/
+    - 15-07_blog_analysis_and_comment_system_planning.md
+    - 18-08_blog_font_size_selector.md (font size selector implementation)
     - 20-38_portal_app_setup_and_auth_system.md
     - 20-39_content_system_refactoring.md
-    - 15-07_blog_analysis_and_comment_system_planning.md (added today)
 - structure.txt (this file)
 
 ### /scratch/

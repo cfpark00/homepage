@@ -37,11 +37,13 @@ shadcn/ui is not a traditional component library - it's a collection of copy-and
 ```json
 {
   "style": "new-york",
+  "rsc": true,
   "tsx": true,
   "tailwind": {
-    "config": "./tailwind.config.js",
+    "config": "./tailwind.config.ts",
     "css": "../../packages/ui/src/styles/globals.css",
-    "baseColor": "neutral"
+    "baseColor": "zinc",
+    "cssVariables": true
   },
   "aliases": {
     "components": "@workspace/ui/components",

@@ -4,9 +4,10 @@ import { CalendarDays, User, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@workspace/ui/components/button"
 import { getBlogPosts, getBlogPost } from '@/lib/blog'
-import MDXContent from '@/components/mdx-content'
 import { ShareButton } from '@/components/share-button'
 import { BetaPasswordGuard } from '@/components/beta-password-guard'
+import { BlogArticleWrapper } from '@/components/blog-article-wrapper'
+import { BlogFontSelectorStandalone } from '@/components/blog-font-selector-standalone'
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts(true) // Include beta posts for static generation
@@ -32,17 +33,20 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     <article className="container py-8 md:py-12">
       <div className="mx-auto max-w-4xl">
         <div className="mb-8">
-          <Button variant="ghost" asChild className="mb-6">
-            <Link href={backLink}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              {backText}
-            </Link>
-          </Button>
-          
-          <div className="flex items-start justify-between mb-4">
-            <h1 className="text-4xl font-bold">{post.title}</h1>
-            <ShareButton url={`/blog/${slug}`} size="icon" variant="outline" className="ml-4 flex-shrink-0" />
+          <div className="flex items-center justify-between mb-6">
+            <Button variant="ghost" asChild>
+              <Link href={backLink}>
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                {backText}
+              </Link>
+            </Button>
+            <div className="flex items-center gap-2">
+              <BlogFontSelectorStandalone />
+              <ShareButton url={`/blog/${slug}`} size="icon" variant="outline" />
+            </div>
           </div>
+          
+          <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
           
           <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-1">
@@ -73,9 +77,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           )}
         </div>
         
-        <div className="prose prose-neutral max-w-none dark:prose-invert">
-          <MDXContent slug={slug} type="blog" />
-        </div>
+        <BlogArticleWrapper slug={slug} />
       </div>
     </article>
   )

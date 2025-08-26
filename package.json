@@ -12,6 +12,7 @@
     "dev:portal": "turbo dev --filter=@workspace/portal",
     "build": "turbo build",
     "lint": "turbo lint",
+    "type-check": "turbo type-check",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "clean": "turbo clean && rm -rf node_modules"
   },
