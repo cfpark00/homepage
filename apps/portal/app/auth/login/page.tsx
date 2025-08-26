@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { getURL } from '@/lib/utils/url'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Loader2 } from 'lucide-react'
@@ -51,7 +52,7 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: `${getURL()}auth/callback`,
       }
     })
 
