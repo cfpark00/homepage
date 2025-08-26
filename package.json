@@ -8,6 +8,8 @@
   ],
   "scripts": {
     "dev": "turbo dev",
+    "dev:web": "turbo dev --filter=@workspace/web",
+    "dev:portal": "turbo dev --filter=@workspace/portal",
     "build": "turbo build",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",

@@ -1,0 +1,323 @@
+import { BackToTOC } from './back-to-toc'
+
+**TL;DR:** We should train decent sized large language models by ablating a significant structured part of human knowledge (e.g. all of college math) in order to study how to best teach them significant amount of new concepts or evaluate if they are able to self improve far beyond their training distributions.
+
+<BackToTOC />
+
+## Goals
+
+- **Finally answer the question:** Can LLMs truly generalize out of distribution? Can they self-improve to create significant OOD knowledge?
+- **Create a testbed system** to measure how well models can learn, rather than how much they have memorized.
+- **Address fundamental questions:** What is intelligence? Are we inherently smarter than our ancestors, or just better informed?
+- **Quantify societal impact:** Will AI remain a high-throughput follower of human-created novelty, or can it genuinely forge its own intellectual path?
+
+## Abstract
+
+Current evaluations of large language models (LLMs) struggle to distinguish between genuine reasoning capabilities and sophisticated pattern matching from training data. We propose a novel training methodology: deliberately ablating specific knowledge domains during pretraining to create models with controlled epistemic gaps. By evaluating these models on tasks requiring the ablated knowledge as a prerequisite, we can measure true out-of-distribution (OOD) generalization and emergent reasoning abilities.
+
+## Table of Contents
+
+1. [The Grand Question: Are LLMs the Path to AGI?](#the-grand-question-are-llms-the-path-to-agi)
+2. [Current Evaluation Approaches](#current-evaluation-approaches)
+3. [The Contamination Crisis](#the-contamination-crisis)
+4. [Proposed Approach](#proposed-approach)
+5. [Expected Results](#expected-results)
+6. [Roadmap](#roadmap)
+7. [Broader Impact](#broader-impact)
+8. [Potential Objections and Responses](#potential-objections-and-responses)
+9. [Conclusion](#conclusion)
+
+## The Grand Question: Are LLMs the Path to AGI?
+
+The fundamental question driving modern AI research is whether scaling large language models represents a viable path to artificial general intelligence (AGI). But first, let's establish what we mean by AGI. I particularly appreciate Demis Hassabis' definition:
+
+<div className="not-prose my-6 mx-auto max-w-2xl text-center">
+  <div className="italic text-lg">
+    "<a href="https://youtu.be/yr0GiSgUvPU?t=66" target="_blank" rel="noopener noreferrer" className="underline">A system that is capable of exhibiting<br />all the cognitive capabilities humans can</a>"
+  </div>
+</div>
+
+This frames the challenge not as surpassing human intelligence, but as matching its breadth and flexibility.
+
+Current LLMs demonstrate remarkable capabilities across diverse domains, yet we cannot determine if they're truly reasoning or merely performing sophisticated pattern matching at unprecedented scale. To understand why this distinction matters — and why it's so hard to test — we need to examine how we currently evaluate these systems.
+
+## Current Evaluation Approaches
+
+How do we test if an LLM truly understands? The field has developed several approaches, each attempting to measure genuine intelligence. Yet all of them suffer from fundamental flaws rooted in what we might call the Interpolation Hypothesis:
+
+<div className="not-prose my-6 rounded-lg border-2 border-blue-200 dark:border-blue-800 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 p-4">
+  <h3 className="text-lg font-semibold mb-3 text-blue-900 dark:text-blue-100">The Interpolation Hypothesis</h3>
+  <div className="text-gray-700 dark:text-gray-300 italic">
+    "Large Language Models and neural networks can only interpolate between patterns seen in their training data — they cannot genuinely extrapolate, reason, or create knowledge beyond the convex hull of their training distribution."
+  </div>
+  <div className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+    If true, this would mean LLMs are fundamentally sophisticated pattern matchers, not reasoning engines.
+  </div>
+</div>
+<details className="not-prose my-4 rounded-lg border border-gray-200 dark:border-gray-700 p-3">
+  <summary className="cursor-pointer font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100">Discussion: Is the Interpolation Hypothesis self-defeating?</summary>
+  <div className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+    Balestriero et al. (2021) argue this hypothesis is paradoxically too constraining — in high dimensions (&gt;100), interpolation <a href="https://arxiv.org/abs/2110.09485" target="_blank" rel="noopener noreferrer" className="underline">"almost surely never happens"</a>. Every prediction is technically extrapolation, making the distinction less meaningful than assumed. If true interpolation is mathematically impossible in high-dimensional spaces, then the Interpolation Hypothesis becomes vacuous: it constrains models to something that cannot exist.
+  </div>
+</details>
+
+Every current evaluation method fails to definitively refute this hypothesis:
+
+### 1. Holdout Test Sets
+**The Approach:** Reserve unseen data for evaluation.
+**The Pitfall:** With internet-scale training, truly unseen data is increasingly rare. Models may have encountered paraphrases, discussions, or meta-knowledge about test sets.
+
+### 2. Synthetic Benchmarks
+**The Approach:** Generate novel problems programmatically.
+**The Pitfall:** Synthetic problems often follow detectable patterns. Models learn the generation distribution rather than general reasoning.
+
+### 3. Temporal Cutoffs
+**The Approach:** Test on events after training data cutoff.
+**The Pitfall:** Many "future" events are predictable from past patterns. This tests extrapolation, not true OOD reasoning.
+
+### 4. Adversarial Evaluation
+**The Approach:** Create deliberately challenging problems.
+**The Pitfall:** Arms race dynamics lead to overfitting on adversarial patterns rather than robust capability measurement.
+
+### The Interpolation Hypothesis Under Fire
+
+Recent results seem to challenge the Interpolation Hypothesis:
+- **AIME 2025:** Models solving problems created after their training cutoff
+- **South Korean Math CSAT:** Strong performance on exams where professors are literally sequestered to prevent leaks
+- **IMO Gold Medal Performance:** OpenAI's and DeepMind's models achieving gold-medal level on International Math Olympiad problems
+
+These successes suggest genuine reasoning capabilities. Yet skeptics argue these could still be sophisticated interpolation:
+- Math follows universal patterns that transcend specific problems
+- The solution space, while vast, may be well-covered by training data
+- We cannot prove the models didn't see similar problem structures
+
+<div className="not-prose my-6 rounded-lg border-2 border-amber-200 dark:border-amber-800 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 p-4">
+  <h3 className="text-lg font-semibold mb-3 text-amber-900 dark:text-amber-100">The Marginal Generalization Hypothesis</h3>
+  <div className="text-gray-700 dark:text-gray-300 italic">
+    "Large Language Models can perform limited generalization just beyond their training distribution — enough to appear intelligent on familiar problem types, but insufficient for true out-of-distribution reasoning or knowledge creation."
+  </div>
+  <div className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+    This middle ground suggests LLMs operate in a narrow band around their training data, making current evaluations inconclusive.
+  </div>
+</div>
+
+**The critical distinction:** Current out-of-distribution evaluations like AIME 2025 and IMO problems may be sufficient to rule out the strict Interpolation Hypothesis — models are clearly doing *something* beyond pure memorization. However, these evaluations cannot distinguish between the Marginal Generalization Hypothesis and true unbounded reasoning. Are models operating with genuine intelligence, or merely pushing slightly beyond their training boundaries through sophisticated pattern matching?
+
+Without controlled ablation of training data, we cannot answer this fundamental question.
+
+## The Contamination Crisis
+
+The core problem undermining all current evaluation approaches is data contamination. Modern LLMs are trained on vast corpora approaching the entirety of publicly available text. Recent studies have documented the severity of this crisis:
+
+- **Systematic exposure:** GPT-3.5 and GPT-4 have been exposed to ~4.7M samples from 263 benchmarks (<a href="https://aclanthology.org/2024.eacl-long.5/" target="_blank" rel="noopener noreferrer" className="underline">Balloccu et al., 2024</a>)
+- **Performance inflation:** Models perform significantly better on datasets released before their training cutoff than after, suggesting memorization rather than generalization (<a href="https://arxiv.org/abs/2312.16337" target="_blank" rel="noopener noreferrer" className="underline">Oren et al., 2023</a>)
+- **Test set memorization:** GPT-4 can guess exact missing options in MMLU questions with 57% accuracy, indicating direct exposure to test data (<a href="https://arxiv.org/abs/2311.09783" target="_blank" rel="noopener noreferrer" className="underline">Li et al., 2023</a>)
+- **Scientific validity crisis:** Contamination leads to overestimated performance metrics, risking incorrect scientific conclusions (<a href="https://aclanthology.org/2023.findings-emnlp.722/" target="_blank" rel="noopener noreferrer" className="underline">Sainz et al., 2023</a>)
+
+Even with careful deduplication, semantic contamination persists through:
+- Paraphrases of test problems
+- Solutions to analogous problems
+- Discussions about the benchmarks themselves
+- Indirect leaking through user interactions
+
+This contamination makes it nearly impossible to assess whether models truly *reason* or merely perform sophisticated retrieval. Every benchmark, every test, every evaluation metric — all potentially compromised by the simple fact that the internet contains discussions about everything, and our models have read it all.
+
+## Proposed Approach
+
+If we cannot trust any evaluation because models may have seen the test data, we need a radically different approach. Instead of creating new tests and hoping they haven't been contaminated, what if we create models that provably haven't seen certain knowledge domains? This is the core insight behind knowledge ablation.
+
+### Core Concept
+
+We propose training multiple model variants, each with deliberately ablated knowledge domains:
+
+$$\mathcal{M}_{\neg K} = \text{Train}(\mathcal{D} \setminus \mathcal{D}_K)$$
+
+Where:
+- $\mathcal{D}$ is the full training corpus
+- $\mathcal{D}_K$ is all content related to knowledge domain $K$
+- $\mathcal{M}_{\neg K}$ is a model trained without domain $K$
+
+### Ablation Strategies
+
+1. **Temporal Ablation**: Remove all knowledge after timestamp $t$
+   - Test: Can the model reason about post-$t$ events given context?
+   - Measures: Temporal generalization, causal reasoning
+
+2. **Domain Ablation**: Remove entire fields of knowledge
+   - Example: Train without any chemistry texts
+   - Test: Given basic atomic principles, can it derive chemical reactions?
+   - Measures: Cross-domain transfer, first-principles reasoning
+
+3. **Geographic Ablation**: Remove knowledge about specific regions
+   - Test: Can it infer cultural practices from first principles?
+   - Measures: Cultural reasoning, anthropological inference
+
+4. **Mathematical Concept Ablation**: Remove specific mathematical concepts
+   - Example: Train without calculus but with algebra
+   - Test: Can it derive derivative rules from limit definitions?
+   - Measures: Mathematical reasoning, concept construction
+
+### Evaluation Framework
+
+### Three-Tier Assessment
+
+For each ablated model $\mathcal{M}_{\neg K}$, we evaluate:
+
+1. **Baseline Performance** (domains with intact knowledge)
+   - Ensures model quality wasn't compromised
+   - Establishes reasoning capability baseline
+
+2. **Direct Ablation Impact** (tasks directly requiring $K$)
+   - Confirms knowledge was successfully removed
+   - Establishes lower bound on performance
+
+3. **Bridging Tasks** (tasks requiring reasoning from available knowledge to $K$)
+   - The critical measurement
+   - Tests true OOD generalization
+
+### Example: Chemistry Ablation
+
+```
+Training: All text except chemistry
+Baseline: Physics, mathematics, biology performance
+Direct: "What is the formula for water?" → Should fail
+Bridging: Given periodic table + electronegativity rules 
+         → Predict molecular structures
+```
+
+## Expected Results
+
+### 1. Reasoning vs. Memorization Spectrum
+
+For any capability $C$, we can measure:
+
+$$\rho_C = \frac{P(C | \mathcal{M}_{\neg K})}{P(C | \mathcal{M}_{\text{full}})}$$
+
+Where $\rho_C \approx 1$ indicates true reasoning, and $\rho_C \approx 0$ indicates memorization.
+
+### 2. Knowledge Dependency Graphs
+
+By systematically ablating different domains, we can construct dependency graphs:
+
+$$K_1 \rightarrow K_2 \iff P(K_2 | \mathcal{M}_{\neg K_1}) \ll P(K_2 | \mathcal{M}_{\text{full}})$$
+
+This reveals which knowledge domains are foundational versus derivative.
+
+### 3. Emergent Capabilities Verification
+
+Claims about emergent capabilities can be tested:
+- If capability $C$ emerges at scale $N$
+- And $C$ persists in $\mathcal{M}_{\neg K}$ at scale $N$
+- Then $C$ is genuinely emergent, not memorized
+
+### Implementation Challenges
+
+### 1. Clean Ablation
+
+Removing all traces of a knowledge domain is non-trivial:
+- Explicit mentions must be removed
+- Implicit references must be identified
+- Cross-domain leakage must be prevented
+
+**Proposed Solution**: Multi-stage filtering:
+1. Keyword and entity-based filtering
+2. Embedding-based semantic filtering
+3. Model-based relevance scoring
+4. Human validation on samples
+
+### 2. Maintaining Model Coherence
+
+Ablation could create:
+- Inconsistent world models
+- Broken reasoning chains
+- Unstable training dynamics
+
+**Proposed Solution**: 
+- Replace rather than remove: $K \rightarrow$ [REDACTED]
+- Maintain syntactic structure while removing semantic content
+- Gradual curriculum learning post-ablation
+
+### 3. Computational Cost
+
+Training multiple ablated variants is expensive:
+
+**Proposed Solutions**:
+- Start with smaller models for methodology validation
+- Use parameter-efficient fine-tuning for ablation
+- Share early layers across ablated variants
+
+## Broader Impact
+
+### For AI Safety
+
+Knowledge ablation could enable:
+- **Capability control**: Deliberately limit specific capabilities
+- **Alignment testing**: Ensure models can't reconstruct dangerous knowledge
+- **Sandbox evaluation**: Test reasoning without real-world knowledge
+
+### For Scientific Understanding
+
+This methodology helps answer:
+- What is the minimal knowledge needed for various capabilities?
+- How do models integrate information across domains?
+- What are the fundamental primitives of reasoning?
+
+### For Model Development
+
+Insights could guide:
+- **Curriculum learning**: Optimal knowledge introduction order
+- **Data efficiency**: Focus on high-leverage knowledge domains
+- **Architecture design**: Structures that facilitate knowledge integration
+
+## Roadmap
+
+### Phase 1: Proof of Concept (3 months)
+- Implement clean ablation for simple domain (e.g., sports)
+- Train small models (1-7B parameters)
+- Validate ablation completeness
+- Demonstrate bridging task performance
+
+### Phase 2: Scale and Sophistication (6 months)
+- Extend to complex domains (mathematics, science)
+- Scale to larger models (7-70B parameters)
+- Develop comprehensive evaluation suite
+- Map knowledge dependency graphs
+
+### Phase 3: Safety and Applications (6 months)
+- Test dangerous knowledge ablation
+- Explore capability control mechanisms
+- Develop practical applications
+- Open-source framework and datasets
+
+## Potential Objections and Responses
+
+**"Ablation damages general capabilities"**
+- Empirically testable via baseline evaluations
+- Can tune ablation granularity to minimize damage
+
+**"Knowledge domains are too intertwined"**
+- Start with clearly separable domains
+- Develop better separation techniques iteratively
+- Even partial separation provides insights
+
+**"This doesn't reflect real-world deployment"**
+- Not intended for deployment but for understanding
+- Insights transfer to standard models
+- Could enable safer deployment strategies
+
+## Conclusion
+
+Knowledge ablation during training offers a principled approach to understanding LLM capabilities. By creating models with controlled epistemic gaps, we can finally distinguish between genuine reasoning and sophisticated pattern matching. This methodology not only advances our scientific understanding but also provides practical tools for capability control and safety evaluation.
+
+The path forward requires significant computational resources and careful experimental design, but the potential insights into the nature of machine intelligence justify the investment. As we build increasingly powerful AI systems, understanding the true source of their capabilities becomes not just scientifically interesting but critically important for ensuring beneficial outcomes.
+
+## References and Further Reading
+
+*Note: This is a theoretical proposal. References would be added as empirical work validates or refutes these ideas.*
+
+Key areas for literature review:
+- Contamination in LLM evaluation
+- Continual learning and catastrophic forgetting
+- Knowledge distillation and unlearning
+- Causal reasoning in neural networks
+- Out-of-distribution generalization

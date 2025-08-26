@@ -98,6 +98,16 @@ export default async function BlogPage() {
             </div>
           </>
         )}
+        
+        {/* Beta access button */}
+        <div className="mt-12 flex justify-center">
+          <Link 
+            href="/blog/beta" 
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Beta Research →
+          </Link>
+        </div>
       </div>
     </div>
   )

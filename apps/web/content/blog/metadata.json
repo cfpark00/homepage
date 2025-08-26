@@ -1,5 +1,34 @@
 {
   "posts": {
+    "double-pendulum-chaos": {
+      "title": "Double Pendulum Chaos: Visualizing Sensitive Dependence",
+      "date": "2025-08-24",
+      "excerpt": "Interactive simulation of multiple double pendulums demonstrating chaotic behavior and sensitive dependence on initial conditions.",
+      "tags": ["physics", "chaos", "simulation"],
+      "readingTime": "6 min read"
+    },
+    "gradient-optimizer-comparison": {
+      "title": "Gradient Optimizer Comparison: Racing Through Loss Landscapes",
+      "date": "2025-08-24",
+      "excerpt": "Interactive comparison of gradient descent optimizers including SGD, Adam, Muon, and Shampoo navigating 2D loss landscapes.",
+      "tags": ["optimization", "machine learning", "deep learning"],
+      "readingTime": "8 min read"
+    },
+    "neural-scaling-laws": {
+      "title": "Interactive Neural Scaling Laws: Exploring the Chinchilla Frontier",
+      "date": "2025-08-24",
+      "excerpt": "Interactive visualization of neural scaling laws showing the relationships between model size, data, compute, and loss. Explore compute-optimal frontiers and understand the mathematics behind efficient model scaling.",
+      "tags": ["deep learning", "artificial intelligence", "LLMs"],
+      "readingTime": "10 min read",
+      "beta": true
+    },
+    "random-walks-visualization": {
+      "title": "Visualizing Random Walks",
+      "date": "2025-08-23",
+      "excerpt": "Interactive visualization and exploration of random walks in 2D space with real-time statistics.",
+      "tags": ["simulation", "probability"],
+      "readingTime": "5 min read"
+    },
     "welcome-to-my-blog": {
       "title": "Welcome to My Blog",
       "date": "2025-08-22",
@@ -7,26 +36,21 @@
       "tags": ["test"],
       "readingTime": "1 min read"
     },
-    "random-walks-visualization": {
-      "title": "Visualizing Random Walks",
-      "date": "2025-08-23",
-      "excerpt": "Interactive visualization and exploration of random walks in 2D space with real-time statistics.",
-      "tags": ["probability", "visualization", "interactive", "test"],
-      "readingTime": "5 min read"
-    },
-    "gradient-optimizer-comparison": {
-      "title": "Gradient Optimizer Comparison: Racing Through Loss Landscapes",
+    "liquid-crystal-society": {
+      "title": "A Liquid Crystal Society: Modeling Human-AI Collective Dynamics",
       "date": "2025-08-24",
-      "excerpt": "Interactive comparison of gradient descent optimizers including SGD, Adam, Muon, and Shampoo navigating 2D loss landscapes.",
-      "tags": ["machine-learning", "optimization", "visualization", "interactive", "deep-learning"],
-      "readingTime": "8 min read"
+      "excerpt": "Mathematical framework for collective opinion dynamics in mixed human-AI societies, using liquid crystal physics to understand ideological alignment and fragmentation.",
+      "tags": ["AI and society", "opinion dynamics", "multi-agent systems"],
+      "readingTime": "15 min read",
+      "beta": true
     },
-    "double-pendulum-chaos": {
-      "title": "Double Pendulum Chaos: Visualizing Sensitive Dependence",
-      "date": "2025-08-24",
-      "excerpt": "Interactive simulation of multiple double pendulums demonstrating chaotic behavior and sensitive dependence on initial conditions.",
-      "tags": ["physics", "chaos-theory", "visualization", "interactive", "simulation"],
-      "readingTime": "6 min read"
+    "ablated-knowledge-ood-training": {
+      "title": "Proposal: Training LLMs with Ablated Knowledge to Measure Truly Out-of-Distribution Abilities",
+      "date": "2025-08-26",
+      "excerpt": "A novel training methodology for evaluating genuine reasoning in LLMs by deliberately creating controlled epistemic gaps through knowledge domain ablation during pretraining.",
+      "tags": ["LLMs", "evaluation", "machine learning", "AI safety"],
+      "readingTime": "12 min read",
+      "beta": true
     }
   }
 }

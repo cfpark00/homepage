@@ -22,7 +22,6 @@ export interface Publication {
   significant?: boolean
   related_pubs?: string[]
   related_projects?: { name: string; url: string }[]
-  hide?: boolean
 }
 
 const typeColors = {
@@ -36,14 +35,15 @@ const typeColors = {
 
 interface PublicationCardProps {
   publication: Publication
+  selfName?: string
 }
 
-export function PublicationCard({ publication: pub }: PublicationCardProps) {
+export function PublicationCard({ publication: pub, selfName = "C.F. Park" }: PublicationCardProps) {
   // Format authors with special highlighting
   const formattedAuthors = pub.authors.map((author, index) => {
     const isFirst = author.includes("*")
     const cleanAuthor = author.replace("*", "")
-    const isMe = cleanAuthor === "C.F. Park"
+    const isMe = cleanAuthor === selfName
     
     return (
       <span key={index}>

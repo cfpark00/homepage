@@ -5,7 +5,7 @@ import { Card, CardContent } from "@workspace/ui/components/card"
 import { Input } from "@workspace/ui/components/input"
 import { Checkbox } from "@workspace/ui/components/checkbox"
 import { Search } from "lucide-react"
-import { publications } from "@/lib/publications-data"
+import { publications, authorConfig } from "@/lib/publications-data"
 import { PublicationCard } from "@/components/publication-card"
 
 export default function PublicationsPage() {
@@ -14,7 +14,6 @@ export default function PublicationsPage() {
 
   const filteredPublications = useMemo(() => {
     return publications
-      .filter(pub => !pub.hide) // Filter out hidden publications
       .filter(pub => {
         const matchesSearch = searchTerm === "" || 
           pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -80,7 +79,7 @@ export default function PublicationsPage() {
 
         <div className="space-y-3">
           {filteredPublications.map((pub) => (
-            <PublicationCard key={pub.id} publication={pub} />
+            <PublicationCard key={pub.id} publication={pub} selfName={authorConfig.selfName} />
           ))}
         </div>
 

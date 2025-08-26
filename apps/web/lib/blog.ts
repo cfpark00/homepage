@@ -8,46 +8,78 @@ export interface BlogPost {
   excerpt: string
   tags: string[]
   readingTime?: string
+  beta?: boolean
+  order?: number  // Optional: explicit ordering (lower numbers first)
 }
 
-// Load metadata from JSON file
-function loadMetadata(): Record<string, Omit<BlogPost, 'slug'>> {
-  const metadataPath = path.join(process.cwd(), 'content/blog/metadata.json')
-  const metadataContent = fs.readFileSync(metadataPath, 'utf-8')
-  const metadata = JSON.parse(metadataContent)
-  return metadata.posts
-}
-
-export async function getBlogPosts(): Promise<BlogPost[]> {
-  const metadata = loadMetadata()
+// Discover posts from content folders
+function discoverPosts(): BlogPost[] {
   const contentDir = path.join(process.cwd(), 'content/blog')
+  const posts: BlogPost[] = []
   
-  // Get all folders in the blog content directory
-  const folders = fs.readdirSync(contentDir).filter(item => {
-    if (item === 'metadata.json') return false // Skip metadata file
-    const itemPath = path.join(contentDir, item)
-    return fs.statSync(itemPath).isDirectory()
+  // Read all directories in content/blog
+  const entries = fs.readdirSync(contentDir, { withFileTypes: true })
+  
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      const slug = entry.name
+      const metadataPath = path.join(contentDir, slug, 'metadata.json')
+      
+      // Check if metadata.json exists
+      if (fs.existsSync(metadataPath)) {
+        try {
+          const metadataContent = fs.readFileSync(metadataPath, 'utf-8')
+          const metadata = JSON.parse(metadataContent)
+          posts.push({
+            slug,
+            ...metadata
+          })
+        } catch (error) {
+          console.error(`Error reading metadata for ${slug}:`, error)
+        }
+      }
+    }
+  }
+  
+  // Sort by order (if specified), then by date (newest first)
+  posts.sort((a, b) => {
+    // If both have order, sort by order (ascending)
+    if (a.order !== undefined && b.order !== undefined) {
+      return a.order - b.order
+    }
+    // If only one has order, it comes first
+    if (a.order !== undefined) return -1
+    if (b.order !== undefined) return 1
+    // Otherwise sort by date (newest first)
+    return new Date(b.date).getTime() - new Date(a.date).getTime()
   })
-
-  // Map folders to blog posts using metadata
-  const posts = folders
-    .filter(slug => metadata[slug]) // Only include folders with metadata
-    .map(slug => ({
-      slug,
-      ...metadata[slug]
-    }))
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-
+  
   return posts
 }
 
-export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-  const metadata = loadMetadata()
-  const postMetadata = metadata[slug]
-  if (!postMetadata) return null
+export async function getBlogPosts(includeBeta: boolean = false): Promise<BlogPost[]> {
+  const posts = discoverPosts()
+  
+  // Filter out beta posts unless requested
+  return posts.filter(post => includeBeta || !post.beta)
+}
 
-  return {
-    slug,
-    ...postMetadata
+export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+  const metadataPath = path.join(process.cwd(), 'content/blog', slug, 'metadata.json')
+  
+  if (!fs.existsSync(metadataPath)) {
+    return null
+  }
+  
+  try {
+    const metadataContent = fs.readFileSync(metadataPath, 'utf-8')
+    const metadata = JSON.parse(metadataContent)
+    return {
+      slug,
+      ...metadata
+    }
+  } catch (error) {
+    console.error(`Error reading metadata for ${slug}:`, error)
+    return null
   }
 }

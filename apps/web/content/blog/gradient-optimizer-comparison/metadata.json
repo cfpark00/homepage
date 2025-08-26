@@ -1,0 +1,7 @@
+{
+  "title": "Gradient Optimizer Comparison: Racing Through Loss Landscapes",
+  "date": "2025-08-24",
+  "excerpt": "Interactive comparison of gradient descent optimizers including SGD, Adam, Muon, and Shampoo navigating 2D loss landscapes.",
+  "tags": ["optimization", "machine learning", "deep learning"],
+  "readingTime": "8 min read"
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Interactive Neural Scaling Laws: Exploring the Chinchilla Frontier",
+  "date": "2025-08-24",
+  "excerpt": "Interactive visualization of neural scaling laws showing the relationships between model size, data, compute, and loss. Explore compute-optimal frontiers and understand the mathematics behind efficient model scaling.",
+  "tags": ["deep learning", "artificial intelligence", "LLMs"],
+  "readingTime": "10 min read",
+  "beta": true
+}

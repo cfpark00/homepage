@@ -6,9 +6,10 @@ import { Button } from "@workspace/ui/components/button"
 import { getBlogPosts, getBlogPost } from '@/lib/blog'
 import MDXContent from '@/components/mdx-content'
 import { ShareButton } from '@/components/share-button'
+import { BetaPasswordGuard } from '@/components/beta-password-guard'
 
 export async function generateStaticParams() {
-  const posts = await getBlogPosts()
+  const posts = await getBlogPosts(true) // Include beta posts for static generation
   return posts.map((post) => ({
     slug: post.slug,
   }))
@@ -23,14 +24,18 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     notFound()
   }
 
-  return (
+  // Determine back link based on whether post is beta
+  const backLink = post.beta ? "/blog/beta" : "/blog"
+  const backText = post.beta ? "Beta Research" : "All Posts"
+
+  const content = (
     <article className="container py-8 md:py-12">
       <div className="mx-auto max-w-4xl">
         <div className="mb-8">
           <Button variant="ghost" asChild className="mb-6">
-            <Link href="/blog">
+            <Link href={backLink}>
               <ArrowLeft className="mr-2 h-4 w-4" />
-              All Posts
+              {backText}
             </Link>
           </Button>
           
@@ -74,4 +79,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       </div>
     </article>
   )
+
+  // Wrap beta posts with password protection
+  if (post.beta) {
+    return <BetaPasswordGuard>{content}</BetaPasswordGuard>
+  }
+
+  return content
 }

@@ -1,0 +1,196 @@
+import { WarningCard } from "@workspace/ui/components/warning-card"
+import CognitiveDynamics from "./cognitive-dynamics"
+
+# A Liquid Crystal Society
+
+*Yongyi Yang, Ken Suzuki, Hidenori Tanaka*  
+*(Potential contributors: Maya Okawa, Core Francisco Park)*
+
+<div className="not-prose">
+  <WarningCard>
+    <strong>Note:</strong> This is a working draft of our research paper on collective opinion dynamics in mixed human-AI societies.
+  </WarningCard>
+</div>
+
+## Abstract
+
+Human cognition is profoundly shaped by social interaction: through conversation and collaboration, individuals continuously adjust, align, and expand their internal cognitive structures. Recent developments in large language models (LLMs) have made this process newly salient at scale. Public responses to model rollouts underscore that *persona*—the behavioral style and social affordances of an AI assistant—can matter as much as, or more than, raw benchmark scores.
+
+This work develops a mathematical framework for **collective opinion dynamics** that captures these cognitive and social effects. We model each agent as carrying a matrix-valued cognitive map $X_i \in \mathbb{R}^{C \times D}$: a linear map from a $D$-dimensional feature description of the world to $C$ expressed judgment axes. Influence between agents depends on representational overlap, operationalized through the Frobenius inner product $\langle X_i, X_j \rangle$.
+
+## Introduction
+
+Classical opinion dynamics models—including the Voter model, DeGroot averaging, and Friedkin–Johnsen—have clarified mechanisms of influence and consensus. However, these models typically represent opinions as scalars or short vectors directly exchanged on fixed graphs. We argue this abstraction conceals phenomena of greatest interest in contemporary mixed human–AI interactions.
+
+### The Cognitive Map Framework
+
+What a person (or assistant) expresses publicly is better viewed as the *visible slice* of a richer internal **cognitive map**. Concretely, we model each agent $i$ as carrying:
+
+$$X_i \in \mathbb{R}^{C \times D}$$
+
+where:
+- **Rows** encode how features are combined into expressed judgments
+- **Columns** relate to attention to specific features
+- **Interactions** depend on overlap: $w_{ij} = \langle X_i, X_j \rangle$
+
+The map update has the schematic form:
+
+$$\dot{X}_i = \sum_j a_{ij} w_{ij} (X_j - X_i) + f(X_i)$$
+
+combining state-dependent social influence with a self-drift $f$ that models human–AI coupling.
+
+## Interactive Simulation
+
+Explore how cognitive maps evolve and interact in a society of agents. Watch as mutual intelligibility, alignment, and domain walls emerge from the dynamics:
+
+<CognitiveDynamics />
+
+## Liquid Crystal Analogy
+
+The liquid-crystal lens makes the micro–macro link tangible. In nematic liquid crystals, local orientations cohere along shared axes while **domain walls** separate regions that communicate weakly. Societies mediated by adaptive assistants display analogous structure:
+
+- **Shared axes of meaning** - Common representational subspaces
+- **Ideology domains** - Regions of mutual intelligibility  
+- **Domain walls** - Sharp boundaries where messages fail to register
+
+By *nematic-like ideological order* we mean alignment along a shared low-dimensional subspace without requiring agreement on stance polarity.
+
+## Mathematical Setup
+
+### World Representation
+
+The world is represented as a **world vector** $\mathbf{w} \in \mathbb{R}^D$ (features), with $n$ agents observing it. Agent $k$ has a **cognitive mapping** $\mathbf{X}_k: [0,+\infty) \to \mathbb{R}^{C \times D}$ that evolves with time.
+
+The **opinion** of agent $k$ at time $t$ is:
+
+$$\mathbf{o}_k(t) = \mathbf{X}_k(t)\mathbf{w} \in \mathbb{R}^C$$
+
+### Dynamics
+
+On an undirected weighted graph $\mathcal{G} = (\mathcal{V}, \mathcal{E})$ with adjacency matrix $\mathbf{A}$, cognitive maps evolve as:
+
+$$\frac{d\mathbf{X}_i}{dt} = \sum_{j=1}^n a_{i,j} \langle\mathbf{X}_i, \mathbf{X}_j\rangle (\mathbf{X}_j - \mathbf{X}_i) + f(\mathbf{X}_i)$$
+
+where $f: \mathbb{R}^{C \times D} \to \mathbb{R}^{C \times D}$ represents self-drift from human-AI interaction.
+
+### Key Cases of Self-Drift
+
+1. **Echo-chamber drift**: $f(X) \propto X$ (amplifies current map)
+2. **Fixed-point guidance**: $f(X) = G$ (nudges toward target)
+
+## Order Parameters and Societal Phases
+
+We define observable order parameters that diagnose societal phases:
+
+### Primary Order Parameters
+
+| Parameter | Symbol | Interpretation |
+|-----------|--------|----------------|
+| Global mutual intelligibility | $\mathcal{M}$ | Expected semantic overlap across ties |
+| Wall density | $\mathcal{W}$ | Fraction of bandwidth at domain walls |
+| Nematic order | $\Lambda$ | Dominant axis of meaning |
+| Societal effective rank | $\bar{r}$ | Typical individual complexity |
+| Cognitive diversity | $\mathsf{CD}$ | Dispersion and independent directions |
+
+### Diagnosed Phases
+
+<div className="overflow-x-auto">
+<table className="min-w-full">
+<thead>
+<tr className="border-b">
+<th className="text-left p-2">Phase</th>
+<th className="text-center p-2">$\mathcal{M}$</th>
+<th className="text-center p-2">$\mathcal{W}$</th>
+<th className="text-center p-2">$\Lambda$</th>
+<th className="text-center p-2">Rank</th>
+</tr>
+</thead>
+<tbody>
+<tr className="border-b">
+<td className="p-2">Uniform alignment</td>
+<td className="text-center">high</td>
+<td className="text-center">low</td>
+<td className="text-center">high</td>
+<td className="text-center">low</td>
+</tr>
+<tr className="border-b">
+<td className="p-2">Two domains + wall</td>
+<td className="text-center">mid</td>
+<td className="text-center font-bold">high</td>
+<td className="text-center">high</td>
+<td className="text-center">low</td>
+</tr>
+<tr className="border-b">
+<td className="p-2">Multi-axis quasi-order</td>
+<td className="text-center">mid</td>
+<td className="text-center">mid</td>
+<td className="text-center">low</td>
+<td className="text-center">mid</td>
+</tr>
+<tr className="border-b">
+<td className="p-2">High-rank coexistence</td>
+<td className="text-center">mid</td>
+<td className="text-center">low</td>
+<td className="text-center">mid</td>
+<td className="text-center font-bold">high</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+## Main Theoretical Results
+
+### Self-Proportional Dynamics
+
+When $f(X) = \lambda(X) \cdot X$ (echo-chamber effects):
+
+**Theorem (Invariance of Ideology Groups):** If a subset $S \subseteq [n]$ forms an ideology group (orthogonal to others) at time $t_0$, it remains so for all $t > t_0$.
+
+**Theorem (Contraction of Representational Span):** The overall row span of an ideology group cannot expand: $\mathcal{R}(S; t_2) \subseteq \mathcal{R}(S; t_1)$ for $t_1 < t_2$.
+
+**Theorem (Rank Bound):** For agent $i$ in ideology group $S$:
+$$r_{st}(X_i(t)) \leq \text{rank}(X_i(t)) \leq \dim \mathcal{R}(S; 0)$$
+
+### Globally Guided Dynamics
+
+When $f(X) = G$ (constant guidance) on a complete graph with sufficient conditions:
+
+**Theorem (Variance Collapse):** Under globally guided dynamics within the basin of attraction:
+$$\lim_{t \to \infty} V(t) = 0$$
+
+**Theorem (Rank Convergence):** The average stable rank converges to that of the guidance:
+$$\lim_{t \to \infty} \frac{1}{n} \sum_{i=1}^n r_{st}(X_i(t)) = r_{st}(G)$$
+
+## Implications for AI Alignment
+
+Our framework provides a fundamental basis for **multi-agent alignment** in mixed human–AI societies:
+
+1. **Organic Alignment**: Continual, reciprocal adaptation that scales with capability
+2. **Design Levers**: Assistant personas act as controllable parameters
+3. **Safe Operating Regimes**: Identifying when societies maintain healthy diversity vs. collapse into echo chambers
+
+### Key Insights
+
+- **Amplifying personas** ($f \propto X$) reinforce fragmentation
+- **Calibrated guidance** ($f = G$) can establish shared axes within stability basin
+- **Representational overlap** determines influence patterns naturally
+
+## Future Directions
+
+This framework opens several research directions:
+
+1. **Empirical validation** with real human-AI interaction data
+2. **Optimal control** of assistant personas for desired societal outcomes
+3. **Extension to heterogeneous agents** with different coupling strengths
+4. **Network effects** beyond complete graphs
+
+## References
+
+- Clayton, E. (2007). *Tissue homeostasis and neutral competition*
+- DeGroot, M. H. (1974). *Reaching a consensus*
+- de Gennes, P. G., & Prost, J. (1993). *The physics of liquid crystals*
+- Friedkin, N. E., & Johnsen, E. C. (1999). *Social influence networks and opinion change*
+- Hegselmann, R., & Krause, U. (2002). *Opinion dynamics and bounded confidence*
+- Holley, R. A., & Liggett, T. M. (1975). *Ergodic theorems for weakly interacting systems*
+- Olfati-Saber, R. (2007). *Evolutionary dynamics of behavior in social networks*
+- Snippert, H. J., et al. (2010). *Intestinal crypt homeostasis from neutral competition*

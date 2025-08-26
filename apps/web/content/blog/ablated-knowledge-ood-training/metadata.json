@@ -1,0 +1,8 @@
+{
+  "title": "Proposal: Training LLMs with Ablated Knowledge to Measure Truly Out-of-Distribution Abilities",
+  "date": "2025-08-25",
+  "excerpt": "A novel training methodology for evaluating genuine reasoning in LLMs by deliberately creating controlled epistemic gaps through knowledge domain ablation during pretraining.",
+  "tags": ["LLMs", "meta-research", "self-evolution"],
+  "readingTime": "12 min read",
+  "beta": true
+}

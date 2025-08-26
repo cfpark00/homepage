@@ -1,0 +1,499 @@
+{
+  "publications": [
+    {
+      "id": 1,
+      "title": "Decomposing Elements of Problem Solving: What 'Math' Does RL Teach?",
+      "authors": [
+        "T. Qin*",
+        "C.F. Park*",
+        "M. Kwun",
+        "A. Walsman",
+        "E. Malach",
+        "N. Anand",
+        "H. Tanaka",
+        "D. Alvarez-Melis"
+      ],
+      "abstract": "Mathematical reasoning tasks have become prominent benchmarks for assessing the reasoning capabilities of LLMs, especially with reinforcement learning (RL) methods such as GRPO showing significant performance gains. However, accuracy metrics alone do not support fine-grained assessment of capabilities and fail to reveal which problem-solving skills have been internalized. To better understand these capabilities, we propose to decompose problem solving into fundamental capabilities: Plan (mapping questions to sequences of steps), Execute (correctly performing solution steps), and Verify (identifying the correctness of a solution). Empirically, we find that GRPO mainly enhances the execution skill-improving execution robustness on problems the model already knows how to solve-a phenomenon we call temperature distillation. More importantly, we show that RL-trained models struggle with fundamentally new problems, hitting a 'coverage wall' due to insufficient planning skills. To explore RL's impact more deeply, we construct a minimal, synthetic solution-tree navigation task as an analogy for mathematical problem-solving. This controlled setup replicates our empirical findings, confirming RL primarily boosts execution robustness. Importantly, in this setting, we identify conditions under which RL can potentially overcome the coverage wall through improved exploration and generalization to new solution paths. Our findings provide insights into the role of RL in enhancing LLM reasoning, expose key limitations, and suggest a path toward overcoming these barriers. Code is available at this https URL.",
+      "venue": "arXiv",
+      "year": 2025,
+      "month": "May",
+      "type": "preprint",
+      "arxiv": "2505.22756",
+      "thumbnail": "/images/publications/rl-wall.png",
+      "significant": true
+    },
+    {
+      "id": 2,
+      "title": "New News: System-2 Fine-tuning for Robust Integration of New Knowledge",
+      "authors": [
+        "C.F. Park*",
+        "Z. Zhang*",
+        "H. Tanaka"
+      ],
+      "abstract": "Humans and intelligent animals can effortlessly internalize new information (\"news\") and accurately extract the implications for performing downstream tasks. While large language models (LLMs) can achieve this through in-context learning (ICL) when the news is explicitly given as context, fine-tuning remains challenging for the models to consolidate learning in weights. In this paper, we introduce New News, a dataset composed of hypothetical yet plausible news spanning multiple domains (mathematics, coding, discoveries, leaderboards, events), accompanied by downstream evaluation questions whose correct answers critically depend on understanding and internalizing the news. We first demonstrate a substantial gap between naive fine-tuning and in-context learning (FT-ICL gap) on our news dataset. To address this gap, we explore a suite of self-play data generation protocols -- paraphrases, implications and Self-QAs -- designed to distill the knowledge from the model with context into the weights of the model without the context, which we term System-2 Fine-tuning (Sys2-FT). We systematically evaluate ICL and Sys2-FT performance across data domains and model scales with the Qwen 2.5 family of models. Our results demonstrate that the self-QA protocol of Sys2-FT significantly improves models' in-weight learning of the news. Furthermore, we discover the contexual shadowing effect, where training with the news in context followed by its rephrases or QAs degrade learning of the news. Finally, we show preliminary evidence of an emerging scaling law of Sys2-FT.",
+      "venue": "arXiv",
+      "year": 2025,
+      "month": "May",
+      "type": "preprint",
+      "arxiv": "2505.01812",
+      "thumbnail": "/images/publications/new-news.jpg",
+      "significant": true
+    },
+    {
+      "id": 3,
+      "title": "Competition Dynamics Shape Algorithmic Phases of In-Context Learning",
+      "authors": [
+        "C.F. Park*",
+        "E.S. Lubana*",
+        "H. Tanaka"
+      ],
+      "abstract": "In-Context Learning (ICL) has significantly expanded the general-purpose nature of large language models, allowing them to adapt to novel tasks using merely the inputted context. This has motivated a series of papers that analyze tractable synthetic domains and postulate precise mechanisms that may underlie ICL. However, the use of relatively distinct setups that often lack a sequence modeling nature to them makes it unclear how general the reported insights from such studies are. Motivated by this, we propose a synthetic sequence modeling task that involves learning to simulate a finite mixture of Markov chains. As we show, models trained on this task reproduce most well-known results on ICL, hence offering a unified setting for studying the concept. Building on this setup, we demonstrate we can explain a model's behavior by decomposing it into four broad algorithms that combine a fuzzy retrieval vs. inference approach with either unigram or bigram statistics of the context. These algorithms engage in a competition dynamics to dominate model behavior, with the precise experimental conditions dictating which algorithm ends up superseding others: e.g., we find merely varying context size or amount of training yields (at times sharp) transitions between which algorithm dictates the model behavior, revealing a mechanism that explains the transient nature of ICL. In this sense, we argue ICL is best thought of as a mixture of different algorithms, each with its own peculiarities, instead of a monolithic capability. This also implies that making general claims about ICL that hold universally across all settings may be infeasible.",
+      "venue": "ICLR 2025 Spotlight",
+      "year": 2025,
+      "type": "conference",
+      "arxiv": "2412.01003",
+      "thumbnail": "/images/publications/markov-icl.png",
+      "significant": true,
+      "related_pubs": [
+        "Understanding the Transient Nature of In-Context Learning: The Window of Generalization (NeurIPS 2024 Workshop)"
+      ],
+      "related_projects": [
+        {
+          "name": "Research Tracking System",
+          "url": "/projects/research-tracking"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "ICLR: In-Context Learning of Representations",
+      "authors": [
+        "C.F. Park*",
+        "A. Lee*",
+        "E.S. Lubana",
+        "Y. Yang*",
+        "M. Okawa",
+        "K. Nishi",
+        "M. Wattenberg",
+        "H. Tanaka"
+      ],
+      "abstract": "Recent work has demonstrated that semantics specified by pretraining data influence how representations of different concepts are organized in a large language model (LLM). However, given the open-ended nature of LLMs, e.g., their ability to in-context learn, we can ask whether models alter these pretraining semantics to adopt alternative, context-specified ones. Specifically, if we provide in-context exemplars wherein a concept plays a different role than what the pretraining data suggests, do models reorganize their representations in accordance with these novel semantics? To answer this question, we take inspiration from the theory of conceptual role semantics and define a toy \"graph tracing\" task wherein the nodes of the graph are referenced via concepts seen during training (e.g., apple, bird, etc.) and the connectivity of the graph is defined via some predefined structure (e.g., a square grid). Given exemplars that indicate traces of random walks on the graph, we analyze intermediate representations of the model and find that as the amount of context is scaled, there is a sudden re-organization from pretrained semantic representations to in-context representations aligned with the graph structure. Further, we find that when reference concepts have correlations in their semantics (e.g., Monday, Tuesday, etc.), the context-specified graph structure is still present in the representations, but is unable to dominate the pretrained structure. To explain these results, we analogize our task to energy minimization for a predefined graph topology, providing evidence towards an implicit optimization process to infer context-specified semantics. Overall, our findings indicate scaling context-size can flexibly re-organize model representations, possibly unlocking novel capabilities.",
+      "venue": "ICLR 2025",
+      "year": 2025,
+      "type": "conference",
+      "arxiv": "2501.00070",
+      "thumbnail": "/images/publications/iclr_gif.gif",
+      "significant": true,
+      "related_pubs": [
+        "Structured In-Context Task Representations (NeurIPS 2024 Workshop)"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Swing-by Dynamics in Concept Learning and Compositional Generalization",
+      "authors": [
+        "Y. Yang*",
+        "C.F. Park",
+        "E.S. Lubana",
+        "M. Okawa",
+        "W. Hu",
+        "H. Tanaka"
+      ],
+      "abstract": "Prior work has shown that text-conditioned diffusion models can learn to identify and manipulate primitive concepts underlying a compositional data-generating process, enabling generalization to entirely novel, out-of-distribution compositions. Beyond performance evaluations, these studies develop a rich empirical phenomenology of learning dynamics, showing that models generalize sequentially, respecting the compositional hierarchy of the data-generating process. Moreover, concept-centric structures within the data significantly influence a model's speed of learning the ability to manipulate a concept. In this paper, we aim to better characterize these empirical results from a theoretical standpoint. Specifically, we propose an abstraction of prior work's compositional generalization problem by introducing a structured identity mapping (SIM) task, where a model is trained to learn the identity mapping on a Gaussian mixture with structurally organized centroids. We mathematically analyze the learning dynamics of neural networks trained on this SIM task and show that, despite its simplicity, SIM's learning dynamics capture and help explain key empirical observations on compositional generalization with diffusion models identified in prior work. Our theory also offers several new insights -- e.g., we find a novel mechanism for non-monotonic learning dynamics of test loss in early phases of training. We validate our new predictions by training a text-conditioned diffusion model, bridging our simplified framework and complex generative models. Overall, this work establishes the SIM task as a meaningful theoretical abstraction of concept learning dynamics in modern generative models.",
+      "venue": "ICLR 2025",
+      "year": 2025,
+      "type": "conference",
+      "arxiv": "2410.08309",
+      "thumbnail": "/images/publications/swing-by.png",
+      "significant": true
+    },
+    {
+      "id": 6,
+      "title": "Deep Learning for Clouds and Cloud Shadow Segmentation in Methane Satellite and Airborne Imaging Spectroscopy",
+      "authors": [
+        "M.I. Pérez-Carrasco",
+        "M. Nasr",
+        "S. Roche",
+        "C.C. Miller",
+        "Z. Zhang",
+        "C.F. Park",
+        "E. Walker",
+        "C. Garraffo",
+        "D. Finkbeiner",
+        "R. Gautam",
+        "S. Wofsy"
+      ],
+      "abstract": "Effective cloud and cloud shadow detection is a critical prerequisite for accurate retrieval of concentrations of atmospheric methane (CH4) or other trace gases in hyperspectral remote sensing. This challenge is especially pertinent for MethaneSAT, a satellite mission launched in March 2024, to fill a significant data gap in terms of resolution, precision and swath between coarse-resolution global mappers and fine-scale point-source imagers of methane, and for its airborne companion mission, MethaneAIR. MethaneSAT delivers hyperspectral data at an intermediate spatial resolution (∼ 100 × 400 m), whereas MethaneAIR provides even finer resolution (∼ 25 m), enabling the development of highly detailed maps of concentrations that enable quantification of both the sources and rates of emissions. In this study, we use machine learning methods to address the cloud and cloud shadow detection problem for sensors with these high spatial resolutions. Cloud and cloud shadows in remote sensing data need to be effectively screened out as they bias methane retrievals in remote sensing imagery and impact the quantification of emissions. We deploy and evaluate conventional techniques—including Iterative Logistic Regression (ILR) and Multilayer Perceptron (MLP)—with advanced deep learning architectures, namely U-Net and a Spectral Channel Attention Network (SCAN) method. Our results show that while conventional methods are lightweight, they struggle with spatial coherence and boundary definition, in turn affecting the detection of clouds and cloud shadows. Deep learning models substantially improve detection quality: U-Net performs best in preserving spatial structure, while SCAN excels at capturing fine boundary details. Notably, SCAN surpasses U-Net on MethaneSAT data, underscoring the benefits of incorporating spectral attention for satellite-specific features. Additionally, we combine the predictions of both U-Net and SCAN through a Convolutional Neural Network (CNN). This method achieves state-of-the-art performance on both MethaneAIR (78.50±3.08% F1) and MethaneSAT (78.80±1.28% F1) datasets with efficient inference (4.1 ms per 1,000 km2). This in-depth assessment of various disparate machine learning techniques, as applied to MethaneSAT and MethaneAIR imaging spectroscopic data at varying spatial resolutions, demonstrates the strengths and effectiveness of advanced deep learning architectures in providing robust, scalable solutions for clouds and cloud shadow screening towards enhancing methane emission quantification capacity of existing and next-generation hyperspectral missions.Our data and code is publicly available at: https://doi.org/10.7910/DVN/ IKLZOJ",
+      "venue": "SSRN",
+      "year": 2025,
+      "month": "June",
+      "type": "preprint",
+      "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5389867",
+      "thumbnail": "/images/publications/deep-learning-cloud.png"
+    },
+    {
+      "id": 7,
+      "title": "In-Context Learning Strategies Emerge Rationally",
+      "authors": [
+        "D. Wurgaft*",
+        "E.S. Lubana*",
+        "C.F. Park",
+        "H. Tanaka",
+        "G. Reddy",
+        "N.D. Goodman"
+      ],
+      "abstract": "Recent work analyzing in-context learning (ICL) has identified a broad set of strategies that describe model behavior in different experimental conditions. We aim to unify these findings by asking why a model learns these disparate strategies in the first place. Specifically, we start with the observation that when trained to learn a mixture of tasks, as is popular in the literature, the strategies learned by a model for performing ICL can be captured by a family of Bayesian predictors: a memorizing predictor, which assumes a discrete prior on the set of seen tasks, and a generalizing predictor, where the prior matches the underlying task distribution. Adopting the normative lens of rational analysis, where a learner's behavior is explained as an optimal adaptation to data given computational constraints, we develop a hierarchical Bayesian framework that almost perfectly predicts Transformer next-token predictions throughout training -- without assuming access to its weights. Under this framework, pretraining is viewed as a process of updating the posterior probability of different strategies, and inference-time behavior as a posterior-weighted average over these strategies' predictions. Our framework draws on common assumptions about neural network learning dynamics, which make explicit a tradeoff between loss and complexity among candidate strategies: beyond how well it explains the data, a model's preference towards implementing a strategy is dictated by its complexity. This helps explain well-known ICL phenomena, while offering novel predictions: e.g., we show a superlinear trend in the timescale for transitioning from generalization to memorization as task diversity increases. Overall, our work advances an explanatory and predictive account of ICL grounded in tradeoffs between strategy loss and complexity.",
+      "venue": "arXiv",
+      "year": 2025,
+      "month": "June",
+      "type": "preprint",
+      "arxiv": "2506.17859",
+      "thumbnail": "/images/publications/icl-rational.png",
+      "significant": true
+    },
+    {
+      "id": 8,
+      "title": "Humanity's last exam",
+      "authors": [
+        "L. Phan",
+        "et al."
+      ],
+      "abstract": "Benchmarks are important tools for tracking the rapid advancements in large language model (LLM) capabilities. However, benchmarks are not keeping pace in difficulty: LLMs now achieve over 90% accuracy on popular benchmarks like MMLU, limiting informed measurement of state-of-the-art LLM capabilities. In response, we introduce Humanity's Last Exam (HLE), a multi-modal benchmark at the frontier of human knowledge, designed to be the final closed-ended academic benchmark of its kind with broad subject coverage. HLE consists of 2,500 questions across dozens of subjects, including mathematics, humanities, and the natural sciences. HLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading. Each question has a known solution that is unambiguous and easily verifiable, but cannot be quickly answered via internet retrieval. State-of-the-art LLMs demonstrate low accuracy and calibration on HLE, highlighting a significant gap between current LLM capabilities and the expert human frontier on closed-ended academic questions. To inform research and policymaking upon a clear understanding of model capabilities, we publicly release HLE at this https URL.",
+      "venue": "arXiv",
+      "year": 2025,
+      "month": "January",
+      "type": "preprint",
+      "arxiv": "2501.14249",
+      "thumbnail": "/images/publications/hle.png"
+    },
+    {
+      "id": 11,
+      "title": "Emergence of Hidden Capabilities: Exploring Learning Dynamics in Concept Space",
+      "authors": [
+        "C.F. Park*",
+        "M. Okawa*",
+        "A. Lee",
+        "H. Tanaka",
+        "E.S. Lubana"
+      ],
+      "abstract": "Modern generative models demonstrate impressive capabilities, likely stemming from an ability to identify and manipulate abstract concepts underlying their training data. However, fundamental questions remain: what determines the concepts a model learns, the order in which it learns them, and its ability to manipulate those concepts? To address these questions, we propose analyzing a model's learning dynamics via a framework we call the concept space, where each axis represents an independent concept underlying the data generating process. By characterizing learning dynamics in this space, we identify how the speed at which a concept is learned, and hence the order of concept learning, is controlled by properties of the data we term concept signal. Further, we observe moments of sudden turns in the direction of a model's learning dynamics in concept space. Surprisingly, these points precisely correspond to the emergence of hidden capabilities, i.e., where latent interventions show the model possesses the capability to manipulate a concept, but these capabilities cannot yet be elicited via naive input prompting. While our results focus on synthetically defined toy datasets, we hypothesize a general claim on emergence of hidden capabilities may hold: generative models possess latent capabilities that emerge suddenly and consistently during training, though a model might not exhibit these capabilities under naive input prompting.",
+      "venue": "NeurIPS 2024 Spotlight",
+      "year": 2024,
+      "month": "December",
+      "type": "conference",
+      "arxiv": "2406.19370",
+      "significant": true,
+      "thumbnail": "/images/publications/hidden_emergence.png",
+      "related_pubs": [
+        "Hidden Learning Dynamics: Capability Emerges Before Behavior in Compositional Generalization (ICML 2024 Workshop on High-dimensional Learning Dynamics)"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "3D Reconstruction of Dark Matter Fields with Diffusion Models: Towards Application to Galaxy Surveys",
+      "authors": [
+        "C.F. Park*",
+        "N. Mudur",
+        "C. Cuesta-Lazaro",
+        "Y. Ni",
+        "V. Ono",
+        "D.P. Finkbeiner"
+      ],
+      "abstract": "Probabilistic diffusion models have shown great success in conditional image synthesis. In this work, we develop a high-resolution 3D diffusion model to reconstruct the dark matter density field from a galaxy distribution. We train a pixel space diffusion model at different resolutions on the CAMELS simulation and achieve good agreement in visual quality and summary statistics. However, we identify some challenges in scaling up the resolution. We then analyze the model's ability to capture variations in simulation parameters and conclude that the model indeed captures the right change in the field when changing Omega_m. Next, we train our model on a more realistic dataset where the input conditioning consists of mass thresholded galaxy catalogs from CAMELS and find excellent adaptation of diffusion models to low galaxy density inputs. Finally, we show a preliminary application to a real galaxy catalog. Our results suggest that diffusion models are a powerful method to reconstruct the 3D dark matter field from galaxies.",
+      "venue": "ICML 2024 Workshop: AI for Science",
+      "year": 2024,
+      "month": "July",
+      "type": "conference",
+      "url": "https://openreview.net/forum?id=7k2Eh7OCoz",
+      "thumbnail": "/images/publications/vdm4cdm_3d.gif",
+      "significant": true
+    },
+    {
+      "id": 14,
+      "title": "Debiasing with Diffusion: Probabilistic reconstruction of Dark Matter fields from galaxies with CAMELS",
+      "authors": [
+        "V. Ono*",
+        "C.F. Park",
+        "N. Mudur",
+        "Y. Ni",
+        "C. Cuesta-Lazaro",
+        "F. Villaescusa-Navarro"
+      ],
+      "abstract": "Galaxies are biased tracers of the underlying cosmic web, which is dominated by dark matter (DM) components that cannot be directly observed. Galaxy formation simulations can be used to study the relationship between DM density fields and galaxy distributions. However, this relationship can be sensitive to assumptions in cosmology and astrophysical processes embedded in galaxy formation models, which remain uncertain in many aspects. In this work, we develop a diffusion generative model to reconstruct DM fields from galaxies. The diffusion model is trained on the CAMELS simulation suite that contains thousands of state-of-the-art galaxy formation simulations with varying cosmological parameters and subgrid astrophysics. We demonstrate that the diffusion model can predict the unbiased posterior distribution of the underlying DM fields from the given stellar density fields while being able to marginalize over uncertainties in cosmological and astrophysical models. Interestingly, the model generalizes to simulation volumes ≈500 times larger than those it was trained on and across different galaxy formation models. The code for reproducing these results can be found at https://github.com/victoriaono/variational-diffusion-cdm.",
+      "venue": "The Astrophysical Journal",
+      "year": 2024,
+      "month": "July",
+      "type": "journal",
+      "doi": "10.3847/1538-4357/ad5957",
+      "thumbnail": "/images/publications/debiasing_with_diffusion.png",
+      "significant": true
+    },
+    {
+      "id": 15,
+      "title": "Automated neuron tracking inside moving and deforming animals using deep learning and targeted augmentation",
+      "authors": [
+        "C.F. Park*",
+        "M.B. Keshteli*",
+        "K. Korchagina",
+        "A. Delrocq",
+        "V. Susoy",
+        "C.L. Jones",
+        "A.D.T. Samuel",
+        "S.J. Rahi"
+      ],
+      "abstract": "Reading out neuronal activity from three-dimensional (3D) functional imaging requires segmenting and tracking individual neurons. This is challenging in behaving animals if the brain moves and deforms. The traditional approach is to train a convolutional neural network with ground-truth (GT) annotations of images representing different brain postures. For 3D images, this is very labor intensive. We introduce 'targeted augmentation', a method to automatically synthesize artificial annotations from a few manual annotations. Our method ('Targettrack') learns the internal deformations of the brain to synthesize annotations for new postures by deforming GT annotations. This reduces the need for manual annotation and proofreading. A graphical user interface allows the application of the method end-to-end. We demonstrate Targettrack on recordings where neurons are labeled as key points or 3D volumes. Analyzing freely moving animals exposed to odor pulses, we uncover rich patterns in interneuron dynamics, including switching neuronal entrainment on and off.",
+      "venue": "Nature Methods",
+      "year": 2024,
+      "month": "January",
+      "type": "journal",
+      "doi": "10.1038/s41592-023-02096-3",
+      "thumbnail": "/images/publications/targettrack.gif",
+      "significant": true
+    },
+    {
+      "id": 16,
+      "title": "Efficient pheromone navigation via antagonistic detectors",
+      "authors": [
+        "X. Wan",
+        "T. Zhou",
+        "V. Susoy",
+        "C.F. Park",
+        "A. Groaz",
+        "J.F. Brady",
+        "A.D.T. Samuel",
+        "P.W. Sternberg"
+      ],
+      "abstract": "Chemotaxis to a potential mate who is moving and emitting a volatile sex pheromone poses a navigation challenge that requires rapid, precise responses to maximize reproductive success. We demonstrate that Caenorhabditis elegans males address this challenge by utilizing two pheromone detectors located in head and tail sensory neurons. Despite sharing a receptor SRD-1, AWA head neurons promote forward movement and acceleration, while tail PHD neurons induce reversals and deceleration. In increasing pheromone gradients AWA dominates; whereas weakening gradients inactivate AWAs, allowing PHDs to fine-tune the response and correct the path. Head AWAs are essential for mate-searching, while tail PHDs are crucial for complex tasks. The navigation mode and velocity adapt as males climb a pheromone gradient. A minimal-parameter computational model recapitulates key findings and illuminates the interplay between head and tail signals in adaptive navigation.",
+      "venue": "bioRxiv",
+      "year": 2024,
+      "month": "November",
+      "type": "preprint",
+      "url": "https://www.biorxiv.org/content/10.1101/2024.11.22.624901v2.full",
+      "thumbnail": "/images/publications/head-tail.png"
+    },
+    {
+      "id": 17,
+      "title": "EM-Compressor: Electron Microscopy Image Compression in Connectomics with Variational Autoencoders",
+      "authors": [
+        "Y. Li*",
+        "C.F. Park",
+        "D. Xenes",
+        "C. Bishop",
+        "D.R. Berger",
+        "A.D.T. Samuel",
+        "B. Wester",
+        "J.W. Lichtman",
+        "H. Pfister",
+        "W. Li",
+        "Y. Meirovitch"
+      ],
+      "abstract": "The ongoing pursuit to map detailed brain structures at high resolution using electron microscopy (EM) has led to advancements in imaging that enable the generation of connectomic volumes that have reached the petabyte scale and are soon expected to reach the exascale for whole mouse brain collections. To tackle the high costs of managing these large-scale datasets, we have developed a data compression approach employing Variational Autoencoders (VAEs) to significantly reduce data storage requirements. Due to their ability to capture the complex patterns of EM images, our VAE models notably decrease data size while carefully preserving important image features pertinent to connectomics-based image analysis. Through a comprehensive study using human EM volumes (H01 dataset), we demonstrate how our approach can reduce data to as little as 1/128th of the original size without significantly compromising the ability to subsequently segment the data, outperforming standard data size reduction methods. This performance suggests that this method can greatly alleviate requirements for data management for connectomics applications, and enable more efficient data access and sharing. Additionally, we developed a cloud-based application named EM-Compressor on top of this work to enable on-thefly interactive visualization: https://em-compressor-demonstration.s3.amazonaws.com/EM-Compressor+App.mp4.",
+      "venue": "Medical Optical Imaging and Virtual Microscopy Image Analysis @ MICCAI 2024",
+      "year": 2024,
+      "month": "July",
+      "type": "conference",
+      "url": "https://www.biorxiv.org/content/10.1101/2024.07.07.601368v1",
+      "thumbnail": "/images/publications/em-compressor.png"
+    },
+    {
+      "id": 18,
+      "title": "Probabilistic reconstruction of Dark Matter fields from galaxies using diffusion models",
+      "authors": [
+        "C.F. Park*",
+        "V. Ono",
+        "C. Cuesta-Lazaro",
+        "Y. Ni",
+        "N. Mudur"
+      ],
+      "abstract": "Galaxies are biased tracers of the underlying cosmic web, which is dominated by dark matter components that cannot be directly observed. The relationship between dark matter density fields and galaxy distributions can be sensitive to assumptions in cosmology and astrophysical processes embedded in the galaxy formation models, that remain uncertain in many aspects. Based on state-of-the-art galaxy formation simulation suites with varied cosmological parameters and sub-grid astrophysics, we develop a diffusion generative model to predict the unbiased posterior distribution of the underlying dark matter fields from the given stellar mass fields, while being able to marginalize over the uncertainties in cosmology and galaxy formation.",
+      "venue": "NeurIPS 2023 Workshop on Machine Learning and the Physical Sciences",
+      "year": 2023,
+      "month": "October",
+      "type": "conference",
+      "arxiv": "2311.08558",
+      "thumbnail": "/images/publications/vdm4cdm_2d.gif",
+      "significant": true
+    },
+    {
+      "id": 19,
+      "title": "Hyperspectral shadow removal with iterative logistic regression and latent Parametric Linear Combination of Gaussians",
+      "authors": [
+        "C.F. Park*",
+        "C. Garraffo"
+      ],
+      "abstract": "Shadow detection and removal is a challenging problem in the analysis of hyperspectral images. Yet, this step is crucial for analyzing data for remote sensing applications like methane detection. In this work, we develop a shadow detection and removal method only based on the spectrum of each pixel and the overall distribution of spectral values. We first introduce Iterative Logistic Regression (ILR) to learn a spectral basis in which shadows can be linearly classified. We then model the joint distribution of the mean radiance and the projection coefficients of the spectra onto the above basis as a parametric linear combination of Gaussians. We can then extract the maximum likelihood mixing parameter of the Gaussians to estimate the shadow coverage and to correct the shadowed spectra. Our correction scheme reduces correction artefacts at shadow borders. The shadow detection and removal method is applied to hyperspectral images from MethaneAIR, a precursor to the satellite MethaneSAT.",
+      "venue": "NeurIPS 2023 Workshop on Tackling Climate Change with Machine Learning",
+      "year": 2023,
+      "month": "October",
+      "type": "conference",
+      "arxiv": "2312.15386",
+      "thumbnail": "/images/publications/shadow_removal.png",
+      "significant": true
+    },
+    {
+      "id": 20,
+      "title": "SmartEM: machine-learning guided electron microscopy",
+      "authors": [
+        "Y. Meirovitch*",
+        "C.F. Park*",
+        "L. Mi*",
+        "P. Potocek*",
+        "S. Sawmya",
+        "Y. Li",
+        "Y. Wu",
+        "R. Schalek",
+        "H. Pfister",
+        "R. Schoenmakers",
+        "M. Peemen",
+        "J.W. Lichtman",
+        "A.D.T. Samuel",
+        "N. Shavit"
+      ],
+      "abstract": "Connectomics provides essential nanometer-resolution, synapse-level maps of neural circuits to understand brain activity and behavior. However, few researchers have access to the high-throughput electron microscopes to rapidly generate the very large datasets needed for reconstructing whole circuits or brains. To date, machine-learning methods have been used after the collection of images by electron microscopy (EM) to accelerate and improve neuronal segmentation, synapse reconstruction and other data analysis. With the computational improvements in processing EM images, acquiring EM images has now become the rate-limiting step. Here, in order to speed up EM imaging, we integrate machine-learning into real-time image acquisition in a single-beam scanning electron microscope. This SmartEM approach allows an electron microscope to perform intelligent, data-aware imaging of specimens. SmartEM allocates the proper imaging time for each region of interest - scanning all pixels as rapidly, but then re-scanning small subareas more slowly where a higher quality signal is required in order to guarantee uniform segmentability of the entire field of view but with a significant time savings. We demonstrate that this pipeline achieves a 7-fold acceleration of image acquisition time for connectomics using a commercial single-beam SEM. We apply SmartEM to reconstruct a portion of mouse cortex with the same accuracy as traditional microscopy but in less time.",
+      "venue": "Accepted at Nature Methods",
+      "year": 2025,
+      "month": "October",
+      "type": "preprint",
+      "url": "https://www.biorxiv.org/content/10.1101/2023.10.05.561103v1",
+      "thumbnail": "/images/publications/smartem.png",
+      "significant": true
+    },
+    {
+      "id": 21,
+      "title": "Stellar Reddening Based Extinction Maps for Cosmological Applications",
+      "authors": [
+        "N. Mudur*",
+        "C.F. Park",
+        "D.P. Finkbeiner"
+      ],
+      "abstract": "Cosmological surveys must correct their observations for the reddening of extragalactic objects by Galactic dust. Existing dust maps, however, have been found to have spatial correlations with the large-scale structure of the Universe. Errors in extinction maps can propagate systematic biases into samples of dereddened extragalactic objects and into cosmological measurements such as correlation functions between foreground lenses and background objects and the primordial non-Gaussianity parameter fNL. Emission-based maps are contaminated by the cosmic infrared background, while maps inferred from stellar reddenings suffer from imperfect removal of quasars and galaxies from stellar catalogs. Thus, stellar-reddening-based maps using catalogs without extragalactic objects offer a promising path to making dust maps with minimal correlations with large-scale structure. We present two high-latitude integrated extinction maps based on stellar reddenings, with a point-spread functions of FWHMs 6farcm1 and 15'. We employ a strict selection of catalog objects to filter out galaxies and quasars and measure the spatial correlation of our extinction maps with extragalactic structure. Our galactic extinction maps have reduced spatial correlation with large-scale structure relative to most existing stellar-reddening-based and emission-based extinction maps.",
+      "venue": "The Astrophysical Journal",
+      "year": 2023,
+      "month": "May",
+      "type": "journal",
+      "doi": "10.3847/1538-4357/acc32c",
+      "thumbnail": "/images/publications/dustmap_correction.gif",
+      "significant": true
+    },
+    {
+      "id": 22,
+      "title": "Quantification of high dimensional non-Gaussianities and its implication to Fisher analysis in cosmology",
+      "authors": [
+        "C.F. Park*",
+        "E. Allys",
+        "F. Villaescusa-Navarro",
+        "D.P. Finkbeiner"
+      ],
+      "abstract": "It is well known that the power spectrum is not able to fully characterize the statistical properties of non-Gaussian density fields. Recently, many different statistics have been proposed to extract information from non-Gaussian cosmological fields that perform better than the power spectrum. The Fisher matrix formalism is commonly used to quantify the accuracy with which a given statistic can constrain the value of the cosmological parameters. However, these calculations typically rely on the assumption that the sampling distribution of the considered statistic follows a multivariate Gaussian distribution. In this work, we follow Sellentin & Heavens and use two different statistical tests to identify non-Gaussianities in different statistics such as the power spectrum, bispectrum, marked power spectrum, and wavelet scattering transform (WST). We remove the non-Gaussian components of the different statistics and perform Fisher matrix calculations with the Gaussianized statistics using Quijote simulations. We show that constraints on the parameters can change by a factor of ~2 in some cases. We show with simple examples how statistics that do not follow a multivariate Gaussian distribution can achieve artificially tight bounds on the cosmological parameters when using the Fisher matrix formalism. We think that the non-Gaussian tests used in this work represent a powerful tool to quantify the robustness of Fisher matrix calculations and their underlying assumptions. We release the code used to compute the power spectra, bispectra, and WST that can be run on both CPUs and GPUs.",
+      "venue": "The Astrophysical Journal",
+      "year": 2023,
+      "month": "April",
+      "type": "journal",
+      "doi": "10.3847/1538-4357/acbe3b",
+      "thumbnail": "/images/publications/high_d_non_gaussianity.png",
+      "significant": true
+    },
+    {
+      "id": 23,
+      "title": "mEMbrain: an interactive deep learning MATLAB tool for connectomic segmentation on commodity desktops",
+      "authors": [
+        "E.C. Pavarino*",
+        "E. Yang*",
+        "N. Dhanyasi",
+        "M. Wang",
+        "F. Bidel",
+        "X. Lu",
+        "F. Yang",
+        "C.F. Park",
+        "M.B. Renuka",
+        "B. Drescher",
+        "A.D.T. Samuel",
+        "B. Hochner",
+        "P.S. Katz",
+        "M. Zhen",
+        "J.W. Lichtman",
+        "Y. Meirovitch"
+      ],
+      "abstract": "Connectomics is fundamental in propelling our understanding of the nervous system's organization, unearthing cells and wiring diagrams reconstructed from volume electron microscopy (EM) datasets. Such reconstructions, on the one hand, have benefited from ever more precise automatic segmentation methods, which leverage sophisticated deep learning architectures and advanced machine learning algorithms. On the other hand, the field of neuroscience at large, and of image processing in particular, has manifested a need for user-friendly and open source tools which enable the community to carry out advanced analyses. In line with this second vein, here we propose mEMbrain, an interactive MATLAB-based software which wraps algorithms and functions that enable labeling and segmentation of electron microscopy datasets in a user-friendly user interface compatible with Linux and Windows. Through its integration as an API to the volume annotation and segmentation tool VAST, mEMbrain encompasses functions for ground truth generation, image preprocessing, training of deep neural networks, and on-the-fly predictions for proofreading and evaluation. The final goals of our tool are to expedite manual labeling efforts and to harness MATLAB users with an array of semi-automatic approaches for instance segmentation. We tested our tool on a variety of datasets that span different species at various scales, regions of the nervous system and developmental stages. To further expedite research in connectomics, we provide an EM resource of ground truth annotation from four different animals and five datasets, amounting to around 180 h of expert annotations, yielding more than 1.2 GB of annotated EM images. In addition, we provide a set of four pre-trained networks for said datasets. All tools are available from https://lichtman.rc.fas.harvard.edu/mEMbrain/. With our software, our hope is to provide a solution for lab-based neural reconstructions which does not require coding by the user, thus paving the way to affordable connectomics.",
+      "venue": "Frontiers in Neural Circuits",
+      "year": 2023,
+      "month": "June",
+      "type": "journal",
+      "url": "https://www.frontiersin.org/articles/10.3389/fncir.2023.952921/full",
+      "thumbnail": "/images/publications/membrain.png"
+    },
+    {
+      "id": 24,
+      "title": "Revisiting Latent-Space Interpolation via a Quantitative Evaluation Framework",
+      "authors": [
+        "L. Mi*",
+        "T. He*",
+        "C.F. Park",
+        "H. Wang",
+        "Y. Wang",
+        "N. Shavit"
+      ],
+      "abstract": "Latent-space interpolation is commonly used to demonstrate the generalization ability of deep latent variable models. Various algorithms have been proposed to calculate the best trajectory between two encodings in the latent space. In this work, we show how data labeled with semantically continuous attributes can be utilized to conduct a quantitative evaluation of latent-space interpolation algorithms, for variational autoencoders. Our framework can be used to complement the standard qualitative comparison, and also enables evaluation for domains (such as graph) in which the visualization is difficult. Interestingly, our experiments reveal that the superiority of interpolation algorithms could be domain-dependent. While normalised interpolation works best for the image domain, spherical linear interpolation achieves the best performance in the graph domain. Next, we propose a simple-yet-effective method to restrict the latent space via a bottleneck structure in the encoder. We find that all interpolation algorithms evaluated in this work can benefit from this restriction. Finally, we conduct interpolation-aware training with the labeled attributes, and show that this explicit supervision can improve the interpolation performance.",
+      "venue": "arXiv",
+      "year": 2021,
+      "month": "October",
+      "type": "preprint",
+      "arxiv": "2110.06421",
+      "thumbnail": "/images/publications/revisit-latent.png"
+    },
+    {
+      "id": 25,
+      "title": "Natural sensory context drives diverse brain-wide activity during C. elegans mating",
+      "authors": [
+        "V. Susoy*",
+        "W. Hung",
+        "D. Witvliet",
+        "J.E. Whitener",
+        "M. Wu",
+        "C.F. Park",
+        "B.J. Graham",
+        "M. Zhen",
+        "V. Venkatachalam",
+        "A.D.T. Samuel"
+      ],
+      "abstract": "Natural goal-directed behaviors often involve complex sequences of many stimulus-triggered components. Understanding how brain circuits organize such behaviors requires mapping the interactions between an animal, its environment, and its nervous system. Here, we use brain-wide neuronal imaging to study the full performance of mating by the C. elegans male. We show that as mating unfolds in a sequence of component behaviors, the brain operates similarly between instances of each component but distinctly between different components. When the full sensory and behavioral context is taken into account, unique roles emerge for each neuron. Functional correlations between neurons are not fixed but change with behavioral dynamics. From individual neurons to circuits, our study shows how diverse brain-wide dynamics emerge from the integration of sensory perception and motor actions in their natural context.",
+      "venue": "Cell",
+      "year": 2021,
+      "month": "September",
+      "type": "journal",
+      "doi": "10.1016/j.cell.2021.08.024",
+      "thumbnail": "/images/publications/whole_brain_imaging.gif",
+      "significant": true
+    },
+    {
+      "id": 26,
+      "title": "Deep Learning as a Scientific Tool and a Model Organism of Intelligence",
+      "authors": [
+        "C.F. Park*"
+      ],
+      "abstract": "The nature and origin of intelligence is a fundamental question in science that has been studied throughout history in psychology, neuroscience, and artificial intelligence. Recent advances in machine learning point to a promising direction: deep learning. Training neural networks by optimizing their parameters via gradient descent has shown success in both practical AI applications and in the pursuit of artificial general intelligence. This thesis investigates both the practical applications of deep learning and its scientific foundations.\n    \n    The first part focuses on using deep learning to accelerate experimental neuroscience. I present two applications developed during my PhD: one that uses deep learning and synthetic data generation to track neurons in multi-channel 3D videos with improved efficiency by generating training data for rare postures not covered in the original dataset; and another that employs an uncertainty-aware system to actively guide electron microscope image acquisition in real time, achieving higher throughput by focusing the time budget on critical pixels.\n    \n    The second part addresses the robustification of scientific data analysis using deep learning. I discuss how neural networks can either correct systematic errors in data or generate synthetic samples for better calibrated error estimates. The first approach is applied to hyperspectral data to remove cloud shadow's effects on acquired spectra, while the second is used to generate probabilistic dark matter maps that quantify uncertainties in density fields without known ground truth.\n    \n    The third part examines how intelligent abilities emerge in modern AI models during training. I first explore how AI models learn underlying concepts and compose them, discovering that compositional abilities may emerge without obvious behavioral signs. I then investigate how models develop in-context learning abilities based on their training data distribution, revealing a phase diagram composed of different algorithms the model implements.\n    \n    The final part analyzes how large language models perform complex intelligent tasks. One study reveals that models generate task-specific representations in their internal activations when presented with new data generation processes at inference time. Another evaluates how language models integrate new information into their internal world models. I conclude by discussing the fundamental cognitive abilities that current models need to improve on to arrive at a general form of intelligence.\n    \n    In summary, this thesis presents investigations of deep learning both as a tool to enhance scientific discoveries and as a model organism for studying intelligence.",
+      "venue": "Ph.D. Thesis",
+      "year": 2025,
+      "month": "April",
+      "type": "thesis",
+      "url": "https://drive.google.com/file/d/1ioXeY4p_a687NYnBPahItx6HeQcrSULq/view?usp=sharing",
+      "thumbnail": "/images/publications/defense.jpg",
+      "significant": true
+    },
+    {
+      "id": 27,
+      "title": "Real time DAQ setup and dead-time measurement for CAPP 18T Dark Matter Axion Search and its first results",
+      "authors": [
+        "C.F. Park*"
+      ],
+      "abstract": "The Axion is a hypothetical particle suggested as a solution to the strong CP problem of Quantum Chromodynamics. It is also a dark matter candidate. The CAPP18T experiment is designed to detect its coupling to microwave domain photons. Since the coupling strength, and thus the signal power, is extremely small, a high efficiency DAQ system is needed to reach the KSZV limit. The original data collecting system using the Signal Analyzer produced a dead-time of 90 % while the newly developed DAQ system showed a negligible dead-time. We explain the development of the optimized DAQ system and the verification of the data quality of our ADC (Analog-to-Digital Converter). The data loss from the ADC has been proved to be less than 10−7. A multithread FFT was developed for the DAQ system. To reduce the saved data size, time-averaged frequency domain data are stored to disk, instead of the full time domain data, with a sampling rate of 60 ~ 70M S/s. Finally, we explain the analysis procedure of the first results from two runs of the CAPP18T Axion haloscope. The sensitivity of 5 KSVZ has been reached.",
+      "venue": "B.S. Thesis",
+      "year": 2018,
+      "month": "December",
+      "type": "thesis",
+      "url": "https://drive.google.com/file/d/1OdWltztQkce36NXGGaeUgg5h3tc1Xkcq/view?usp=sharing",
+      "thumbnail": "/images/publications/CAPP-DAQ.png",
+      "significant": true
+    }
+  ]
+}

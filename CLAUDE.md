@@ -11,6 +11,7 @@ This document provides guidelines for AI agents and developers contributing to t
 
 - **NEVER** run `pnpm dev` or `pnpm build` unless explicitly requested by the user
 - These commands should only be run when the user specifically asks for them
+- **ALWAYS** use `/scratch/` directory for temporary scripts, debug files, or verification code - never pollute the root directory
 
 ## Related Documentation
 

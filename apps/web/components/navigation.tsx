@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@workspace/ui/lib/utils"
 import { Button } from "@workspace/ui/components/button"
-import { MoonIcon, SunIcon, Menu } from "lucide-react"
+import { MoonIcon, SunIcon, Menu, ExternalLink } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useState } from "react"
 
@@ -15,6 +15,13 @@ const navigation = [
   { name: "Talks", href: "/talks" },
   { name: "Blog", href: "/blog" },
   { name: "News", href: "/news" },
+  { 
+    name: "Portal", 
+    href: process.env.NODE_ENV === 'development' 
+      ? "http://localhost:3021" 
+      : "https://portal.corefranciscopark.com", 
+    external: true 
+  },
 ]
 
 export function Navigation() {
@@ -32,20 +39,33 @@ export function Navigation() {
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  "transition-colors hover:text-foreground/80",
-                  pathname === item.href
-                    ? "text-foreground"
-                    : "text-foreground/60"
-                )}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) => 
+              item.external ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 transition-colors hover:text-foreground/80 text-foreground/60"
+                >
+                  {item.name}
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "transition-colors hover:text-foreground/80",
+                    pathname === item.href
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
           </nav>
         </div>
         
@@ -82,21 +102,35 @@ export function Navigation() {
       {mobileMenuOpen && (
         <div className="border-t md:hidden">
           <nav className="container grid gap-2 py-4">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  "px-2 py-1.5 text-sm font-medium transition-colors hover:text-foreground",
-                  pathname === item.href
-                    ? "text-foreground"
-                    : "text-foreground/60"
-                )}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) => 
+              item.external ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1.5 text-sm font-medium transition-colors hover:text-foreground text-foreground/60 inline-flex items-center gap-1"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "px-2 py-1.5 text-sm font-medium transition-colors hover:text-foreground",
+                    pathname === item.href
+                      ? "text-foreground"
+                      : "text-foreground/60"
+                  )}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
           </nav>
         </div>
       )}

@@ -1,0 +1,92 @@
+import ScalingLawsVisualization from './scaling-laws-visualization'
+
+Neural scaling laws have revolutionized how we think about training large language models. These empirical relationships between model size, data, compute, and performance help us predict capabilities and optimize resource allocation. This interactive visualization lets you explore the Chinchilla scaling laws and understand the trade-offs between different scaling strategies.
+
+## Interactive Scaling Law Explorer
+
+Experiment with the parameters that govern neural scaling laws. Adjust the scaling coefficients, switch between different axis representations, and observe how the compute-optimal frontier emerges from the underlying mathematics.
+
+<ScalingLawsVisualization />
+
+## Understanding Neural Scaling Laws
+
+The core insight of neural scaling laws is that model performance follows predictable power-law relationships with three key factors: the number of parameters (N), the amount of training data (D), and the computational budget (C).
+
+### The Chinchilla Equation
+
+The loss of a language model can be approximated by:
+
+$$L(N, D) = L_0 + \left(\frac{N_c}{N}\right)^{\alpha_N} + \left(\frac{D_c}{D}\right)^{\alpha_D}$$
+
+Where:
+- $L_0$: Irreducible loss (the theoretical minimum achievable loss)
+- $N$: Number of model parameters
+- $D$: Number of training tokens
+- $N_c, D_c$: Scaling constants that set the characteristic scales
+- $\alpha_N, \alpha_D$: Power law exponents (typically around 0.34 and 0.28)
+
+### The Compute Constraint
+
+Training compute is approximately:
+
+$$C \approx 6ND$$
+
+This assumes about 6 FLOPs per token per parameter during training (forward pass, backward pass, and gradient update).
+
+### Compute-Optimal Scaling
+
+The key insight from Chinchilla is that for a fixed compute budget, there's an optimal balance between model size and training data. This occurs when the contributions from the N and D terms are equal:
+
+$$\alpha_N\left(\frac{N_c}{N}\right)^{\alpha_N} = \alpha_D\left(\frac{D_c}{D}\right)^{\alpha_D}$$
+
+This gives us the compute-optimal scaling law:
+
+$$N_{\text{opt}} \propto C^{\frac{\alpha_D}{\alpha_N + \alpha_D}}$$
+
+$$D_{\text{opt}} \propto C^{\frac{\alpha_N}{\alpha_N + \alpha_D}}$$
+
+With typical values ($\alpha_N \approx 0.34$, $\alpha_D \approx 0.28$), this means:
+- Parameters should scale as $N \propto C^{0.45}$
+- Data should scale as $D \propto C^{0.55}$
+
+### Key Insights from the Visualization
+
+1. **The Compute-Optimal Frontier**: The blue line shows the best achievable loss for each compute budget. Models trained at this frontier use compute most efficiently.
+
+2. **Infinite Compute Limit**: The red line shows the loss achievable with infinite data (D → ∞). This represents the best a model of size N could possibly do, limited only by its capacity.
+
+3. **Fixed Compute Curves**: The dashed lines show iso-compute curves. Along each curve, you can trade model size for data while keeping compute constant.
+
+4. **Overtrained vs Undertrained**: 
+   - Below the compute-optimal frontier: Models are overtrained (too much data for their size)
+   - Above the frontier: Models are undertrained (not enough data for their size)
+
+### Practical Implications
+
+1. **Scaling Strategy**: For each 10× increase in compute, increase model size by ~3.2× and data by ~3.2×.
+
+2. **Data Efficiency**: Larger models are more data-efficient - they achieve lower loss with the same amount of data.
+
+3. **Compute Efficiency**: There's no free lunch - the compute-optimal frontier represents fundamental trade-offs.
+
+4. **Prediction**: These laws let us predict performance of models before training them, crucial for resource planning.
+
+### Different Axis Views
+
+The visualization supports multiple axis configurations:
+
+- **Parameters vs Loss**: Classic scaling law view showing how loss decreases with model size
+- **Compute vs Loss**: Shows the fundamental compute-performance trade-off
+- **Data vs Loss**: Illustrates data scaling and the importance of dataset size
+- **Parameters vs Compute**: Reveals the optimal model size for each compute budget
+- **Parameters vs Data**: Shows the optimal $N/D$ ratio for efficient training
+
+### Beyond Chinchilla
+
+Recent work has refined these scaling laws:
+- Accounting for inference costs changes optimal ratios
+- Different domains (code, math) may have different exponents
+- Mixture of experts and sparse models follow modified scaling laws
+- Post-training techniques (RLHF, constitutional AI) add additional scaling dimensions
+
+The interactive visualization above uses the original Chinchilla parameters as defaults, but you can adjust them to explore how different assumptions change the optimal scaling strategy.
