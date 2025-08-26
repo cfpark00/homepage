@@ -1,5 +1,5 @@
 # Project Structure Overview
-Last Updated: 2025-08-24
+Last Updated: 2025-08-26 (16:54)
 
 ## Root Directory: /Users/cfpark00/mysite
 Monorepo using pnpm workspaces with Vercel deployment
@@ -7,15 +7,28 @@ Monorepo using pnpm workspaces with Vercel deployment
 ## Key Directories
 
 ### /apps/web/
-Main Next.js application
+Main Next.js application (port 3020 in dev)
+
+### /apps/portal/
+Research portal application with authentication (port 3021 in dev, added 2025-08-26)
+- Uses Supabase for authentication and data storage
+- Google OAuth integration for login
+- Separate from main web app but shares Supabase instance (free tier limitation)
 
 #### /app/
 - layout.tsx - Root layout (added 2025-08-24)
 - not-found.tsx - 404 page (added 2025-08-24)
+- sitemap.ts - Automatic sitemap.xml generation (added 2025-08-24)
+- robots.ts - Robots.txt generation for SEO (added 2025-08-24)
+- api/
+  - beta-auth/
+    - route.ts - Server-side password authentication for beta content (added 2025-08-24)
 - (default)/
   - blog/
-    - page.tsx - Blog listing page
-    - [slug]/page.tsx - Individual blog post page (uses MDX from content)
+    - page.tsx - Blog listing page (added beta link 2025-08-24)
+    - [slug]/page.tsx - Individual blog post page (password-protected for beta posts 2025-08-24)
+    - beta/
+      - page.tsx - Beta/private research posts listing (password-protected 2025-08-24)
   - cv/
     - page.tsx - CV page (hardcoded data)
   - news/
@@ -24,84 +37,152 @@ Main Next.js application
     - page.tsx - Projects page (server component, loads from metadata.json)
     - [slug]/page.tsx - Individual project page (uses MDX from content)
   - publications/
-    - page.tsx - Publications listing page (uses lib/publications-data.ts)
+    - page.tsx - Publications listing page (uses lib/publications-data.ts which imports from content)
   - talks/
-    - page.tsx - Talks listing page (uses lib/talks-data.ts)
+    - page.tsx - Talks listing page (uses lib/talks-data.ts which imports from content)
   - page.tsx - Home page (hardcoded)
 - simple/
   - page.tsx - Simplified academic page
 
 #### /lib/
-- blog.ts - Blog loader (reads from content/blog/metadata.json)
+- blog.ts - Blog loader (reads from content/blog/metadata.json, manual ordering 2025-08-25)
 - news.ts - News loader (reads from content/news JSON files)
-- projects.ts - Projects loader (reads from content/projects/metadata.json)
-- publications-data.ts - Publications data (TypeScript, includes related_projects)
-- talks-data.ts - Talks data (TypeScript)
+- projects.ts - Projects loader (reads from content/projects/metadata.json, manual ordering 2025-08-25)
+- publications-data.ts - Publications loader (imports from content/publications/, updated 2025-08-26)
+- talks-data.ts - Talks loader (imports from content/talks/, updated 2025-08-26)
 
 #### /content/
-- blog/
-  - metadata.json - Blog post metadata (single source of truth)
+- blog/ (content-driven, updated 2025-08-26)
+  - Each folder contains metadata.json and index.mdx
+  - ablated-knowledge-ood-training/ (beta post, added 2025-08-26)
+    - index.mdx
+    - metadata.json
+    - back-to-toc.tsx (smooth scroll navigation component)
+  - liquid-crystal-society/ (beta post)
+    - index.mdx
+    - metadata.json
+    - cognitive-dynamics.tsx
+  - neural-scaling-laws/ (beta post)
+    - index.mdx
+    - metadata.json
+    - scaling-laws-visualization.tsx
+  - analyzing-goal-directed-behaviors/ (beta post, added 2025-08-26)
+    - index.mdx
+    - metadata.json
+    - goal-directed-visualization.tsx
   - double-pendulum-chaos/
     - index.mdx
-    - double-pendulum.tsx (co-located interactive component)
+    - metadata.json
+    - double-pendulum.tsx
   - gradient-optimizer-comparison/
     - index.mdx
-    - optimizer-visualization.tsx (original canvas version)
-    - optimizer-visualization-svg.tsx (pure SVG attempt)
-    - optimizer-visualization-hybrid.tsx (final hybrid canvas+SVG, added 2025-08-24)
+    - metadata.json
+    - optimizer-visualization-hybrid.tsx
   - random-walks-visualization/
     - index.mdx
-    - random-walk.tsx (co-located interactive component)
+    - metadata.json
+    - random-walk.tsx
   - welcome-to-my-blog/
     - index.mdx
-- projects/
-  - metadata.json - Project metadata (title, excerpt, thumbnailUrl, isExternal, externalUrl)
+    - metadata.json
+- projects/ (content-driven, updated 2025-08-26)
+  - Each folder contains metadata.json
+  - orchestra/ (external)
+    - metadata.json
   - evolving-research/
     - index.mdx
+    - metadata.json
   - llm-dopamine/
-    - index.mdx (added 2025-08-24)
+    - index.mdx
+    - metadata.json
   - research-tracking/
     - index.mdx
-    - research-flow.tsx (co-located React Flow diagram)
-    - research-tree-data.ts (co-located data model)
-    - research-tree-vertical.json (co-located data)
-  - llm-dopamine/
-    - index.mdx
+    - metadata.json
+    - research-flow.tsx
+    - research-tree-data.ts
+    - research-tree-vertical.json
+- publications/ (updated 2025-08-26)
+  - publications.json - All publication data
+  - metadata.json - Author configuration (selfName, authorLinks)
+- talks/ (added 2025-08-26)
+  - talks.json - All talks data
 - news/
   - YYYY/ (2015-2025)
     - 0winter.json (Jan-Mar)
     - 1spring.json (Apr-Jun)
     - 2summer.json (Jul-Sep)
     - 3fall.json (Oct-Dec)
-- projects/
-  - research-tracking/
-    - index.mdx
-    - research-flow.tsx
-  - evolving-research/
-    - index.mdx
 
 #### /components/
+- beta-password-guard.tsx - Password protection component for beta content (added 2025-08-24)
 - mdx-content.tsx - Dynamic MDX loader (uses Next.js dynamic imports)
 - share-button.tsx - Copy link button with toast notifications
 - google-analytics.tsx
-- publication-card.tsx - Domain wrapper around ArticleCard (supports related_projects)
+- publication-card.tsx - Domain wrapper around ArticleCard (uses configurable selfName, updated 2025-08-26)
 - project-cards.tsx - Client component for project grid with external link handling (added 2025-08-24)
 - cv-timeline.tsx - Timeline CV view (fixed React hooks cleanup 2025-08-24)
 - cv-traditional.tsx - Traditional CV view
 - flying-publications.tsx - Background animation (converted to Next.js Image 2025-08-24)
-- navigation.tsx - Site navigation (Projects instead of Ongoing)
+- navigation.tsx - Site navigation (added Portal link 2025-08-26)
 - theme-provider.tsx
+
+#### /lib/
+- blog.ts - Blog loader (supports beta filtering 2025-08-24)
+
+### /apps/portal/
+Research portal application with authentication (added 2025-08-26, port 3021 in dev)
+
+#### /app/
+- layout.tsx - Root layout
+- globals.css - Tailwind styles with shadcn/ui CSS variables
+- page.tsx - Homepage (redirects to login when unauthenticated, shows user email and logout 2025-08-26)
+- test/
+  - page.tsx - Test page with demo share links
+- auth/
+  - login/
+    - page.tsx - Login page with email/password and Google OAuth (added OAuth 2025-08-26)
+  - signup/
+    - page.tsx - Signup page with email verification and Google OAuth (added OAuth 2025-08-26)
+  - callback/
+    - route.ts - OAuth callback handler (added 2025-08-26)
+- [project_slug]/
+  - page.tsx - Private project page (requires authentication)
+  - s/
+    - [token]/
+      - page.tsx - Public share page (accessible via token)
+
+#### /components/
+- logout-button.tsx - Logout button component (added 2025-08-26)
+
+#### /lib/
+- supabase/
+  - client.ts - Browser Supabase client
+  - server.ts - Server Supabase client
+  - middleware.ts - Session management
+- types/
+  - database.ts - TypeScript database schema
+
+#### Configuration
+- middleware.ts - Auth middleware for protected routes
+- next.config.mjs - Next.js configuration
+- tailwind.config.ts - Tailwind with UI preset
+- postcss.config.js - PostCSS configuration
+- .env.example - Supabase environment template
 
 ### /packages/ui/
 Shared UI component library
 - components/
   - article-card.tsx - Generic article/publication card (added 2025-08-24)
-  - card.tsx
+  - card.tsx - shadcn/ui card components (exported 2025-08-26)
   - badge.tsx
-  - button.tsx
+  - button.tsx - shadcn/ui button (exported 2025-08-26)
+  - input.tsx - shadcn/ui input (exported 2025-08-26)
+  - label.tsx - Form label component (added 2025-08-24, exported 2025-08-26)
   - page-container.tsx
+  - slider.tsx - Radix UI based slider component (added 2025-08-24)
   - warning-card.tsx - Orange warning card with icon for disclaimers (added 2025-08-24)
   - etc.
+- index.ts - Main exports (updated 2025-08-26)
 
 ### Removed Files (2025-08-24)
 - /apps/web/app/(default)/ongoing/ - Replaced with projects
@@ -111,44 +192,99 @@ Shared UI component library
 ### /claude_notes/
 AI assistant documentation and logs
 - docs/
-  - blog-system-architecture.md
+  - blog/ (reorganized 2025-08-26)
+    - how-to-write-blogs.md (renamed from blog-system-architecture.md)
+    - math-latex-mdx.md (moved from tips/)
+    - mdx-blog-setup.md (moved from tips/)
+    - typescript-in-mdx-gotchas.md (moved from tips/)
+    - comment-system-implementation.md (added 2025-08-26)
+  - deployment/ (added 2025-08-26)
+    - DEPLOYMENT.md (moved from root)
+  - projects/ (added 2025-08-26)
+    - how-to-add-projects.md
+  - ui_and_styling/ (added 2025-08-26)
+    - SHADCN_TIPS.md (moved from root)
 - logs/
   - YYYY-MM-DD/
     - HH-MM_topic.md
-- tips/
-  - typescript-in-mdx-gotchas.md
+  - 2025-08-26/
+    - 20-38_portal_app_setup_and_auth_system.md
+    - 20-39_content_system_refactoring.md
+    - 15-07_blog_analysis_and_comment_system_planning.md (added today)
 - structure.txt (this file)
 
+### /scratch/
+Temporary files and debug scripts (gitignored)
+- Used for temporary verification scripts and testing
+
+### /todos/
+Task tracking and documentation (added 2025-08-26)
+- CONTENT_AUDIT.md - Content system audit document (moved from root)
+
 ### /resources/
-Static assets and data
-- research-tree.json
-- research-tree-vertical.json
+Static assets and data (LaTeX CV files and resources)
+- CFPark_CV.zip - Compressed CV package
+- main.tex - Main LaTeX CV file
+- papers.bib - Bibliography file
+- photo.png - Profile photo
+- simplecv.sty - LaTeX style file
+- sections/ - CV sections in LaTeX
+  - activities.tex
+  - awards.tex
+  - current_projects.tex
+  - education.tex
+  - employment.tex
+  - extracurricular.tex
+  - highlights.tex
+  - languages.tex
+  - past_projects.tex
+  - projects.tex
+  - publications.tex
+  - references.tex
+  - skills.tex
+  - teaching.tex
+- scaling-laws/ - Scaling laws visualization resources
+  - plot_scaling_frontier.py
 
 ## Configuration Files
 - package.json (root)
 - pnpm-workspace.yaml
 - turbo.json
-- vercel.json
+- next.config.mjs - Added remark-math and rehype-katex plugins (2025-08-24)
 - CLAUDE.md - AI assistant guidelines
-- DEPLOYMENT.md
-- SHADCN_TIPS.md
-- .env.example
+- README.md - Basic project readme
+- /apps/web/.env.example - Environment variables template (added 2025-08-24)
+- /apps/web/.env.local - Local environment configuration (password protected)
+- /apps/portal/.env.example - Supabase configuration template (added 2025-08-26)
+- /apps/portal/.env - Supabase credentials (added 2025-08-26)
 
 ## Content Management Systems
 
-### Blog System (3-layer architecture)
+### Blog System (Content-driven, updated 2025-08-26)
 1. Framework: /blog/[slug]/page.tsx
 2. Content: /content/blog/*/index.mdx
-3. Metadata: /lib/blog.ts
+3. Metadata: /content/blog/*/metadata.json (self-contained)
+4. Discovery: /lib/blog.ts (auto-discovers from folders)
 
-### Projects System (3-layer architecture)
+### Projects System (Content-driven, updated 2025-08-26)
 1. Framework: /projects/[slug]/page.tsx
-2. Content: /content/projects/*/index.mdx
-3. Metadata: /lib/projects.ts
+2. Content: /content/projects/*/index.mdx (internal only)
+3. Metadata: /content/projects/*/metadata.json (self-contained)
+4. Discovery: /lib/projects.ts (auto-discovers from folders)
+
+### Publications System (JSON-driven, updated 2025-08-26)
+1. Framework: /publications/page.tsx
+2. Data: /content/publications/publications.json
+3. Loader: /lib/publications-data.ts (imports JSON)
 
 ### News System (2-layer architecture)
 1. Framework: /news/page.tsx
 2. Content: /content/news/YYYY/*.json
+
+### Portal System (Database-driven, added 2025-08-26)
+1. Authentication: Supabase Auth
+2. Access Model: Private projects with public share tokens
+3. URL Structure: /project-slug (private), /project-slug/s/token (public)
 
 ## Key Differences from Blog
 - Projects don't have tags or reading time
@@ -156,7 +292,8 @@ Static assets and data
 - Projects content wrapped in prose classes (requires not-prose for components)
 
 ## Build & Deploy
-- Platform: Vercel
+- Platform: Vercel (multiple projects: homepage, portal)
 - Build: Turborepo
 - Package Manager: pnpm
-- Framework: Next.js 15+ (App Router with async params)
+- Framework: Next.js 15.5.0 (App Router with async params)
+- Authentication: Supabase (portal only)
