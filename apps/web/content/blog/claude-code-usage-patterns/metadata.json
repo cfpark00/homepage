@@ -1,0 +1,8 @@
+{
+  "title": "Claude Code Usage Pattern Analyzer",
+  "date": "2025-01-27",
+  "excerpt": "Upload a ZIP file to count how many JSONL files it contains - runs entirely in your browser.",
+  "tags": ["tools", "file-processing", "client-side", "claude-code"],
+  "readingTime": "2 min",
+  "beta": true
+}

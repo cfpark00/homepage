@@ -1,11 +1,24 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, createContext, useContext } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card"
 import { Button } from "@workspace/ui/components/button"
 import { Input } from "@workspace/ui/components/input"
 import { Label } from "@workspace/ui/components/label"
 import { Lock } from "lucide-react"
+
+// Create context for auth state
+export const BetaAuthContext = createContext<{
+  isAuthenticated: boolean
+  removeAccess: () => void
+}>({
+  isAuthenticated: false,
+  removeAccess: () => {}
+})
+
+export function useBetaAuth() {
+  return useContext(BetaAuthContext)
+}
 
 export function BetaPasswordGuard({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -69,6 +82,11 @@ export function BetaPasswordGuard({ children }: { children: React.ReactNode }) {
     }
   }
 
+  const removeAccess = () => {
+    localStorage.removeItem("beta-auth")
+    setIsAuthenticated(false)
+  }
+
   if (isLoading) {
     return null
   }
@@ -117,5 +135,9 @@ export function BetaPasswordGuard({ children }: { children: React.ReactNode }) {
     )
   }
 
-  return <>{children}</>
+  return (
+    <BetaAuthContext.Provider value={{ isAuthenticated, removeAccess }}>
+      {children}
+    </BetaAuthContext.Provider>
+  )
 }

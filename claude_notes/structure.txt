@@ -1,5 +1,5 @@
 # Project Structure Overview
-Last Updated: 2025-08-26 (18:40)
+Last Updated: 2025-08-27 (01:39)
 
 ## Root Directory: /Users/cfpark00/mysite
 Monorepo using pnpm workspaces with Vercel deployment
@@ -26,12 +26,18 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 - api/
   - beta-auth/
     - route.ts - Server-side password authentication for beta content (added 2025-08-24)
+  - thoughts-auth/
+    - route.ts - Server-side password authentication for thoughts page (added 2025-08-27)
 - (default)/
   - blog/
     - page.tsx - Blog listing page (added beta link 2025-08-24)
     - [slug]/page.tsx - Individual blog post page (password-protected for beta posts 2025-08-24)
     - beta/
       - page.tsx - Beta/private research posts listing (password-protected 2025-08-24)
+      - beta-client.tsx - Client component for Remove Access button (added 2025-08-27)
+  - thoughts/
+    - page.tsx - Daily thoughts page with timeline view (added 2025-08-27)
+    - thoughts-client.tsx - Client component for interactive UI (added 2025-08-27)
   - cv/
     - page.tsx - CV page (hardcoded data)
   - news/
@@ -53,6 +59,7 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 - projects.ts - Projects loader (reads from content/projects/metadata.json, manual ordering 2025-08-25)
 - publications-data.ts - Publications loader (imports from content/publications/, updated 2025-08-26)
 - talks-data.ts - Talks loader (imports from content/talks/, updated 2025-08-26)
+- thoughts.ts - Thoughts loader (reads from content/thoughts JSON files, added 2025-08-27)
 
 #### /content/
 - blog/ (content-driven, updated 2025-08-26)
@@ -88,6 +95,11 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
   - welcome-to-my-blog/
     - index.mdx
     - metadata.json
+  - claude-code-usage-patterns/ (added 2025-08-27)
+    - index.mdx
+    - metadata.json
+    - zip-analyzer.tsx (main component)
+    - file-upload-example.tsx (example component)
 - projects/ (content-driven, updated 2025-08-26)
   - Each folder contains metadata.json
   - orchestra/ (external)
@@ -109,6 +121,8 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
   - metadata.json - Author configuration (selfName, authorLinks)
 - talks/ (added 2025-08-26)
   - talks.json - All talks data
+- thoughts/ (added 2025-08-27)
+  - YYYY-MM-DD.json - One file per day containing thoughts with timestamps and tags
 - news/
   - YYYY/ (2015-2025)
     - 0winter.json (Jan-Mar)
@@ -117,7 +131,7 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
     - 3fall.json (Oct-Dec)
 
 #### /components/
-- beta-password-guard.tsx - Password protection component for beta content (added 2025-08-24)
+- beta-password-guard.tsx - Password protection component for beta content (updated 2025-08-27 with context API)
 - mdx-content.tsx - Dynamic MDX loader (uses Next.js dynamic imports)
 - share-button.tsx - Copy link button with toast notifications
 - google-analytics.tsx
@@ -191,6 +205,9 @@ Shared UI component library
 - hooks/
   - use-font-size.ts - Font size state management hook (added 2025-08-26)
 - index.ts - Main exports (updated 2025-08-26)
+
+### Root Files Added (2025-08-27)
+- TODO.md - Task list for codebase improvements (UI flash issues)
 
 ### Removed Files (2025-08-24)
 - /apps/web/app/(default)/ongoing/ - Replaced with projects

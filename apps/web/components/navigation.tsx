@@ -15,6 +15,7 @@ const navigation = [
   { name: "Talks", href: "/talks" },
   { name: "Blog", href: "/blog" },
   { name: "News", href: "/news" },
+  { name: "Thoughts", href: "/thoughts" },
 ]
 
 export function Navigation() {

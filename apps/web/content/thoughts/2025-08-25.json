@@ -1,0 +1,35 @@
+{
+  "title": "Interviews, LLM Ablation, Website Work, Drinks",
+  "thoughts": [
+    {
+      "id": 1,
+      "content": "Did the coding interview. It was way easier than I thought. I'm so glad the research scientist role isn't all about leetcode. At the same time I feel like the interviewer is also just a researcher who got forced to interview me leetcode LOL\n\nDone with an interview. Finally, I'm free from leetcode!!! That was a BORING week!",
+      "time": "17:00",
+      "tags": []
+    },
+    {
+      "id": 2,
+      "content": "Zoomed with a friend. I shared my soon to be realized proposal of training a language model while totally ablating some large chunk of concepts, e.g. college math in order to finally answer the question of: \"Can LLMs autonomously learn highly OOD concepts in-context or continually in a consistent way\". She gave me some constructive criticisms of what are the tricky bits. Seems like the most worrysome is: 1) preparing a clean dataset with the concepts well ablated 2) will the conclusions really be any more clear than current debates on LLMs? 3) Is this research process actually more efficient than trying to construct more OOD evaluations? 4) Resources? I think I can defend 1,2,3 pretty well but where to get resources is definitely a problem. I really hope one company does this for science instead of competing with the 100 other companies also just training on everything.",
+      "time": "18:00",
+      "tags": []
+    },
+    {
+      "id": 3,
+      "content": "So happy that I'm done with leetcode anyways, I should have fun today",
+      "time": "19:00",
+      "tags": []
+    },
+    {
+      "id": 4,
+      "content": "Okay I'll work a bit on my website before fun. I will work on better structuring, separating the content of the website from the framework, and adding some blogposts. In fact, I should really start writing the proposal for the ablation trained LLM.",
+      "time": "19:20",
+      "tags": []
+    },
+    {
+      "id": 5,
+      "content": "Will spend the rest of night drinking with friends. :)",
+      "time": "21:00",
+      "tags": []
+    }
+  ]
+}

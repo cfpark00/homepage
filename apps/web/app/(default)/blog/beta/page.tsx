@@ -1,10 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card"
 import { Badge } from "@workspace/ui/components/badge"
-import { CalendarDays, Clock, User, FlaskConical } from "lucide-react"
+import { CalendarDays, Clock, User } from "lucide-react"
 import Link from "next/link"
 import { getBlogPosts } from "@/lib/blog"
 import { ShareButton } from "@/components/share-button"
 import { BetaPasswordGuard } from "@/components/beta-password-guard"
+import { BetaHeader } from "./beta-client"
 
 export default async function BetaBlogPage() {
   const posts = await getBlogPosts(true) // true = include beta posts
@@ -21,15 +22,7 @@ export default async function BetaBlogPage() {
     <BetaPasswordGuard>
       <div className="container py-8 md:py-12">
         <div className="mx-auto max-w-4xl">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <FlaskConical className="h-6 w-6 text-muted-foreground" />
-            <h1 className="text-4xl font-bold">Beta Research</h1>
-          </div>
-          <p className="text-muted-foreground">
-            Early access to our group's research in progress. These posts are not yet public and may contain preliminary findings.
-          </p>
-        </div>
+        <BetaHeader />
 
         {betaPosts.length === 0 ? (
           <Card>

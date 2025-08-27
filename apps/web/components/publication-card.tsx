@@ -48,7 +48,9 @@ export function PublicationCard({ publication: pub, selfName = "C.F. Park" }: Pu
     return (
       <span key={index}>
         {index > 0 && ", "}
-        {isFirst ? (
+        {isFirst && isMe ? (
+          <strong className="underline">{cleanAuthor}</strong>
+        ) : isFirst ? (
           <strong>{cleanAuthor}</strong>
         ) : isMe ? (
           <span className="underline">{cleanAuthor}</span>
