@@ -1,0 +1,29 @@
+{
+  "title": "Ongoing...",
+  "thoughts": [
+    {
+      "id": 1,
+      "content": "Grinded on making proposal figure for ablated llm",
+      "time": "00:50",
+      "tags": []
+    },
+    {
+      "id": 2,
+      "content": "Grinded for thumbnail creation for domain ablated LLM proposal. Image models are still very hard to steer even thought gemini is very good.",
+      "time": "01:08",
+      "tags": []
+    },
+    {
+      "id": 3,
+      "content": "should probably read paper now instead of website grinding, vibe coding is addicting",
+      "time": "01:12",
+      "tags": []
+    },
+    {
+      "id": 4,
+      "content": "added figure to blogpost and pushed web and portal changes",
+      "time": "01:36",
+      "tags": []
+    }
+  ]
+}

@@ -1,6 +1,17 @@
 import { BackToTOC } from './back-to-toc'
+import proposalImage from './proposal.png'
+import Image from 'next/image'
 
 **TL;DR:** We should train decent sized large language models by ablating a significant structured part of human knowledge (e.g. all of college math) in order to study how to best teach them significant amount of new concepts or evaluate if they are able to self improve far beyond their training distributions.
+
+<div className="flex justify-center my-6">
+  <figure className="w-1/2">
+    <Image src={proposalImage} alt="Comparison of current vs proposed LLM training and evaluation approaches" className="rounded-lg" />
+    <figcaption className="text-center text-sm text-muted-foreground mt-2">
+      <strong>Figure 1:</strong> Current approaches test within the training distribution (left), while our proposal creates deliberate knowledge gaps to test true reasoning (right)
+    </figcaption>
+  </figure>
+</div>
 
 <BackToTOC />
 

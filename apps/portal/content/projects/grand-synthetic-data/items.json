@@ -1,0 +1,80 @@
+{
+  "items": [
+    {
+      "id": "synthetic-reasoning-chains",
+      "name": "Synthetic Reasoning Chains",
+      "type": "dataset",
+      "tab": "datasets",
+      "shared": true,
+      "shareLink": "#",
+      "lastModified": "2 days ago",
+      "description": "Generated chain-of-thought reasoning examples for complex problem solving"
+    },
+    {
+      "id": "code-completion-pairs",
+      "name": "Code Completion Pairs",
+      "type": "dataset",
+      "tab": "datasets",
+      "shared": false,
+      "lastModified": "5 days ago",
+      "description": "Synthetic code snippets with completions across multiple programming languages"
+    },
+    {
+      "id": "multilingual-conversations",
+      "name": "Multilingual Conversations",
+      "type": "dataset",
+      "tab": "datasets",
+      "shared": true,
+      "shareLink": "#",
+      "lastModified": "1 week ago",
+      "description": "Synthetic dialogues in 50+ languages for cross-lingual understanding"
+    },
+    {
+      "id": "data-generator-v3",
+      "name": "Data Generator v3",
+      "type": "code",
+      "tab": "generation",
+      "shared": false,
+      "lastModified": "3 days ago",
+      "description": "Latest version of the synthetic data generation pipeline"
+    },
+    {
+      "id": "quality-filter",
+      "name": "Quality Filter Model",
+      "type": "model",
+      "tab": "generation",
+      "shared": false,
+      "lastModified": "1 week ago",
+      "description": "ML model for filtering high-quality synthetic examples"
+    },
+    {
+      "id": "diversity-metrics",
+      "name": "Diversity Metrics",
+      "type": "analysis",
+      "tab": "evaluation",
+      "shared": true,
+      "shareLink": "#",
+      "lastModified": "4 days ago",
+      "description": "Analysis of dataset diversity and coverage metrics"
+    },
+    {
+      "id": "human-eval-comparison",
+      "name": "Human Evaluation Comparison",
+      "type": "experiment",
+      "tab": "evaluation",
+      "shared": false,
+      "lastModified": "2 weeks ago",
+      "description": "Comparing synthetic vs human-generated data quality"
+    },
+    {
+      "id": "scaling-laws",
+      "name": "Scaling Laws Analysis",
+      "type": "document",
+      "tab": "overview",
+      "shared": true,
+      "shareLink": "#",
+      "lastModified": "1 month ago",
+      "description": "Research on optimal synthetic data scaling for model performance"
+    }
+  ]
+}

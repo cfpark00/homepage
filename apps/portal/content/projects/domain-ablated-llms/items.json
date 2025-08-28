@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "id": "proposal",
+      "name": "Project Proposal",
+      "type": "document",
+      "tab": "overview",
+      "shared": false,
+      "lastModified": "2025-08-28",
+      "description": "Training LLMs with ablated knowledge domains"
+    },
+    {
+      "id": "chemistry-ablation",
+      "name": "Chemistry Ablation",
+      "type": "experiment",
+      "tab": "experiments",
+      "shared": false,
+      "lastModified": "2025-08-27",
+      "description": "Testing knowledge reconstruction without chemistry"
+    },
+    {
+      "id": "ablation-pipeline",
+      "name": "Ablation Pipeline",
+      "type": "code",
+      "tab": "code",
+      "shared": false,
+      "lastModified": "2025-08-26",
+      "description": "Code for filtering knowledge domains"
+    }
+  ]
+}

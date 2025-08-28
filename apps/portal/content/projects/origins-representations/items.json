@@ -1,0 +1,113 @@
+{
+  "items": [
+    {
+      "id": "lit-review",
+      "name": "Literature Review",
+      "type": "document",
+      "tab": "papers",
+      "shared": false,
+      "lastModified": "2025-08-27",
+      "description": "Comprehensive review of representation learning literature"
+    },
+    {
+      "id": "baseline-analysis",
+      "name": "Baseline Representation Analysis",
+      "type": "experiment",
+      "tab": "experiments",
+      "shared": false,
+      "lastModified": "2025-08-25",
+      "description": "Initial analysis of representation patterns in standard models"
+    },
+    {
+      "id": "emergent-features",
+      "name": "Emergent Features Study",
+      "type": "experiment",
+      "tab": "experiments",
+      "shared": false,
+      "lastModified": "2025-08-26",
+      "description": "Investigation of feature emergence during training"
+    },
+    {
+      "id": "lm-activations",
+      "name": "Language Model Activations",
+      "type": "dataset",
+      "tab": "datasets",
+      "shared": false,
+      "lastModified": "2025-08-24",
+      "description": "Activation patterns from various language models"
+    },
+    {
+      "id": "vit-features",
+      "name": "Vision Transformer Features",
+      "type": "dataset",
+      "tab": "datasets",
+      "shared": true,
+      "shareLink": "/origins-representations/s/features123",
+      "lastModified": "2025-08-23",
+      "description": "Feature representations from vision transformers"
+    },
+    {
+      "id": "compositional-analysis",
+      "name": "Compositional Structures Analysis",
+      "type": "analysis",
+      "tab": "analysis",
+      "shared": false,
+      "lastModified": "2025-08-27",
+      "description": "Analysis of compositional structure in learned representations"
+    },
+    {
+      "id": "brain-inspired-paper",
+      "name": "Brain-Inspired Reweighting Paper",
+      "type": "document",
+      "tab": "papers",
+      "shared": false,
+      "lastModified": "2025-08-27",
+      "description": "Paper on brain-inspired approaches to representation learning"
+    },
+    {
+      "id": "neural-dynamics-viz",
+      "name": "Neural Dynamics Visualization",
+      "type": "code",
+      "tab": "code",
+      "shared": false,
+      "lastModified": "2025-08-25",
+      "description": "Interactive visualization of neural dynamics"
+    },
+    {
+      "id": "rep-geometry",
+      "name": "Representation Geometry",
+      "type": "analysis",
+      "tab": "analysis",
+      "shared": false,
+      "lastModified": "2025-08-24",
+      "description": "Geometric analysis of representation spaces"
+    },
+    {
+      "id": "bio-comparison",
+      "name": "Biological Comparison",
+      "type": "document",
+      "tab": "papers",
+      "shared": false,
+      "lastModified": "2025-08-22",
+      "description": "Comparison with biological neural representations"
+    },
+    {
+      "id": "emergent-abstractions",
+      "name": "Emergent Abstractions",
+      "type": "experiment",
+      "tab": "experiments",
+      "shared": false,
+      "lastModified": "2025-08-21",
+      "description": "Study of abstract concept emergence"
+    },
+    {
+      "id": "research-notes",
+      "name": "Research Notes",
+      "type": "document",
+      "tab": "overview",
+      "shared": false,
+      "lastModified": "2025-08-27",
+      "description": "Ongoing research notes and observations"
+    }
+  ]
+}

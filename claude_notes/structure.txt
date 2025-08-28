@@ -1,5 +1,5 @@
 # Project Structure Overview
-Last Updated: 2025-08-27 (01:39)
+Last Updated: 2025-08-28 (01:36)
 
 ## Root Directory: /Users/cfpark00/mysite
 Monorepo using pnpm workspaces with Vercel deployment
@@ -10,16 +10,18 @@ Monorepo using pnpm workspaces with Vercel deployment
 Main Next.js application (port 3020 in dev)
 
 ### /apps/portal/
-Research portal application with authentication (port 3021 in dev, added 2025-08-26)
+Research portal application with authentication (port 3021 in dev, added 2025-08-26, redesigned 2025-08-27, sidebar collapse added 2025-08-28)
 - Uses Supabase for authentication and data storage
-- Google OAuth integration for login
+- Google OAuth integration for login with profile picture support
 - Separate from main web app but shares Supabase instance (free tier limitation)
-- Split-screen login page with floating public research links (redesigned 2025-08-26)
+- Dashboard-style layout with left sidebar navigation (redesigned 2025-08-27)
+- Projects as main navigation items in sidebar
 - Public share links at /[project_slug]/s/[token] for sharing research without auth
 - /explore page for browsing public research projects
+- Collapsible sidebar for desktop mode (added 2025-08-28)
 
 #### /app/
-- layout.tsx - Root layout (added 2025-08-24)
+- layout.tsx - Root layout with ThemeProvider (updated 2025-08-27)
 - not-found.tsx - 404 page (added 2025-08-24)
 - sitemap.ts - Automatic sitemap.xml generation (added 2025-08-24)
 - robots.ts - Robots.txt generation for SEO (added 2025-08-24)
@@ -64,10 +66,12 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 #### /content/
 - blog/ (content-driven, updated 2025-08-26)
   - Each folder contains metadata.json and index.mdx
-  - ablated-knowledge-ood-training/ (beta post, added 2025-08-26)
-    - index.mdx
+  - ablated-knowledge-ood-training/ (beta post, added 2025-08-26, updated 2025-08-28)
+    - index.mdx (added proposal image with caption)
     - metadata.json
     - back-to-toc.tsx (smooth scroll navigation component)
+    - proposal.png (visual diagram comparing training approaches)
+    - thumbnail.png
   - liquid-crystal-society/ (beta post)
     - index.mdx
     - metadata.json
@@ -121,8 +125,12 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
   - metadata.json - Author configuration (selfName, authorLinks)
 - talks/ (added 2025-08-26)
   - talks.json - All talks data
-- thoughts/ (added 2025-08-27)
+- thoughts/ (added 2025-08-27, updated 2025-08-28)
   - YYYY-MM-DD.json - One file per day containing thoughts with timestamps and tags
+  - 2025-08-25.json - Interviews, LLM Ablation, Website Work
+  - 2025-08-26.json - Synthetic Gradient Paper, Portal Development
+  - 2025-08-27.json - Brain Evolution, Continual Learning, Research Tracking
+  - 2025-08-28.json - Ongoing thoughts (ablated LLM proposal work)
 - news/
   - YYYY/ (2015-2025)
     - 0winter.json (Jan-Mar)
@@ -150,9 +158,9 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 Research portal application with authentication (added 2025-08-26, port 3021 in dev)
 
 #### /app/
-- layout.tsx - Root layout
+- layout.tsx - Root layout with ThemeProvider (added 2025-08-27)
 - globals.css - Tailwind styles with shadcn/ui CSS variables
-- page.tsx - Homepage (redirects to login when unauthenticated, shows user email and logout 2025-08-26)
+- page.tsx - Dashboard page with stats and activity (redesigned 2025-08-27)
 - test/
   - page.tsx - Test page with demo share links
 - auth/
@@ -163,13 +171,24 @@ Research portal application with authentication (added 2025-08-26, port 3021 in 
   - callback/
     - route.ts - OAuth callback handler (added 2025-08-26)
 - [project_slug]/
-  - page.tsx - Private project page (requires authentication)
+  - page.tsx - Project page with tabs for Origins of Representations (updated 2025-08-27)
   - s/
     - [token]/
       - page.tsx - Public share page (accessible via token)
+- explore/
+  - page.tsx - Public projects exploration page
 
 #### /components/
-- logout-button.tsx - Logout button component (added 2025-08-26)
+- logout-button.tsx - Logout button component with className support (updated 2025-08-27)
+- sidebar.tsx - Original complex sidebar (deprecated)
+- sidebar-simple.tsx - Simplified sidebar with projects, collapsible on desktop, improved active state styling (updated 2025-08-28)
+- sidebar-context.tsx - Context for sidebar state management (added 2025-08-28)
+- portal-layout.tsx - Original layout wrapper (deprecated)
+- portal-layout-simple.tsx - Simplified layout with sidebar (updated 2025-08-28)
+- page-header.tsx - Page header with hamburger button integration (added 2025-08-27)
+- project-tabs.tsx - Tabbed interface for research projects, fixed lucide-react icon imports (updated 2025-08-28)
+- floating-chat.tsx - Floating AI chat button for project pages (added 2025-08-27)
+- theme-provider.tsx - Theme provider wrapper for dark/light modes (added 2025-08-27)
 
 #### /lib/
 - supabase/
@@ -180,6 +199,7 @@ Research portal application with authentication (added 2025-08-26, port 3021 in 
   - database.ts - TypeScript database schema
 - utils/
   - url.ts - Dynamic URL helper for OAuth redirects (added 2025-08-26)
+- projects.ts - Project data loader from content/projects (added 2025-08-28)
 
 #### Configuration
 - middleware.ts - Auth middleware for protected routes
@@ -232,11 +252,10 @@ AI assistant documentation and logs
 - logs/
   - YYYY-MM-DD/
     - HH-MM_topic.md
-  - 2025-08-26/
-    - 15-07_blog_analysis_and_comment_system_planning.md
-    - 18-08_blog_font_size_selector.md (font size selector implementation)
-    - 20-38_portal_app_setup_and_auth_system.md
-    - 20-39_content_system_refactoring.md
+  - 2025-08-28/
+    - 01-06_portal_sidebar_collapse_functionality.md
+    - 01-13_portal_projects_template_system.md
+    - 01-36_portal_fixes_and_blog_image_integration.md (this session)
 - structure.txt (this file)
 
 ### /scratch/
@@ -307,10 +326,39 @@ Static assets and data (LaTeX CV files and resources)
 1. Framework: /news/page.tsx
 2. Content: /content/news/YYYY/*.json
 
-### Portal System (Database-driven, added 2025-08-26)
-1. Authentication: Supabase Auth
-2. Access Model: Private projects with public share tokens
-3. URL Structure: /project-slug (private), /project-slug/s/token (public)
+### Portal System (File-based + Database, added 2025-08-26, redesigned 2025-08-27, template system 2025-08-28)
+1. Authentication: Supabase Auth with Google OAuth
+2. Content: File-based at /apps/portal/content/projects/[project-name]/
+   - metadata.json: Project info, tabs, colors, icons, status
+   - items.json: Project items with types and tab assignments
+   - Current projects:
+     - origins-representations/ (added 2025-08-27)
+     - domain-ablated-llms/ (added 2025-08-28)
+     - grand-synthetic-data/ (added 2025-08-28)
+3. Access Model: Private projects with public share tokens
+4. URL Structure: /project-slug (private), /project-slug/s/token (public)
+5. Layout: Sidebar navigation with dashboard and project pages
+6. Features: 
+   - Theme toggle
+   - Floating AI chat
+   - Dynamic project tabs with item grouping
+   - Collapsible sidebar for desktop
+   - Project logos support (PNG in /public/project-logos/)
+   - Auto-populated from content directories
+
+## Key Features Added (2025-08-28)
+- Collapsible sidebar for desktop mode in portal
+- Sidebar state management via React Context
+- Hamburger menu integration in PageHeader for both mobile and desktop
+- Proper CSS transform handling for responsive sidebar behavior
+
+## Key Features Added (2025-08-27)
+- Portal dashboard redesign with sidebar navigation
+- Origins of Representations project with literature tracking
+- Google profile picture integration with caching
+- Dark/light theme toggle
+- Floating AI chat button
+- Project tabs system (Overview, Literature, Experiments, Datasets, Notes)
 
 ## Key Differences from Blog
 - Projects don't have tags or reading time
