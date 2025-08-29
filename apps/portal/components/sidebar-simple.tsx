@@ -15,7 +15,7 @@ import {
   ArrowLeftToLine,
   ArrowRightFromLine
 } from 'lucide-react'
-import { useState, useEffect, useRef, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { createClient } from '@/lib/supabase/client'
@@ -76,36 +76,10 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [logoErrors, setLogoErrors] = useState<Record<string, boolean>>({})
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const scrollPositionRef = useRef<number>(0)
 
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  // Save scroll position before navigation
-  useEffect(() => {
-    const container = scrollContainerRef.current
-    if (!container) return
-
-    const handleScroll = () => {
-      scrollPositionRef.current = container.scrollTop
-    }
-
-    container.addEventListener('scroll', handleScroll)
-    return () => container.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  // Restore scroll position after navigation
-  useEffect(() => {
-    const container = scrollContainerRef.current
-    if (container && scrollPositionRef.current > 0) {
-      // Use requestAnimationFrame to ensure DOM has updated
-      requestAnimationFrame(() => {
-        container.scrollTop = scrollPositionRef.current
-      })
-    }
-  }, [pathname])
 
   useEffect(() => {
     // Check for Google avatar from user metadata
@@ -214,7 +188,7 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
         </div>
 
         {/* Navigation */}
-        <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-3">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Focus Section - only show if there are focus projects */}
           {projects.some(p => p.focus) && (
             <>
@@ -243,8 +217,7 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
                     >
                       <div className={cn(
                         "relative rounded-md shrink-0 overflow-hidden h-8 w-8 flex items-center justify-center",
-                        colorScheme.bgColor,
-                        "transition-none"
+                        colorScheme.bgColor
                       )}>
                         {project.logo && !hasLogoError ? (
                           <Image
@@ -258,8 +231,7 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
                         ) : (
                           <Icon className={cn(
                             "h-4 w-4 shrink-0",
-                            colorScheme.color,
-                            "transition-none"
+                            colorScheme.color
                           )} />
                         )}
                       </div>
@@ -297,8 +269,7 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
                 >
                   <div className={cn(
                     "relative rounded-md shrink-0 overflow-hidden h-8 w-8 flex items-center justify-center",
-                    colorScheme.bgColor,
-                    "transition-none"
+                    colorScheme.bgColor
                   )}>
                     {project.logo && !hasLogoError ? (
                       <Image
@@ -312,8 +283,7 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
                     ) : (
                       <Icon className={cn(
                         "h-4 w-4 shrink-0",
-                        colorScheme.color,
-                        "transition-none"
+                        colorScheme.color
                       )} />
                     )}
                   </div>

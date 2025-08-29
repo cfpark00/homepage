@@ -1,10 +1,8 @@
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
-import { PortalLayoutSimple } from '@/components/portal-layout-simple'
 import { PageHeader } from '@/components/page-header'
 import { ProjectTabs } from '@/components/project-tabs'
 import { FloatingChat } from '@/components/floating-chat'
-import { getProjectBySlug, getAllProjects } from '@/lib/projects'
+import { getProjectBySlug } from '@/lib/projects'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card'
 import { Button } from '@workspace/ui/components/button'
 import { Badge } from '@workspace/ui/components/badge'
@@ -17,19 +15,7 @@ export default async function ProjectPage({
   params: Promise<{ project_slug: string }>
 }) {
   const { project_slug } = await params
-  const supabase = await createClient()
   
-  // Check if user is authenticated
-  const { data: { user } } = await supabase.auth.getUser()
-  
-  // ALL projects require authentication
-  if (!user) {
-    redirect('/auth/login')
-  }
-  
-  // Load all projects for sidebar
-  const allProjects = await getAllProjects()
-
   // Load project data from files
   const project = await getProjectBySlug(project_slug)
 
@@ -48,11 +34,10 @@ export default async function ProjectPage({
   }
 
   return (
-    <PortalLayoutSimple userEmail={user.email} userMetadata={user.user_metadata} projects={allProjects}>
-      <div className="h-full flex flex-col overflow-hidden">
-        <div className="p-7 pb-0 max-w-7xl mx-auto w-full">
-          <PageHeader 
-            title={project.name}
+    <div className="h-full flex flex-col overflow-hidden">
+      <div className="p-7 pb-0 max-w-7xl mx-auto w-full">
+        <PageHeader 
+          title={project.name}
           actions={
             <>
               <Button variant="outline" size="sm">
@@ -132,9 +117,8 @@ export default async function ProjectPage({
               </CardContent>
             </Card>
           )}
-        </div>
       </div>
       <FloatingChat />
-    </PortalLayoutSimple>
+    </div>
   )
 }
