@@ -1,0 +1,2 @@
+remove all unused ui components.
+review structure.txt fully.

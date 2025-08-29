@@ -1,0 +1,47 @@
+{
+  "slug": "example-research",
+  "name": "Example Research Project",
+  "description": "A comprehensive research project demonstrating all available tabs and features",
+  "status": "active",
+  "created": "2025-08-24",
+  "last_updated_at": "2025-08-24",
+  "icon": "FlaskConical",
+  "color": "indigo",
+  "tabs": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "icon": "Home"
+    },
+    {
+      "id": "thoughts",
+      "label": "Thoughts",
+      "icon": "Brain"
+    },
+    {
+      "id": "literature",
+      "label": "Literature",
+      "icon": "FileText"
+    },
+    {
+      "id": "experiments",
+      "label": "Experiments",
+      "icon": "Flask"
+    },
+    {
+      "id": "findings",
+      "label": "Findings",
+      "icon": "Lightbulb"
+    },
+    {
+      "id": "storyline",
+      "label": "Storyline",
+      "icon": "BookOpen"
+    },
+    {
+      "id": "assets",
+      "label": "Assets",
+      "icon": "Folder"
+    }
+  ]
+}

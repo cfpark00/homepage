@@ -26,7 +26,7 @@ function PortalLayoutInner({ children, userEmail, userMetadata, projects }: Port
         userMetadata={userMetadata} 
         projects={projects}
       />
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-hidden">
         {children}
       </main>
     </div>

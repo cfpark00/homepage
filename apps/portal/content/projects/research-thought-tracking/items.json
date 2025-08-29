@@ -1,0 +1,77 @@
+{
+  "items": [
+    {
+      "id": "paper-1",
+      "name": "Attention Is All You Need",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-25",
+      "description": "The foundational transformer architecture paper",
+      "publicationDate": "June 2017",
+    "authors": [
+      "Vaswani et al."
+    ],
+    "abstract": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
+    "relevanceToProject": "Core architecture for understanding modern LLMs",
+    "readingStatus": "to-read",
+    "link": "https://arxiv.org/abs/1706.03762"
+  },
+  {
+    "id": "paper-2",
+    "name": "Language Models are Few-Shot Learners",
+    "type": "paper",
+    "tab": "literature",
+    "shared": false,
+    "lastModified": "2025-08-25",
+    "description": "GPT-3 paper demonstrating emergent few-shot capabilities",
+    "publicationDate": "May 2020",
+    "authors": [
+      "Brown et al."
+    ],
+    "abstract": "Recent work has demonstrated substantial gains on many NLP tasks and benchmarks by pre-training on a large corpus of text followed by fine-tuning on a specific task. While typically task-agnostic in architecture, this method still requires task-specific fine-tuning datasets of thousands or tens of thousands of examples. By contrast, humans can generally perform a new language task from only a few examples or from simple instructions - something which current NLP systems still largely struggle to do. Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches. Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model, and test its performance in the few-shot setting. For all tasks, GPT-3 is applied without any gradient updates or fine-tuning, with tasks and few-shot demonstrations specified purely via text interaction with the model. GPT-3 achieves strong performance on many NLP datasets, including translation, question-answering, and cloze tasks, as well as several tasks that require on-the-fly reasoning or domain adaptation, such as unscrambling words, using a novel word in a sentence, or performing 3-digit arithmetic. At the same time, we also identify some datasets where GPT-3's few-shot learning still struggles, as well as some datasets where GPT-3 faces methodological issues related to training on large web corpora. Finally, we find that GPT-3 can generate samples of news articles which human evaluators have difficulty distinguishing from articles written by humans. We discuss broader societal impacts of this finding and of GPT-3 in general.",
+    "relevanceToProject": "Key insights into emergent capabilities and scaling laws",
+    "readingStatus": "to-read",
+    "link": "https://arxiv.org/abs/2005.14165"
+  },
+  {
+    "id": "paper-3",
+    "name": "Constitutional AI: Harmlessness from AI Feedback",
+    "type": "paper",
+    "tab": "literature",
+    "shared": false,
+    "lastModified": "2025-08-25",
+    "description": "Training AI systems to be helpful, harmless, and honest",
+    "publicationDate": "December 2022",
+    "authors": [
+      "Bai et al."
+    ],
+    "abstract": "As AI systems become more capable, we would like to enlist their help to supervise other AIs. We experiment with methods for training a harmless AI assistant through self-improvement, without any human labels identifying harmful outputs. The only human oversight is provided through a list of rules or principles, and so we refer to the method as 'Constitutional AI'. The process involves both a supervised learning and a reinforcement learning phase. In the supervised phase we sample from an initial model, then generate self-critiques and revisions, and then finetune the original model on revised responses. In the RL phase, we sample from the finetuned model, use a model to evaluate which of the two samples is better, and then train a preference model from this dataset of AI preferences. We then train with RL using the preference model as the reward signal, i.e. we use 'RL from AI Feedback' (RLAIF). As a result we are able to train a harmless but non-evasive AI assistant that engages with harmful queries by explaining its objections to them. Both the SL and RL methods can leverage chain-of-thought style reasoning to improve the human-judged performance and transparency of AI decision making. These methods make it possible to control AI behavior more precisely and with far fewer human labels.",
+    "relevanceToProject": "Understanding alignment techniques and safety research",
+    "readingStatus": "to-read",
+    "link": "https://arxiv.org/abs/2212.08073"
+  },
+  {
+    "id": "scaling-think-aloud-2025",
+    "name": "Scaling up the think-aloud method",
+    "type": "paper",
+    "tab": "literature",
+    "shared": false,
+    "lastModified": "2025-08-29",
+    "description": "Automates transcription and annotation of think-aloud data using NLP to enable large-scale analysis of human reasoning processes",
+    "publicationDate": "May 2025",
+    "authors": [
+      "Daniel Wurgaft",
+      "Ben Prystawski",
+      "Kanishk Gandhi",
+      "Cedegao E. Zhang",
+      "Joshua B. Tenenbaum",
+      "Noah D. Goodman"
+    ],
+    "abstract": "The think-aloud method, where participants voice their thoughts as they solve a task, is a valuable source of rich data about human reasoning processes. Yet, it has declined in popularity in contemporary cognitive science, largely because labor-intensive transcription and annotation preclude large sample sizes. Here, we develop methods to automate the transcription and annotation of verbal reports of reasoning using natural language processing tools, allowing for large-scale analysis of think-aloud data. In our study, 640 participants thought aloud while playing the Game of 24, a mathematical reasoning task. We automatically transcribed the recordings and coded the transcripts as search graphs, finding moderate inter-rater reliability with humans. We analyze these graphs and characterize consistency and variation in human reasoning traces. Our work demonstrates the value of think-aloud data at scale and serves as a proof of concept for the automated analysis of verbal reports.",
+    "readingStatus": "to-read",
+    "priority": 10,
+    "link": "https://arxiv.org/abs/2505.23931"
+  }
+  ]
+}

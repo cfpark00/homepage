@@ -80,7 +80,7 @@ Every current evaluation method fails to definitively refute this hypothesis:
 
 ### 2. Synthetic Benchmarks
 **The Approach:** Generate novel problems programmatically.
-**The Pitfall:** Synthetic problems often follow detectable patterns. Models learn the generation distribution rather than general reasoning.
+**The Pitfall:** Synthetic problems often follow detectable patterns. Models learn the generation distribution rather than general reasoning. Even carefully crafted benchmarks like GSM8K (<a href="https://arxiv.org/abs/2110.14168" target="_blank" rel="noopener noreferrer" className="underline">Cobbe et al., 2021</a>) — designed to test grade school math reasoning — may be compromised by models memorizing problem patterns rather than developing true mathematical understanding.
 
 ### 3. Temporal Cutoffs
 **The Approach:** Test on events after training data cutoff.
@@ -123,6 +123,7 @@ The core problem undermining all current evaluation approaches is data contamina
 - **Systematic exposure:** GPT-3.5 and GPT-4 have been exposed to ~4.7M samples from 263 benchmarks (<a href="https://aclanthology.org/2024.eacl-long.5/" target="_blank" rel="noopener noreferrer" className="underline">Balloccu et al., 2024</a>)
 - **Performance inflation:** Models perform significantly better on datasets released before their training cutoff than after, suggesting memorization rather than generalization (<a href="https://arxiv.org/abs/2312.16337" target="_blank" rel="noopener noreferrer" className="underline">Oren et al., 2023</a>)
 - **Test set memorization:** GPT-4 can guess exact missing options in MMLU questions with 57% accuracy, indicating direct exposure to test data (<a href="https://arxiv.org/abs/2311.09783" target="_blank" rel="noopener noreferrer" className="underline">Li et al., 2023</a>)
+- **GSM8K contamination:** When minor variations are introduced to GSM8K problems, model performance drops by up to 65%, suggesting memorization rather than reasoning (<a href="https://arxiv.org/abs/2410.05229" target="_blank" rel="noopener noreferrer" className="underline">Mirzadeh et al., 2024</a>)
 - **Scientific validity crisis:** Contamination leads to overestimated performance metrics, risking incorrect scientific conclusions (<a href="https://aclanthology.org/2023.findings-emnlp.722/" target="_blank" rel="noopener noreferrer" className="underline">Sainz et al., 2023</a>)
 
 Even with careful deduplication, semantic contamination persists through:
@@ -325,6 +326,11 @@ The path forward requires significant computational resources and careful experi
 ## References and Further Reading
 
 *Note: This is a theoretical proposal. References would be added as empirical work validates or refutes these ideas.*
+
+### Key Papers
+
+- Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., Jun, H., Kaiser, L., ... & Schulman, J. (2021). Training verifiers to solve math word problems. *arXiv preprint arXiv:2110.14168*.
+- Mirzadeh, I., Alizadeh, K., Shahrokhi, H., Tuzel, O., & Bengio, S. (2024). GSM-Symbolic: Understanding the limitations of mathematical reasoning in large language models. *arXiv preprint arXiv:2410.05229*.
 
 Key areas for literature review:
 - Contamination in LLM evaluation

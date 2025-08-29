@@ -1,113 +1,133 @@
 {
   "items": [
     {
-      "id": "lit-review",
-      "name": "Literature Review",
-      "type": "document",
-      "tab": "papers",
-      "shared": false,
-      "lastModified": "2025-08-27",
-      "description": "Comprehensive review of representation learning literature"
-    },
-    {
-      "id": "baseline-analysis",
-      "name": "Baseline Representation Analysis",
-      "type": "experiment",
-      "tab": "experiments",
-      "shared": false,
-      "lastModified": "2025-08-25",
-      "description": "Initial analysis of representation patterns in standard models"
-    },
-    {
-      "id": "emergent-features",
-      "name": "Emergent Features Study",
-      "type": "experiment",
-      "tab": "experiments",
-      "shared": false,
-      "lastModified": "2025-08-26",
-      "description": "Investigation of feature emergence during training"
-    },
-    {
-      "id": "lm-activations",
-      "name": "Language Model Activations",
-      "type": "dataset",
-      "tab": "datasets",
-      "shared": false,
-      "lastModified": "2025-08-24",
-      "description": "Activation patterns from various language models"
-    },
-    {
-      "id": "vit-features",
-      "name": "Vision Transformer Features",
-      "type": "dataset",
-      "tab": "datasets",
-      "shared": true,
-      "shareLink": "/origins-representations/s/features123",
-      "lastModified": "2025-08-23",
-      "description": "Feature representations from vision transformers"
-    },
-    {
-      "id": "compositional-analysis",
-      "name": "Compositional Structures Analysis",
-      "type": "analysis",
-      "tab": "analysis",
-      "shared": false,
-      "lastModified": "2025-08-27",
-      "description": "Analysis of compositional structure in learned representations"
-    },
-    {
-      "id": "brain-inspired-paper",
-      "name": "Brain-Inspired Reweighting Paper",
-      "type": "document",
-      "tab": "papers",
-      "shared": false,
-      "lastModified": "2025-08-27",
-      "description": "Paper on brain-inspired approaches to representation learning"
-    },
-    {
-      "id": "neural-dynamics-viz",
-      "name": "Neural Dynamics Visualization",
-      "type": "code",
-      "tab": "code",
-      "shared": false,
-      "lastModified": "2025-08-25",
-      "description": "Interactive visualization of neural dynamics"
-    },
-    {
-      "id": "rep-geometry",
-      "name": "Representation Geometry",
-      "type": "analysis",
-      "tab": "analysis",
-      "shared": false,
-      "lastModified": "2025-08-24",
-      "description": "Geometric analysis of representation spaces"
-    },
-    {
-      "id": "bio-comparison",
-      "name": "Biological Comparison",
-      "type": "document",
-      "tab": "papers",
-      "shared": false,
-      "lastModified": "2025-08-22",
-      "description": "Comparison with biological neural representations"
-    },
-    {
-      "id": "emergent-abstractions",
-      "name": "Emergent Abstractions",
-      "type": "experiment",
-      "tab": "experiments",
-      "shared": false,
-      "lastModified": "2025-08-21",
-      "description": "Study of abstract concept emergence"
-    },
-    {
-      "id": "research-notes",
-      "name": "Research Notes",
-      "type": "document",
+      "id": "representational-unification-milestone",
+      "name": "Representational Unification",
+      "type": "milestone",
       "tab": "overview",
       "shared": false,
-      "lastModified": "2025-08-27",
-      "description": "Ongoing research notes and observations"
+      "lastModified": "2025-08-29",
+      "description": "A major theoretical milestone exploring how disparate representations across different modalities and tasks might converge into unified internal models",
+      "status": "conceptual",
+      "details": "This milestone represents the theoretical endpoint where different learned representations - whether from vision, language, or other modalities - might converge into a shared representational space. Key questions include: How do representations from different domains align? What conditions promote unification vs fragmentation? Can we design training objectives that encourage unified representations while maintaining task-specific performance?",
+      "relevanceToProject": "Representational unification is a core concept in understanding the origins of representations. It addresses whether neural networks naturally develop unified internal models or maintain separate, task-specific representations. This connects directly to questions about transfer learning, generalization, and the emergence of general intelligence.",
+      "relatedWork": [
+        "fer-hypothesis-kumar-2025",
+        "model-merging-overview-2025"
+      ]
+    },
+    {
+      "id": "fer-hypothesis-kumar-2025",
+      "name": "Questioning Representational Optimism in Deep Learning: The Fractured Entangled Representation Hypothesis",
+      "type": "paper",
+      "tab": "literature",
+      "subtab": "core",
+      "shared": false,
+      "lastModified": "2025-08-28",
+      "description": "Challenges the assumption that neural networks learn unified representations by introducing the FER hypothesis",
+      "publicationDate": "May 2025",
+      "authors": [
+        "Akarsh Kumar",
+        "Jeff Clune",
+        "Joel Lehman",
+        "Kenneth O. Stanley"
+      ],
+      "abstract": "Much of the excitement in modern AI is driven by the observation that scaling up existing systems leads to better performance. But does better performance necessarily imply better internal representations? While the representational optimist assumes it must, this position paper challenges that view. We compare neural networks evolved through an open-ended search process to networks trained via conventional stochastic gradient descent (SGD) on the simple task of generating a single image. This minimal setup offers a unique advantage: each hidden neuron's full functional behavior can be easily visualized as an image, thus revealing how the network's output behavior is internally constructed neuron by neuron. The result is striking: while both networks produce the same output behavior, their internal representations differ dramatically. The SGD-trained networks exhibit a form of disorganization that we term fractured entangled representation (FER). Interestingly, the evolved networks largely lack FER, even approaching a unified factored representation (UFR). In large models, FER may be degrading core model capacities like generalization, creativity, and (continual) learning. Therefore, understanding and mitigating FER could be critical to the future of representation learning.",
+      "relevanceToProject": "This paper is core to understanding when representations unify vs remain separate. The single-example training discussion (Section 6.3) particularly addresses my question about data efficiency and representation emergence. The paper provides concrete terminology for discussing fractured vs unified representations, which is crucial for my project on representation origins.",
+      "myTake": "Really good paper that puts concrete wording to intuitions I've had. They make the critical point that representations form via compression through lots of data, not single examples. I'm suspicious about the single-image training claim but Section 6.3 clarifies this well. The paper explains many transfer learning failures and challenges the assumption that scale automatically creates better representations. Most importantly, it reinforces my motivation to understand when representations unify and why modern LLMs are still not data efficient. The quote 'The place where reasoning is most lacking may not actually be at inference time, but rather during learning itself' is particularly insightful.",
+      "aiTake": "This paper challenges a fundamental assumption in deep learning - that better performance implies better representations. The FER hypothesis elegantly explains several puzzling phenomena: why transfer learning sometimes fails catastrophically, why models struggle with seemingly simple generalizations, and why scaling doesn't always lead to better understanding. The comparison between SGD and evolutionary algorithms revealing different internal structures despite similar outputs is particularly striking. This work suggests we may need to fundamentally rethink how we evaluate and develop neural networks, shifting focus from performance metrics to representation quality. The implications extend beyond academic interest - if representations are indeed fractured and entangled, current scaling approaches may hit fundamental limits that can't be overcome with more compute alone.",
+      "readingStatus": "read",
+      "link": "https://arxiv.org/abs/2505.11581"
+    },
+    {
+      "id": "next-token-to-mathematics-2024",
+      "name": "From Next-Token to Mathematics: The Learning Dynamics of Mathematical Reasoning in Language Models",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Shows that mathematical skills emerge in LLMs following human curriculum order despite random training data presentation",
+      "publicationDate": "July 2024",
+      "authors": [
+        "Shubhra Mishra",
+        "Gabriel Poesia",
+        "Noah D. Goodman"
+      ],
+      "abstract": "Large Language Models (LLMs) solely trained on next-token prediction learn to solve a wide range of problems involving mathematical reasoning. But how does this ability evolve during training? We show the first analysis of how mathematical reasoning abilities of several open-weight LLMs develop during pre-training and post-training. To this end, we construct MathCAMPS, a synthetic dataset of novel mathematical reasoning problems grounded in 44 fine-grained skills taken from the Common Core curriculum from K to 8th grades. In one experiment, we show that mathematical skills are learned during pre-training in an order that measurably correlates with the human-designed curriculum, even though training data are randomly ordered. We also show a detailed analysis of which mathematical abilities benefit from instruction tuning, a widely used post-training method and, in contrast, which skills suffer. Our work paves the way for an empirical understanding of LLM training dynamics in relation to reasoning.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2407.00900"
+    },
+    {
+      "id": "model-merging-overview-2025",
+      "name": "Model Merging \u2014 a biased overview",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Comprehensive overview of model merging techniques, from neuron matching to task arithmetic, exploring how representations align across different models",
+      "publicationDate": "August 2025",
+      "authors": [
+        "Donato Crisostomi"
+      ],
+      "abstract": "With this explosion of models, a natural question comes up: should we keep making new ones, or spend more effort reusing what we already have? This blog post provides a comprehensive overview of model merging techniques across different domains. It covers merging models trained from scratch on the same task (exploring mode connectivity, neuron permutation symmetries, and cycle-consistent merging) and merging models finetuned from the same base model on different tasks (discussing task arithmetic, task vectors, structure-aware merging, and evolutionary approaches). The post examines how neural networks can be functionally equivalent despite different weight configurations and how task-specific updates in weight space can be leveraged for model combination.",
+      "readingStatus": "to-read",
+      "link": "https://crisostomi.github.io/blog/2025/model_merging"
+    },
+    {
+      "id": "invariant-mass-representations-2019",
+      "name": "Invariant representations of mass in the human brain",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "fMRI study revealing abstract physical variable representations in the brain that generalize across scenarios, supporting mental physics engine theory",
+      "publicationDate": "December 2019",
+      "authors": [
+        "Sarah Schwettmann",
+        "Joshua B Tenenbaum",
+        "Nancy Kanwisher"
+      ],
+      "abstract": "An intuitive understanding of physical objects and events is critical for successfully interacting with the world. Does the brain achieve this understanding by running simulations in a mental physics engine, which represents variables such as force and mass, or by analyzing patterns of motion without encoding underlying physical quantities? To investigate, we scanned participants with fMRI while they viewed videos of objects interacting in scenarios indicating their mass. Decoding analyses in brain regions previously implicated in intuitive physical inference revealed mass representations that generalized across variations in scenario, material, friction, and motion energy. These invariant representations were found during tasks without action planning, and tasks focusing on an orthogonal dimension (object color). Our results support an account of physical reasoning where abstract physical variables serve as inputs to a forward model of dynamics, akin to a physics engine, in parietal and frontal cortex.",
+      "readingStatus": "to-read",
+      "priority": 9,
+      "link": "https://elifesciences.org/articles/46619"
+    },
+    {
+      "id": "projecting-assumptions-sae-2025",
+      "name": "Projecting Assumptions: The Duality Between Sparse Autoencoders and Concept Geometry",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Different sparse autoencoder architectures reveal different neural network concepts due to inherent structural assumptions",
+      "publicationDate": "March 2025",
+      "authors": [
+        "Sai Sumedh R. Hindupur",
+        "Ekdeep Singh Lubana",
+        "Thomas Fel",
+        "Demba Ba"
+      ],
+      "abstract": "Sparse Autoencoders (SAEs) are widely used to interpret neural networks by identifying meaningful concepts from their representations. However, do SAEs truly uncover all concepts a model relies on, or are they inherently biased toward certain kinds of concepts? We introduce a unified framework that recasts SAEs as solutions to a bilevel optimization problem, revealing a fundamental challenge: each SAE imposes structural assumptions about how concepts are encoded in model representations, which in turn shapes what it can and cannot detect. This means different SAEs are not interchangeable -- switching architectures can expose entirely new concepts or obscure existing ones. To systematically probe this effect, we evaluate SAEs across a spectrum of settings: from controlled toy models that isolate key variables, to semi-synthetic experiments on real model activations and finally to large-scale, naturalistic datasets. Across this progression, we examine two fundamental properties that real-world concepts often exhibit: heterogeneity in intrinsic dimensionality (some concepts are inherently low-dimensional, others are not) and nonlinear separability. We show that SAEs fail to recover concepts when these properties are ignored, and we design a new SAE that explicitly incorporates both, enabling the discovery of previously hidden concepts and reinforcing our theoretical insights. Our findings challenge the idea of a universal SAE and underscores the need for architecture-specific choices in model interpretability. Overall, we argue an SAE does not just reveal concepts -- it determines what can be seen at all.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2503.01822"
+    },
+    {
+      "id": "neat-evolving-neural-networks-2002",
+      "name": "Evolving Neural Networks through Augmenting Topologies",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "NEAT is a novel neuroevolution method that improves neural network design by dynamically evolving network topology alongside weights",
+      "publicationDate": "June 2002",
+      "authors": [
+        "Kenneth O. Stanley",
+        "Risto Miikkulainen"
+      ],
+      "abstract": "An important question in neuroevolution is how to gain an advantage from evolving neural network topologies along with weights. We present a method, NeuroEvolution of Augmenting Topologies (NEAT), which outperforms the best fixed-topology method on a challenging benchmark reinforcement learning task. We claim that the increased efficiency is due to (1) employing a principled method of crossover of different topologies, (2) protecting structural innovation using speciation, and (3) incrementally growing from minimal structure. We test this claim through a series of ablation studies that demonstrate that each component is necessary to the system as a whole and to each other. What results is signicantly faster learning. NEAT is also an important contribution to GAs because it shows how it is possible for evolution to both optimize and complexify solutions simultaneously, offering the possibility of evolving increasingly complex solutions over generations, and strengthening the analogy with biological evolution.",
+      "readingStatus": "to-read",
+      "priority": 12,
+      "link": "https://ieeexplore.ieee.org/document/6790655"
     }
   ]
 }

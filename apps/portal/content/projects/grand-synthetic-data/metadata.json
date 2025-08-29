@@ -3,8 +3,8 @@
   "name": "Grand Synthetic Data",
   "description": "Large-scale synthetic data generation for training and evaluation of AI models",
   "status": "active",
-  "created": "2025-08-28",
-  "last_updated_at": "2025-08-28",
+  "created": "2025-08-27",
+  "last_updated_at": "2025-08-27",
   "icon": "Database",
   "color": "purple",
   "tabs": [
@@ -14,19 +14,14 @@
       "icon": "Home"
     },
     {
-      "id": "datasets",
-      "label": "Datasets",
-      "icon": "Database"
+      "id": "thoughts",
+      "label": "Thoughts",
+      "icon": "Brain"
     },
     {
-      "id": "generation",
-      "label": "Generation",
-      "icon": "Flask"
-    },
-    {
-      "id": "evaluation",
-      "label": "Evaluation",
-      "icon": "ChartBar"
+      "id": "literature",
+      "label": "Literature",
+      "icon": "FileText"
     }
   ]
 }

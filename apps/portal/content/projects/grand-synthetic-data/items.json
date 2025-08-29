@@ -1,80 +1,37 @@
 {
   "items": [
     {
-      "id": "synthetic-reasoning-chains",
-      "name": "Synthetic Reasoning Chains",
-      "type": "dataset",
-      "tab": "datasets",
-      "shared": true,
-      "shareLink": "#",
-      "lastModified": "2 days ago",
-      "description": "Generated chain-of-thought reasoning examples for complex problem solving"
-    },
-    {
-      "id": "code-completion-pairs",
-      "name": "Code Completion Pairs",
-      "type": "dataset",
-      "tab": "datasets",
+      "id": "competition-dynamics-icl-2024",
+      "name": "Competition Dynamics Shape Algorithmic Phases of In-Context Learning",
+      "type": "paper",
+      "tab": "literature",
       "shared": false,
-      "lastModified": "5 days ago",
-      "description": "Synthetic code snippets with completions across multiple programming languages"
+      "lastModified": "2025-08-29",
+      "description": "Proposes a synthetic Markov chain task revealing ICL as a mixture of competing algorithms rather than a monolithic capability",
+      "publicationDate": "December 2024",
+      "authors": [
+        "Core Francisco Park",
+        "Ekdeep Singh Lubana",
+        "Itamar Pres",
+        "Hidenori Tanaka"
+      ],
+      "abstract": "In-Context Learning (ICL) has significantly expanded the general-purpose nature of large language models, allowing them to adapt to novel tasks using merely the inputted context. This has motivated a series of papers that analyze tractable synthetic domains and postulate precise mechanisms that may underlie ICL. However, the use of relatively distinct setups that often lack a sequence modeling nature to them makes it unclear how general the reported insights from such studies are. Motivated by this, we propose a synthetic sequence modeling task that involves learning to simulate a finite mixture of Markov chains. As we show, models trained on this task reproduce most well-known results on ICL, hence offering a unified setting for studying the concept. Building on this setup, we demonstrate we can explain a model's behavior by decomposing it into four broad algorithms that combine a fuzzy retrieval vs. inference approach with either unigram or bigram statistics of the context. These algorithms engage in a competition dynamics to dominate model behavior, with the precise experimental conditions dictating which algorithm ends up superseding others: e.g., we find merely varying context size or amount of training yields (at times sharp) transitions between which algorithm dictates the model behavior, revealing a mechanism that explains the transient nature of ICL. In this sense, we argue ICL is best thought of as a mixture of different algorithms, each with its own peculiarities, instead of a monolithic capability. This also implies that making general claims about ICL that hold universally across all settings may be infeasible.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2412.01003"
     },
     {
-      "id": "multilingual-conversations",
-      "name": "Multilingual Conversations",
-      "type": "dataset",
-      "tab": "datasets",
-      "shared": true,
-      "shareLink": "#",
-      "lastModified": "1 week ago",
-      "description": "Synthetic dialogues in 50+ languages for cross-lingual understanding"
-    },
-    {
-      "id": "data-generator-v3",
-      "name": "Data Generator v3",
-      "type": "code",
-      "tab": "generation",
+      "id": "pcfg-wikipedia",
+      "name": "Probabilistic Context-Free Grammar",
+      "type": "web-article",
+      "tab": "literature",
       "shared": false,
-      "lastModified": "3 days ago",
-      "description": "Latest version of the synthetic data generation pipeline"
-    },
-    {
-      "id": "quality-filter",
-      "name": "Quality Filter Model",
-      "type": "model",
-      "tab": "generation",
-      "shared": false,
-      "lastModified": "1 week ago",
-      "description": "ML model for filtering high-quality synthetic examples"
-    },
-    {
-      "id": "diversity-metrics",
-      "name": "Diversity Metrics",
-      "type": "analysis",
-      "tab": "evaluation",
-      "shared": true,
-      "shareLink": "#",
-      "lastModified": "4 days ago",
-      "description": "Analysis of dataset diversity and coverage metrics"
-    },
-    {
-      "id": "human-eval-comparison",
-      "name": "Human Evaluation Comparison",
-      "type": "experiment",
-      "tab": "evaluation",
-      "shared": false,
-      "lastModified": "2 weeks ago",
-      "description": "Comparing synthetic vs human-generated data quality"
-    },
-    {
-      "id": "scaling-laws",
-      "name": "Scaling Laws Analysis",
-      "type": "document",
-      "tab": "overview",
-      "shared": true,
-      "shareLink": "#",
-      "lastModified": "1 month ago",
-      "description": "Research on optimal synthetic data scaling for model performance"
+      "lastModified": "2025-08-29",
+      "description": "Extension of context-free grammars with probabilistic production rules for modeling structural relationships in language and RNA",
+      "publicationDate": "Wikipedia Article",
+      "authors": [],
+      "abstract": "Probabilistic Context-Free Grammars (PCFGs) are an extension of context-free grammars that assign probabilities to production rules, similar to how hidden Markov models extend regular grammars. A PCFG is formally defined by the quintuple G = (M, T, R, S, P), where M represents non-terminal symbols, T represents terminal symbols, R is the set of production rules, S is the start symbol, and P assigns probabilities to production rules. The probability of a derivation is calculated as the product of the probabilities of all productions used. PCFGs have significant applications in natural language processing for parsing and statistical language modeling, RNA structure prediction in bioinformatics for modeling secondary structures and base-pair interactions, and sequence analysis for evolutionary patterns. Key algorithms include the CYK (Cocke–Younger–Kasami) algorithm for finding optimal parse trees, the Inside-Outside algorithm for computing total probability of derivations, and Expectation-Maximization for refining grammar parameters. The theoretical foundations stem from Noam Chomsky's work in the 1950s on grammar theory, with important contributions from researchers including Sean Eddy, Bjørn Knudsen, and Jotun Hein in applying these concepts to computational biology and linguistics.",
+      "readingStatus": "to-read",
+      "link": "https://en.wikipedia.org/wiki/Probabilistic_context-free_grammar"
     }
   ]
 }

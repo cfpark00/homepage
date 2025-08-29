@@ -1,0 +1,79 @@
+import TokenizationVisualizer from './tokenization-visualizer'
+
+# How Tokenization Works: An Interactive Visualizer
+
+Tokenization is the foundational step in natural language processing - it's how we convert raw text into discrete units that machines can process. Yet despite its importance, tokenization often remains a black box for many developers and researchers.
+
+## Why Tokenization Matters
+
+Before a language model can process text, it needs to break that text down into smaller, manageable pieces called tokens. These tokens serve as the basic units of meaning that the model learns to understand and manipulate.
+
+The choice of tokenization strategy has profound implications:
+- **Vocabulary size**: Character-level tokenization keeps vocabulary small but sequences long
+- **Semantic meaning**: Word-level tokenization preserves meaning but struggles with rare words
+- **Efficiency**: Subword tokenization balances both concerns
+
+## Interactive Tokenization Explorer
+
+Try different tokenization strategies on various texts below. Notice how each approach creates different token boundaries and how this affects the total token count.
+
+<TokenizationVisualizer />
+
+## Understanding Different Tokenization Approaches
+
+### Character-Level Tokenization
+The simplest approach - each character becomes a token. While this keeps the vocabulary tiny (just the alphabet plus punctuation), it creates very long sequences and loses word-level semantic information. This is why pure character-level models often struggle with understanding.
+
+### Word-Level Tokenization
+The intuitive approach - split on spaces and punctuation. This preserves semantic units but creates massive vocabularies and can't handle out-of-vocabulary words. Every typo or new word becomes an unknown token.
+
+### Subword Tokenization (BPE, WordPiece)
+The modern compromise - frequent words stay intact while rare words get split into meaningful subunits. This is what GPT, BERT, and most modern language models use. It handles new words gracefully while keeping sequences reasonably short.
+
+## The Tokenization Paradox
+
+Here's something fascinating: Large language models can write complex programs, solve mathematical proofs, and engage in philosophical discussions - yet they often fail at simple character-counting tasks. Why?
+
+The answer lies in tokenization. When you ask GPT-4 to count the letters in "strawberry", it doesn't see `s-t-r-a-w-b-e-r-r-y`. Instead, it might see something like `["straw", "berry"]`. The individual characters are abstracted away before the model even begins processing.
+
+This creates an interesting paradox:
+- Tokenization enables efficient processing of language at scale
+- But it also creates blind spots for character-level operations
+- Models become excellent at high-level reasoning but struggle with low-level string manipulation
+
+## Implications for Model Behavior
+
+Understanding tokenization helps explain many quirks of language model behavior:
+
+1. **Spelling errors**: Models might not "see" typos if the tokenizer treats the misspelled word as a valid subword combination
+2. **Code generation**: Programming tokens often split differently than natural language, affecting how models understand code structure
+3. **Multilingual performance**: Languages with different scripts or morphology tokenize differently, impacting model performance
+4. **Prompt engineering**: Token boundaries can affect how models interpret prompts - spaces and punctuation matter!
+
+## The Trade-off Triangle
+
+Every tokenization strategy involves trade-offs between three competing goals:
+
+1. **Vocabulary Size**: Smaller is better for model efficiency
+2. **Sequence Length**: Shorter is better for computational cost
+3. **Semantic Preservation**: Maintaining meaningful units improves understanding
+
+Character-level tokenization minimizes vocabulary but maximizes sequence length. Word-level does the opposite. Subword tokenization tries to find the sweet spot, but it's still a compromise.
+
+## Looking Forward
+
+As language models evolve, so too does tokenization. Recent developments include:
+
+- **Byte-level BPE**: Used by GPT-2 and later models, ensuring any text can be encoded
+- **SentencePiece**: Language-agnostic tokenization that treats spaces as tokens
+- **Dynamic tokenization**: Adaptive strategies that change based on the input domain
+
+The next frontier might be models that can operate at multiple granularities simultaneously - understanding both the forest and the trees of language.
+
+## Conclusion
+
+Tokenization is where the rubber meets the road in NLP - it's the critical translation layer between human language and machine processing. By understanding how different tokenization strategies work, we gain insight into both the capabilities and limitations of language models.
+
+The visualizer above lets you experiment with these concepts directly. Try your own text, observe how different tokenizers handle edge cases, and develop an intuition for this fundamental NLP operation.
+
+Remember: when you're debugging strange model behavior or optimizing prompts, the answer might lie not in the model's weights or architecture, but in how your text was tokenized in the first place.

@@ -1,0 +1,42 @@
+{
+  "items": [
+    {
+      "id": "mezo-forward-passes-2023",
+      "name": "Fine-Tuning Language Models with Just Forward Passes",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "MeZO enables memory-efficient fine-tuning of LLMs using only forward passes, achieving comparable performance to backpropagation with 12x memory reduction",
+      "publicationDate": "May 2023",
+      "authors": [
+        "Sadhika Malladi",
+        "Tianyu Gao",
+        "Eshaan Nichani",
+        "Alex Damian",
+        "et al."
+      ],
+      "abstract": "Fine-tuning language models (LMs) has yielded success on diverse downstream tasks, but as LMs grow in size, backpropagation requires a prohibitively large amount of memory. Zeroth-order (ZO) methods can in principle estimate gradients using only two forward passes but are theorized to be catastrophically slow for optimizing large models. In this work, we propose a memory-efficient zerothorder optimizer (MeZO), adapting the classical ZO-SGD method to operate in-place, thereby fine-tuning LMs with the same memory footprint as inference. For example, with a single A100 80GB GPU, MeZO can train a 30-billion parameter model, whereas fine-tuning with backpropagation can train only a 2.7B LM with the same budget. We conduct comprehensive experiments across model types (masked and autoregressive LMs), model scales (up to 66B), and downstream tasks (classification, multiple-choice, and generation). Our results demonstrate that (1) MeZO significantly outperforms in-context learning and linear probing; (2) MeZO achieves comparable performance to fine-tuning with backpropagation across multiple tasks, with up to 12x memory reduction and up to 2x GPU-hour reduction in our implementation; (3) MeZO is compatible with both full-parameter and parameter-efficient tuning techniques such as LoRA and prefix tuning; (4) MeZO can effectively optimize non-differentiable objectives (e.g., maximizing accuracy or F1). We support our empirical findings with theoretical insights, highlighting how adequate pre-training and task prompts enable MeZO to fine-tune huge models, despite classical ZO analyses suggesting otherwise.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2305.17333"
+    },
+    {
+      "id": "gevb-global-error-2021",
+      "name": "Credit Assignment Through Broadcasting a Global Error Vector",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Alternative to backpropagation using globally broadcast learning signals with local weight updates, potentially relevant for evolutionary approaches",
+      "publicationDate": "June 2021",
+      "authors": [
+        "David G. Clark",
+        "L. F. Abbott",
+        "SueYeon Chung"
+      ],
+      "abstract": "Backpropagation (BP) uses detailed, unit-specific feedback to train deep neural networks (DNNs) with remarkable success. That biological neural circuits appear to perform credit assignment, but cannot implement BP, implies the existence of other powerful learning algorithms. Here, we explore the extent to which a globally broadcast learning signal, coupled with local weight updates, enables training of DNNs. We present both a learning rule, called global error-vector broadcasting (GEVB), and a class of DNNs, called vectorized nonnegative networks (VNNs), in which this learning rule operates. VNNs have vector-valued units and nonnegative weights past the first layer. The GEVB learning rule generalizes three-factor Hebbian learning, updating each weight by an amount proportional to the inner product of the presynaptic activation and a globally broadcast error vector when the postsynaptic unit is active. We prove that these weight updates are matched in sign to the gradient, enabling accurate credit assignment. Moreover, at initialization, these updates are exactly proportional to the gradient in the limit of infinite network width. GEVB matches the performance of BP in VNNs, and in some cases outperforms direct feedback alignment (DFA) applied in conventional networks. Unlike DFA, GEVB successfully trains convolutional layers. Altogether, our theoretical and empirical results point to a surprisingly powerful role for a global learning signal in training DNNs.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2106.04089"
+    }
+  ]
+}

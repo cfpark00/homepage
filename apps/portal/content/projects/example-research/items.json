@@ -1,0 +1,132 @@
+{
+  "items": [
+    {
+      "id": "project-overview",
+      "name": "Project Overview",
+      "type": "paper",
+      "tab": "overview",
+      "shared": false,
+      "lastModified": "2025-08-28",
+      "description": "Main project overview and objectives"
+    },
+    {
+      "id": "transformer-attention-paper",
+      "name": "Attention Is All You Need",
+      "type": "paper",
+      "tab": "literature",
+      "subtab": "general",
+      "shared": false,
+      "lastModified": "2025-08-28",
+      "description": "Vaswani et al. (2017) - The foundational transformer architecture paper introducing self-attention mechanisms.",
+      "authors": [
+        "Ashish Vaswani",
+        "Noam Shazeer",
+        "Niki Parmar",
+        "Jakob Uszkoreit",
+        "Llion Jones",
+        "Aidan N. Gomez",
+        "Lukasz Kaiser",
+        "Illia Polosukhin"
+      ],
+      "myComments": "Revolutionary paper that changed the landscape of NLP and beyond. The self-attention mechanism elegantly solves the long-range dependency problem.",
+      "abstract": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
+      "relevanceToProject": "Core architecture that our experiments build upon. Understanding attention mechanisms is crucial for our modifications.",
+      "myTake": "The simplicity of the architecture is its strength. Removing recurrence enables massive parallelization.",
+      "aiTake": "This paper represents a paradigm shift in sequence modeling, moving from sequential processing to parallel processing through attention.",
+      "readingStatus": "read",
+      "link": "https://arxiv.org/abs/1706.03762"
+    },
+    {
+      "id": "scaling-laws-paper",
+      "name": "Scaling Laws for Neural Language Models",
+      "type": "paper",
+      "tab": "literature",
+      "subtab": "general",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Kaplan et al. (2020) - Empirical scaling laws for language model performance",
+      "publicationDate": "January 2020",
+      "authors": [
+        "Jared Kaplan",
+        "Sam McCandlish",
+        "Tom Henighan",
+        "Tom B. Brown",
+        "Benjamin Chess",
+        "Rewon Child",
+        "Scott Gray",
+        "Alec Radford",
+        "Jeffrey Wu",
+        "Dario Amodei"
+      ],
+      "abstract": "We study empirical scaling laws for language model performance on the cross-entropy loss. The loss scales as a power-law with model size, dataset size, and the amount of compute used for training, with some trends spanning more than seven orders of magnitude. Other architectural details such as network width or depth have minimal effects within a wide range. Simple equations govern the dependence of overfitting on model/dataset size and the dependence of training speed on model size. These relationships allow us to determine the optimal allocation of a fixed compute budget. Larger models are significantly more sample-efficient, such that optimally compute-efficient training involves training very large models on a relatively modest amount of data and stopping significantly before convergence.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2001.08361"
+    },
+    {
+      "id": "initial-baseline",
+      "name": "Baseline Model Training",
+      "type": "experiment",
+      "tab": "experiments",
+      "shared": false,
+      "lastModified": "2025-08-27",
+      "description": "Initial training run with standard hyperparameters"
+    },
+    {
+      "id": "attention-patterns",
+      "name": "Attention Pattern Analysis",
+      "type": "analysis",
+      "tab": "findings",
+      "shared": false,
+      "lastModified": "2025-08-26",
+      "description": "Discovered interesting patterns in layer 7 attention heads"
+    },
+    {
+      "id": "research-narrative",
+      "name": "Research Narrative Document",
+      "type": "paper",
+      "tab": "storyline",
+      "shared": false,
+      "lastModified": "2025-08-28",
+      "description": "The evolving story of our research journey"
+    },
+    {
+      "id": "hypothesis-tree",
+      "name": "Main Hypothesis Tree",
+      "type": "paper",
+      "tab": "thought-tree",
+      "shared": false,
+      "lastModified": "2025-08-25",
+      "description": "Hierarchical organization of research hypotheses and their relationships"
+    },
+    {
+      "id": "model-checkpoint-v1",
+      "name": "Model Checkpoint v1",
+      "type": "model",
+      "tab": "assets",
+      "shared": true,
+      "shareLink": "/example-research/s/checkpoint-v1",
+      "lastModified": "2025-08-24",
+      "description": "First stable model checkpoint after 50k steps"
+    },
+    {
+      "id": "attention-viz",
+      "name": "Attention Visualization Notebook",
+      "type": "code",
+      "tab": "assets",
+      "shared": false,
+      "lastModified": "2025-08-23",
+      "description": "Jupyter notebook for visualizing attention patterns"
+    },
+    {
+      "id": "test-google-doc",
+      "name": "Research Planning Document 2025",
+      "type": "document",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Quarterly research goals and experimental framework for transformer optimization",
+      "link": "https://docs.google.com/document/d/example",
+      "readingStatus": "read"
+    }
+  ]
+}

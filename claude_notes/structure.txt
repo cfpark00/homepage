@@ -1,5 +1,5 @@
 # Project Structure Overview
-Last Updated: 2025-08-28 (01:36)
+Last Updated: 2025-08-29 (01:51)
 
 ## Root Directory: /Users/cfpark00/mysite
 Monorepo using pnpm workspaces with Vercel deployment
@@ -10,7 +10,7 @@ Monorepo using pnpm workspaces with Vercel deployment
 Main Next.js application (port 3020 in dev)
 
 ### /apps/portal/
-Research portal application with authentication (port 3021 in dev, added 2025-08-26, redesigned 2025-08-27, sidebar collapse added 2025-08-28)
+Research portal application with authentication (port 3021 in dev, added 2025-08-26, redesigned 2025-08-27, sidebar collapse added 2025-08-28, reading list feature added 2025-08-29)
 - Uses Supabase for authentication and data storage
 - Google OAuth integration for login with profile picture support
 - Separate from main web app but shares Supabase instance (free tier limitation)
@@ -19,6 +19,12 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 - Public share links at /[project_slug]/s/[token] for sharing research without auth
 - /explore page for browsing public research projects
 - Collapsible sidebar for desktop mode (added 2025-08-28)
+- Thoughts tracking system with timeline view (added 2025-08-28)
+- PublicationCard component for literature items (added 2025-08-28, updated 2025-08-29 with unified link field)
+- Reading list feature with status tracking (to-read, reading, read) (added 2025-08-29)
+- Global priority scoring system for papers with dashboard display (added 2025-08-29)
+- Support for multiple content types: paper, document, repository, web-article, blog-post, tweet (updated 2025-08-29)
+- Tags system for categorizing literature items (added 2025-08-29)
 
 #### /app/
 - layout.tsx - Root layout with ThemeProvider (updated 2025-08-27)
@@ -158,7 +164,7 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 Research portal application with authentication (added 2025-08-26, port 3021 in dev)
 
 #### /app/
-- layout.tsx - Root layout with ThemeProvider (added 2025-08-27)
+- layout.tsx - Root layout with ThemeProvider, v2 favicon integration (updated 2025-08-28)
 - globals.css - Tailwind styles with shadcn/ui CSS variables
 - page.tsx - Dashboard page with stats and activity (redesigned 2025-08-27)
 - test/
@@ -186,7 +192,8 @@ Research portal application with authentication (added 2025-08-26, port 3021 in 
 - portal-layout.tsx - Original layout wrapper (deprecated)
 - portal-layout-simple.tsx - Simplified layout with sidebar (updated 2025-08-28)
 - page-header.tsx - Page header with hamburger button integration (added 2025-08-27)
-- project-tabs.tsx - Tabbed interface for research projects, fixed lucide-react icon imports (updated 2025-08-28)
+- project-tabs.tsx - Tabbed interface with reading list grouping for literature, supports tags (updated 2025-08-29)
+- thoughts-display.tsx - Timeline view for daily thoughts (added 2025-08-28)
 - floating-chat.tsx - Floating AI chat button for project pages (added 2025-08-27)
 - theme-provider.tsx - Theme provider wrapper for dark/light modes (added 2025-08-27)
 
@@ -199,7 +206,7 @@ Research portal application with authentication (added 2025-08-26, port 3021 in 
   - database.ts - TypeScript database schema
 - utils/
   - url.ts - Dynamic URL helper for OAuth redirects (added 2025-08-26)
-- projects.ts - Project data loader from content/projects (added 2025-08-28)
+- projects.ts - Project data loader with tags support, handles priority deduplication (updated 2025-08-29)
 
 #### Configuration
 - middleware.ts - Auth middleware for protected routes
@@ -219,6 +226,7 @@ Shared UI component library
   - input.tsx - shadcn/ui input (exported 2025-08-26)
   - label.tsx - Form label component (added 2025-08-24, exported 2025-08-26)
   - page-container.tsx
+  - pub-card.tsx - Publication card with expandable sections, tags display, supports paper/document types (updated 2025-08-29)
   - slider.tsx - Radix UI based slider component (added 2025-08-24)
   - warning-card.tsx - Orange warning card with icon for disclaimers (added 2025-08-24)
   - etc.
@@ -228,6 +236,12 @@ Shared UI component library
 
 ### Root Files Added (2025-08-27)
 - TODO.md - Task list for codebase improvements (UI flash issues)
+
+### Archived Components (2025-08-28)
+- /archive/unused-shadcn-components-2025-08-28/
+  - navigation-menu.tsx - Unused shadcn component
+  - progress.tsx - Unused shadcn component
+  - scroll-area.tsx - Unused shadcn component
 
 ### Removed Files (2025-08-24)
 - /apps/web/app/(default)/ongoing/ - Replaced with projects
@@ -244,6 +258,8 @@ AI assistant documentation and logs
     - typescript-in-mdx-gotchas.md (moved from tips/)
     - comment-system-implementation.md (added 2025-08-26)
   - deployment/ (added 2025-08-26)
+  - portal_projects/ (added 2025-08-29)
+    - adding_papers.md - Comprehensive guide for adding papers, repositories, and web content
     - DEPLOYMENT.md (moved from root)
   - projects/ (added 2025-08-26)
     - how-to-add-projects.md
@@ -255,7 +271,10 @@ AI assistant documentation and logs
   - 2025-08-28/
     - 01-06_portal_sidebar_collapse_functionality.md
     - 01-13_portal_projects_template_system.md
-    - 01-36_portal_fixes_and_blog_image_integration.md (this session)
+    - 01-36_portal_fixes_and_blog_image_integration.md
+    - 01-37_thoughts_tracking_updates.md
+    - 12-53_thoughts_tracking_and_blog_citations.md
+    - 14-32_portal_literature_and_publication_cards.md (this session)
 - structure.txt (this file)
 
 ### /scratch/
@@ -332,9 +351,14 @@ Static assets and data (LaTeX CV files and resources)
    - metadata.json: Project info, tabs, colors, icons, status
    - items.json: Project items with types and tab assignments
    - Current projects:
-     - origins-representations/ (added 2025-08-27)
+     - origins-representations/ (added 2025-08-27, FER paper added 2025-08-28)
      - domain-ablated-llms/ (added 2025-08-28)
      - grand-synthetic-data/ (added 2025-08-28)
+     - curriculum-learning/ (added 2025-08-28)
+     - emergent-task-structure/ (added 2025-08-28)
+     - evolution-of-intelligence/ (added 2025-08-28)
+     - representation-geometry/ (added 2025-08-28)
+     - example-project/ (added 2025-08-28, full tab template)
 3. Access Model: Private projects with public share tokens
 4. URL Structure: /project-slug (private), /project-slug/s/token (public)
 5. Layout: Sidebar navigation with dashboard and project pages
@@ -342,6 +366,8 @@ Static assets and data (LaTeX CV files and resources)
    - Theme toggle
    - Floating AI chat
    - Dynamic project tabs with item grouping
+   - Literature tab with horizontal subtabs
+   - PublicationCard component for research papers
    - Collapsible sidebar for desktop
    - Project logos support (PNG in /public/project-logos/)
    - Auto-populated from content directories
@@ -351,6 +377,10 @@ Static assets and data (LaTeX CV files and resources)
 - Sidebar state management via React Context
 - Hamburger menu integration in PageHeader for both mobile and desktop
 - Proper CSS transform handling for responsive sidebar behavior
+- Fixed lucide-react icon barrel optimization issues (Flask → FlaskConical, ChartBar → BarChart3)
+- Improved sidebar active state styling (highlighted instead of invisible)
+- Added Grand Synthetic Data project to portal
+- Integrated proposal.png into ablated knowledge blog post with proper MDX image imports
 
 ## Key Features Added (2025-08-27)
 - Portal dashboard redesign with sidebar navigation

@@ -1,0 +1,150 @@
+{
+  "items": [
+    {
+      "id": "deep-hyperneat-2018",
+      "name": "Deep HyperNEAT: Evolving the Size and Depth of the Substrate",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Extends HyperNEAT to evolve neural network topology including depth and breadth, enabling unbounded complexification reminiscent of deep learning architectures",
+      "publicationDate": "2018",
+      "authors": [
+        "Felix A. Sosa",
+        "Kenneth O. Stanley"
+      ],
+      "abstract": "This report describes DeepHyperNEAT, an extension of HyperNEAT to allow it to alter the topology of its indirectly-encoded neural network (called the substrate) so that it can continue to grow and increase in complexity over evolution. This aim is accomplished by augmenting HyperNEAT's compositional pattern producing networks (CPPNs) with new information that allows them to represent substrate topology, and by adding three novel mutations to HyperNEAT that exploit this new information. The purpose of this report is to detail the method and validate its ability to evolve, which is shown through a simple XOR-based test. Significantly more work will be needed to analyze the algorithmic and scientific implications of these new capabilities, but by releasing this report it becomes possible for others also to explore the opportunities that such an extension opens up.",
+      "readingStatus": "to-read",
+      "link": "https://web.mit.edu/fsosa/www/papers/dhn18.pdf"
+    },
+    {
+      "id": "novelty-search-2011",
+      "name": "Abandoning objectives: evolution through the search for novelty alone",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Proposes searching for behavioral novelty instead of traditional objective functions in evolutionary computation, demonstrating surprising effectiveness",
+      "publicationDate": "2011",
+      "authors": [
+        "Joel Lehman",
+        "Kenneth O. Stanley"
+      ],
+      "abstract": "In evolutionary computation, the fitness function normally measures progress towards an objective in the search space, effectively acting as an objective function. Through deception, such objective functions may actually prevent the objective from being reached. While methods exist to mitigate deception, they leave the underlying pathology untreated: Objective functions themselves may actively misdirect search towards dead ends. This paper proposes an approach to circumventing deception that also yields a new perspective on open-ended evolution: Instead of either explicitly seeking an objective or modeling natural evolution to capture open-endedness, the idea is to simply search for behavioral novelty. Even in an objective-based problem, such novelty search ignores the objective. Because many points in the search space collapse to a single behavior, the search for novelty is often feasible. Furthermore, because there are only so many simple behaviors, the search for novelty leads to increasing complexity. By decoupling open-ended search from artificial life worlds, the search for novelty is applicable to real world problems. Counterintuitively, in the maze navigation and biped walking tasks in this paper, novelty search significantly outperforms objective-based search, suggesting the strange conclusion that some problems are best solved by methods that ignore the objective. The main lesson is the inherent limitation of the objective-based paradigm and the unexploited opportunity to guide search through other means.",
+      "readingStatus": "to-read",
+      "link": "https://www.cs.swarthmore.edu/~meeden/DevelopmentalRobotics/lehman_ecj11.pdf"
+    },
+    {
+      "id": "canalization-evolvability-2017",
+      "name": "The Emergence of Canalization and Evolvability in an Open-Ended, Interactive Evolutionary System",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Documents computational evolution system where canalization emerges naturally, showing how open-ended processes enable evolvability",
+      "publicationDate": "April 2017",
+      "authors": [
+        "Joost Huizinga",
+        "Kenneth O. Stanley",
+        "Jeff Clune"
+      ],
+      "abstract": "Natural evolution has produced a tremendous diversity of functional organisms. Many believe an essential component of this process was the evolution of evolvability, whereby evolution speeds up its ability to innovate by generating a more adaptive pool of offspring. One hypothesized mechanism for evolvability is developmental canalization, wherein certain dimensions of variation become more likely to be traversed and others are prevented from being explored (e.g. offspring tend to have similarly sized legs, and mutations affect the length of both legs, not each leg individually). While ubiquitous in nature, canalization almost never evolves in computational simulations of evolution. Not only does that deprive us of in silico models in which to study the evolution of evolvability, but it also raises the question of which conditions give rise to this form of evolvability. Answering this question would shed light on why such evolvability emerged naturally and could accelerate engineering efforts to harness evolution to solve important engineering challenges. In this paper we reveal a unique system in which canalization did emerge in computational evolution. We document that genomes entrench certain dimensions of variation that were frequently explored during their evolutionary history. The genetic representation of these organisms also evolved to be highly modular and hierarchical, and we show that these organizational properties correlate with increased fitness. Interestingly, the type of computational evolutionary experiment that produced this evolvability was very different from traditional digital evolution in that there was no objective, suggesting that open-ended, divergent evolutionary processes may be necessary for the evolution of evolvability.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/1704.05143"
+    },
+    {
+      "id": "map-elites-2015",
+      "name": "Illuminating search spaces by mapping elites",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "MAP-Elites algorithm creates maps of high-performing solutions across user-defined dimensions, providing holistic views of search spaces",
+      "publicationDate": "April 2015",
+      "authors": [
+        "Jean-Baptiste Mouret",
+        "Jeff Clune"
+      ],
+      "abstract": "Many fields use search algorithms, which automatically explore a search space to find high-performing solutions: chemists search through the space of molecules to discover new drugs; engineers search for stronger, cheaper, safer designs, scientists search for models that best explain data, etc. The goal of search algorithms has traditionally been to return the single highest-performing solution in a search space. Here we describe a new, fundamentally different type of algorithm that is more useful because it provides a holistic view of how high-performing solutions are distributed throughout a search space. It creates a map of high-performing solutions at each point in a space defined by dimensions of variation that a user gets to choose. This Multi-dimensional Archive of Phenotypic Elites (MAP-Elites) algorithm illuminates search spaces, allowing researchers to understand how interesting attributes of solutions combine to affect performance, either positively or, equally of interest, negatively. For example, a drug company may wish to understand how performance changes as the size of molecules and their cost-to-produce vary. MAP-Elites produces a large diversity of high-performing, yet qualitatively different solutions, which can be more helpful than a single, high-performing solution. Interestingly, because MAP-Elites explores more of the search space, it also tends to find a better overall solution than state-of-the-art search algorithms. We demonstrate the benefits of this new algorithm in three different problem domains ranging from producing modular neural networks to designing simulated and real soft robots. Because MAP- Elites (1) illuminates the relationship between performance and dimensions of interest in solutions, (2) returns a set of high-performing, yet diverse solutions, and (3) improves finding a single, best solution, it will advance science and engineering.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/1504.04909"
+    },
+    {
+      "id": "general-intelligence-exploration-2022",
+      "name": "General Intelligence Requires Rethinking Exploration",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Proposes generalized exploration as a unified framework across supervised and reinforcement learning for open-ended AI development",
+      "publicationDate": "November 2022",
+      "authors": [
+        "Minqi Jiang",
+        "Tim Rocktäschel",
+        "Edward Grefenstette"
+      ],
+      "abstract": "We are at the cusp of a transition from 'learning from data' to 'learning what data to learn from' as a central focus of artificial intelligence (AI) research. While the first-order learning problem is not completely solved, large models under unified architectures, such as transformers, have shifted the learning bottleneck from how to effectively train our models to how to effectively acquire and use task-relevant data. This problem, which we frame as exploration, is a universal aspect of learning in open-ended domains, such as the real world. Although the study of exploration in AI is largely limited to the field of reinforcement learning, we argue that exploration is essential to all learning systems, including supervised learning. We propose the problem of generalized exploration to conceptually unify exploration-driven learning between supervised learning and reinforcement learning, allowing us to highlight key similarities across learning settings and open research challenges. Importantly, generalized exploration serves as a necessary objective for maintaining open-ended learning processes, which in continually learning to discover and solve new problems, provides a promising path to more general intelligence.",
+      "readingStatus": "to-read",
+      "priority": 5,
+      "link": "https://arxiv.org/abs/2211.07819"
+    },
+    {
+      "id": "neat-evolving-neural-networks-2002",
+      "name": "Evolving Neural Networks through Augmenting Topologies",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "NEAT is a novel neuroevolution method that improves neural network design by dynamically evolving network topology alongside weights",
+      "publicationDate": "June 2002",
+      "authors": [
+        "Kenneth O. Stanley",
+        "Risto Miikkulainen"
+      ],
+      "abstract": "An important question in neuroevolution is how to gain an advantage from evolving neural network topologies along with weights. We present a method, NeuroEvolution of Augmenting Topologies (NEAT), which outperforms the best fixed-topology method on a challenging benchmark reinforcement learning task. We claim that the increased efficiency is due to (1) employing a principled method of crossover of different topologies, (2) protecting structural innovation using speciation, and (3) incrementally growing from minimal structure. We test this claim through a series of ablation studies that demonstrate that each component is necessary to the system as a whole and to each other. What results is signicantly faster learning. NEAT is also an important contribution to GAs because it shows how it is possible for evolution to both optimize and complexify solutions simultaneously, offering the possibility of evolving increasingly complex solutions over generations, and strengthening the analogy with biological evolution.",
+      "readingStatus": "to-read",
+      "priority": 12,
+      "link": "https://ieeexplore.ieee.org/document/6790655"
+    },
+    {
+      "id": "evolution-strategies-scalable-rl-2017",
+      "name": "Evolution Strategies as a Scalable Alternative to Reinforcement Learning",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Demonstrates Evolution Strategies as a scalable and efficient alternative to traditional reinforcement learning techniques across various computational tasks",
+      "publicationDate": "March 2017",
+      "authors": [
+        "Tim Salimans",
+        "Jonathan Ho",
+        "Xi Chen",
+        "Szymon Sidor",
+        "Ilya Sutskever"
+      ],
+      "abstract": "We explore the use of Evolution Strategies (ES), a class of black box optimization algorithms, as an alternative to popular MDP-based RL techniques such as Q-learning and Policy Gradients. Experiments on MuJoCo and Atari show that ES is a viable solution strategy that scales extremely well with the number of CPUs available: By using a novel communication strategy based on common random numbers, our ES implementation only needs to communicate scalars, making it possible to scale to over a thousand parallel workers. This allows us to solve 3D humanoid walking in 10 minutes and obtain competitive results on most Atari games after one hour of training. In addition, we highlight several advantages of ES as a black box optimization technique: it is invariant to action frequency and delayed rewards, tolerant of extremely long horizons, and does not need temporal discounting or value function approximation.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/1703.03864"
+    },
+    {
+      "id": "surprising-creativity-digital-evolution-2018",
+      "name": "The Surprising Creativity of Digital Evolution: A Collection of Anecdotes from the Evolutionary Computation and Artificial Life Research Communities",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Collection of anecdotes showing how digital evolution produces unexpected, creative solutions that often mirror or subvert researchers' intentions",
+      "publicationDate": "March 2018",
+      "authors": [
+        "Joel Lehman",
+        "Jeff Clune",
+        "Dusan Misevic",
+        "Christoph Adami",
+        "et al."
+      ],
+      "abstract": "Biological evolution provides a creative fount of complex and subtle adaptations, often surprising the scientists who discover them. However, because evolution is an algorithmic process that transcends the substrate in which it occurs, evolution's creativity is not limited to nature. Indeed, many researchers in the field of digital evolution have observed their evolving algorithms and organisms subverting their intentions, exposing unrecognized bugs in their code, producing unexpected adaptations, or exhibiting outcomes uncannily convergent with ones in nature. Such stories routinely reveal creativity by evolution in these digital worlds, but they rarely fit into the standard scientific narrative. Instead they are often treated as mere obstacles to be overcome, rather than results that warrant study in their own right. The stories themselves are traded among researchers through oral tradition, but that mode of information transmission is inefficient and prone to error and outright loss. Moreover, the fact that these stories tend to be shared only among practitioners means that many natural scientists do not realize how interesting and lifelike digital organisms are and how natural their evolution can be. To our knowledge, no collection of such anecdotes has been published before. This paper is the crowd-sourced product of researchers in the fields of artificial life and evolutionary computation who have provided first-hand accounts of such cases. It thus serves as a written, fact-checked collection of scientifically important and even entertaining stories. In doing so we also present here substantial evidence that the existence and importance of evolutionary surprises extends beyond the natural world, and may indeed be a universal property of all complex evolving systems.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/1803.03453"
+    }
+  ]
+}

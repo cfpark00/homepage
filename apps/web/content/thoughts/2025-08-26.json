@@ -2,49 +2,41 @@
   "title": "Hangover, LLM Proposal, MDX Debug, CI/CD, Synthetic Data",
   "thoughts": [
     {
-      "id": 1,
-      "content": "Finally out of hungover state",
+      "content": "Finally out of the hungover state",
       "time": "13:00",
       "tags": []
     },
     {
-      "id": 2,
       "content": "What should I do today? I can read a bit more about evolutionary algorithms, see some YouTube videos about it... I can also make my website better and start writing the LLM ablated training proposal.",
       "time": "14:00",
       "tags": []
     },
     {
-      "id": 3,
-      "content": "Okay I communicated to Claude what exactly my LLM ablation proposal is, let it make a beta blogpost",
+      "content": "Okay, I communicated to Claude what exactly my LLM ablation proposal is, let it make a beta blogpost",
       "time": "15:00",
       "tags": []
     },
     {
-      "id": 4,
-      "content": "Okay a bunch of MDX tech stack debugging. Claude is having a hard time with link scrolls. I should tell it to google stuff up.",
+      "content": "Okay, a bunch of MDX tech stack debugging. Claude is having a hard time with link scrolls. I should tell it to google stuff up.",
       "time": "16:00",
       "tags": []
     },
     {
-      "id": 5,
       "content": "Roughly all done. I also added much more literature grounded content to the proposal, and restructured it so that it reads much better. It's probably good to present what are the \"camps of opinions\" of people's thoughts about large language models. Probably good to classify them into an \"only interpolation\" regime and \"marginal generalization\" and the \"LLM is AGI\" camp, etc. It's probably worth mentioning why everyone has some reason in believing so. Also, at the end of the day visuals will matter for this blogpost. I really want some visual showing clear FAR OOD generalization like I've seen in MarkovICL or in the concept learning paper (or the inability to do so). I want this nice figure illustrating that training on *nearly* everything humanity put on the internet will make eval very very hard, and we should build models which have a huge chunk of knowledge ablated.",
       "time": "17:00",
       "tags": []
     },
     {
-      "id": 6,
-      "content": "Okay I think I understood CI/CD pretty well. Now I don't need to vercel deploy, just git push to deploy. I also created a consistent job/ folder where I write commonly used claude code prompts. Today I wrote deploy.txt which tells claude to typecheck, build locally then git add/commit/push. Seems like it's all working beautifully! No more vercel manually!",
+      "content": "Okay, I think I understood CI/CD pretty well. Now I don't need to vercel deploy, just git push to deploy. I also created a consistent job/ folder where I write commonly used Claude Code prompts. Today I wrote deploy.txt which tells Claude to typecheck, build locally, then git add/commit/push. Seems like it's all working beautifully! No more vercel manually!",
       "time": "18:00",
       "tags": []
     },
     {
-      "id": 7,
-      "content": "In fact, we might really need synthetic data to study this first. It's probably much more persuasive if we explore in synthetic (e.g. formal languages) etc that we can do this experiment of systematically ablating significant parts of data and showing how well models can learn them in context or via some self-evolution scheme. I guess I worked on this quite seriously for the RLWall project, but TBH it was very hard. I think I should contact XXX and try to seriously focus on a synthetic data setup where we can ablate concepts and also study if RL can really learn new concepts. In fact, I think even mech interp will be much more interesting with these models: i.e. can a model which never really learned integral be RL-ed to acquire integral related rich features?",
+      "content": "In fact, we might really need synthetic data to study this first. It's probably much more persuasive if we explore in synthetic (e.g., formal languages) etc. that we can do this experiment of systematically ablating significant parts of data and showing how well models can learn them in context or via some self-evolution scheme. I guess I worked on this quite seriously for the RLWall project, but TBH it was very hard. I think I should contact XXX and try to seriously focus on a synthetic data setup where we can ablate concepts and also study if RL can really learn new concepts. In fact, I think even mech interp will be much more interesting with these models: i.e., can a model which never really learned integrals be RL-ed to acquire integral-related rich features?",
       "time": "22:00",
       "tags": []
     },
     {
-      "id": 8,
       "content": "So let's just figure out who did this kind of research. I'll launch 4 deep research on gpt5, claude, grok, gemini to gather all information out there. I'm really worried that they think synthetic data is LLM generated natural language data. Should prompt hard so that they don't fall on those.",
       "time": "22:10",
       "tags": []

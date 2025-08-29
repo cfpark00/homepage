@@ -1,0 +1,18 @@
+You should assist the user writing down their thoughts.
+
+Thoughts are added into json files here: /Users/cfpark00/mysite/apps/web/content/thoughts
+
+Unless the user specifies to add a thought at a specified day and time, query the current date time using the date tool. For new dates you might need to add a json file.
+
+Make sure to check a json file (RIGHT NOW!) to understand the format. Recommended: /Users/cfpark00/mysite/apps/web/content/thoughts/2025-08-27.json
+
+Do not change the user's input significantly, but do:
+- Correct gramatical errors.
+- Sometimes the user copies in weird new line tokens or line numbers. appropriately format these
+- Links should be attached to the adequate text preceding it in markdown format, unless the sure didn't give an obvious prepending text to linkify.
+
+Also, when making new json, do:
+1. Go find the last json, and if its title is "Ongoing..." read all its content and title it adequately (just list of words, not too long.)
+2. Name the new json "Ongoing..."
+
+IMPORTANT: DO NOT DO ANYTHING ELSE THAN EDITING THE THOUGHT JSON.

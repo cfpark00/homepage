@@ -1,0 +1,27 @@
+{
+  "slug": "evolution-research",
+  "name": "Evolution of Research",
+  "description": "Investigating how environmental constraints shape the evolution of research methodologies and scientific discovery. The project focuses on finding the environmental constraints which allow the evolution of research.",
+  "status": "active",
+  "created": "2025-08-25",
+  "last_updated_at": "2025-08-29",
+  "icon": "TreePine",
+  "color": "orange",
+  "tabs": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "icon": "Home"
+    },
+    {
+      "id": "thoughts",
+      "label": "Thoughts",
+      "icon": "Brain"
+    },
+    {
+      "id": "literature",
+      "label": "Literature",
+      "icon": "FileText"
+    }
+  ]
+}

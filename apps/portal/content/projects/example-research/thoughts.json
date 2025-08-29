@@ -1,0 +1,61 @@
+[
+  {
+    "date": "2025-08-28",
+    "title": "Project Setup and Initial Planning",
+    "thoughts": [
+      {
+        "content": "Setting up the example research project as a template for future projects. This will serve as a reference for how to structure thoughts, experiments, and documentation.",
+        "time": "09:00",
+        "tags": []
+      },
+      {
+        "content": "Defined the basic structure: thoughts for daily research notes, experiments for tracking trials, literature for relevant papers, and data for datasets.",
+        "time": "10:15",
+        "tags": []
+      },
+      {
+        "content": "Need to add example content to demonstrate best practices for documentation. Each thought should be concise but capture key insights.",
+        "time": "11:30",
+        "tags": []
+      }
+    ]
+  },
+  {
+    "date": "2025-08-27",
+    "title": "Research Methodology",
+    "thoughts": [
+      {
+        "content": "Reviewing different approaches to organize research projects. The key is maintaining a balance between structure and flexibility.",
+        "time": "14:00",
+        "tags": []
+      },
+      {
+        "content": "Important insight: thoughts should connect to actual experiments and papers. Using parent_id to link related thoughts across days.",
+        "time": "15:45",
+        "tags": [],
+        "parent_id": ["2025-08-26", 3]
+      }
+    ]
+  },
+  {
+    "date": "2025-08-26",
+    "title": "Initial Brainstorming",
+    "thoughts": [
+      {
+        "content": "Starting to think about how to structure research projects in a scalable way. Need something that works for both solo and collaborative work.",
+        "time": "10:00",
+        "tags": []
+      },
+      {
+        "content": "Key requirements: version control friendly, easy to search, supports multimedia content, and can track progress over time.",
+        "time": "11:15",
+        "tags": []
+      },
+      {
+        "content": "Maybe use a timeline view for thoughts? This would help visualize the research journey and identify patterns in thinking.",
+        "time": "16:20",
+        "tags": []
+      }
+    ]
+  }
+]

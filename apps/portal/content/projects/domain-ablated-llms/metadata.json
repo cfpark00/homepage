@@ -3,8 +3,8 @@
   "name": "Domain Ablated LLMs",
   "description": "Training LLMs with deliberately ablated knowledge domains to study OOD generalization and emergent reasoning",
   "status": "active",
-  "created": "2025-08-28",
-  "last_updated_at": "2025-08-28",
+  "created": "2025-08-26",
+  "last_updated_at": "2025-08-26",
   "icon": "Brain",
   "logo": "/project-logos/domain-ablated-llms.png",
   "color": "purple",
@@ -15,29 +15,14 @@
       "icon": "Home"
     },
     {
-      "id": "experiments",
-      "label": "Experiments",
-      "icon": "Flask"
-    },
-    {
-      "id": "ablation-strategies",
-      "label": "Ablation Strategies",
-      "icon": "Database"
-    },
-    {
-      "id": "evaluation",
-      "label": "Evaluation",
-      "icon": "ChartBar"
+      "id": "thoughts",
+      "label": "Thoughts",
+      "icon": "Brain"
     },
     {
       "id": "literature",
       "label": "Literature",
-      "icon": "BookOpen"
-    },
-    {
-      "id": "code",
-      "label": "Code",
-      "icon": "Code"
+      "icon": "FileText"
     }
   ]
 }

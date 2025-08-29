@@ -1,0 +1,8 @@
+{
+  "title": "How Tokenization Works: An Interactive Visualizer",
+  "date": "2025-08-28",
+  "excerpt": "Explore how different tokenizers break down text into tokens with this interactive visualizer. Compare BPE, WordPiece, and character-level tokenization strategies.",
+  "tags": ["NLP", "LLMs", "tokenization"],
+  "readingTime": "8 min read",
+  "order": 2
+}

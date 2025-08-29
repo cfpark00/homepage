@@ -1,10 +1,12 @@
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { PortalLayoutSimple } from '@/components/portal-layout-simple'
 import { PageHeader } from '@/components/page-header'
-import { getAllProjects } from '@/lib/projects'
+import { getAllProjects, getTopPriorityPapers } from '@/lib/projects'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card'
-import { Activity, Clock, FileText } from 'lucide-react'
+import { Badge } from '@workspace/ui/components/badge'
+import { Activity, Clock, FileText, Star, ExternalLink } from 'lucide-react'
 
 export default async function HomePage() {
   const supabase = await createClient()
@@ -17,6 +19,9 @@ export default async function HomePage() {
   
   // Load all projects
   const projects = await getAllProjects()
+  
+  // Load top priority papers
+  const topPapers = await getTopPriorityPapers(10)
 
   // Stats for dashboard
   const stats = {
@@ -82,6 +87,72 @@ export default async function HomePage() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Priority Papers */}
+        {topPapers.length > 0 && (
+          <Card className="mb-8">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle>Priority Papers</CardTitle>
+                  <CardDescription>Top {topPapers.length} papers by global priority</CardDescription>
+                </div>
+                <Star className="h-5 w-5 text-yellow-500" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {topPapers.map((paper, index) => (
+                  <div key={paper.id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 font-semibold text-sm">
+                      {paper.priority}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex-1">
+                          <h4 className="font-medium text-sm line-clamp-1">{paper.name}</h4>
+                          {paper.authors && paper.authors.length > 0 && (
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              {paper.authors.length > 3 
+                                ? `${paper.authors.slice(0, 3).join(', ')}, et al.`
+                                : paper.authors.join(', ')}
+                              {paper.publicationDate && ` • ${paper.publicationDate}`}
+                            </p>
+                          )}
+                          {paper.description && (
+                            <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                              {paper.description}
+                            </p>
+                          )}
+                          {paper.projectSlug && (
+                            <Link href={`/${paper.projectSlug}`}>
+                              <Badge variant="outline" className="mt-1.5 text-xs">
+                                {paper.projectSlug.split('-').map(word => 
+                                  word.charAt(0).toUpperCase() + word.slice(1)
+                                ).join(' ')}
+                              </Badge>
+                            </Link>
+                          )}
+                        </div>
+                        {paper.link && (
+                          <a
+                            href={paper.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 px-2 py-1 text-xs rounded-md bg-muted hover:bg-muted/80 transition-colors shrink-0"
+                          >
+                            Paper
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Recent Activity */}
         <Card>

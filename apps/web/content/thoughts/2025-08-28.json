@@ -1,28 +1,139 @@
 {
-  "title": "Ongoing...",
+  "title": "FER paper, portal thoughts, project discussions, synthetic data",
   "thoughts": [
     {
-      "id": 1,
       "content": "Grinded on making proposal figure for ablated llm",
       "time": "00:50",
       "tags": []
     },
     {
-      "id": 2,
-      "content": "Grinded for thumbnail creation for domain ablated LLM proposal. Image models are still very hard to steer even thought gemini is very good.",
+      "content": "Grinded for thumbnail creation for domain ablated LLM proposal. Image models are still very hard to steer even though Gemini is very good.",
       "time": "01:08",
       "tags": []
     },
     {
-      "id": 3,
-      "content": "should probably read paper now instead of website grinding, vibe coding is addicting",
+      "content": "Should probably read paper now instead of website grinding, vibe coding is addicting",
       "time": "01:12",
       "tags": []
     },
     {
-      "id": 4,
-      "content": "added figure to blogpost and pushed web and portal changes",
+      "content": "Added figure to blogpost and pushed web and portal changes",
       "time": "01:36",
+      "tags": []
+    },
+    {
+      "content": "Still reading the paper while doing a bunch of micro-procrastination stuff...",
+      "time": "02:15",
+      "tags": []
+    },
+    {
+      "content": "Continued reading the paper, got a bit distracted by RL environments for LLMs. But I find that in the paper two things are unclear: 1) The paper originally says the output is the whole output space but then the \"representations\" are for all outputs? 2) Does it make sense to not train on different images, as for my original understanding, I think the \"deep learning camp\" believes good representations emerge at scale.",
+      "time": "03:34",
+      "tags": []
+    },
+    {
+      "content": "Roughly 3/4 through the paper reading it in a complete way. This study is nice. Worth doing some follow up.\nGotta sleep though.",
+      "time": "03:46",
+      "tags": []
+    },
+    {
+      "content": "A bit worried if I'm trying too OOD research, LLMxRL seems like the most obvious research topic, but also looks crowded. At the same time I am unsure if RL will allow models to generalize far beyond pretraining",
+      "time": "11:00",
+      "tags": []
+    },
+    {
+      "content": "Continuing to read the representation paper. Almost done. Procrastinated on WebGPU because I was wondering if I can host a live demo on my website.",
+      "time": "12:28",
+      "tags": []
+    },
+    {
+      "content": "\"For example, during pre-training, the data for arithmetic and calculus are absorbed simultaneously, even though a proper understanding of calculus depends on arithmetic.\" -> this might be challenged by [\"From Next-Token to Mathematics: The Learning Dynamics of Mathematical Reasoning in Language Models\"](https://arxiv.org/abs/2407.00900v2) which says that even though math data is presented randomly, generalizable abilities appear in order of curriculum. Should probably read this next.",
+      "time": "12:49",
+      "tags": []
+    },
+    {
+      "content": "\"The place where reasoning is most lacking may not actually be at inference time, but rather during learning itself.\" -> this is a great quote from the paper",
+      "time": "13:10",
+      "tags": []
+    },
+    {
+      "content": "Maybe I should follow my past idea: \"When do representations emerge separately vs together for related tasks?\"",
+      "time": "13:27",
+      "tags": []
+    },
+    {
+      "content": "Had a random discussion with FS about the paper. I think we agree that the paper makes a good simple point and puts the right words out for discussion. I asked about roughly do humans have FER, he recommended to read [\"Invariant representations of mass in the human brain\"](https://elifesciences.org/articles/46619)",
+      "time": "13:37",
+      "tags": []
+    },
+    {
+      "content": "6.3 seems to exactly address the issue of training on one example. This reinforces my motivation for projects understanding when representations unify and why modern LLMs are still not data efficient.",
+      "time": "13:40",
+      "tags": []
+    },
+    {
+      "content": "6.4 comments about MOEs but as far as I know the name MOE is a huge misnomer, capabilities aren't actually split around, it's mostly just a somehow good architecture.",
+      "time": "13:42",
+      "tags": []
+    },
+    {
+      "content": "Finally done with paper. Mostly a really good paper seeding many ideas. Of course, some details are a bit confusing for me, but overall 100% agree with the main point.",
+      "time": "13:57",
+      "tags": []
+    },
+    {
+      "content": "Successfully read paper, let me add it to my research portal. I probably need to restructure the research portal. I still think it's a bit early for real DB integration, I'm still deciding what exactly to visualize on the portal and what interaction patterns I need. But definitely a literature tab where I can organize all literature papers is going to be needed.",
+      "time": "14:38",
+      "tags": []
+    },
+    {
+      "content": "Edited the portal a lot, Claude is so bad at editing exactly only what I need. Need to change the job txt in the repo I guess...",
+      "time": "14:45",
+      "tags": []
+    },
+    {
+      "content": "OMG Claude deleted a whole work it grinded for 30 minutes. AI really is so so bad at state tracking.",
+      "time": "15:02",
+      "tags": []
+    },
+    {
+      "content": "Wow Claude tried to delete components in use. It's kinda weird that my human brain has better state management.",
+      "time": "15:08",
+      "tags": []
+    },
+    {
+      "content": "Finally cleaned up all the mess and implemented thought tracking to the project page in portal.",
+      "time": "15:13",
+      "tags": []
+    },
+    {
+      "content": "Time for change of scenery and bike to Baker Lib.",
+      "time": "15:15",
+      "tags": []
+    },
+    {
+      "content": "Worked on some logistics...",
+      "time": "16:45",
+      "tags": []
+    },
+    {
+      "content": "Had a group meeting on the paper I just read. Nothing too extra special, but did confirm that there really doesn't seem to be studies showing merging of representations.",
+      "time": "18:30",
+      "tags": []
+    },
+    {
+      "content": "Back home after long discussion of projects with IP. IP wants to work on how to communicate a preference to a model. But I actually think that people have already densely explored prompt-based generation of synthetic data and training on the data to achieve \"alignment\". This is called [\"constitutional AI\"](https://arxiv.org/abs/2212.08073) or [\"deliberate alignment\"](https://arxiv.org/abs/2412.16339) from Anthropic or OpenAI. There are some papers on this including my own [\"New News: System-2 Fine-tuning for Robust Integration of New Knowledge\"](https://arxiv.org/abs/2505.01812) and notably [\"Self-Adapting Language Models\"](https://arxiv.org/abs/2506.10943) or [\"Learning Facts at Scale with Active Reading\"](https://www.arxiv.org/abs/2508.09494). In general this area of research seems already pretty well explored and it seems like a template of prompt -> Method A -> Data -> Method B -> Trained model, where Method A and Method B are respectively chosen within {self generate, external model, human in the loop} and {SFT, DPO(RL), PPO(RL)}. I proposed a more exploratory direction inspired by [\"Generative Adapter: Contextualizing Language Models in Parameters with A Single Forward Pass\"](https://arxiv.org/abs/2411.05877), where we skip the \"middle man\" being the data. The argument is that since the model already understands the prompt (i.e., has the right features, and this is the case since it can generate adequate data) this means that in principle there could be a method which can directly transform the prompt into a weight perturbation, exactly what the generative adapter explores. I have no idea why nobody followed up. Maybe it's just super hard. Synthetic data first? Perhaps if we have good synthetic data actually being a model of LLM pretraining and post training, we can test out this idea... IDK if this is the right bet. Also talked a lot whether synthetic data can be scaled up this far. Yes, indeed seems hard.",
+      "time": "23:00",
+      "tags": []
+    },
+    {
+      "content": "Time to get back to work. Let me check the deep research about scaling synthetic data.",
+      "time": "23:30",
+      "tags": []
+    },
+    {
+      "content": "Ok gathering all the deep research I've been running on dopamine-like signal in LLMs, evolutionary studies, synthetic data, etc. I should organize a to-read list using the portal system.",
+      "time": "23:56",
       "tags": []
     }
   ]

@@ -3,8 +3,8 @@
   "name": "Origins of Representations",
   "description": "Investigating the fundamental principles of representation emergence in neural networks",
   "status": "active",
-  "created": "2025-08-20",
-  "last_updated_at": "2025-08-27",
+  "created": "2025-08-27",
+  "last_updated_at": "2025-08-28",
   "icon": "Brain",
   "logo": "/project-logos/origins-of-representations.png",
   "color": "purple",
@@ -15,29 +15,14 @@
       "icon": "Home"
     },
     {
-      "id": "experiments",
-      "label": "Experiments",
-      "icon": "Flask"
+      "id": "thoughts",
+      "label": "Thoughts",
+      "icon": "Brain"
     },
     {
-      "id": "datasets",
-      "label": "Datasets",
-      "icon": "Database"
-    },
-    {
-      "id": "analysis",
-      "label": "Analysis",
-      "icon": "ChartBar"
-    },
-    {
-      "id": "papers",
-      "label": "Papers",
+      "id": "literature",
+      "label": "Literature",
       "icon": "FileText"
-    },
-    {
-      "id": "code",
-      "label": "Code",
-      "icon": "Code"
     }
   ]
 }

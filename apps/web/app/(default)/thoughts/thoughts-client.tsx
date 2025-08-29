@@ -152,7 +152,7 @@ export default function ThoughtsPageClient({ dailyThoughts }: ThoughtsPageClient
   return (
     <PageContainer>
       <div className="mb-8">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <h1 className="text-4xl font-bold">Thoughts</h1>
           {!isUnlocked && (
             <form onSubmit={handlePasswordSubmit} className="flex items-center gap-2">
@@ -162,7 +162,7 @@ export default function ThoughtsPageClient({ dailyThoughts }: ThoughtsPageClient
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="h-8 w-48"
+                className="h-8 w-32 sm:w-48"
                 disabled={isSubmitting}
               />
               <Button
@@ -259,7 +259,7 @@ export default function ThoughtsPageClient({ dailyThoughts }: ThoughtsPageClient
                         <CardContent className="p-4 pt-0">
                           <div className="space-y-3">
                             {daily.thoughts.map((thought) => (
-                              <div key={thought.id} className="border-l-2 border-muted pl-4">
+                              <div key={thought.time} className="border-l-2 border-muted pl-4">
                                 <div className="flex items-center gap-2 mb-1">
                                   <Clock className="h-3 w-3 text-muted-foreground" />
                                   <span className="text-xs text-muted-foreground">{thought.time}</span>

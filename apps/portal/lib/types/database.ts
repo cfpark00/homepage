@@ -48,7 +48,7 @@ export interface Database {
           slug: string
           title: string
           content: Json
-          type: 'document' | 'experiment' | 'dataset' | 'visualization'
+          type: 'paper' | 'document' | 'experiment' | 'dataset' | 'visualization'
           created_at: string
           updated_at: string
         }
@@ -58,7 +58,7 @@ export interface Database {
           slug: string
           title: string
           content: Json
-          type: 'document' | 'experiment' | 'dataset' | 'visualization'
+          type: 'paper' | 'document' | 'experiment' | 'dataset' | 'visualization'
           created_at?: string
           updated_at?: string
         }

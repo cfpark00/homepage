@@ -1,31 +1,56 @@
 {
   "items": [
     {
-      "id": "proposal",
-      "name": "Project Proposal",
+      "id": "next-token-to-mathematics-2024",
+      "name": "From Next-Token to Mathematics: The Learning Dynamics of Mathematical Reasoning in Language Models",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Shows that mathematical skills emerge in LLMs following human curriculum order despite random training data presentation",
+      "publicationDate": "July 2024",
+      "authors": [
+        "Shubhra Mishra",
+        "Gabriel Poesia",
+        "Noah D. Goodman"
+      ],
+      "abstract": "Large Language Models (LLMs) solely trained on next-token prediction learn to solve a wide range of problems involving mathematical reasoning. But how does this ability evolve during training? We show the first analysis of how mathematical reasoning abilities of several open-weight LLMs develop during pre-training and post-training. To this end, we construct MathCAMPS, a synthetic dataset of novel mathematical reasoning problems grounded in 44 fine-grained skills taken from the Common Core curriculum from K to 8th grades. In one experiment, we show that mathematical skills are learned during pre-training in an order that measurably correlates with the human-designed curriculum, even though training data are randomly ordered. We also show a detailed analysis of which mathematical abilities benefit from instruction tuning, a widely used post-training method and, in contrast, which skills suffer. Our work paves the way for an empirical understanding of LLM training dynamics in relation to reasoning.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2407.00900"
+    },
+    {
+      "id": "effects-excluding-domains-llm-pretraining",
+      "name": "Effects of Excluding Domains in Language Model Pretraining",
       "type": "document",
-      "tab": "overview",
+      "tab": "literature",
       "shared": false,
-      "lastModified": "2025-08-28",
-      "description": "Training LLMs with ablated knowledge domains"
+      "lastModified": "2025-08-29",
+      "description": "Review showing that excluding training domains causes proportional capability gaps, with broad domains (web, books) having outsized impact on general knowledge",
+      "link": "https://docs.google.com/document/d/1P2Nik0m1tLoMx7YZ2Ac4xBnihm0fB_S4niyWHCnf2iY/edit?usp=sharing",
+      "abstract": "This document reviews domain ablation experiments in language model pretraining, examining how deliberately omitting specific domains (e.g., history, physics, biology) from training data affects model capabilities. The research synthesizes findings from multiple studies including Longpre et al. (2023) who trained 28 models on Pile dataset variants with systematically removed domains, Rae et al. (2022) from DeepMind's Gopher project who experimented with domain weighting schemes, and domain-specific models like BioBERT. Key findings demonstrate that: (1) Omitting a domain directly degrades in-domain performance - models without biomedical training struggle on biomedical QA, (2) Broad heterogeneous domains (web crawl, books) have disproportionate impact - their removal causes larger performance drops across all tasks due to their diverse knowledge coverage, (3) Comprehensive multi-domain training yields the most robust models - best performance comes from full domain mixtures rather than single-domain or pruned datasets, (4) Domain-specific models like BioBERT and SciBERT outperform general models on specialized tasks precisely because base models lack sufficient domain exposure, and (5) Optimal domain mixing can improve performance across all domains simultaneously, as shown by the DoReMi technique. The research confirms that 'you get what you train for' - models are only as knowledgeable as their training data, with modern LLMs requiring expansive, diverse datasets covering code, books, web content, and academic texts to achieve broad capabilities.",
+      "readingStatus": "to-read"
     },
     {
-      "id": "chemistry-ablation",
-      "name": "Chemistry Ablation",
-      "type": "experiment",
-      "tab": "experiments",
+      "id": "gsm-symbolic-2024",
+      "name": "GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models",
+      "type": "paper",
+      "tab": "literature",
+      "tags": ["Motivation"],
       "shared": false,
-      "lastModified": "2025-08-27",
-      "description": "Testing knowledge reconstruction without chemistry"
-    },
-    {
-      "id": "ablation-pipeline",
-      "name": "Ablation Pipeline",
-      "type": "code",
-      "tab": "code",
-      "shared": false,
-      "lastModified": "2025-08-26",
-      "description": "Code for filtering knowledge domains"
+      "lastModified": "2025-08-29",
+      "description": "Reveals significant limitations in LLMs' mathematical reasoning by introducing a new benchmark that exposes their fragility in logical problem-solving",
+      "publicationDate": "October 2024",
+      "authors": [
+        "Iman Mirzadeh",
+        "Keivan Alizadeh",
+        "Hooman Shahrokhi",
+        "Oncel Tuzel",
+        "Samy Bengio",
+        "Mehrdad Farajtabar"
+      ],
+      "abstract": "Recent advancements in Large Language Models (LLMs) have sparked interest in their formal reasoning capabilities, particularly in mathematics. The GSM8K benchmark is widely used to assess the mathematical reasoning of models on grade-school-level questions. While the performance of LLMs on GSM8K has significantly improved in recent years, it remains unclear whether their mathematical reasoning capabilities have genuinely advanced, raising questions about the reliability of the reported metrics. To address these concerns, we conduct a large-scale study on several SOTA open and closed models. To overcome the limitations of existing evaluations, we introduce GSM-Symbolic, an improved benchmark created from symbolic templates that allow for the generation of a diverse set of questions. GSM-Symbolic enables more controllable evaluations, providing key insights and more reliable metrics for measuring the reasoning capabilities of models.Our findings reveal that LLMs exhibit noticeable variance when responding to different instantiations of the same question. Specifically, the performance of all models declines when only the numerical values in the question are altered in the GSM-Symbolic benchmark. Furthermore, we investigate the fragility of mathematical reasoning in these models and show that their performance significantly deteriorates as the number of clauses in a question increases. We hypothesize that this decline is because current LLMs cannot perform genuine logical reasoning; they replicate reasoning steps from their training data. Adding a single clause that seems relevant to the question causes significant performance drops (up to 65%) across all state-of-the-art models, even though the clause doesn't contribute to the reasoning chain needed for the final answer. Overall, our work offers a more nuanced understanding of LLMs' capabilities and limitations in mathematical reasoning.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2410.05229"
     }
   ]
 }

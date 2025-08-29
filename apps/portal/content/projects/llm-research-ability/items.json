@@ -1,0 +1,202 @@
+{
+  "items": [
+    {
+      "id": "open-ended-learning-2021",
+      "name": "Open-Ended Learning Leads to Generally Capable Agents",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Demonstrates how training agents in diverse, multi-agent environments with procedurally generated 3D worlds leads to zero-shot generalization across various tasks",
+      "publicationDate": "July 2021",
+      "authors": [
+        "Open Ended Learning Team",
+        "Adam Stooke",
+        "Anuj Mahajan",
+        "Catarina Barros",
+        "et al."
+      ],
+      "abstract": "In this work we create agents that can perform well beyond a single, individual task, that exhibit much wider generalisation of behaviour to a massive, rich space of challenges. We define a universe of tasks within an environment domain and demonstrate the ability to train agents that are generally capable across this vast space and beyond. The environment is natively multi-agent, spanning the continuum of competitive, cooperative, and independent games, which are situated within procedurally generated physical 3D worlds. The resulting space is exceptionally diverse in terms of the challenges posed to agents, and as such, even measuring the learning progress of an agent is an open research problem. We propose an iterative notion of improvement between successive generations of agents, rather than seeking to maximise a singular objective, allowing us to quantify progress despite tasks being incomparable in terms of achievable rewards. We show that through constructing an open-ended learning process, which dynamically changes the training task distributions and training objectives such that the agent never stops learning, we achieve consistent learning of new behaviours. The resulting agent is able to score reward in every one of our humanly solvable evaluation levels, with behaviour generalising to many held-out points in the universe of tasks. Examples of this zero-shot generalisation include good performance on Hide and Seek, Capture the Flag, and Tag. Through analysis and hand-authored probe tasks we characterise the behaviour of our agent, and find interesting emergent heuristic behaviours such as trial-and-error experimentation, simple tool use, option switching, and cooperation. Finally, we demonstrate that the general capabilities of this agent could unlock larger scale transfer of behaviour through cheap finetuning.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2107.12808"
+    },
+    {
+      "id": "grl-game-reinforcement-learning-2025",
+      "name": "lmgame-Bench: How Good are LLMs at Playing Games?",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Benchmark using video games to evaluate LLMs with perception and memory scaffolds, showing transfer learning from game training to planning tasks",
+      "publicationDate": "May 2025",
+      "authors": [
+        "Lanxiang Hu",
+        "Mingjia Huo",
+        "Yuxuan Zhang",
+        "Haoyang Yu",
+        "et al."
+      ],
+      "abstract": "Playing video games requires perception, memory, and planning, exactly the faculties modern large language model (LLM) agents are expected to master. We study the major challenges in using popular video games to evaluate modern LLMs and find that directly dropping LLMs into games cannot make an effective evaluation, for three reasons -- brittle vision perception, prompt sensitivity, and potential data contamination. We introduce lmgame-Bench to turn games into reliable evaluations. lmgame-Bench features a suite of platformer, puzzle, and narrative games delivered through a unified Gym-style API and paired with lightweight perception and memory scaffolds, and is designed to stabilize prompt variance and remove contamination. Across 13 leading models, we show lmgame-Bench is challenging while still separating models well. Correlation analysis shows that every game probes a unique blend of capabilities often tested in isolation elsewhere. More interestingly, performing reinforcement learning on a single game from lmgame-Bench transfers both to unseen games and to external planning tasks. Our evaluation code is available at https://github.com/lmgame-org/GamingAgent/lmgame-bench.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2505.15146"
+    },
+    {
+      "id": "rl2-reinforcement-learning-library",
+      "name": "RL2: Ray Less Reinforcement Learning",
+      "type": "repository",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Concise (<1K lines) yet scalable RL library for LLMs up to 72B parameters with FSDP, tensor parallelism, and multi-turn rollouts",
+      "publicationDate": "2025",
+      "authors": [
+        "Chenmien Tan",
+        "Simon Yu",
+        "Lanbo Lin",
+        "Ze Zhang",
+        "et al."
+      ],
+      "abstract": "RL2 (Ray Less Reinforcement Learning) is a concise library for reinforcement learning with large language models, designed to be simple yet scalable. A library for learning and testing reinforcement learning algorithms for large language models with a clear implementation in under 1,000 lines of code. Supports model partitioning via Fully Sharded Data Parallelism and Tensor Parallelism, efficient sequence parallelism with ZigZag Ring Attention, supports inference engine and KV cache partitioning, balanced sequence packing, and multi-turn rollout with SGLang async inference engine. Provides production-ready implementations of Supervised Fine-Tuning (SFT), Reward Modeling (RM), Direct Preference Optimization (DPO), and Proximal Policy Optimization (PPO). The library has been used in projects like OpenThoughts, SkyworkRM, UltraFeedback, OpenReasonerZero, and SearchR1.",
+      "readingStatus": "to-read",
+      "link": "https://github.com/ChenmienTan/RL2"
+    },
+    {
+      "id": "ai-researcher-2025",
+      "name": "AI-Researcher: Autonomous Scientific Innovation",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Fully autonomous research system that orchestrates complete research pipeline from literature review to manuscript preparation",
+      "publicationDate": "May 2025",
+      "authors": [
+        "Jiabin Tang",
+        "Lianghao Xia",
+        "Zhonghang Li",
+        "Chao Huang"
+      ],
+      "abstract": "The powerful reasoning capabilities of Large Language Models (LLMs) in mathematics and coding, combined with their ability to automate complex tasks through agentic frameworks, present unprecedented opportunities for accelerating scientific innovation. In this paper, we introduce AI-Researcher, a fully autonomous research system that transforms how AI-driven scientific discovery is conducted and evaluated. Our framework seamlessly orchestrates the complete research pipeline--from literature review and hypothesis generation to algorithm implementation and publication-ready manuscript preparation--with minimal human intervention. To rigorously assess autonomous research capabilities, we develop Scientist-Bench, a comprehensive benchmark comprising state-of-the-art papers across diverse AI research domains, featuring both guided innovation and open-ended exploration tasks. Through extensive experiments, we demonstrate that AI-Researcher achieves remarkable implementation success rates and produces research papers that approach human-level quality. This work establishes new foundations for autonomous scientific innovation that can complement human researchers by systematically exploring solution spaces beyond cognitive limitations.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2505.18705"
+    },
+    {
+      "id": "general-intelligence-exploration-2022",
+      "name": "General Intelligence Requires Rethinking Exploration",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Proposes generalized exploration as a unified framework across supervised and reinforcement learning for open-ended AI development",
+      "publicationDate": "November 2022",
+      "authors": [
+        "Minqi Jiang",
+        "Tim Rocktäschel",
+        "Edward Grefenstette"
+      ],
+      "abstract": "We are at the cusp of a transition from 'learning from data' to 'learning what data to learn from' as a central focus of artificial intelligence (AI) research. While the first-order learning problem is not completely solved, large models under unified architectures, such as transformers, have shifted the learning bottleneck from how to effectively train our models to how to effectively acquire and use task-relevant data. This problem, which we frame as exploration, is a universal aspect of learning in open-ended domains, such as the real world. Although the study of exploration in AI is largely limited to the field of reinforcement learning, we argue that exploration is essential to all learning systems, including supervised learning. We propose the problem of generalized exploration to conceptually unify exploration-driven learning between supervised learning and reinforcement learning, allowing us to highlight key similarities across learning settings and open research challenges. Importantly, generalized exploration serves as a necessary objective for maintaining open-ended learning processes, which in continually learning to discover and solve new problems, provides a promising path to more general intelligence.",
+      "readingStatus": "to-read",
+      "priority": 5,
+      "link": "https://arxiv.org/abs/2211.07819"
+    },
+    {
+      "id": "alphago-moment-architecture-2025",
+      "name": "AlphaGo Moment for Model Architecture Discovery",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "ASI-Arch system autonomously discovers 106 SOTA linear attention architectures through 1,773 experiments, establishing scaling laws for scientific discovery",
+      "publicationDate": "July 2025",
+      "authors": [
+        "Yixiu Liu",
+        "Yang Nan",
+        "Weixian Xu",
+        "Xiangkun Hu",
+        "et al."
+      ],
+      "abstract": "While AI systems demonstrate exponentially improving capabilities, the pace of AI research itself remains linearly bounded by human cognitive capacity, creating an increasingly severe development bottleneck. We present ASI-Arch, the first demonstration of Artificial Superintelligence for AI research (ASI4AI) in the critical domain of neural architecture discovery--a fully autonomous system that shatters this fundamental constraint by enabling AI to conduct its own architectural innovation. Moving beyond traditional Neural Architecture Search (NAS), which is fundamentally limited to exploring human-defined spaces, we introduce a paradigm shift from automated optimization to automated innovation. ASI-Arch can conduct end-to-end scientific research in the domain of architecture discovery, autonomously hypothesizing novel architectural concepts, implementing them as executable code, training and empirically validating their performance through rigorous experimentation and past experience. ASI-Arch conducted 1,773 autonomous experiments over 20,000 GPU hours, culminating in the discovery of 106 innovative, state-of-the-art (SOTA) linear attention architectures. Like AlphaGo's Move 37 that revealed unexpected strategic insights invisible to human players, our AI-discovered architectures demonstrate emergent design principles that systematically surpass human-designed baselines and illuminate previously unknown pathways for architectural innovation. Crucially, we establish the first empirical scaling law for scientific discovery itself--demonstrating that architectural breakthroughs can be scaled computationally, transforming research progress from a human-limited to a computation-scalable process. We provide comprehensive analysis of the emergent design patterns and autonomous research capabilities that enabled these breakthroughs, establishing a blueprint for self-accelerating AI systems.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2507.18074"
+    },
+    {
+      "id": "darwin-godel-machine-2025",
+      "name": "Darwin Godel Machine: Open-Ended Evolution of Self-Improving Agents",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Self-improving system that iteratively modifies its own code, achieving 2.5x performance improvements on coding benchmarks through autonomous evolution",
+      "publicationDate": "May 2025",
+      "authors": [
+        "Jenny Zhang",
+        "Shengran Hu",
+        "Cong Lu",
+        "Robert Lange",
+        "Jeff Clune"
+      ],
+      "abstract": "Today's AI systems have human-designed, fixed architectures and cannot autonomously and continuously improve themselves. The advance of AI could itself be automated. If done safely, that would accelerate AI development and allow us to reap its benefits much sooner. Meta-learning can automate the discovery of novel algorithms, but is limited by first-order improvements and the human design of a suitable search space. The Gödel machine proposed a theoretical alternative: a self-improving AI that repeatedly modifies itself in a provably beneficial manner. Unfortunately, proving that most changes are net beneficial is impossible in practice. We introduce the Darwin Gödel Machine (DGM), a self-improving system that iteratively modifies its own code (thereby also improving its ability to modify its own codebase) and empirically validates each change using coding benchmarks. Inspired by Darwinian evolution and open-endedness research, the DGM maintains an archive of generated coding agents. It grows the archive by sampling an agent from it and using a foundation model to create a new, interesting, version of the sampled agent. This open-ended exploration forms a growing tree of diverse, high-quality agents and allows the parallel exploration of many different paths through the search space. Empirically, the DGM automatically improves its coding capabilities (e.g., better code editing tools, long-context window management, peer-review mechanisms), increasing performance on SWE-bench from 20.0% to 50.0%, and on Polyglot from 14.2% to 30.7%. Furthermore, the DGM significantly outperforms baselines without self-improvement or open-ended exploration. All experiments were done with safety precautions (e.g., sandboxing, human oversight). The DGM is a significant step toward self-improving AI, capable of gathering its own stepping stones along paths that unfold into endless innovation.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2505.22954"
+    },
+    {
+      "id": "balrog-benchmark-2024",
+      "name": "BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Benchmark evaluating LLMs and VLMs in complex game environments, revealing severe deficiencies in vision-based decision-making and strategic planning",
+      "publicationDate": "November 2024",
+      "authors": [
+        "Davide Paglieri",
+        "Bartłomiej Cupiał",
+        "Samuel Coward",
+        "Ulyana Piterbarg",
+        "Maciej Wolczyk",
+        "Akbir Khan",
+        "Eduardo Pignatelli",
+        "Łukasz Kuciński",
+        "Lerrel Pinto",
+        "Rob Fergus",
+        "Jakob Nicolaus Foerster",
+        "Jack Parker-Holder",
+        "Tim Rocktäschel"
+      ],
+      "abstract": "Large Language Models (LLMs) and Vision Language Models (VLMs) possess extensive knowledge and exhibit promising reasoning abilities, however, they still struggle to perform well in complex, dynamic environments. Real-world tasks require handling intricate interactions, advanced spatial reasoning, long-term planning, and continuous exploration of new strategies-areas in which we lack effective methodologies for comprehensively evaluating these capabilities. To address this gap, we introduce BALROG, a novel benchmark designed to assess the agentic capabilities of LLMs and VLMs through a diverse set of challenging games. Our benchmark incorporates a range of existing reinforcement learning environments with varying levels of difficulty, including tasks that are solvable by non-expert humans in seconds to extremely challenging ones that may take years to master (e.g., the NetHack Learning Environment). We devise fine-grained metrics to measure performance and conduct an extensive evaluation of several popular open-source and closed-source LLMs and VLMs. Our findings indicate that while current models achieve partial success in the easier games, they struggle significantly with more challenging tasks. Notably, we observe severe deficiencies in vision-based decision-making, as several models perform worse when visual representations of the environments are provided. We release BALROG as an open and user-friendly benchmark to facilitate future research and development in the agentic community. Code and Leaderboard at balrogai.com.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2411.13543"
+    },
+    {
+      "id": "mlgym-benchmark-2025",
+      "name": "MLGym: A New Framework and Benchmark for Advancing AI Research Agents",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "First Gym environment for ML research tasks with 13 AI research benchmarks, showing frontier models improve baselines but lack novel hypothesis generation",
+      "publicationDate": "February 2025",
+      "authors": [
+        "Deepak Nathani",
+        "Lovish Madaan",
+        "Nicholas Roberts",
+        "Nikolay Bashlykov",
+        "Ajay Menon",
+        "Vincent Moens",
+        "Amar Budhiraja",
+        "Despoina Magka",
+        "Vladislav Vorotilov",
+        "Gaurav Chaurasia",
+        "Dieuwke Hupkes",
+        "Ricardo Silveira Cabral",
+        "Tatiana Shavrina",
+        "Jakob Foerster",
+        "Yoram Bachrach",
+        "William Yang Wang",
+        "Roberta Raileanu"
+      ],
+      "abstract": "We introduce Meta MLGym and MLGym-Bench, a new framework and benchmark for evaluating and developing LLM agents on AI research tasks. This is the first Gym environment for machine learning (ML) tasks, enabling research on reinforcement learning (RL) algorithms for training such agents. MLGym-bench consists of 13 diverse and open-ended AI research tasks from diverse domains such as computer vision, natural language processing, reinforcement learning, and game theory. Solving these tasks requires real-world AI research skills such as generating new ideas and hypotheses, creating and processing data, implementing ML methods, training models, running experiments, analyzing the results, and iterating through this process to improve on a given task. We evaluate a number of frontier large language models (LLMs) on our benchmarks such as Claude-3.5-Sonnet, Llama-3.1 405B, GPT-4o, o1-preview, and Gemini-1.5 Pro. Our MLGym framework makes it easy to add new tasks, integrate and evaluate models or agents, generate synthetic data at scale, as well as develop new learning algorithms for training agents on AI research tasks. We find that current frontier models can improve on the given baselines, usually by finding better hyperparameters, but do not generate novel hypotheses, algorithms, architectures, or substantial improvements. We open-source our framework and benchmark to facilitate future research in advancing the AI research capabilities of LLM agents.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2502.14499"
+    }
+  ]
+}

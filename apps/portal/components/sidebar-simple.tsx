@@ -204,7 +204,7 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
                 >
                   <div className={cn(
                     "relative rounded-md shrink-0 overflow-hidden h-8 w-8 flex items-center justify-center",
-                    isActive ? "bg-primary/20" : colorScheme.bgColor
+                    colorScheme.bgColor
                   )}>
                     {project.logo && !hasLogoError ? (
                       <Image
@@ -218,7 +218,7 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
                     ) : (
                       <Icon className={cn(
                         "h-4 w-4",
-                        isActive ? "text-primary" : colorScheme.color
+                        colorScheme.color
                       )} />
                     )}
                   </div>
