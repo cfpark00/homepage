@@ -1,1 +1,48 @@
-{"thoughts": []}
+[
+  {
+    "date": "2025-08-29",
+    "title": "Project Planning: Do LLMs Have Dopamine",
+    "thoughts": [
+      {
+        "content": "Outlined the core research question: whether LLMs develop emergent representations of reward through pretraining and post-training, analogous to dopaminergic systems in biological agents. The key insight is that as LLMs show enhanced agentic abilities, they might have evolved internal guidance systems.",
+        "time": "15:27",
+        "tags": ["Research Question", "Project Setup"]
+      },
+      {
+        "content": "This is genuinely exploratory research - we have no prior hypothesis about what we'll find. We might discover clear reward representations, partial signals, or nothing at all. Even null results would be scientifically valuable as they would constrain theories about how LLMs process information.",
+        "time": "15:27",
+        "tags": ["Methodology", "Expectations"]
+      },
+      {
+        "content": "Key methodological approach: Start with thorough neuroscience literature review to understand dopamine mechanisms, then clearly define what would constitute 'dopamine representation' in LLMs before hunting for these features using mechanistic interpretability.",
+        "time": "15:27",
+        "tags": ["Methodology", "Planning"]
+      },
+      {
+        "content": "Resource requirements are substantial: ~2TB storage, 8 GPUs per student (1-2 students), NDIF/nnsight for interpretability work. Ideally need a computational neuroscientist who is well-grounded in biology, not just theory.",
+        "time": "15:27",
+        "tags": ["Resources", "Collaboration"]
+      },
+      {
+        "content": "Identified key related work: Our previous paper on context reorganization (Kumar et al. 2025), Demircan et al. on TD errors in transformers, and several papers on in-context RL. Surprisingly little work at the direct intersection of LLMs and dopamine-like mechanisms.",
+        "time": "15:27",
+        "tags": ["Literature", "Related Work"]
+      },
+      {
+        "content": "Potential impacts if successful: (1) New methods for enhancing long-horizon task performance, (2) Better control mechanisms for LLMs, (3) Insights into emergence of dopaminergic systems. Also triggers discussions about AI welfare, though I remain critical of this framing.",
+        "time": "15:27",
+        "tags": ["Impact", "Applications"]
+      },
+      {
+        "content": "Anticipating reviewer objections: (1) Practical impact - addressed by emphasizing value of open-ended science, (2) Validity of 'dopamine representation' terminology - this is actually exciting as it forces us to define what counts as 'dopamine-ish enough' given inevitable differences between biological and artificial systems.",
+        "time": "15:27",
+        "tags": ["Challenges", "Review Process"]
+      },
+      {
+        "content": "The open-ended nature of milestone 5 is intentional - depending on what we find, we'll need to adapt our approach. This flexibility is crucial for truly exploratory research where we're not sure what patterns might emerge.",
+        "time": "15:27",
+        "tags": ["Methodology", "Flexibility"]
+      }
+    ]
+  }
+]

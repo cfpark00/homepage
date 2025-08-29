@@ -145,6 +145,24 @@
       "abstract": "Biological evolution provides a creative fount of complex and subtle adaptations, often surprising the scientists who discover them. However, because evolution is an algorithmic process that transcends the substrate in which it occurs, evolution's creativity is not limited to nature. Indeed, many researchers in the field of digital evolution have observed their evolving algorithms and organisms subverting their intentions, exposing unrecognized bugs in their code, producing unexpected adaptations, or exhibiting outcomes uncannily convergent with ones in nature. Such stories routinely reveal creativity by evolution in these digital worlds, but they rarely fit into the standard scientific narrative. Instead they are often treated as mere obstacles to be overcome, rather than results that warrant study in their own right. The stories themselves are traded among researchers through oral tradition, but that mode of information transmission is inefficient and prone to error and outright loss. Moreover, the fact that these stories tend to be shared only among practitioners means that many natural scientists do not realize how interesting and lifelike digital organisms are and how natural their evolution can be. To our knowledge, no collection of such anecdotes has been published before. This paper is the crowd-sourced product of researchers in the fields of artificial life and evolutionary computation who have provided first-hand accounts of such cases. It thus serves as a written, fact-checked collection of scientifically important and even entertaining stories. In doing so we also present here substantial evidence that the existence and importance of evolutionary surprises extends beyond the natural world, and may indeed be a universal property of all complex evolving systems.",
       "readingStatus": "to-read",
       "link": "https://arxiv.org/abs/1803.03453"
+    },
+    {
+      "id": "chemotactic-strategies-marl-2024",
+      "name": "Emergence of Chemotactic Strategies with Multi-Agent Reinforcement Learning",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "RL agents learn chemotaxis strategies as soon as physically possible, revealing three dominant emergent behaviors for biological navigation",
+      "publicationDate": "April 2024",
+      "authors": [
+        "Samuel Tovey",
+        "Christoph Lohrmann",
+        "Christian Holm"
+      ],
+      "abstract": "Reinforcement learning (RL) is a flexible and efficient method for programming micro-robots in complex environments. Here we investigate whether reinforcement learning can provide insights into biological systems when trained to perform chemotaxis. Namely, whether we can learn about how intelligent agents process given information in order to swim towards a target. We run simulations covering a range of agent shapes, sizes, and swim speeds to determine if the physical constraints on biological swimmers, namely Brownian motion, lead to regions where reinforcement learners' training fails. We find that the RL agents can perform chemotaxis as soon as it is physically possible and, in some cases, even before the active swimming overpowers the stochastic environment. We study the efficiency of the emergent policy and identify convergence in agent size and swim speeds. Finally, we study the strategy adopted by the reinforcement learning algorithm to explain how the agents perform their tasks. To this end, we identify three emerging dominant strategies and several rare approaches taken. These strategies, whilst producing almost identical trajectories in simulation, are distinct and give insight into the possible mechanisms behind which biological agents explore their environment and respond to changing conditions.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2404.01999"
     }
   ]
 }

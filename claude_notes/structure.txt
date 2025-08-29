@@ -1,5 +1,5 @@
 # Project Structure Overview
-Last Updated: 2025-08-29 (04:58)
+Last Updated: 2025-08-29 (17:02)
 
 ## Root Directory: /Users/cfpark00/mysite
 Monorepo using pnpm workspaces with Vercel deployment
@@ -10,13 +10,13 @@ Monorepo using pnpm workspaces with Vercel deployment
 Main Next.js application (port 3020 in dev)
 
 ### /apps/portal/
-Research portal application with authentication (port 3021 in dev, added 2025-08-26, redesigned 2025-08-27, sidebar collapse added 2025-08-28, reading list feature added 2025-08-29)
+Research portal application with authentication (port 3021 in dev, added 2025-08-26, redesigned 2025-08-27, sidebar collapse added 2025-08-28, reading list feature added 2025-08-29, persistent layout structure 2025-08-29)
 - Uses Supabase for authentication and data storage
 - Google OAuth integration for login with profile picture support
 - Separate from main web app but shares Supabase instance (free tier limitation)
-- Dashboard-style layout with left sidebar navigation (redesigned 2025-08-27)
+- Dashboard-style layout with persistent left sidebar navigation (redesigned 2025-08-27, made persistent 2025-08-29)
 - Projects as main navigation items in sidebar with Focus group support (Focus group added 2025-08-29)
-- Public share links at /[project_slug]/s/[token] for sharing research without auth
+- Public share links at /[project_slug]/s/[token] for sharing research without auth (removed 2025-08-29 during layout restructure)
 - /explore page for browsing public research projects
 - Collapsible sidebar for desktop mode (added 2025-08-28)
 - Thoughts tracking system with timeline view (added 2025-08-28)
@@ -27,6 +27,10 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 - Tags system for categorizing literature items (added 2025-08-29)
 - Automatic "Project created" thought injection at runtime (added 2025-08-29)
 - Structured overview tab with proposal sections and proposalFigure support (added 2025-08-29)
+- Project overview system with markdown rendering via SimpleMarkdown component (added 2025-08-29)
+- Starred papers system with dashboard display (added 2025-08-29, 17:02)
+- Real-time project statistics (Focus Projects, Literature Items) replacing hardcoded values (updated 2025-08-29, 17:02)
+- Priority Papers and Starred Papers client components for interactive dashboard (added 2025-08-29, 17:02)
 
 #### /app/
 - layout.tsx - Root layout with ThemeProvider (updated 2025-08-27)
@@ -174,7 +178,11 @@ Research portal application with authentication (added 2025-08-26, port 3021 in 
 #### /app/
 - layout.tsx - Root layout with ThemeProvider, v2 favicon integration (updated 2025-08-28)
 - globals.css - Tailwind styles with shadcn/ui CSS variables
-- page.tsx - Dashboard page with stats and activity (redesigned 2025-08-27)
+- (dashboard)/ - Route group with persistent layout (added 2025-08-29)
+  - layout.tsx - Shared dashboard layout with persistent sidebar (added 2025-08-29)
+  - page.tsx - Dashboard page with stats and activity (moved from root 2025-08-29)
+  - [project_slug]/
+    - page.tsx - Project page with tabs (moved from root 2025-08-29)
 - test/
   - page.tsx - Test page with demo share links
 - auth/
@@ -184,8 +192,6 @@ Research portal application with authentication (added 2025-08-26, port 3021 in 
     - page.tsx - Signup page with email verification and Google OAuth (added OAuth 2025-08-26)
   - callback/
     - route.ts - OAuth callback handler (added 2025-08-26)
-- [project_slug]/
-  - page.tsx - Project page with tabs for Origins of Representations (updated 2025-08-27)
   - s/
     - [token]/
       - page.tsx - Public share page (accessible via token)
@@ -195,10 +201,10 @@ Research portal application with authentication (added 2025-08-26, port 3021 in 
 #### /components/
 - logout-button.tsx - Logout button component with className support (updated 2025-08-27)
 - sidebar.tsx - Original complex sidebar (deprecated)
-- sidebar-simple.tsx - Simplified sidebar with projects, collapsible on desktop, improved active state styling (updated 2025-08-28)
+- sidebar-simple.tsx - Simplified sidebar with projects, collapsible on desktop, persistent scroll (updated 2025-08-29)
 - sidebar-context.tsx - Context for sidebar state management (added 2025-08-28)
 - portal-layout.tsx - Original layout wrapper (deprecated)
-- portal-layout-simple.tsx - Simplified layout with sidebar (updated 2025-08-28)
+- portal-layout-simple.tsx - Simplified layout with sidebar (now used in shared layout 2025-08-29)
 - page-header.tsx - Page header with hamburger button integration (added 2025-08-27)
 - project-tabs.tsx - Tabbed interface with reading list grouping for literature, supports tags (updated 2025-08-29)
 - project-overview.tsx - Project overview with collapsible sections, null-safe rendering, proposalFigure support (updated 2025-08-29)
@@ -358,7 +364,7 @@ Static assets and data (archived LaTeX CV files removed 2025-08-29)
 1. Authentication: Supabase Auth with Google OAuth
 2. Content: File-based at /apps/portal/content/projects/[project-name]/
    - metadata.json: Project info, tabs, colors, icons, status, focus flag (focus added 2025-08-29)
-   - items.json: Project items with types and tab assignments
+   - literature.json: Project items with types and tab assignments (renamed from items.json on 2025-08-29)
    - thoughts.json: Daily thoughts with timestamps and tags
    - overview.json: Structured overview content (optional)
    - Current projects:

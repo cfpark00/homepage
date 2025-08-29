@@ -75,6 +75,76 @@
       "content": "Ok done with cleaning stuff up.",
       "time": "05:04",
       "tags": []
+    },
+    {
+      "content": "Started working after some logistics.",
+      "time": "14:58",
+      "tags": []
+    },
+    {
+      "content": "Recalling my [\"ICLR: In-Context Learning of Representations\"](https://arxiv.org/abs/2501.00070) paper, I feel like it's time to revisit the LLM dopamine project. Let me make Claude interview me. By the way, this \"interview\" I created so that Claude follows the protocol to interview me, seems precisely like what I need for the orchestra app's onboarding meeting. Let's think about this carefully!",
+      "time": "15:00",
+      "tags": []
+    },
+    {
+      "content": "Hmm I should really put down research proposals and recruit students to work with. I can't handle all these ideas myself. Let me do both today: formalizing projects and going through potential students/collaborators and also making some progress in detailed scoping of some projects.",
+      "time": "15:08",
+      "tags": []
+    },
+    {
+      "content": "Ok Claude interviewing me really feels like this LLM dopamine project is hardcore research: we really don't know what we are doing. I've seen some posts about LLMs maze-finding (originally tried to look for chemotaxis). My personal feeling is that too many of these papers after running some experiments ask the question of: do they perform some optimal strategy like A*? But for me, this direction is not that interesting since general intelligence was present way beyond A*, i.e. general intelligence is actually so broad that it invents A* when it's needed, not when it could have been done. In fact, GPT-5 says (hope it's right) mazes were a \"concept\" in 2000BC, and it was a common \"toy\" in 1880, but A* was born in 1968, when it was *needed*. I don't think it's fair to call ancient Greeks having fun in mazes to be \"dumber\" than A*, when they didn't need it. If anything, if we want LLMs to perform A*, the right way is to give it coding tools. \"Can an intelligent AI perform A*\" is imo the wrong question as A* is designed to be done via a programmable machine, don't waste intelligence there. Long rant, but the point is: It seems much more interesting to understand what LLMs' policy on a diversity of environments are, is it general, is it adaptive to new environments?",
+      "time": "15:17",
+      "tags": []
+    },
+    {
+      "content": "I am already reading the characteristics and namings of research proposals at different stages from school project to national level projects.",
+      "time": "15:20",
+      "tags": []
+    },
+    {
+      "content": "Ok Claude finished onboarding me for the dopamine LLM project.",
+      "time": "15:24",
+      "tags": []
+    },
+    {
+      "content": "Hmm do I need somewhere where I can dump interesting but non-project clustered papers? But tbh I have enough projects, maybe I should, LOL, focus on reading?",
+      "time": "15:26",
+      "tags": []
+    },
+    {
+      "content": "Ok time to do another \"onboarding\". I mean this way of doing research is actually quite productive, but also I'm afraid it actually leads to a standardization process of the research process, i.e. industrialization. Well let's not worry too much for now.",
+      "time": "15:29",
+      "tags": []
+    },
+    {
+      "content": "I guess I will do from this project: Representation vs Objective",
+      "time": "15:40",
+      "tags": []
+    },
+    {
+      "content": "Seems like I've been missing the diffusion vs AR discussion for a while. Time to get back into that research seems like problems are still not solved!!!!",
+      "time": "16:06",
+      "tags": []
+    },
+    {
+      "content": "Claude is onboarding me and it says stuff like \"That's a clever approach - using diffusion to learn the representations, then testing if autoregression can leverage those learned features. The implications for LLM training could be significant.\" -> I feel a self-validation, but probably should not: again, remembering that I can convince LLMs that Excel is the best ML framework.....",
+      "time": "16:07",
+      "tags": []
+    },
+    {
+      "content": "Ok almost done with onboarding. Wow it's a bit tedious for sure.",
+      "time": "16:29",
+      "tags": []
+    },
+    {
+      "content": "Ok added logo as well. Try to overview emails and outreach for collaborators.",
+      "time": "16:39",
+      "tags": []
+    },
+    {
+      "content": "Adjusting the priority paper page.",
+      "time": "16:48",
+      "tags": []
     }
   ]
 }

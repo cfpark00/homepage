@@ -8,6 +8,7 @@
   "icon": "Bot",
   "color": "red",
   "logo": "/projects/llms-dopamine/logo.png",
+  "focus": true,
   "tabs": [
     {
       "id": "overview",

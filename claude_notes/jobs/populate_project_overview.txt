@@ -82,7 +82,7 @@ Start with understanding the fundamental research question:
 ### After Information Gathering
 1. Create the complete `overview.json` file with all gathered information
 2. **CRITICAL**: Read `/Users/cfpark00/mysite/claude_notes/docs/portal_projects/adding_literature.md` for proper literature formatting
-3. Add any mentioned papers to `items.json` following the literature guidelines
+3. Add any mentioned papers to `literature.json` following the literature guidelines
    - MUST fetch real abstracts from arXiv using WebFetch
    - Never write summaries as abstracts
    - Use proper date format: "Month Year" not "YYYY-MM-DD"
@@ -120,7 +120,7 @@ User: [Lists milestones]
    - Read `/Users/cfpark00/mysite/claude_notes/jobs/thought_writing.txt` first
    - Add multiple thought entries with the same timestamp
    - Include appropriate tags for each thought
-5. Clean up any temporary files (like literature.json if using items.json)
+5. Clean up any temporary files
 
 ## Quality Checklist
 - [ ] Read `/Users/cfpark00/mysite/claude_notes/docs/portal_projects/adding_literature.md` before adding papers
@@ -132,7 +132,7 @@ User: [Lists milestones]
 - [ ] Expected results include specific hypotheses
 - [ ] Broader impact explains significance
 - [ ] Potential objections show critical thinking
-- [ ] All mentioned papers added to items.json with real abstracts from arXiv
+- [ ] All mentioned papers added to literature.json with real abstracts from arXiv
 - [ ] Paper format follows literature guidelines (proper date format, real abstracts)
 - [ ] Current time queried before adding thoughts
 - [ ] Thoughts document the planning session with proper timestamps

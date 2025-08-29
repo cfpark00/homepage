@@ -1,0 +1,97 @@
+{
+  "proposalAbstract": "This research investigates whether Large Language Models (LLMs), through pretraining and post-training alone, develop emergent representations of reward in their internal states analogous to dopaminergic systems in biological agents. The central hypothesis is that as LLMs demonstrate enhanced agentic abilities and long-horizon task performance, they may have evolved internal guidance systems functionally similar to dopamine-mediated reward processing. We aim to identify these potential reward representations using mechanistic interpretability techniques and explore whether interventions on these representations can guide LLM behavior, potentially opening new avenues for model control and understanding of emergent cognitive mechanisms.",
+  "milestones": [
+    {
+      "id": "milestone-1",
+      "title": "Neuroscience Literature Review",
+      "description": "Thoroughly read neuroscience literature to understand dopamine mechanisms, review progress in testing in-silico models of dopamine-based guidance/learning, and investigate if such systems have been found to emerge in artificial systems",
+      "status": "pending"
+    },
+    {
+      "id": "milestone-2",
+      "title": "Define Dopamine Representation Criteria",
+      "description": "Clearly define what constitutes a valid 'representation of dopamine' in LLMs, establishing testable criteria that bridge neuroscience concepts with transformer architectures",
+      "status": "pending"
+    },
+    {
+      "id": "milestone-3",
+      "title": "Task Design for Signal Detection",
+      "description": "Set up tasks that would be ideal for observing reward-like signals, focusing on scenarios requiring long-horizon planning and reward-based decision making",
+      "status": "pending"
+    },
+    {
+      "id": "milestone-4",
+      "title": "Mechanistic Interpretability Hunt",
+      "description": "Hunt for dopamine features/vectors/representations using mechanistic interpretability techniques, leveraging tools like NDIF/nnsight to probe internal model representations",
+      "status": "pending"
+    },
+    {
+      "id": "milestone-5",
+      "title": "Evidence Assessment",
+      "description": "Assess evidence for reward representations or in-context reinforcement learning behaviors in the discovered features",
+      "status": "pending"
+    },
+    {
+      "id": "milestone-6",
+      "title": "Open-Ended Exploration",
+      "description": "Based on results, proceed in an open-ended way to either develop intervention techniques, explore null results, or investigate unexpected findings",
+      "status": "pending"
+    }
+  ],
+  "coreExperiments": [
+    {
+      "id": "exp-1",
+      "name": "Reward Representation Discovery",
+      "description": "Use mechanistic interpretability tools to probe LLM internal states during reward-relevant tasks, searching for consistent activation patterns that correlate with reward signals",
+      "status": "planned",
+      "estimatedDuration": "2-3 months"
+    },
+    {
+      "id": "exp-2",
+      "name": "In-Context Reinforcement Learning Analysis",
+      "description": "Test whether LLMs exhibit in-context reinforcement learning behaviors and identify the internal mechanisms supporting such behaviors",
+      "status": "planned",
+      "estimatedDuration": "2 months"
+    },
+    {
+      "id": "exp-3",
+      "name": "Intervention Studies",
+      "description": "If reward representations are found, conduct targeted interventions to test whether manipulating these representations can guide LLM behavior in predictable ways",
+      "status": "planned",
+      "estimatedDuration": "3 months"
+    }
+  ],
+  "expectedResources": [
+    {
+      "type": "compute",
+      "description": "8 GPUs per student for running large-scale interpretability experiments",
+      "quantity": "8-16 GPUs total",
+      "status": "requested"
+    },
+    {
+      "type": "storage",
+      "description": "Storage for model checkpoints, activation data, and experimental results",
+      "quantity": "~2TB",
+      "status": "requested"
+    },
+    {
+      "type": "software",
+      "description": "NDIF/nnsight for mechanistic interpretability work on large language models",
+      "status": "available"
+    },
+    {
+      "type": "personnel",
+      "description": "1-2 graduate students plus ideally a computational neuroscientist well-grounded in biology",
+      "quantity": "2-3 researchers",
+      "status": "partially available"
+    }
+  ],
+  "detailedProposal": {
+    "backgroundMotivation": "Recent advances in LLMs have demonstrated remarkable agentic capabilities and the ability to perform long-horizon tasks that seem to require some form of internal guidance system. Our previous work has shown that LLMs can represent data generating processes given in context, suggesting sophisticated internal representations. The emergence of these capabilities raises fundamental questions about whether LLMs have developed reward-like representations analogous to biological dopaminergic systems. This research bridges neuroscience and AI to explore whether such mechanisms emerge naturally from training and whether they can be leveraged for improved control and understanding of LLM behavior.",
+    "relatedResearch": "This work builds on several research threads: (1) Our previous findings showing LLMs represent data generating processes in context, (2) Recent work by Demircan et al. on error signals in transformers suggesting potential reward-related representations, (3) Papers exploring in-context learning as performing gradient descent-like operations, (4) Emerging work on using implicit process rewards in LLMs. Notably, there is surprisingly little work at the direct intersection of LLMs and dopamine-like mechanisms, with most existing research focusing on behavioral outputs rather than internal representations. The broader neuroscience literature on dopamine in biological systems, reinforcement learning, and psychiatry provides the theoretical foundation, though translating these concepts to transformer architectures remains largely unexplored.",
+    "researchRoadmap": "The project follows a systematic approach starting from theoretical grounding to empirical investigation. We begin by establishing a solid understanding of biological dopamine systems and their computational models. Next, we develop clear, testable definitions of what would constitute dopamine-like representations in LLMs. We then design tasks specifically crafted to elicit reward-related processing, followed by systematic probing using mechanistic interpretability techniques. The open-ended nature of later stages allows us to adapt based on findings - whether pursuing positive results through intervention studies or pivoting to understand why such representations might not emerge.",
+    "expectedResults": "This is genuinely exploratory research with high uncertainty. We may find: (1) Clear evidence of reward representations that can be manipulated to control behavior, (2) Partial or weak signals suggesting reward-like processing but without clear intervention targets, or (3) No evidence of reward representations or in-context reinforcement learning behaviors. Even null results would be scientifically valuable, constraining theories about how LLMs process information and make decisions. If positive results emerge, we expect to identify specific features or vectors that consistently activate during reward-relevant processing and demonstrate that interventions on these representations predictably alter model behavior.",
+    "broaderImpact": "If successful, this research could fundamentally change how we understand and control LLMs. Finding reward representations would: (1) Enable new methods for enhancing long-horizon task performance by directly modulating internal reward signals, (2) Provide more fine-grained control mechanisms for LLM behavior beyond prompt engineering, (3) Offer insights into the emergence of dopaminergic systems more broadly, potentially informing both AI development and neuroscience. The work also has implications for AI safety and alignment, providing new tools for understanding and controlling model behavior. Additionally, discovering reward-like representations would trigger important discussions about AI welfare and the nature of subjective experience in artificial systems, though we maintain a critical and scientific approach to these implications.",
+    "potentialObjections": "Reviewers may raise two primary objections: (1) Practical impact concerns - questioning whether this exploratory research will yield actionable insights. Our response emphasizes the value of open-ended science in advancing fundamental understanding, noting that major breakthroughs often emerge from curiosity-driven research. The potential applications to model control and long-horizon tasks provide concrete practical benefits even if the theoretical implications remain debated. (2) Validity of the 'dopamine representation' terminology - critics may argue that any discovered mechanisms are too different from biological dopamine to warrant the comparison. We embrace this challenge as it forces us to rigorously define what constitutes a 'dopamine-ish enough' system. While there will inevitably be differences between biological systems and LLMs, identifying functional analogies could provide valuable insights for both fields. The question of how to bridge these discrepancies while fostering interdisciplinary collaboration is itself a valuable research contribution."
+  }
+}

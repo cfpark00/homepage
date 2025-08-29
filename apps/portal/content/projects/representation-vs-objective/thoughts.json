@@ -7,6 +7,41 @@
         "content": "Project created",
         "time": "00:00",
         "tags": ["milestone", "project"]
+      },
+      {
+        "content": "Conducted comprehensive planning session for 'Representation vs Objective' project. The core question crystallized: does the distinction between diffusion and autoregressive models really matter if the right representations are formed? Using the Star Graph task as our testbed - a problem where autoregression provably fails but diffusion succeeds.",
+        "time": "16:38",
+        "tags": ["planning", "research-question"]
+      },
+      {
+        "content": "Key experimental design: Train both AR and diffusion models with identical transformer architectures, then test if diffusion-learned representations can be transferred to enable AR success. This is the critical test - if AR can succeed with diffusion's representations, it suggests the optimization landscape, not the objective function itself, is the barrier.",
+        "time": "16:38",
+        "tags": ["experimental-design", "methods"]
+      },
+      {
+        "content": "Interesting hypothesis about loss plateaus: AR gets stuck in local minima where SGD cannot make breakthroughs. The user suggests noise injection might provide 'escape velocity' from these plateaus. Also noted that RL won't help without the right representations - it's a chicken-and-egg problem.",
+        "time": "16:38",
+        "tags": ["hypothesis", "optimization"]
+      },
+      {
+        "content": "Critical implementation detail: Must carefully align tokenization and transformer architecture between models to avoid trivial incompatibilities. The user emphasized this multiple times - we need to ensure any failures are due to fundamental issues, not simple engineering bugs.",
+        "time": "16:38",
+        "tags": ["implementation", "technical"]
+      },
+      {
+        "content": "Broader implications are profound: Should we keep scaling AR? Do we need diffusion? Is AR + data augmentation sufficient? The Star Graph task serves as a minimal test case that might reveal fundamental truths about these paradigms.",
+        "time": "16:38",
+        "tags": ["implications", "scaling"]
+      },
+      {
+        "content": "Main challenge identified: Relevance of the Star Graph task to real-world scenarios. Plan to address this by scaling up the task and exploring different data generation processes to build a nuanced argument about real-world applicability.",
+        "time": "16:38",
+        "tags": ["challenges", "relevance"]
+      },
+      {
+        "content": "Added 17 papers to literature, covering the Star Graph task, diffusion vs AR comparisons, loss landscape analysis, and related theoretical work. Key papers include Bachmann & Nagarajan (2024) introducing the task, Ye et al. (2024) showing diffusion's success, and Prabhudesai et al. (2025) on why diffusion beats AR in data-constrained settings.",
+        "time": "16:38",
+        "tags": ["literature", "papers"]
       }
     ]
   }

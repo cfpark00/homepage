@@ -1,10 +1,10 @@
 # Adding Papers, Repositories, and Web Content to Portal Projects
 
-This guide explains how to properly add academic papers, GitHub repositories, and web content (articles, blog posts, tweets, Wikipedia) to portal projects. Each project can contain multiple items organized in its `items.json` file.
+This guide explains how to properly add academic papers, GitHub repositories, and web content (articles, blog posts, tweets, Wikipedia) to portal projects. Each project can contain multiple items organized in its `literature.json` file.
 
 ## Overview
 
-All literature items are stored in `/Users/cfpark00/mysite/apps/portal/content/projects/[project-slug]/items.json`. Each entry contains metadata, abstract/description, and analysis fields that help track research literature, code resources, and web content.
+All literature items are stored in `/Users/cfpark00/mysite/apps/portal/content/projects/[project-slug]/literature.json`. Each entry contains metadata, abstract/description, and analysis fields that help track research literature, code resources, and web content.
 
 ## Content Types
 
@@ -148,7 +148,7 @@ Current projects accepting papers:
 2. Copy the EXACT abstract (don't summarize!)
 3. Write a one-line TLDR for the `description` field
 4. Format the publication date as "Month Year"
-5. Add to the appropriate project's `items.json`
+5. Add to the appropriate project's `literature.json`
 6. Include your analysis in `relevanceToProject` and `myTake` fields
 7. Set appropriate `readingStatus`
 
@@ -281,7 +281,7 @@ For GitHub repositories, the `abstract` field works differently than papers:
 4. Generate a comprehensive `abstract` based on README content (no hallucination!)
 5. List main contributors as authors
 6. Set type as `"repository"`
-7. Add to appropriate project's `items.json`
+7. Add to appropriate project's `literature.json`
 
 ## Web Content (Articles, Blog Posts, Tweets, Wikipedia)
 
@@ -386,4 +386,4 @@ For web content, create abstracts that:
 4. Write a one-line TLDR for `description`
 5. Create comprehensive `abstract` from actual content
 6. Use appropriate author attribution
-7. Add to relevant project's `items.json`
+7. Add to relevant project's `literature.json`

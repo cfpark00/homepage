@@ -1,0 +1,345 @@
+{
+  "items": [
+    {
+      "id": "star-graph-bachmann-2024",
+      "name": "The pitfalls of next-token prediction",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Introduces the Star Graph task demonstrating fundamental failures of teacher-forcing in next-token prediction",
+      "publicationDate": "March 2024",
+      "authors": [
+        "Gregor Bachmann",
+        "Vaishnavh Nagarajan"
+      ],
+      "abstract": "Can a mere next-token predictor faithfully model human intelligence? We crystallize this emerging concern and correct popular misconceptions surrounding it, and advocate a simple multi-token objective. As a starting point, we argue that the two often-conflated phases of next-token prediction -- autoregressive inference and teacher-forced training -- must be treated distinctly. The popular criticism that errors can compound during autoregressive inference, crucially assumes that teacher-forcing has learned an accurate next-token predictor. This assumption sidesteps a more deep-rooted problem we expose: in certain classes of tasks, teacher-forcing can simply fail to learn an accurate next-token predictor in the first place. We describe a general mechanism of how teacher-forcing can fail, and design a minimal planning task where both the Transformer and the Mamba architecture empirically fail in that manner -- remarkably, despite the task being straightforward to learn. Finally, we provide preliminary evidence that this failure can be resolved using _teacherless_ training, a simple modification using dummy tokens that predicts multiple tokens in advance. We hope this finding can ground future debates and inspire explorations beyond the next-token prediction paradigm.",
+      "relevanceToProject": "Core paper defining the Star Graph task that serves as the primary testbed for our experiments",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2403.06963"
+    },
+    {
+      "id": "diffusion-vs-ar-ye-2024",
+      "name": "Beyond Autoregression: Discrete Diffusion for Complex Reasoning and Planning",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Shows diffusion models successfully learn Star Graph and other tasks where autoregressive models fail",
+      "publicationDate": "October 2024",
+      "authors": [
+        "Jiacheng Ye",
+        "Jiahui Gao",
+        "Shansan Gong",
+        "Lin Zheng",
+        "Xin Jiang",
+        "Zhenguo Li",
+        "Lingpeng Kong"
+      ],
+      "abstract": "Autoregressive language models, despite their impressive capabilities, struggle with complex reasoning and long-term planning tasks. We introduce discrete diffusion models as a novel solution to these challenges. Through the lens of subgoal imbalance, we demonstrate how diffusion models effectively learn difficult subgoals that elude autoregressive approaches. We propose Multi-Granularity Diffusion Modeling (MGDM), which prioritizes subgoals based on difficulty during learning. On complex tasks like Countdown, Sudoku, and Boolean Satisfiability Problems, MGDM significantly outperforms autoregressive models without using search techniques. For instance, MGDM achieves 91.5% and 100% accuracy on Countdown and Sudoku, respectively, compared to 45.8% and 20.7% for autoregressive models. Our work highlights the potential of diffusion-based approaches in advancing AI capabilities for sophisticated language understanding and problem-solving tasks. All associated codes are available at https://github.com/HKUNLP/diffusion-vs-ar.",
+      "relevanceToProject": "Directly demonstrates diffusion's success on Star Graph - key evidence for our hypothesis",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2410.14157"
+    },
+    {
+      "id": "path-star-mystery-frydenlund-2024",
+      "name": "The Mystery of the Pathological Path-star Task for Language Models",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Explores why path-star task is difficult, shows it's learnable with alternative settings and regularization",
+      "publicationDate": "October 2024",
+      "authors": [
+        "Arvid Frydenlund"
+      ],
+      "abstract": "The recently introduced path-star task is a minimal task designed to exemplify limitations to the abilities of language models (Bachmann and Nagarajan, 2024). It involves a path-star graph where multiple arms radiate from a single starting node and each node is unique. Given the start node and a specified target node that ends an arm, the task is to generate the arm containing that target node. This is straightforward for a human but surprisingly difficult for language models, which did not outperform the random baseline. The authors hypothesized this is due to a deficiency in teacher-forcing and the next-token prediction paradigm. We demonstrate the task is learnable using teacher-forcing in alternative settings and that the issue is partially due to representation. We introduce a regularization method using structured samples of the same graph but with differing target nodes, improving results across a variety of model types. We provide RASP proofs showing the task is theoretically solvable. Finally, we find settings where an encoder-only model can consistently solve the task.",
+      "relevanceToProject": "Partially addresses our core question about representations but lacks clarity on the full picture",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2410.13779"
+    },
+    {
+      "id": "factorization-curse-kitouni-2024",
+      "name": "The Factorization Curse: Which Tokens You Predict Underlie the Reversal Curse and More",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Deep dive into how token ordering affects learning, showing next-token prediction's inherent limitations",
+      "publicationDate": "June 2024",
+      "authors": [
+        "Ouail Kitouni",
+        "Niklas Nolte",
+        "Diane Bouchacourt",
+        "Adina Williams",
+        "Mike Rabbat",
+        "Mark Ibrahim"
+      ],
+      "abstract": "Today's best language models still struggle with hallucinations: factually incorrect generations, which impede their ability to reliably retrieve information seen during training. The reversal curse, where models cannot recall information when probed in a different order than was encountered during training, exemplifies this in information retrieval. We reframe the reversal curse as a factorization curse - a failure of models to learn the same joint distribution under different factorizations. Through a series of controlled experiments with increasing levels of realism including WikiReversal, a setting we introduce to closely simulate a knowledge intensive finetuning task, we find that the factorization curse is an inherent failure of the next-token prediction objective used in popular large language models. Moreover, we demonstrate reliable information retrieval cannot be solved with scale, reversed tokens, or even naive bidirectional-attention training. Consequently, various approaches to finetuning on specialized data would necessarily provide mixed results on downstream tasks, unless the model has already seen the right sequence of tokens. Across five tasks of varying levels of complexity, our results uncover a promising path forward: factorization-agnostic objectives can significantly mitigate the reversal curse and hint at improved knowledge storage and planning capabilities.",
+      "relevanceToProject": "Provides theoretical grounding for why autoregressive models fail on certain tasks",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2406.05183"
+    },
+    {
+      "id": "multi-token-prediction-gloeckle-2024",
+      "name": "Better & Faster Large Language Models via Multi-token Prediction",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Multi-token prediction improves sample efficiency and reasoning capabilities over standard next-token",
+      "publicationDate": "April 2024",
+      "authors": [
+        "Fabian Gloeckle",
+        "Badr Youbi Idrissi",
+        "Baptiste Rozière",
+        "David Lopez-Paz",
+        "Gabriel Synnaeve"
+      ],
+      "abstract": "Large language models such as GPT and Llama are trained with a next-token prediction loss. In this work, we suggest that training language models to predict multiple future tokens at once results in higher sample efficiency. More specifically, at each position in the training corpus, we ask the model to predict the following n tokens using n independent output heads, operating on top of a shared model trunk. Considering multi-token prediction as an auxiliary training task, we measure improved downstream capabilities with no overhead in training time for both code and natural language models. The method is increasingly useful for larger model sizes, and keeps its appeal when training for multiple epochs. Gains are especially pronounced on generative benchmarks like coding, where our models consistently outperform strong baselines by several percentage points. Our 13B parameter models solves 12 % more problems on HumanEval and 17 % more on MBPP than comparable next-token models. Experiments on small algorithmic tasks demonstrate that multi-token prediction is favorable for the development of induction heads and algorithmic reasoning capabilities. As an additional benefit, models trained with 4-token prediction are up to 3 times faster at inference, even with large batch sizes.",
+      "relevanceToProject": "Alternative to pure next-token prediction that may help understand representation formation",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2404.19737"
+    },
+    {
+      "id": "beyond-creative-limits-nagarajan-2025",
+      "name": "Roll the dice & look before you leap: Going beyond the creative limits of next-token prediction",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Shows how multi-token approaches and diffusion excel at creative tasks requiring open-ended planning",
+      "publicationDate": "April 2025",
+      "authors": [
+        "Vaishnavh Nagarajan",
+        "Chen Henry Wu",
+        "Charles Ding",
+        "Aditi Raghunathan"
+      ],
+      "abstract": "We design a suite of minimal algorithmic tasks that are a loose abstraction of open-ended real-world tasks. This allows us to cleanly and controllably quantify the creative limits of the present-day language model. Much like real-world tasks that require a creative, far-sighted leap of thought, our tasks require an implicit, open-ended stochastic planning step that either (a) discovers new connections in an abstract knowledge graph (like in wordplay, drawing analogies, or research) or (b) constructs new patterns (like in designing math problems or new proteins). In these tasks, we empirically and conceptually argue how next-token learning is myopic; multi-token approaches, namely teacherless training and diffusion models, comparatively excel in producing diverse and original output. Secondly, to elicit randomness without hurting coherence, we find that injecting noise at the input layer (dubbed seed-conditioning) works surprisingly as well as (and in some conditions, better than) temperature sampling from the output layer. Thus, our work offers a principled, minimal test-bed for analyzing open-ended creative skills, and offers new arguments for going beyond next-token learning and temperature sampling.",
+      "relevanceToProject": "Reinforces the limitations of next-token prediction and benefits of diffusion for planning tasks",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2504.15266"
+    },
+    {
+      "id": "shortcuts-spurious-steinmann-2024",
+      "name": "Navigating Shortcuts, Spurious Correlations, and Confounders: From Origins via Detection to Mitigation",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Unifying taxonomy of shortcut learning that may explain why certain representations form or fail",
+      "publicationDate": "December 2024",
+      "authors": [
+        "David Steinmann",
+        "Felix Divo",
+        "Maurice Kraus",
+        "Antonia Wüst",
+        "Lukas Struppek",
+        "Felix Friedrich",
+        "Kristian Kersting"
+      ],
+      "abstract": "Shortcuts, also described as Clever Hans behavior, spurious correlations, or confounders, present a significant challenge in machine learning and AI, critically affecting model generalization and robustness. Research in this area, however, remains fragmented across various terminologies, hindering the progress of the field as a whole. Consequently, we introduce a unifying taxonomy of shortcut learning by providing a formal definition of shortcuts and bridging the diverse terms used in the literature. In doing so, we further establish important connections between shortcuts and related fields, including bias, causality, and security, where parallels exist but are rarely discussed. Our taxonomy organizes existing approaches for shortcut detection and mitigation, providing a comprehensive overview of the current state of the field and revealing underexplored areas and open challenges. Moreover, we compile and classify datasets tailored to study shortcut learning. Altogether, this work provides a holistic perspective to deepen understanding and drive the development of more effective strategies for addressing shortcuts in machine learning.",
+      "relevanceToProject": "May explain why autoregressive models learn shortcuts instead of proper representations",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2412.05152"
+    },
+    {
+      "id": "diffusearch-ye-2025",
+      "name": "Implicit Search via Discrete Diffusion: A Study on Chess",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Diffusion models can perform implicit search, outperforming both searchless and explicit search policies",
+      "publicationDate": "February 2025",
+      "authors": [
+        "Jiacheng Ye",
+        "Zhenyu Wu",
+        "Jiahui Gao",
+        "Zhiyong Wu",
+        "Xin Jiang",
+        "Zhenguo Li",
+        "Lingpeng Kong"
+      ],
+      "abstract": "In the post-AlphaGo era, there has been a renewed interest in search techniques such as Monte Carlo Tree Search (MCTS), particularly in their application to Large Language Models (LLMs). This renewed attention is driven by the recognition that current next-token prediction models often lack the ability for long-term planning. Is it possible to instill search-like abilities within the models to enhance their planning abilities without relying on explicit search? We propose DiffuSearch, a model that does implicit search by looking into the future world via discrete diffusion modeling. We instantiate DiffuSearch on a classical board game, Chess, where explicit search is known to be essential. Through extensive controlled experiments, we show DiffuSearch outperforms both the searchless and explicit search-enhanced policies. Specifically, DiffuSearch outperforms the one-step policy by 19.2% and the MCTS-enhanced policy by 14% on action accuracy. Furthermore, DiffuSearch demonstrates a notable 30% enhancement in puzzle-solving abilities compared to explicit search-based policies, along with a significant 540 Elo increase in game-playing strength assessment. These results indicate that implicit search via discrete diffusion is a viable alternative to explicit search over a one-step policy. All codes are publicly available at https://github.com/HKUNLP/DiffuSearch.",
+      "relevanceToProject": "Further evidence that diffusion models can learn planning capabilities that elude autoregressive models",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2502.19805"
+    },
+    {
+      "id": "compositional-transformers-wang-2025",
+      "name": "Learning Compositional Functions with Transformers from Easy-to-Hard Data",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Shows curriculum learning enables transformers to learn complex compositional tasks with polynomial complexity",
+      "publicationDate": "May 2025",
+      "authors": [
+        "Zixuan Wang",
+        "Eshaan Nichani",
+        "Alberto Bietti",
+        "Alex Damian",
+        "Daniel Hsu",
+        "Jason D. Lee",
+        "Denny Wu"
+      ],
+      "abstract": "Transformer-based language models have demonstrated impressive capabilities across a range of complex reasoning tasks. Prior theoretical work exploring the expressive power of transformers has shown that they can efficiently perform multi-step reasoning tasks involving parallelizable computations. However, the learnability of such constructions, particularly the conditions on the data distribution that enable efficient learning via gradient-based optimization, remains an open question. Towards answering this question, in this work we study the learnability of the $k$-fold composition task, which requires computing an interleaved composition of $k$ input permutations and $k$ hidden permutations, and can be expressed by a transformer with $O(\\log k)$ layers. On the negative front, we prove a Statistical Query (SQ) lower bound showing that any SQ learner that makes only polynomially-many queries to an SQ oracle for the $k$-fold composition task distribution must have sample size exponential in $k$, thus establishing a statistical-computational gap. On the other hand, we show that this function class can be efficiently learned, with runtime and sample complexity polynomial in $k$, by gradient descent on an $O(\\log k)$-depth transformer via two different curriculum learning strategies: one in which data consists of $k'$-fold composition functions with $k' \\le k$ presented in increasing difficulty, and another in which all such data is presented simultaneously. Our work sheds light on the necessity and sufficiency of having both easy and hard examples in the data distribution for transformers to learn complex compositional tasks.",
+      "relevanceToProject": "Relevant to understanding when and how transformers can learn complex tasks",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2505.23683"
+    },
+    {
+      "id": "transformers-struggle-search-saparov-2024",
+      "name": "Transformers Struggle to Learn to Search",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Transformers can learn parallel search but struggle with larger graphs, suggesting fundamental limitations",
+      "publicationDate": "December 2024",
+      "authors": [
+        "Abulhair Saparov",
+        "Srushti Pawar",
+        "Shreyas Pimpalgaonkar",
+        "Nitish Joshi",
+        "Richard Yuanzhe Pang",
+        "Vishakh Padmakumar",
+        "Seyed Mehran Kazemi",
+        "Najoung Kim",
+        "He He"
+      ],
+      "abstract": "Search is an ability foundational in many important tasks, and recent studies have shown that large language models (LLMs) struggle to perform search robustly. It is unknown whether this inability is due to a lack of data, insufficient model parameters, or fundamental limitations of the transformer architecture. In this work, we use the foundational graph connectivity problem as a testbed to generate effectively limitless high-coverage data to train small transformers and test whether they can learn to perform search. We find that, when given the right training distribution, the transformer is able to learn to search. We analyze the algorithm that the transformer has learned through a novel mechanistic interpretability technique that enables us to extract the computation graph from the trained model. We find that transformers perform search at every vertex in parallel: For each vertex in the input graph, transformers compute the set of vertices reachable from that vertex. Each layer then progressively expands these sets, allowing the model to search over a number of vertices exponential in $n_{\\text{layers}}$. However, we find that as the input graph size increases, the transformer has greater difficulty in learning the task. This difficulty is not resolved even as the number of parameters is increased, suggesting that increasing model scale will not lead to robust search abilities. We also find that performing search in-context (i.e., chain-of-thought) does not resolve this inability to learn to search on larger graphs.",
+      "relevanceToProject": "Shows transformers have fundamental limitations in search tasks regardless of scale",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2412.04703"
+    },
+    {
+      "id": "competition-dynamics-icl-park-2024",
+      "name": "Competition Dynamics Shape Algorithmic Phases of In-Context Learning",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "ICL emerges from competition between different algorithms, explaining transient nature of capabilities",
+      "publicationDate": "December 2024",
+      "authors": [
+        "Core Francisco Park",
+        "Ekdeep Singh Lubana",
+        "Itamar Pres",
+        "Hidenori Tanaka"
+      ],
+      "abstract": "In-Context Learning (ICL) has significantly expanded the general-purpose nature of large language models, allowing them to adapt to novel tasks using merely the inputted context. This has motivated a series of papers that analyze tractable synthetic domains and postulate precise mechanisms that may underlie ICL. However, the use of relatively distinct setups that often lack a sequence modeling nature to them makes it unclear how general the reported insights from such studies are. Motivated by this, we propose a synthetic sequence modeling task that involves learning to simulate a finite mixture of Markov chains. As we show, models trained on this task reproduce most well-known results on ICL, hence offering a unified setting for studying the concept. Building on this setup, we demonstrate we can explain a model's behavior by decomposing it into four broad algorithms that combine a fuzzy retrieval vs. inference approach with either unigram or bigram statistics of the context. These algorithms engage in a competition dynamics to dominate model behavior, with the precise experimental conditions dictating which algorithm ends up superseding others: e.g., we find merely varying context size or amount of training yields (at times sharp) transitions between which algorithm dictates the model behavior, revealing a mechanism that explains the transient nature of ICL. In this sense, we argue ICL is best thought of as a mixture of different algorithms, each with its own peculiarities, instead of a monolithic capability. This also implies that making general claims about ICL that hold universally across all settings may be infeasible.",
+      "relevanceToProject": "Relevant to understanding how different training objectives lead to different learned algorithms",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2412.01003"
+    },
+    {
+      "id": "icl-strategies-rational-wurgaft-2025",
+      "name": "In-Context Learning Strategies Emerge Rationally",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Bayesian framework explaining ICL strategies as optimal adaptations given computational constraints",
+      "publicationDate": "June 2025",
+      "authors": [
+        "Daniel Wurgaft",
+        "Ekdeep Singh Lubana",
+        "Core Francisco Park",
+        "Hidenori Tanaka",
+        "Gautam Reddy",
+        "Noah D. Goodman"
+      ],
+      "abstract": "Recent work analyzing in-context learning (ICL) has identified a broad set of strategies that describe model behavior in different experimental conditions. We aim to unify these findings by asking why a model learns these disparate strategies in the first place. Specifically, we start with the observation that when trained to learn a mixture of tasks, as is popular in the literature, the strategies learned by a model for performing ICL can be captured by a family of Bayesian predictors: a memorizing predictor, which assumes a discrete prior on the set of seen tasks, and a generalizing predictor, where the prior matches the underlying task distribution. Adopting the normative lens of rational analysis, where a learner's behavior is explained as an optimal adaptation to data given computational constraints, we develop a hierarchical Bayesian framework that almost perfectly predicts Transformer next-token predictions throughout training -- without assuming access to its weights. Under this framework, pretraining is viewed as a process of updating the posterior probability of different strategies, and inference-time behavior as a posterior-weighted average over these strategies' predictions. Our framework draws on common assumptions about neural network learning dynamics, which make explicit a tradeoff between loss and complexity among candidate strategies: beyond how well it explains the data, a model's preference towards implementing a strategy is dictated by its complexity. This helps explain well-known ICL phenomena, while offering novel predictions: e.g., we show a superlinear trend in the timescale for transitioning from generalization to memorization as task diversity increases. Overall, our work advances an explanatory and predictive account of ICL grounded in tradeoffs between strategy loss and complexity.",
+      "relevanceToProject": "Provides theoretical framework for understanding why models adopt different learning strategies",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2506.17859"
+    },
+    {
+      "id": "intelligence-edge-chaos-zhang-2024",
+      "name": "Intelligence at the Edge of Chaos",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Shows optimal complexity for intelligence emergence - neither too simple nor too chaotic",
+      "publicationDate": "October 2024",
+      "authors": [
+        "Shiyang Zhang",
+        "Aakash Patel",
+        "Syed A Rizvi",
+        "Nianchen Liu",
+        "Sizhuang He",
+        "Amin Karbasi",
+        "Emanuele Zappala",
+        "David van Dijk"
+      ],
+      "abstract": "We explore the emergence of intelligent behavior in artificial systems by investigating how the complexity of rule-based systems influences the capabilities of models trained to predict these rules. Our study focuses on elementary cellular automata (ECA), simple yet powerful one-dimensional systems that generate behaviors ranging from trivial to highly complex. By training distinct Large Language Models (LLMs) on different ECAs, we evaluated the relationship between the complexity of the rules' behavior and the intelligence exhibited by the LLMs, as reflected in their performance on downstream tasks. Our findings reveal that rules with higher complexity lead to models exhibiting greater intelligence, as demonstrated by their performance on reasoning and chess move prediction tasks. Both uniform and periodic systems, and often also highly chaotic systems, resulted in poorer downstream performance, highlighting a sweet spot of complexity conducive to intelligence. We conjecture that intelligence arises from the ability to predict complexity and that creating intelligence may require only exposure to complexity.",
+      "relevanceToProject": "Relevant to understanding optimal training conditions for representation formation",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2410.02536"
+    },
+    {
+      "id": "loss-landscape-degeneracy-hoogland-2024",
+      "name": "Loss Landscape Degeneracy and Stagewise Development in Transformers",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Links loss landscape degeneracy to developmental stages in transformer training",
+      "publicationDate": "February 2024",
+      "authors": [
+        "Jesse Hoogland",
+        "George Wang",
+        "Matthew Farrugia-Roberts",
+        "Liam Carroll",
+        "Susan Wei",
+        "Daniel Murfet"
+      ],
+      "abstract": "Deep learning involves navigating a high-dimensional loss landscape over the neural network parameter space. Over the course of training, complex computational structures form and re-form inside the neural network, leading to shifts in input/output behavior. It is a priority for the science of deep learning to uncover principles governing the development of neural network structure and behavior. Drawing on the framework of singular learning theory, we propose that model development is deeply linked to degeneracy in the local geometry of the loss landscape. We investigate this link by monitoring loss landscape degeneracy throughout training, as quantified by the local learning coefficient, for a transformer language model and an in-context linear regression transformer. We show that training can be divided into distinct periods of change in loss landscape degeneracy, and that these changes in degeneracy coincide with significant changes in the internal computational structure and the input/output behavior of the transformers. This finding provides suggestive evidence that degeneracy and development are linked in transformers, underscoring the potential of a degeneracy-based perspective for understanding modern deep learning.",
+      "relevanceToProject": "Directly relevant to our loss landscape analysis objectives",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2402.02364"
+    },
+    {
+      "id": "diffusion-beats-ar-prabhudesai-2025",
+      "name": "Diffusion Beats Autoregressive in Data-Constrained Settings",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Diffusion models outperform AR when data is scarce due to implicit data augmentation from random masking",
+      "publicationDate": "July 2025",
+      "authors": [
+        "Mihir Prabhudesai",
+        "Mengning Wu",
+        "Amir Zadeh",
+        "Katerina Fragkiadaki",
+        "Deepak Pathak"
+      ],
+      "abstract": "Autoregressive (AR) models have long dominated the landscape of large language models, driving progress across a wide range of tasks. Recently, diffusion-based language models have emerged as a promising alternative, though their advantages over AR models remain underexplored. In this paper, we systematically study masked diffusion models in data-constrained settings-where training involves repeated passes over limited data and find that they significantly outperform AR models when compute is abundant but data is scarce. Diffusion models make better use of repeated data, achieving lower validation loss and superior downstream performance. We find new scaling laws for diffusion models and derive a closed-form expression for the critical compute threshold at which diffusion begins to outperform AR. Finally, we explain why diffusion models excel in this regime: their randomized masking objective implicitly trains over a rich distribution of token orderings, acting as an implicit data augmentation that AR's fixed left-to-right factorization lacks. Our results suggest that when data, not compute, is the bottleneck, diffusion models offer a compelling alternative to the standard AR paradigm. Our code is available at: https://diffusion-scaling.github.io.",
+      "relevanceToProject": "Critical paper showing when and why diffusion outperforms AR - central to our debate",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2507.15857"
+    },
+    {
+      "id": "diffusion-super-learners-notion",
+      "name": "Diffusion Language Models are Super Data Learners",
+      "type": "web-article",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Analysis showing diffusion models as superior data learners compared to autoregressive models",
+      "publicationDate": "2024",
+      "authors": [
+        "Jinjie Ni"
+      ],
+      "abstract": "This article provides a comprehensive analysis of why diffusion language models demonstrate superior data learning capabilities compared to autoregressive models. The analysis covers multiple aspects including training dynamics, data efficiency, and architectural considerations that contribute to diffusion models' advantages in learning from limited data.",
+      "relevanceToProject": "Additional perspective on the diffusion vs AR debate from practitioner viewpoint",
+      "readingStatus": "to-read",
+      "link": "https://jinjieni.notion.site/Diffusion-Language-Models-are-Super-Data-Learners-239d8f03a866800ab196e49928c019ac"
+    }
+  ]
+}

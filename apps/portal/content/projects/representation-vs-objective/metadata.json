@@ -8,6 +8,7 @@
   "icon": "Brain",
   "logo": "/projects/representation-vs-objective/logo.png",
   "color": "green",
+  "focus": true,
   "tabs": [
     {
       "id": "overview",

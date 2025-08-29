@@ -22,6 +22,7 @@ export interface ProjectItem {
   authors?: string[]
   link?: string
   projectSlug?: string // Will be added when collecting papers
+  projectName?: string // Display name of the project
 }
 
 export interface ProjectMetadata {
@@ -75,7 +76,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     )
     
     // Read items
-    const itemsPath = path.join(projectDir, 'items.json')
+    const itemsPath = path.join(projectDir, 'literature.json')
     const itemsData = JSON.parse(fs.readFileSync(itemsPath, 'utf-8'))
     
     // Read thoughts if file exists (support both formats)
@@ -194,6 +195,97 @@ export async function getAllProjects(): Promise<ProjectMetadata[]> {
   }
 }
 
+export async function getProjectStats() {
+  try {
+    const projects = await getAllProjects()
+    const focusProjects = projects.filter(p => p.focus === true)
+    
+    // Count unique literature items across all projects
+    const uniqueItems = new Set<string>()
+    const projectDirs = fs.readdirSync(PROJECTS_DIR, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name)
+    
+    for (const dir of projectDirs) {
+      try {
+        const itemsPath = path.join(PROJECTS_DIR, dir, 'literature.json')
+        if (fs.existsSync(itemsPath)) {
+          const itemsContent = fs.readFileSync(itemsPath, 'utf-8')
+          const itemsData = JSON.parse(itemsContent)
+          const items = itemsData.items || []
+          
+          // Add each item's ID to the set (deduplicates automatically)
+          items.forEach((item: any) => {
+            if (item.id) {
+              uniqueItems.add(item.id)
+            }
+          })
+        }
+      } catch (error) {
+        console.error(`Error counting items for ${dir}:`, error)
+      }
+    }
+    
+    return {
+      totalProjects: projects.length,
+      focusProjects: focusProjects.length,
+      totalLiteratureItems: uniqueItems.size
+    }
+  } catch (error) {
+    console.error('Error getting project stats:', error)
+    return {
+      totalProjects: 0,
+      focusProjects: 0,
+      totalLiteratureItems: 0
+    }
+  }
+}
+
+export async function getStarredPapers(): Promise<ProjectItem[]> {
+  try {
+    if (!fs.existsSync(PROJECTS_DIR)) {
+      return []
+    }
+    
+    const projectDirs = fs.readdirSync(PROJECTS_DIR, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name)
+    
+    const starredPapers: ProjectItem[] = []
+    
+    for (const dir of projectDirs) {
+      try {
+        const itemsPath = path.join(PROJECTS_DIR, dir, 'literature.json')
+        const metadataPath = path.join(PROJECTS_DIR, dir, 'metadata.json')
+        
+        if (fs.existsSync(itemsPath) && fs.existsSync(metadataPath)) {
+          const itemsContent = fs.readFileSync(itemsPath, 'utf-8')
+          const itemsData = JSON.parse(itemsContent)
+          const items = itemsData.items || []
+          
+          const metadataContent = fs.readFileSync(metadataPath, 'utf-8')
+          const metadata = JSON.parse(metadataContent)
+          const projectName = metadata.name || dir
+          
+          // Filter for papers with starred flag
+          const papers = items
+            .filter((item: any) => item.starred === true)
+            .map((item: any) => ({ ...item, projectSlug: dir, projectName }))
+          
+          starredPapers.push(...papers)
+        }
+      } catch (error) {
+        console.error(`Error loading items for ${dir}:`, error)
+      }
+    }
+    
+    return starredPapers
+  } catch (error) {
+    console.error('Error loading starred papers:', error)
+    return []
+  }
+}
+
 export async function getTopPriorityPapers(limit: number = 10): Promise<ProjectItem[]> {
   try {
     if (!fs.existsSync(PROJECTS_DIR)) {
@@ -208,16 +300,22 @@ export async function getTopPriorityPapers(limit: number = 10): Promise<ProjectI
     
     for (const dir of projectDirs) {
       try {
-        const itemsPath = path.join(PROJECTS_DIR, dir, 'items.json')
-        if (fs.existsSync(itemsPath)) {
+        const itemsPath = path.join(PROJECTS_DIR, dir, 'literature.json')
+        const metadataPath = path.join(PROJECTS_DIR, dir, 'metadata.json')
+        
+        if (fs.existsSync(itemsPath) && fs.existsSync(metadataPath)) {
           const itemsContent = fs.readFileSync(itemsPath, 'utf-8')
           const itemsData = JSON.parse(itemsContent)
           const items = itemsData.items || []
           
-          // Filter for papers with priority and add project slug
+          const metadataContent = fs.readFileSync(metadataPath, 'utf-8')
+          const metadata = JSON.parse(metadataContent)
+          const projectName = metadata.name || dir
+          
+          // Filter for papers with priority and add project info
           const papers = items
             .filter((item: any) => item.type === 'paper' && item.priority && item.priority > 0)
-            .map((item: any) => ({ ...item, projectSlug: dir }))
+            .map((item: any) => ({ ...item, projectSlug: dir, projectName }))
           
           // Keep paper with highest priority when duplicates exist
           for (const paper of papers) {

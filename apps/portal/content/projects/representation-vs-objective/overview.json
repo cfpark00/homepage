@@ -1,1 +1,113 @@
-{}
+{
+  "proposalAbstract": "This research investigates whether the fundamental distinction between diffusion models and autoregressive models truly matters when the right representations are formed. Using the Star Graph task—a problem proven unlearnable via next-token prediction but solvable by diffusion models—we explore whether autoregressive models can succeed when initialized with representations learned by diffusion. The hypothesis is that the right weight configurations exist to solve the task, but autoregressive training cannot discover them due to optimization landscape constraints. We investigate why autoregression fails to form these representations naturally, whether noise injection can help escape loss plateaus, and what implications this has for current LLM training practices.",
+  "milestones": [
+    {
+      "id": "literature-review",
+      "title": "Comprehensive Literature Review",
+      "description": "Thorough review of existing work to identify what questions have been answered and what remain open regarding diffusion vs autoregressive models on the Star Graph task",
+      "status": "pending"
+    },
+    {
+      "id": "discrete-diffusion-implementation",
+      "title": "Implement and Validate Discrete Diffusion",
+      "description": "Implement discrete diffusion with careful attention to tokenization and transformer architecture to ensure compatibility. Verify transformer with reset-embeddings works for AR→AR and Diffusion→Diffusion transfers",
+      "status": "pending"
+    },
+    {
+      "id": "cross-paradigm-transfer",
+      "title": "Cross-Paradigm Transfer Experiments",
+      "description": "Test Diffusion→AR and AR→Diffusion transfers using learned representations. This is the core experimental phase with open-ended outcomes",
+      "status": "pending"
+    },
+    {
+      "id": "noise-injection-studies",
+      "title": "Noise Injection Studies",
+      "description": "If initial transfer experiments fail, investigate whether noise injection helps escape optimization plateaus",
+      "status": "pending"
+    },
+    {
+      "id": "loss-landscape-analysis",
+      "title": "Loss Landscape Analysis",
+      "description": "Analyze the optimization landscape to understand why certain representations form or fail to form, contingent on successful earlier experiments",
+      "status": "pending"
+    },
+    {
+      "id": "scaling-studies",
+      "title": "Scaling and Generalization Studies",
+      "description": "Scale up the Star Graph task and try different data generation processes to build nuanced arguments about real-world relevance",
+      "status": "pending"
+    }
+  ],
+  "coreExperiments": [
+    {
+      "id": "baseline-training",
+      "name": "Baseline Model Training",
+      "description": "Train both autoregressive and diffusion models on the Star Graph task using identical transformer architectures to establish baseline performance",
+      "status": "planned",
+      "estimatedDuration": "2 weeks"
+    },
+    {
+      "id": "representation-transfer",
+      "name": "Representation Transfer Experiment",
+      "description": "Use diffusion-learned representations to initialize autoregressive models and test if they can perform the Star Graph task",
+      "status": "planned",
+      "estimatedDuration": "3 weeks"
+    },
+    {
+      "id": "noise-augmentation",
+      "name": "Noise Augmentation Studies",
+      "description": "Investigate various noise injection strategies during autoregressive training to help escape loss plateaus",
+      "status": "planned",
+      "estimatedDuration": "2 weeks"
+    },
+    {
+      "id": "loss-landscape-mapping",
+      "name": "Loss Landscape Characterization",
+      "description": "Map the optimization landscape to understand why SGD fails to find good representations in autoregressive training",
+      "status": "planned",
+      "estimatedDuration": "3 weeks"
+    },
+    {
+      "id": "scaling-experiments",
+      "name": "Task Scaling Experiments",
+      "description": "Scale the Star Graph task and explore variations to assess real-world relevance",
+      "status": "planned",
+      "estimatedDuration": "2 weeks"
+    }
+  ],
+  "expectedResources": [
+    {
+      "type": "compute",
+      "description": "8 GPUs for model training and experiments",
+      "status": "requested"
+    },
+    {
+      "type": "storage",
+      "description": "1TB storage for model checkpoints and experiment logs",
+      "status": "requested"
+    },
+    {
+      "type": "software",
+      "description": "PyTorch for all implementations",
+      "status": "available"
+    },
+    {
+      "type": "personnel",
+      "description": "1 student for primary research",
+      "status": "allocated"
+    },
+    {
+      "type": "personnel",
+      "description": "1 advisor for loss landscape studies",
+      "status": "requested"
+    }
+  ],
+  "detailedProposal": {
+    "backgroundMotivation": "The debate between diffusion models and autoregressive models represents a fundamental question in generative AI. While autoregressive models dominate language modeling, recent work shows they fail on certain tasks like the Star Graph problem, where diffusion models succeed. This raises the question: is the failure due to the objective function itself, or the optimization dynamics? If the right representations exist but autoregression cannot find them, this has profound implications for how we train LLMs.",
+    "relatedResearch": "The Star Graph task (Goel et al., 2024) provides a concrete example where autoregressive models provably fail but diffusion succeeds. Recent work by Gu et al. (2024) shows diffusion models can learn this task, while Zhou et al. (2024) partially addresses why but lacks clarity. Token ordering effects (Lou et al., 2024) and multi-token prediction (Gloeckle et al., 2024) offer alternative perspectives. The broader diffusion vs AR debate includes recent contributions showing diffusion as superior data learners and various architectural comparisons.",
+    "researchRoadmap": "Phase 1: Comprehensive literature review to map the current understanding. Phase 2: Careful implementation of discrete diffusion with shared transformer architecture, ensuring perfect compatibility for transfer experiments. Phase 3: Core transfer experiments testing whether diffusion representations enable autoregressive success. Phase 4: Conditional exploration of noise injection if transfers fail. Phase 5: Loss landscape analysis to understand optimization barriers. Phase 6: Scaling studies to address real-world relevance concerns.",
+    "expectedResults": "Primary hypothesis (70% confidence): Diffusion-pretrained representations will enable autoregressive models to solve the Star Graph task, demonstrating that representations matter more than objectives. Secondary findings: Loss plateaus create insurmountable barriers for SGD in autoregressive training. Noise injection may provide escape velocity from these plateaus. The findings will inform whether continued scaling of pure autoregressive models is optimal, or if hybrid approaches or diffusion augmentation are necessary.",
+    "broaderImpact": "This research addresses fundamental questions about LLM training: Should we continue scaling autoregressive models exclusively? Is the AR objective fundamentally limited, or just its optimization dynamics? Can data augmentation substitute for different objectives? The answers impact billions in compute investments and the trajectory of AI development. Understanding when and why different objectives succeed or fail will guide more efficient training strategies and potentially unlock capabilities currently inaccessible to autoregressive models.",
+    "potentialObjections": "The primary concern is the Star Graph task's relevance to real-world language modeling. We address this by: (1) Scaling the task to larger, more complex variants, (2) Exploring different data generation processes to understand the boundary conditions, (3) Maintaining scientific neutrality—not advocating for either paradigm but pursuing truth about their capabilities and limitations. Technical fairness concerns will be addressed through meticulous architecture matching and controlled experiments. We acknowledge the toy problem limitation but argue it provides clean insights into fundamental optimization dynamics that likely manifest in more complex, less analyzable real-world settings."
+  }
+}
