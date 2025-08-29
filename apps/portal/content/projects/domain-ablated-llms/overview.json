@@ -1,0 +1,79 @@
+{
+  "proposalFigure": "/projects/domain-ablated-llms/proposal.png",
+  "proposalAbstract": "We propose training large language models with deliberately ablated knowledge domains to definitively test whether LLMs can truly generalize out-of-distribution or self-improve beyond their training data. By creating models with controlled epistemic gaps and evaluating whether fine-tuning or RL can access these ablated regions, we aim to answer fundamental questions about LLM intelligence: Are they capable of self-evolution, or fundamentally bottlenecked by what we provide them? This work will directly inform massive RL scaling efforts and determine whether AI progress will plateau at the edge of human knowledge.",
+  "milestones": [
+    {
+      "id": "synthetic-validation",
+      "name": "Synthetic Data Validation",
+      "description": "Fully validate and pre-plan the project within synthetic data space. Design synthetic data that creates a rich concept space with hierarchical structure, grammatical format, and discrete knowledge elements that can be cleanly ablated.",
+      "status": "planned"
+    },
+    {
+      "id": "synthetic-findings",
+      "name": "Assemble Synthetic Findings",
+      "description": "Run mechanistic interpretability experiments and reinforcement learning experiments on synthetic ablated models to prove key points about knowledge boundaries and self-evolution capabilities.",
+      "status": "planned"
+    },
+    {
+      "id": "real-data-proposal",
+      "name": "Propose Real Data Experiments",
+      "description": "Use synthetic findings to justify real data experiments with the argument: 'We see these phenomena in synthetic data and can study qualitatively new questions. It is time to apply this for real data.'",
+      "status": "planned"
+    }
+  ],
+  "coreExperiments": [
+    {
+      "id": "synthetic-concept-space",
+      "name": "Synthetic Concept Space Design",
+      "description": "Experiment with different synthetic data generation approaches (formal languages, PCFGs, HHMMs, knowledge graphs) to create a rich concept space where domains like 'college math' can be cleanly removed while maintaining structural integrity.",
+      "status": "planned",
+      "estimatedDuration": "2-3 months"
+    },
+    {
+      "id": "ablation-validation",
+      "name": "Ablation Completeness Validation",
+      "description": "Verify that knowledge domains are successfully ablated from synthetic models without damaging other capabilities or creating inconsistencies.",
+      "status": "planned",
+      "estimatedDuration": "1 month"
+    },
+    {
+      "id": "rl-evolution-test",
+      "name": "RL Self-Evolution Testing",
+      "description": "Test whether fine-tuning or RL can allow models to access ablated regions and reconstruct missing knowledge from available foundations.",
+      "status": "planned",
+      "estimatedDuration": "3-4 months"
+    },
+    {
+      "id": "mechanistic-analysis",
+      "name": "Mechanistic Interpretability Analysis",
+      "description": "Study internal representations to understand how models handle boundaries of ablated knowledge and whether they develop compensatory mechanisms.",
+      "status": "planned",
+      "estimatedDuration": "2-3 months"
+    }
+  ],
+  "expectedResources": [
+    {
+      "type": "personnel",
+      "description": "1-2 graduate students",
+      "status": "requested"
+    },
+    {
+      "type": "compute",
+      "description": "8 GPUs per student for synthetic experiments",
+      "status": "requested"
+    },
+    {
+      "type": "compute",
+      "description": "Larger compute allocation for real data experiments (TBD based on synthetic findings)",
+      "status": "planned"
+    }
+  ],
+  "detailedProposal": {
+    "backgroundMotivation": "Current evaluations of LLMs cannot distinguish between genuine reasoning and sophisticated pattern matching due to contamination - models have potentially seen paraphrases, discussions, or meta-knowledge about all test sets. The Interpolation Hypothesis suggests LLMs can only interpolate within their training distribution, while the Marginal Generalization Hypothesis allows limited extrapolation. Without controlled ablation, we cannot determine which is true or whether models possess genuine unbounded reasoning.",
+    "relatedResearch": "This work builds on data influence studies (Xia et al. 2024, arXiv:2305.13169) and data mixture optimization (Albalak et al. 2024, arXiv:2305.10429), but diverges by focusing on scientific understanding rather than practical optimization. We intentionally avoid the unlearning literature, as we believe unlearning is superficial compared to never learning. The work also relates to contamination studies showing systematic benchmark exposure and the difficulty of creating truly unseen evaluations.",
+    "researchRoadmap": "Phase 1: Design synthetic data with hierarchical concepts, grammatical structure, and discrete knowledge elements. Explore formal languages, PCFGs, HHMMs, and knowledge graphs. Phase 2: Implement clean ablation pipelines that remove domains while maintaining structural integrity. Phase 3: Train small models on ablated synthetic data, validate ablation completeness. Phase 4: Test whether RL/fine-tuning can breach ablation boundaries. Phase 5: Mechanistic analysis of knowledge boundaries and model adaptations. Phase 6: Synthesize findings to propose real-data experiments with specific hypotheses.",
+    "expectedResults": "Primary hypothesis: Fine-tuning and RL cannot allow LLMs to access ablated regions - they cannot self-evolve to generalize OOD. We expect to find clear performance boundaries at ablated knowledge edges, no successful reconstruction of missing concepts through RL, and mechanistic evidence of hard knowledge boundaries in model representations. This would support that LLMs are fundamentally bottlenecked by training data rather than capable of unbounded self-improvement.",
+    "broaderImpact": "This work will directly affect how we view current LLM systems - determining whether they can self-evolve or are fundamentally bottlenecked by human-provided data. It provides scientific basis for understanding massive RL environment scaling efforts. If confirmed, it suggests AI progress will slow at the edge of human knowledge rather than exponentially self-improving. For AI safety, it enables capability control through deliberate knowledge gaps and validates whether dangerous knowledge can be reliably excluded.",
+    "potentialObjections": "Main criticism will focus on data filtering: 'It's fragile and nearly impossible to remove college math while keeping scientific papers in other domains.' Response: Models will still perform poorly in data-scarce regions even with related data and some leakage, justified by observed data inefficiency. Additional objections: 'Synthetic data doesn't reflect real knowledge structure' - we validate principles that should transfer. 'Ablation damages general capabilities' - we measure baseline performance to ensure model integrity."
+  }
+}

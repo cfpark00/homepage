@@ -15,7 +15,7 @@ import {
   ArrowLeftToLine,
   ArrowRightFromLine
 } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { createClient } from '@/lib/supabase/client'
@@ -31,6 +31,7 @@ interface SidebarSimpleProps {
     icon?: string
     logo?: string
     color?: string
+    focus?: boolean
   }>
 }
 
@@ -75,10 +76,36 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [logoErrors, setLogoErrors] = useState<Record<string, boolean>>({})
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const scrollPositionRef = useRef<number>(0)
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Save scroll position before navigation
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const handleScroll = () => {
+      scrollPositionRef.current = container.scrollTop
+    }
+
+    container.addEventListener('scroll', handleScroll)
+    return () => container.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Restore scroll position after navigation
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (container && scrollPositionRef.current > 0) {
+      // Use requestAnimationFrame to ensure DOM has updated
+      requestAnimationFrame(() => {
+        container.scrollTop = scrollPositionRef.current
+      })
+    }
+  }, [pathname])
 
   useEffect(() => {
     // Check for Google avatar from user metadata
@@ -113,6 +140,16 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
     }
     return email.slice(0, 2).toUpperCase()
   }
+
+  // Memoize project icons to prevent re-renders
+  const projectIcons = useMemo(() => {
+    const icons: Record<string, any> = {}
+    projects.forEach(project => {
+      const Icon = iconMap[project.icon || 'Folder'] || Folder
+      icons[project.slug] = Icon
+    })
+    return icons
+  }, [projects])
 
   return (
     <>
@@ -177,16 +214,72 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
         </div>
 
         {/* Navigation */}
-        <div className="flex-1 overflow-y-auto p-3">
+        <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-3">
+          {/* Focus Section - only show if there are focus projects */}
+          {projects.some(p => p.focus) && (
+            <>
+              <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-3 mb-3">
+                Focus
+              </div>
+              <div className="space-y-2 mb-6">
+                {projects.filter(p => p.focus).map((project) => {
+                  const projectPath = `/${project.slug}`
+                  const isActive = pathname.startsWith(projectPath)
+                  const Icon = projectIcons[project.slug]
+                  const hasLogoError = logoErrors[project.slug] || false
+                  const colorScheme = colorMap[project.color || 'blue'] || colorMap.blue
+                  
+                  return (
+                    <Link
+                      key={project.slug}
+                      href={projectPath}
+                      className={cn(
+                        "flex items-center gap-3 p-1 rounded-lg text-sm transition-all",
+                        isActive 
+                          ? "bg-primary/10 hover:bg-primary/15 font-medium" 
+                          : "hover:bg-muted/50"
+                      )}
+                      onClick={() => setIsMobileOpen(false)}
+                    >
+                      <div className={cn(
+                        "relative rounded-md shrink-0 overflow-hidden h-8 w-8 flex items-center justify-center",
+                        colorScheme.bgColor,
+                        "transition-none"
+                      )}>
+                        {project.logo && !hasLogoError ? (
+                          <Image
+                            src={project.logo}
+                            alt={project.name}
+                            width={32}
+                            height={32}
+                            className="object-cover"
+                            onError={() => setLogoErrors(prev => ({ ...prev, [project.slug]: true }))}
+                          />
+                        ) : (
+                          <Icon className={cn(
+                            "h-4 w-4 shrink-0",
+                            colorScheme.color,
+                            "transition-none"
+                          )} />
+                        )}
+                      </div>
+                      <span className="truncate">{project.name}</span>
+                    </Link>
+                  )
+                })}
+              </div>
+            </>
+          )}
+
           {/* Projects Section */}
           <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-3 mb-3">
             Projects
           </div>
           <div className="space-y-2">
-            {projects.map((project) => {
+            {projects.filter(p => !p.focus).map((project) => {
               const projectPath = `/${project.slug}`
               const isActive = pathname.startsWith(projectPath)
-              const Icon = iconMap[project.icon || 'Folder'] || Folder
+              const Icon = projectIcons[project.slug]
               const hasLogoError = logoErrors[project.slug] || false
               const colorScheme = colorMap[project.color || 'blue'] || colorMap.blue
               
@@ -204,7 +297,8 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
                 >
                   <div className={cn(
                     "relative rounded-md shrink-0 overflow-hidden h-8 w-8 flex items-center justify-center",
-                    colorScheme.bgColor
+                    colorScheme.bgColor,
+                    "transition-none"
                   )}>
                     {project.logo && !hasLogoError ? (
                       <Image
@@ -217,8 +311,9 @@ export function SidebarSimple({ userEmail, userMetadata, projects = [] }: Sideba
                       />
                     ) : (
                       <Icon className={cn(
-                        "h-4 w-4",
-                        colorScheme.color
+                        "h-4 w-4 shrink-0",
+                        colorScheme.color,
+                        "transition-none"
                       )} />
                     )}
                   </div>

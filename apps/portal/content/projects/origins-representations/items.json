@@ -128,6 +128,46 @@
       "readingStatus": "to-read",
       "priority": 12,
       "link": "https://ieeexplore.ieee.org/document/6790655"
+    },
+    {
+      "id": "competition-dynamics-icl-2024",
+      "name": "Competition Dynamics Shape Algorithmic Phases of In-Context Learning",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Shows how different computational strategies compete during training, with phase transitions determining which strategy dominates model behavior",
+      "publicationDate": "December 2024",
+      "authors": [
+        "Core Francisco Park",
+        "Ekdeep Singh Lubana",
+        "Itamar Pres",
+        "Hidenori Tanaka"
+      ],
+      "abstract": "In-Context Learning (ICL) has significantly expanded the general-purpose nature of large language models, allowing them to adapt to novel tasks using merely the inputted context. This has motivated a series of papers that analyze tractable synthetic domains and postulate precise mechanisms that may underlie ICL. However, the use of relatively distinct setups that often lack a sequence modeling nature to them makes it unclear how general the reported insights from such studies are. Motivated by this, we propose a synthetic sequence modeling task that involves learning to simulate a finite mixture of Markov chains. As we show, models trained on this task reproduce most well-known results on ICL, hence offering a unified setting for studying the concept. Building on this setup, we demonstrate we can explain a model's behavior by decomposing it into four broad algorithms that combine a fuzzy retrieval vs. inference approach with either unigram or bigram statistics of the context. These algorithms engage in a competition dynamics to dominate model behavior, with the precise experimental conditions dictating which algorithm ends up superseding others: e.g., we find merely varying context size or amount of training yields (at times sharp) transitions between which algorithm dictates the model behavior, revealing a mechanism that explains the transient nature of ICL. In this sense, we argue ICL is best thought of as a mixture of different algorithms, each with its own peculiarities, instead of a monolithic capability. This also implies that making general claims about ICL that hold universally across all settings may be infeasible.",
+      "relevanceToProject": "Critical for understanding how different computational strategies compete and evolve during training, providing insights into the dynamics that shape representation formation and whether representations become modular or entangled.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2412.01003"
+    },
+    {
+      "id": "analyzing-abilities-saes-2024",
+      "name": "Analyzing (In)Abilities of SAEs via Formal Languages",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Uses formal languages including PCFGs as synthetic testbed for studying representation learning in sparse autoencoders",
+      "publicationDate": "October 2024",
+      "authors": [
+        "Abhinav Menon",
+        "Manish Shrivastava",
+        "David Krueger",
+        "Ekdeep Singh Lubana"
+      ],
+      "abstract": "Autoencoders have been used for finding interpretable and disentangled features underlying neural network representations in both image and text domains. While the efficacy and pitfalls of such methods are well-studied in vision, there is a lack of corresponding results, both qualitative and quantitative, for the text domain. We aim to address this gap by training sparse autoencoders (SAEs) on a synthetic testbed of formal languages. Specifically, we train SAEs on the hidden representations of models trained on formal languages (Dyck-2, Expr, and English PCFG) under a wide variety of hyperparameter settings, finding interpretable latents often emerge in the features learned by our SAEs. However, similar to vision, we find performance turns out to be highly sensitive to inductive biases of the training pipeline. Moreover, we show latents correlating to certain features of the input do not always induce a causal impact on model's computation. We thus argue that causality has to become a central target in SAE training: learning of causal features should be incentivized from the ground-up. Motivated by this, we propose and perform preliminary investigations for an approach that promotes learning of causally relevant features in our formal language setting.",
+      "relevanceToProject": "Directly relevant to our PCFG-based approach for studying representation formation. Demonstrates that formal languages can be used as controlled testbeds but also shows the importance of causality in representation analysis.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2410.11767"
     }
   ]
 }

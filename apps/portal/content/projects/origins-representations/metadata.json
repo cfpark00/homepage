@@ -6,8 +6,9 @@
   "created": "2025-08-27",
   "last_updated_at": "2025-08-28",
   "icon": "Brain",
-  "logo": "/project-logos/origins-of-representations.png",
+  "logo": "/projects/origins-representations/logo.png",
   "color": "purple",
+  "focus": true,
   "tabs": [
     {
       "id": "overview",

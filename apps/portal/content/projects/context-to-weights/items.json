@@ -1,0 +1,62 @@
+{
+  "items": [
+    {
+      "id": "new-news-park-2025",
+      "name": "New News: System-2 Fine-tuning for Robust Integration of New Knowledge",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Dataset and methods for improving fine-tuning to internalize new knowledge as effectively as in-context learning",
+      "publicationDate": "May 2025",
+      "authors": [
+        "Core Francisco Park",
+        "Zechen Zhang",
+        "Hidenori Tanaka"
+      ],
+      "abstract": "Humans and intelligent animals can effortlessly internalize new information (\"news\") and accurately extract the implications for performing downstream tasks. While large language models (LLMs) can achieve this through in-context learning (ICL) when the news is explicitly given as context, fine-tuning remains challenging for the models to consolidate learning in weights. In this paper, we introduce New News, a dataset composed of hypothetical yet plausible news spanning multiple domains (mathematics, coding, discoveries, leaderboards, events), accompanied by downstream evaluation questions whose correct answers critically depend on understanding and internalizing the news. We first demonstrate a substantial gap between naive fine-tuning and in-context learning (FT-ICL gap) on our news dataset. To address this gap, we explore a suite of self-play data generation protocols -- paraphrases, implications and Self-QAs -- designed to distill the knowledge from the model with context into the weights of the model without the context, which we term System-2 Fine-tuning (Sys2-FT). We systematically evaluate ICL and Sys2-FT performance across data domains and model scales with the Qwen 2.5 family of models. Our results demonstrate that the self-QA protocol of Sys2-FT significantly improves models' in-weight learning of the news. Furthermore, we discover the contexual shadowing effect, where training with the news in context followed by its rephrases or QAs degrade learning of the news. Finally, we show preliminary evidence of an emerging scaling law of Sys2-FT.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2505.01812"
+    },
+    {
+      "id": "generative-adapter-chen-2024",
+      "name": "Generative Adapter: Contextualizing Language Models in Parameters with A Single Forward Pass",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Maps new contexts directly to low-rank LM adapters for efficient adaptation without fine-tuning",
+      "publicationDate": "November 2024",
+      "authors": [
+        "Tong Chen",
+        "Hao Fang",
+        "Patrick Xia",
+        "Xiaodong Liu",
+        "et al."
+      ],
+      "abstract": "Large language models (LMs) are typically adapted to improve performance on new contexts (\\eg text prompts that define new tasks or domains) through fine-tuning or prompting. However, there is an accuracy compute tradeoff -- fine-tuning incurs significant training cost and prompting increases inference overhead. We introduce $GenerativeAdapter$, an effective and efficient adaptation method that directly maps new contexts to low-rank LM adapters, thereby significantly reducing inference overhead with no need for finetuning. The adapter generator is trained via self-supervised learning, and can be used to adapt a single frozen LM for any new task simply by mapping the associated task or domain context to a new adapter. We apply $GenerativeAdapter$ to two pretrained LMs (Mistral-7B-Instruct and Llama2-7B-Chat) and evaluate the adapted models in three adaption scenarios: knowledge acquisition from documents, learning from demonstrations, and personalization for users. In StreamingQA, our approach is effective in injecting knowledge into the LM's parameters, achieving a 63.5% improvement in F1 score over the model with supervised fine-tuning (from $19.5$ to $31.5$) for contexts as long as 32K tokens. In the MetaICL in-context learning evaluation, our method achieves an average accuracy of $44.9$ across 26 tasks, outperforming the base model. On MSC, our method proves to be highly competitive in memorizing user information from conversations with a 4x reduction in computation and memory costs compared to prompting with full conversation history. Together, these results suggest that $GenerativeAdapter$ should allow for general adaption to a wide range of different contexts.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2411.05877"
+    },
+    {
+      "id": "self-adapting-lms-zweiger-2025",
+      "name": "Self-Adapting Language Models",
+      "type": "paper",
+      "tab": "literature",
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Framework enabling LLMs to self-adapt through generating their own finetuning data and update directives",
+      "publicationDate": "June 2025",
+      "authors": [
+        "Adam Zweiger",
+        "Jyothish Pari",
+        "Han Guo",
+        "Ekin Akyürek",
+        "et al."
+      ],
+      "abstract": "Large language models (LLMs) are powerful but static; they lack mechanisms to adapt their weights in response to new tasks, knowledge, or examples. We introduce Self-Adapting LLMs (SEAL), a framework that enables LLMs to self-adapt by generating their own finetuning data and update directives. Given a new input, the model produces a self-edit-a generation that may restructure the information in different ways, specify optimization hyperparameters, or invoke tools for data augmentation and gradient-based updates. Through supervised finetuning (SFT), these self-edits result in persistent weight updates, enabling lasting adaptation. To train the model to produce effective self-edits, we use a reinforcement learning loop with the downstream performance of the updated model as the reward signal. Unlike prior approaches that rely on separate adaptation modules or auxiliary networks, SEAL directly uses the model's own generation to control its adaptation process. Experiments on knowledge incorporation and few-shot generalization show that SEAL is a promising step toward language models capable of self-directed adaptation. Our website and code is available at https://jyopari.github.io/posts/seal.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2506.10943"
+    }
+  ]
+}

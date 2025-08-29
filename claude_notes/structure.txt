@@ -1,5 +1,5 @@
 # Project Structure Overview
-Last Updated: 2025-08-29 (01:51)
+Last Updated: 2025-08-29 (04:58)
 
 ## Root Directory: /Users/cfpark00/mysite
 Monorepo using pnpm workspaces with Vercel deployment
@@ -15,7 +15,7 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 - Google OAuth integration for login with profile picture support
 - Separate from main web app but shares Supabase instance (free tier limitation)
 - Dashboard-style layout with left sidebar navigation (redesigned 2025-08-27)
-- Projects as main navigation items in sidebar
+- Projects as main navigation items in sidebar with Focus group support (Focus group added 2025-08-29)
 - Public share links at /[project_slug]/s/[token] for sharing research without auth
 - /explore page for browsing public research projects
 - Collapsible sidebar for desktop mode (added 2025-08-28)
@@ -25,6 +25,8 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 - Global priority scoring system for papers with dashboard display (added 2025-08-29)
 - Support for multiple content types: paper, document, repository, web-article, blog-post, tweet (updated 2025-08-29)
 - Tags system for categorizing literature items (added 2025-08-29)
+- Automatic "Project created" thought injection at runtime (added 2025-08-29)
+- Structured overview tab with proposal sections and proposalFigure support (added 2025-08-29)
 
 #### /app/
 - layout.tsx - Root layout with ThemeProvider (updated 2025-08-27)
@@ -163,6 +165,12 @@ Research portal application with authentication (port 3021 in dev, added 2025-08
 ### /apps/portal/
 Research portal application with authentication (added 2025-08-26, port 3021 in dev)
 
+#### /public/
+- projects/
+  - [project-name]/
+    - logo.png - Project logos (reorganized from /project-logos/ 2025-08-29)
+    - proposal.png - Project proposal figures (structure added 2025-08-29)
+
 #### /app/
 - layout.tsx - Root layout with ThemeProvider, v2 favicon integration (updated 2025-08-28)
 - globals.css - Tailwind styles with shadcn/ui CSS variables
@@ -193,6 +201,8 @@ Research portal application with authentication (added 2025-08-26, port 3021 in 
 - portal-layout-simple.tsx - Simplified layout with sidebar (updated 2025-08-28)
 - page-header.tsx - Page header with hamburger button integration (added 2025-08-27)
 - project-tabs.tsx - Tabbed interface with reading list grouping for literature, supports tags (updated 2025-08-29)
+- project-overview.tsx - Project overview with collapsible sections, null-safe rendering, proposalFigure support (updated 2025-08-29)
+- simple-markdown.tsx - Markdown renderer for overview content (added 2025-08-29)
 - thoughts-display.tsx - Timeline view for daily thoughts (added 2025-08-28)
 - floating-chat.tsx - Floating AI chat button for project pages (added 2025-08-27)
 - theme-provider.tsx - Theme provider wrapper for dark/light modes (added 2025-08-27)
@@ -234,8 +244,8 @@ Shared UI component library
   - use-font-size.ts - Font size state management hook (added 2025-08-26)
 - index.ts - Main exports (updated 2025-08-26)
 
-### Root Files Added (2025-08-27)
-- TODO.md - Task list for codebase improvements (UI flash issues)
+### Root Files
+- .gitignore - Updated to exclude resources folder (2025-08-29)
 
 ### Archived Components (2025-08-28)
 - /archive/unused-shadcn-components-2025-08-28/
@@ -253,13 +263,17 @@ AI assistant documentation and logs
 - docs/
   - blog/ (reorganized 2025-08-26)
     - how-to-write-blogs.md (renamed from blog-system-architecture.md)
+  - portal_projects/ (added 2025-08-29)
+    - creating_new_projects.md - Guidelines for creating new portal projects
+    - adding_literature.md - Comprehensive guide for adding papers, documents, repositories, and web content
     - math-latex-mdx.md (moved from tips/)
     - mdx-blog-setup.md (moved from tips/)
     - typescript-in-mdx-gotchas.md (moved from tips/)
     - comment-system-implementation.md (added 2025-08-26)
+- jobs/ (added 2025-08-29)
+  - thought_writing.txt - Guidelines for writing thoughts to JSON files
+  - populate_project_overview.txt - Instructions for AI agents to populate project overviews via user interview
   - deployment/ (added 2025-08-26)
-  - portal_projects/ (added 2025-08-29)
-    - adding_papers.md - Comprehensive guide for adding papers, repositories, and web content
     - DEPLOYMENT.md (moved from root)
   - projects/ (added 2025-08-26)
     - how-to-add-projects.md
@@ -274,7 +288,21 @@ AI assistant documentation and logs
     - 01-36_portal_fixes_and_blog_image_integration.md
     - 01-37_thoughts_tracking_updates.md
     - 12-53_thoughts_tracking_and_blog_citations.md
-    - 14-32_portal_literature_and_publication_cards.md (this session)
+    - 14-32_portal_literature_and_publication_cards.md
+    - 14-56_portal_project_management_improvements.md
+    - 15-01_deployment_tokenization_visualizer.md
+    - 15-12_portal_thoughts_kumar_paper_recovery.md
+    - 15-13_portal_thoughts_tab_implementation.md
+  - 2025-08-29/
+    - 00-31_portal_reading_list_and_project_management.md
+    - 01-51_portal_literature_system_and_priority_papers.md
+    - 02-24_portal_literature_types_and_tags.md
+    - 02-24_portal_papers_abstract_verification.md
+    - 03-16_thoughts_deployment_and_ui_fixes.md
+    - 03-34_portal_overview_tab_structure.md
+    - 03-34_portal_projects_and_thoughts_management.md
+    - 04-01_origins_representations_project_overview.md
+    - 04-58_evolution_research_overview_and_portal_logos.md (this session)
 - structure.txt (this file)
 
 ### /scratch/
@@ -284,29 +312,10 @@ Temporary files and debug scripts (gitignored)
 ### /todos/
 Task tracking and documentation (added 2025-08-26)
 - CONTENT_AUDIT.md - Content system audit document (moved from root)
+- comment-system-implementation.md - Plans for comment system
 
 ### /resources/
-Static assets and data (LaTeX CV files and resources)
-- CFPark_CV.zip - Compressed CV package
-- main.tex - Main LaTeX CV file
-- papers.bib - Bibliography file
-- photo.png - Profile photo
-- simplecv.sty - LaTeX style file
-- sections/ - CV sections in LaTeX
-  - activities.tex
-  - awards.tex
-  - current_projects.tex
-  - education.tex
-  - employment.tex
-  - extracurricular.tex
-  - highlights.tex
-  - languages.tex
-  - past_projects.tex
-  - projects.tex
-  - publications.tex
-  - references.tex
-  - skills.tex
-  - teaching.tex
+Static assets and data (archived LaTeX CV files removed 2025-08-29)
 - scaling-laws/ - Scaling laws visualization resources
   - plot_scaling_frontier.py
 
@@ -348,17 +357,25 @@ Static assets and data (LaTeX CV files and resources)
 ### Portal System (File-based + Database, added 2025-08-26, redesigned 2025-08-27, template system 2025-08-28)
 1. Authentication: Supabase Auth with Google OAuth
 2. Content: File-based at /apps/portal/content/projects/[project-name]/
-   - metadata.json: Project info, tabs, colors, icons, status
+   - metadata.json: Project info, tabs, colors, icons, status, focus flag (focus added 2025-08-29)
    - items.json: Project items with types and tab assignments
+   - thoughts.json: Daily thoughts with timestamps and tags
+   - overview.json: Structured overview content (optional)
    - Current projects:
-     - origins-representations/ (added 2025-08-27, FER paper added 2025-08-28)
-     - domain-ablated-llms/ (added 2025-08-28)
+     - origins-representations/ (added 2025-08-27, FER paper added 2025-08-28, thoughts added 2025-08-29, focus 2025-08-29)
+     - domain-ablated-llms/ (added 2025-08-28, thoughts added 2025-08-29, focus 2025-08-29)
+     - evolution-research/ (overview and thoughts populated 2025-08-29, focus 2025-08-29)
      - grand-synthetic-data/ (added 2025-08-28)
      - curriculum-learning/ (added 2025-08-28)
      - emergent-task-structure/ (added 2025-08-28)
      - evolution-of-intelligence/ (added 2025-08-28)
      - representation-geometry/ (added 2025-08-28)
+     - high-dim-comp-gen/ (added 2025-08-29)
+     - saying-idk/ (added 2025-08-29)
      - example-project/ (added 2025-08-28, full tab template)
+     - context-to-weights/ (added 2025-08-29, with 3 papers)
+     - representation-vs-objective/ (added 2025-08-29)
+     - synthetic-rl/ (added 2025-08-29)
 3. Access Model: Private projects with public share tokens
 4. URL Structure: /project-slug (private), /project-slug/s/token (public)
 5. Layout: Sidebar navigation with dashboard and project pages
@@ -369,7 +386,7 @@ Static assets and data (LaTeX CV files and resources)
    - Literature tab with horizontal subtabs
    - PublicationCard component for research papers
    - Collapsible sidebar for desktop
-   - Project logos support (PNG in /public/project-logos/)
+   - Project logos support (PNG in /public/projects/[project-name]/logo.png, reorganized 2025-08-29)
    - Auto-populated from content directories
 
 ## Key Features Added (2025-08-28)

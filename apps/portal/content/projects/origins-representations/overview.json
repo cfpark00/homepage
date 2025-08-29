@@ -1,0 +1,109 @@
+{
+  "proposalAbstract": "While AI/ML interpretability research has focused on finding representations that support tasks or identifying causal representations of concepts in models, this project investigates a more fundamental question: What are the conditions that form these representations in the first place? We study when representations form in a modular way versus when they become fractured and scattered. Through systematic synthetic data generation using PCFGs and HHMMs, we aim to understand the causal mechanisms and scaling dynamics of representation formation in neural networks.",
+  "milestones": [
+    {
+      "id": "m1",
+      "title": "Representation Analysis Framework Setup",
+      "description": "Establish comprehensive framework for analyzing representations to ensure smooth evaluation throughout the project",
+      "status": "pending",
+      "progress": 0
+    },
+    {
+      "id": "m2",
+      "title": "Synthetic Data Generation Pipeline",
+      "description": "Set up PCFG and HHMM-based data generation processes through iterative behavioral evaluation and representation analysis",
+      "status": "pending",
+      "progress": 0
+    },
+    {
+      "id": "m3",
+      "title": "Large-Scale Hyperparameter Sweep",
+      "description": "Conduct comprehensive hyperparameter sweep and analyze resulting representations across different conditions",
+      "status": "pending",
+      "progress": 0
+    },
+    {
+      "id": "m4",
+      "title": "Project Synthesis and Documentation",
+      "description": "Wrap up project with comprehensive analysis of findings and preparation of research outputs",
+      "status": "pending",
+      "progress": 0
+    }
+  ],
+  "coreExperiments": [
+    {
+      "id": "exp1",
+      "name": "PCFG Data Generation Validation",
+      "description": "Test whether PCFG-based synthetic data generation creates rich enough structure for meaningful representation analysis",
+      "status": "planned",
+      "estimatedDuration": "4 weeks",
+      "results": null
+    },
+    {
+      "id": "exp2",
+      "name": "HHMM Data Generation Validation",
+      "description": "Evaluate HHMM-based synthetic data generation for representation richness and controllability",
+      "status": "planned",
+      "estimatedDuration": "4 weeks",
+      "results": null
+    },
+    {
+      "id": "exp3",
+      "name": "Scaling Analysis of Representation Modularity",
+      "description": "Study how quickly representations become modular as data and model scale increase",
+      "status": "planned",
+      "estimatedDuration": "8 weeks",
+      "results": null
+    },
+    {
+      "id": "exp4",
+      "name": "Hyperparameter Impact on Representation Structure",
+      "description": "Systematic study of how data distribution and model hyperparameters affect representation formation",
+      "status": "planned",
+      "estimatedDuration": "6 weeks",
+      "results": null
+    },
+    {
+      "id": "exp5",
+      "name": "RL/Fine-tuning Effects on Representations",
+      "description": "Investigate whether reinforcement learning or fine-tuning can significantly alter representation structure",
+      "status": "planned",
+      "estimatedDuration": "6 weeks",
+      "results": null
+    }
+  ],
+  "expectedResources": [
+    {
+      "type": "personnel",
+      "description": "Graduate student researchers",
+      "quantity": "1-2 students",
+      "status": "requested"
+    },
+    {
+      "type": "compute",
+      "description": "GPU resources for model training and analysis",
+      "quantity": "8 GPUs per student",
+      "status": "requested"
+    },
+    {
+      "type": "data",
+      "description": "Storage for synthetic datasets and model checkpoints",
+      "quantity": "1TB per student",
+      "status": "requested"
+    },
+    {
+      "type": "other",
+      "description": "Python research environment",
+      "quantity": "Standard setup",
+      "status": "available"
+    }
+  ],
+  "detailedProposal": {
+    "backgroundMotivation": "The field of AI interpretability has made significant strides in identifying and analyzing representations within trained models, demonstrating their causal role in task performance. However, a critical gap remains: we lack understanding of the fundamental conditions that govern how these representations form during training. This project addresses this gap by investigating when and why representations organize themselves in modular, interpretable ways versus becoming fractured and entangled. By using controllable synthetic data generation processes, we can systematically study the causal factors that influence representation formation, providing insights that are intractable to obtain from models trained on complex real-world data.",
+    "relatedResearch": "Our work builds on several key research threads:\n\n1. **Representation Structure**: The \"Questioning Representational Optimism in Deep Learning: The Fractured Entangled Representation Hypothesis\" paper, which challenges assumptions about representation quality and introduces the concept of fractured representations.\n\n2. **Algorithmic Dynamics**: \"Competition Dynamics Shape Algorithmic Phases of In-Context Learning\" (arXiv:2412.01003), which explores how different computational strategies compete and evolve during training.\n\n3. **Synthetic Data for Representation Study**: Recent work (arXiv:2410.11767) demonstrating the value of synthetic data generation for understanding representation formation in controlled settings.\n\nThese works provide the theoretical foundation and methodological inspiration for our systematic investigation of representation formation conditions.",
+    "researchRoadmap": "**Phase 1: Framework Development**\n- Design and implement comprehensive representation analysis tools\n- Establish metrics for measuring modularity vs. entanglement\n- Create visualization and tracking infrastructure\n\n**Phase 2: Data Generation Development**\n- Implement PCFG-based synthetic data generators\n- Develop HHMM-based data generation processes\n- Validate that generated data produces rich, analyzable representations\n- Iterate on generation parameters based on initial representation analysis\n\n**Phase 3: Systematic Investigation**\n- Conduct large-scale hyperparameter sweeps\n- Analyze scaling relationships between data/model size and representation modularity\n- Study the speed of modularization under different conditions\n- Investigate effects of training dynamics on representation structure\n\n**Phase 4: Advanced Studies**\n- Examine how RL and fine-tuning affect established representations\n- Explore methods for unifying or controlling representation formation\n- Synthesize findings into general principles\n\n**Phase 5: Dissemination**\n- Document findings and prepare research outputs\n- Release tools and datasets for community use\n- Present insights and implications for the field",
+    "expectedResults": "We anticipate several key findings:\n\n1. **Scaling Relations**: Quantitative relationships between data scale and the rate of representation modularization, revealing how quickly representations become modular as training progresses.\n\n2. **Critical Hyperparameters**: Identification of key hyperparameters in both data distribution and model architecture that determine whether representations form modularly or become fractured.\n\n3. **Data Generation Insights**: Clear understanding of which synthetic data generation processes (PCFG vs HHMM) produce more analyzable and modular representations, and why.\n\n4. **Representation Stability**: Evidence on whether RL or fine-tuning can significantly alter representation structure, with implications for continual learning and model adaptation.\n\n5. **Unification Principles**: Initial principles for how to design training processes that encourage unified, modular representations rather than fractured ones.",
+    "broaderImpact": "This research has significant implications across multiple domains:\n\n**Model Design**: By understanding conditions for modular representation formation, we can design training processes that produce more interpretable and generalizable models from the outset.\n\n**Generalization**: As demonstrated in related work, better representation structure correlates with improved generalization. Our findings will inform strategies for building models that generalize more reliably.\n\n**Continual Learning**: Understanding how representations form and change will directly benefit continual learning systems, helping prevent catastrophic forgetting and enabling more effective knowledge transfer.\n\n**Interpretability**: By controlling representation formation, we can create inherently more interpretable models, advancing the goal of transparent AI systems.\n\n**Scientific Understanding**: This work contributes to fundamental understanding of how neural networks organize information, bridging the gap between empirical success and theoretical understanding.\n\n**Practical Applications**: Our testbed and findings will provide concrete tools for practitioners to assess and improve representation quality in their models.",
+    "potentialObjections": "**Objection: \"Synthetic data is too far from real data to provide meaningful insights\"**\nResponse: While synthetic data differs from real-world data, it's precisely this simplicity that enables causal understanding. Complex real-world data makes it nearly intractable to isolate causal factors in representation formation. We can only train large models on real data once or twice due to computational constraints, making controlled causality studies impossible. Synthetic data allows us to run hundreds of controlled experiments, establishing causal relationships that can then be validated on real data.\n\n**Objection: \"PCFGs and HHMMs are too simple to capture real-world complexity\"**\nResponse: These generation processes are chosen specifically because they create controllable hierarchical and temporal structure while remaining analyzable. They serve as a crucial middle ground between toy problems and intractable real-world data, allowing us to study fundamental principles that likely govern representation formation in more complex settings.\n\n**Objection: \"Findings may not transfer to large-scale models\"**\nResponse: We explicitly study scaling relationships to understand how representation formation changes with model size. Our approach focuses on identifying general principles rather than specific configurations, increasing the likelihood of transfer to larger scales."
+  }
+}

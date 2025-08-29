@@ -30,6 +30,51 @@
       "content": "Now deploying web/portal.",
       "time": "02:29",
       "tags": []
+    },
+    {
+      "content": "Designing project overview page",
+      "time": "03:01",
+      "tags": []
+    },
+    {
+      "content": "Adding the context to weights project",
+      "time": "03:26",
+      "tags": []
+    },
+    {
+      "content": "Added some old project ideas I had.",
+      "time": "03:37",
+      "tags": []
+    },
+    {
+      "content": "Now populating all overview content",
+      "time": "03:50",
+      "tags": []
+    },
+    {
+      "content": "Hmm creating more structure workflow jobs for Claude. It's indeed hard that models don't continually learn \"How to work\" itself.",
+      "time": "04:01",
+      "tags": []
+    },
+    {
+      "content": "Okay populating the origins of representations and domain ablated LLMs project's overview page. At the same time I really really some day need to do formal Claude data and CoT data analysis, it will look so cool.",
+      "time": "04:14",
+      "tags": []
+    },
+    {
+      "content": "Also populating Evolution of research. Claude is quite good at \"interviewing\" for good overview when prompted adequately",
+      "time": "04:38",
+      "tags": []
+    },
+    {
+      "content": "Ok done with 3 overviews",
+      "time": "04:58",
+      "tags": []
+    },
+    {
+      "content": "Ok done with cleaning stuff up.",
+      "time": "05:04",
+      "tags": []
     }
   ]
 }

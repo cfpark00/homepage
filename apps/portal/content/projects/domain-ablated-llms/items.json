@@ -51,6 +51,59 @@
       "abstract": "Recent advancements in Large Language Models (LLMs) have sparked interest in their formal reasoning capabilities, particularly in mathematics. The GSM8K benchmark is widely used to assess the mathematical reasoning of models on grade-school-level questions. While the performance of LLMs on GSM8K has significantly improved in recent years, it remains unclear whether their mathematical reasoning capabilities have genuinely advanced, raising questions about the reliability of the reported metrics. To address these concerns, we conduct a large-scale study on several SOTA open and closed models. To overcome the limitations of existing evaluations, we introduce GSM-Symbolic, an improved benchmark created from symbolic templates that allow for the generation of a diverse set of questions. GSM-Symbolic enables more controllable evaluations, providing key insights and more reliable metrics for measuring the reasoning capabilities of models.Our findings reveal that LLMs exhibit noticeable variance when responding to different instantiations of the same question. Specifically, the performance of all models declines when only the numerical values in the question are altered in the GSM-Symbolic benchmark. Furthermore, we investigate the fragility of mathematical reasoning in these models and show that their performance significantly deteriorates as the number of clauses in a question increases. We hypothesize that this decline is because current LLMs cannot perform genuine logical reasoning; they replicate reasoning steps from their training data. Adding a single clause that seems relevant to the question causes significant performance drops (up to 65%) across all state-of-the-art models, even though the clause doesn't contribute to the reasoning chain needed for the final answer. Overall, our work offers a more nuanced understanding of LLMs' capabilities and limitations in mathematical reasoning.",
       "readingStatus": "to-read",
       "link": "https://arxiv.org/abs/2410.05229"
+    },
+    {
+      "id": "pretrainers-guide-2023",
+      "name": "A Pretrainer's Guide to Training Data: Measuring the Effects of Data Age, Domain Coverage, Quality, & Toxicity",
+      "type": "paper",
+      "tab": "literature",
+      "tags": ["Related Work"],
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Systematic study of pretraining data effects, showing trade-offs between quality filtering and toxicity, temporal degradation, and benefits of heterogeneous data sources",
+      "publicationDate": "May 2023",
+      "authors": [
+        "Shayne Longpre",
+        "Gregory Yauney",
+        "Emily Reif",
+        "Katherine Lee",
+        "Adam Roberts",
+        "Barret Zoph",
+        "Denny Zhou",
+        "Jason Wei",
+        "Kevin Robinson",
+        "David Mimno",
+        "Daphne Ippolito"
+      ],
+      "abstract": "Pretraining is the preliminary and fundamental step in developing capable language models (LM). Despite this, pretraining data design is critically under-documented and often guided by empirically unsupported intuitions. To address this, we pretrain 28 1.5B parameter decoder-only models, training on data curated (1) at different times, (2) with varying toxicity and quality filters, and (3) with different domain compositions. First, we quantify the effect of pretraining data age. A temporal shift between evaluation data and pretraining data leads to performance degradation, which is not overcome by finetuning. Second, we explore the effect of quality and toxicity filters, showing a trade-off between performance on standard benchmarks and risk of toxic generations. Our findings indicate there does not exist a one-size-fits-all solution to filtering training data. We also find that the effects of different types of filtering are not predictable from text domain characteristics. Lastly, we empirically validate that the inclusion of heterogeneous data sources, like books and web, is broadly beneficial and warrants greater prioritization. These findings constitute the largest set of experiments to validate, quantify, and expose many undocumented intuitions about text pretraining, which we hope will help support more informed data-centric decisions in LM development.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2305.13169"
+    },
+    {
+      "id": "doremi-2023",
+      "name": "DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining",
+      "type": "paper",
+      "tab": "literature",
+      "tags": ["Related Work"],
+      "shared": false,
+      "lastModified": "2025-08-29",
+      "description": "Proposes domain reweighting method that optimizes data mixture proportions, improving efficiency and performance across all domains",
+      "publicationDate": "May 2023",
+      "authors": [
+        "Sang Michael Xie",
+        "Hieu Pham",
+        "Xuanyi Dong",
+        "Nan Du",
+        "Hanxiao Liu",
+        "Yifeng Lu",
+        "Percy Liang",
+        "Quoc V. Le",
+        "Tengyu Ma",
+        "Adams Wei Yu"
+      ],
+      "abstract": "The mixture proportions of pretraining data domains (e.g., Wikipedia, books, web text) greatly affect language model (LM) performance. In this paper, we propose Domain Reweighting with Minimax Optimization (DoReMi), which first trains a small proxy model using group distributionally robust optimization (Group DRO) over domains to produce domain weights (mixture proportions) without knowledge of downstream tasks. We then resample a dataset with these domain weights and train a larger, full-sized model. In our experiments, we use DoReMi on a 280M-parameter proxy model to set the domain weights for training an 8B-parameter model (30x larger) more efficiently. On The Pile, DoReMi improves perplexity across all domains, even when it downweights a domain. DoReMi improves average few-shot downstream accuracy by 6.5% points over a baseline model trained using The Pile's default domain weights and reaches the baseline accuracy with 2.6x fewer training steps. On the GLaM dataset, DoReMi, which has no knowledge of downstream tasks, even matches the performance of using domain weights tuned on downstream tasks.",
+      "readingStatus": "to-read",
+      "link": "https://arxiv.org/abs/2305.10429"
     }
   ]
 }

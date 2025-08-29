@@ -7,6 +7,8 @@
   "last_updated_at": "2025-08-29",
   "icon": "TreePine",
   "color": "orange",
+  "logo": "/projects/evolution-research/logo.png",
+  "focus": true,
   "tabs": [
     {
       "id": "overview",

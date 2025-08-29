@@ -1,0 +1,141 @@
+# Instructions for Populating Project Overview via User Interview
+
+This guide helps AI agents populate comprehensive project overview data by conducting structured interviews with users about their research projects.
+
+## Overview Location
+Project overviews are stored at: `/Users/cfpark00/mysite/apps/portal/content/projects/[project-slug]/overview.json`
+
+## Interview Process
+
+### Phase 1: Core Concept
+Start with understanding the fundamental research question:
+1. **Opening Question**: "What is the main research question or hypothesis you're investigating in the [project-name] project? Please provide a brief abstract describing what this research aims to understand."
+   - This establishes the `proposalAbstract` field
+   - Gets the user thinking about their project's core purpose
+
+### Phase 2: Experimental Approach
+2. **Methods Question**: "What are the main experiments you're planning or have already conducted?"
+   - Gather information for `coreExperiments` array
+   - Ask about experimental status (planned/in-progress/completed)
+   - Note any preliminary results
+
+### Phase 3: Timeline and Milestones
+3. **Milestones Question**: "What are the key milestones you envision for this project?"
+   - Build the `milestones` array
+   - If user doesn't provide dates, ask if they want dates or prefer to omit them
+   - If no dates, don't include targetDate fields
+   - Focus on logical progression of work
+
+### Phase 4: Resources
+4. **Resources Question**: "What computational resources will you need for this project?"
+   - Populate `expectedResources` array
+   - Ask about: compute (GPUs), storage, personnel, software/tools
+   - Note status (available/requested/allocated)
+
+### Phase 5: Theoretical Background
+5. **Related Work Question**: "What existing research does your project build upon?"
+   - Gather information for `relatedResearch` section
+   - Ask for specific papers or research areas
+   - Note if papers need to be added to literature tab
+
+### Phase 6: Expected Outcomes
+6. **Results Question**: "What are your anticipated findings or hypotheses?"
+   - Build `expectedResults` section
+   - Ask about specific hypotheses to test
+   - What insights they hope to uncover
+
+### Phase 7: Impact and Applications
+7. **Impact Question**: "How do you see this research contributing to the field?"
+   - Create `broaderImpact` section
+   - Ask about practical applications
+   - Potential benefits to AI/ML community
+
+### Phase 8: Challenges
+8. **Objections Question**: "What potential objections or challenges do you anticipate reviewers might raise about this approach?"
+   - Build `potentialObjections` section
+   - Include user's responses to these objections
+   - Shows thoughtful consideration of limitations
+
+## Important Guidelines
+
+### Required Reading Before Starting
+1. **Literature Guidelines**: `/Users/cfpark00/mysite/claude_notes/docs/portal_projects/adding_literature.md`
+   - Understand proper paper formatting
+   - Learn about items.json structure
+   - Critical: Always use real abstracts from arXiv, never summaries
+2. **Thought Writing**: `/Users/cfpark00/mysite/claude_notes/jobs/thought_writing.txt`
+   - For documenting the planning session
+   - Query time before adding thoughts
+
+### Interviewing Best Practices
+- **IMPORTANT: One question at a time**: Ask ONLY ONE question per message - never bundle multiple questions together
+- **Build on responses**: Use their answers to ask clarifying follow-ups
+- **Capture their voice**: Preserve the user's terminology and phrasing
+- **Note connections**: When they mention papers/resources, note if these need to be added to literature
+
+### Data Structure Requirements
+- All projects need: `proposalAbstract`, `milestones`, `coreExperiments`, `expectedResources`
+- The `detailedProposal` object should contain: `backgroundMotivation`, `relatedResearch`, `researchRoadmap`, `expectedResults`, `broaderImpact`, `potentialObjections`
+- Milestones don't require dates - omit `targetDate` if user doesn't specify
+- Each experiment should have: id, name, description, status, estimatedDuration (can be rough)
+
+### After Information Gathering
+1. Create the complete `overview.json` file with all gathered information
+2. **CRITICAL**: Read `/Users/cfpark00/mysite/claude_notes/docs/portal_projects/adding_literature.md` for proper literature formatting
+3. Add any mentioned papers to `items.json` following the literature guidelines
+   - MUST fetch real abstracts from arXiv using WebFetch
+   - Never write summaries as abstracts
+   - Use proper date format: "Month Year" not "YYYY-MM-DD"
+4. **CRITICAL**: Read `/Users/cfpark00/mysite/claude_notes/jobs/thought_writing.txt` for thought formatting guidelines
+5. Query current time using `date '+%H:%M'` command before adding thoughts
+6. Document the planning session in the project's `thoughts.json` file
+7. Include key decisions, methodological choices, and reasoning
+
+## Example Interview Flow
+
+```
+AI: "What is the main research question or hypothesis you're investigating in the [project] project?"
+User: [Provides abstract]
+
+AI: "Thank you! That's fascinating. Now let me ask about your experimental approach. What are the main experiments you're planning or have already conducted?"
+User: [Describes experiments]
+
+AI: "I see - you're in the [stage] phase. Let me ask about your research timeline. What are the key milestones you envision for this project?"
+User: [Lists milestones]
+
+[Continue through all phases...]
+```
+
+## Common User Patterns
+- Users may not have specific dates - that's fine, omit them
+- Users often mention papers informally - probe for proper citations
+- Users may give brief answers initially - ask follow-ups for detail
+- Some sections may be more developed than others - that's normal
+
+## Final Steps
+1. Show user you're creating the overview.json
+2. Add mentioned papers with FULL abstracts from arxiv (use WebFetch to get real abstracts)
+3. **Query current time**: Use `date '+%H:%M'` to get HH:MM format
+4. Create thoughtful project thoughts documenting the session in `thoughts.json`
+   - Read `/Users/cfpark00/mysite/claude_notes/jobs/thought_writing.txt` first
+   - Add multiple thought entries with the same timestamp
+   - Include appropriate tags for each thought
+5. Clean up any temporary files (like literature.json if using items.json)
+
+## Quality Checklist
+- [ ] Read `/Users/cfpark00/mysite/claude_notes/docs/portal_projects/adding_literature.md` before adding papers
+- [ ] Abstract clearly states the research question
+- [ ] Milestones show logical progression
+- [ ] Experiments have clear descriptions and status
+- [ ] Resources are specific and quantified
+- [ ] Related work is properly cited
+- [ ] Expected results include specific hypotheses
+- [ ] Broader impact explains significance
+- [ ] Potential objections show critical thinking
+- [ ] All mentioned papers added to items.json with real abstracts from arXiv
+- [ ] Paper format follows literature guidelines (proper date format, real abstracts)
+- [ ] Current time queried before adding thoughts
+- [ ] Thoughts document the planning session with proper timestamps
+- [ ] Thought writing guidelines from `/Users/cfpark00/mysite/claude_notes/jobs/thought_writing.txt` followed
+
+Remember: The goal is to help the user articulate and structure their research vision, not to impose a rigid format. Adapt questions based on the project's nature and the user's responses.

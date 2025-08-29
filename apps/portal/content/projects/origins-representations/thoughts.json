@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "date": "2025-08-29",
+    "title": "Ongoing...",
+    "thoughts": [
+      {
+        "content": "Figuring out under what conditions nice isolated representations emerge is currently a big question.",
+        "time": "03:04",
+        "tags": ["representations", "research-question"]
+      },
+      {
+        "content": "It seems like the simplest setup is to train on two tasks, which conceptually share the same computation, but is tokenized or superficially represented differently. Then check if common mechanisms are used or not.",
+        "time": "03:07",
+        "tags": ["experimental-setup", "shared-computation"]
+      },
+      {
+        "content": "Had a productive session filling out the complete project overview for origins of representations. The key research question crystallized: 'What are the conditions which form these representations in the first place?' Moving beyond just finding representations to understanding their genesis.",
+        "time": "03:55",
+        "tags": ["project-planning", "research-question"]
+      },
+      {
+        "content": "Planning to use PCFG and HHMM-based synthetic data generation processes. The advantage of synthetic data is clear - we can't do proper causality studies with models we can only train once on real data. Need controlled, repeatable experiments.",
+        "time": "03:55",
+        "tags": ["methodology", "synthetic-data", "PCFG", "HHMM"]
+      },
+      {
+        "content": "Core hypotheses emerging: (1) More data generally leads to more modular representations, but the scaling relationship is what matters - how fast does modularity emerge? (2) Hyperparameters of both data distribution and model architecture will significantly impact whether representations become fractured or unified.",
+        "time": "03:55",
+        "tags": ["hypotheses", "modularity", "scaling"]
+      },
+      {
+        "content": "Added key papers to literature: 'Competition Dynamics Shape Algorithmic Phases of In-Context Learning' by Core Francisco Park et al., and 'Analyzing (In)Abilities of SAEs via Formal Languages' which directly uses PCFGs as testbed. Both papers support the methodological approach.",
+        "time": "03:55",
+        "tags": ["literature", "references"]
+      },
+      {
+        "content": "Identified main challenge from potential reviewers: 'toy data is far from real data.' Response: This is precisely the point - tractability requires simplification. Good causality studies need controlled conditions that real-world data can't provide. We can run hundreds of experiments with synthetic data vs. one or two with real data.",
+        "time": "03:55",
+        "tags": ["challenges", "reviewer-response", "methodology-defense"]
+      },
+      {
+        "content": "Project milestones defined: (1) Set up representation analysis framework, (2) Establish synthetic data generation pipeline with PCFG/HHMM, (3) Large hyperparameter sweep, (4) Wrap up and synthesize findings. No hard deadlines yet - focusing on getting the methodology right first.",
+        "time": "03:55",
+        "tags": ["milestones", "project-planning"]
+      },
+      {
+        "content": "Resource requirements clarified: 1-2 students, 8 GPUs per student, 1TB storage per student. Python research environment should be sufficient - no special tools needed beyond standard libraries.",
+        "time": "03:55",
+        "tags": ["resources", "compute-requirements"]
+      },
+      {
+        "content": "Ultimate goal: Understand scaling relations and whether RL/fine-tuning can significantly alter representations. Want to lay a testbed for understanding representation control from a data-centric view. This could improve generalization, interpretability, and continual learning.",
+        "time": "03:55",
+        "tags": ["goals", "impact", "applications"]
+      }
+    ]
+  }
+]

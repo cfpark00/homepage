@@ -1,0 +1,102 @@
+{
+  "proposalAbstract": "This research investigates what evolutionary environments or environment-agent dynamics give rise to research abilities in organisms. Here, research abilities means the behavior of systematically collecting information for better understanding of the environment. Raw exploration might or might not count depending on whether it qualifies as a knowledge acquisition process. One immediate question is whether there is a dopamine-like reward system which attaches to new findings (even if it doesn't automatically give better resources like food).",
+  
+  "milestones": [
+    {
+      "id": "milestone-1",
+      "name": "Import and Setup Evolutionary Algorithms",
+      "description": "Cleanly import evolutionary algorithms (and non-evolutionary algorithms for comparison) and set up clean repository to run experiments and return them",
+      "status": "planned"
+    },
+    {
+      "id": "milestone-2",
+      "name": "Establish Comprehensive Baselines",
+      "description": "Establish baselines on how each algorithm performs on each environment. Need single agent baselines, multi agent baselines, multi arm stationary baselines, etc. This phase will be intensive in cognitive effort and compute, but will build understanding of the system best",
+      "status": "planned"
+    },
+    {
+      "id": "milestone-3",
+      "name": "Find Research-like Organized Behavior",
+      "description": "Try to find research-ish organized behavior in non-stationary settings. Honestly, this does seem very challenging",
+      "status": "planned"
+    },
+    {
+      "id": "milestone-4",
+      "name": "Characterize Research-Generating Environments",
+      "description": "Determine characteristics of research generating environments and understand why research behavior has evolved and is more fit",
+      "status": "planned"
+    }
+  ],
+  
+  "coreExperiments": [
+    {
+      "id": "exp-1",
+      "name": "Simple Agent Architecture Design",
+      "description": "Design and implement agents as simple as possible but which could implement some research behavior",
+      "status": "planned",
+      "estimatedDuration": "2-3 months"
+    },
+    {
+      "id": "exp-2",
+      "name": "Multi-Agent Multi-Armed Bandit Environment",
+      "description": "Implement multi-agent multi-turn multi-armed bandit (non-stationary) environment to test if this is sufficient to make a researching species more fit",
+      "status": "planned",
+      "estimatedDuration": "3-4 months"
+    },
+    {
+      "id": "exp-3",
+      "name": "Long-Horizon Non-Stationary Environments",
+      "description": "Develop long horizon, non-stationary environments to see the emergence of research behavior",
+      "status": "planned",
+      "estimatedDuration": "4-6 months"
+    },
+    {
+      "id": "exp-4",
+      "name": "Baseline Comparisons",
+      "description": "Run comprehensive baseline comparisons across different algorithms and environment configurations",
+      "status": "planned",
+      "estimatedDuration": "2-3 months"
+    }
+  ],
+  
+  "expectedResources": [
+    {
+      "type": "compute",
+      "description": "GPUs for neural network evolution (helpful but not critical)",
+      "quantity": "4-8 GPUs",
+      "status": "requested"
+    },
+    {
+      "type": "compute",
+      "description": "CPU compute for evolutionary algorithms (primary requirement)",
+      "quantity": "High CPU core count cluster",
+      "status": "requested"
+    },
+    {
+      "type": "storage",
+      "description": "Storage for experiment logs and checkpoint storage",
+      "quantity": "~8TB",
+      "status": "requested"
+    },
+    {
+      "type": "software",
+      "description": "Evolutionary algorithm frameworks and multi-agent simulation tools",
+      "quantity": "Open source tools",
+      "status": "available"
+    }
+  ],
+  
+  "detailedProposal": {
+    "backgroundMotivation": "While it seems like research can only emerge in highly complex 3D environments, we initially bet that in fact a multi-agent multi-turn multi-armed bandit (non-stationary) is enough to make a researching species more fit. Everything is 100% in silico, and we will focus on making the agent as simple as possible but which could implement some research behavior.",
+    
+    "relatedResearch": "This work builds heavily on the foundational research from Jeff Clune, Ken Stanley, and Joel Lehman in open-ended evolution, quality diversity, and curiosity-driven learning. Their papers already provide rich setups to start with, particularly in evolutionary algorithms and the evolution of intelligence.",
+    
+    "researchRoadmap": "The project follows a systematic progression: (1) Import and establish evolutionary algorithm infrastructure, (2) Create comprehensive baselines across different agent and environment configurations, (3) Search for research-like behaviors in increasingly complex non-stationary settings, (4) Characterize the environmental conditions that promote research behavior evolution.",
+    
+    "expectedResults": "Hypothesis: research behaviors require: (1) sufficient resources for additional exploration, (2) environment with learnable complexities, (3) inadmissibility of a single best solution. Of course, these are just hypotheses, and our goal is indeed to figure out what are the conditions. The dopamine-like connection is a 100% different thread which now touches on mechanism, but our study will be a necessary precursor.",
+    
+    "broaderImpact": "This is a very important part of the research. This will in fact highlight why we fund science and why we as humans like to discover new stuff in the first place. As scientists, we should now ask ourselves why we are doing the science we do, and this model system will be a first basis to ground that discussion on.",
+    
+    "potentialObjections": "The biggest challenge of this research is more probably raw failure: we cannot get research-looking behaviors. But if we do, remaining criticisms would be the artificial or highly simplistic settings. Our response is that this is a novel area of study and we should start simple instead of starting complex."
+  }
+}

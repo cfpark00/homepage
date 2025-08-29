@@ -1,1 +1,43 @@
-[]
+[
+  {
+    "date": "2025-08-29",
+    "title": "Ongoing...",
+    "thoughts": [
+      {
+        "content": "It seems like \"connecting-the-dots\" learning and data filtering failure are always the main criticism. Somehow personally, I'm not so worried since I think models will just suck at missing parts of the data distribution, but my intuition might be wrong. It is indeed worth trying out a toy model first!",
+        "time": "03:11",
+        "tags": ["criticism", "intuition", "toy-model"]
+      },
+      {
+        "content": "Planning session to populate project overview. The core hypothesis is fascinating: can LLMs self-evolve to reach ablated knowledge through fine-tuning/RL, or are they fundamentally bounded? This would definitively answer whether models can truly self-improve beyond their training distribution.",
+        "time": "04:44",
+        "tags": ["planning", "hypothesis", "self-evolution"]
+      },
+      {
+        "content": "Key insight from discussion: synthetic data validation is critical before real data experiments. Need to design synthetic data with hierarchical structure, grammatical format, and discrete knowledge elements that can be cleanly ablated. Considering formal languages, PCFGs, HHMMs, knowledge graphs as candidates.",
+        "time": "04:44",
+        "tags": ["synthetic-data", "methodology", "validation"]
+      },
+      {
+        "content": "Resource planning: 1-2 students with 8 GPUs each for synthetic experiments. This is reasonable for validation phase. After synthetic findings, will need to assemble mechanistic interpretability and RL experiments to build case for real data investment.",
+        "time": "04:44",
+        "tags": ["resources", "planning", "milestones"]
+      },
+      {
+        "content": "Main expected criticism will be data filtering fragility - 'impossible to remove college math while keeping scientific papers'. Response: models will still perform poorly in data-scarce regions even with leakage, justified by observed data inefficiency. The key is not perfect ablation but significant knowledge gaps.",
+        "time": "04:44",
+        "tags": ["criticism", "data-filtering", "response"]
+      },
+      {
+        "content": "Broader implications are profound: this work directly affects how we view LLM capabilities. If hypothesis confirms (models can't self-evolve into ablated regions), it suggests AI progress will plateau at edge of human knowledge rather than exponentially self-improving. Critical for understanding massive RL scaling efforts.",
+        "time": "04:44",
+        "tags": ["implications", "ai-safety", "scaling"]
+      },
+      {
+        "content": "Related work includes data mixture studies (Longpre et al. 2023, Albalak et al. 2024) but our focus is scientific understanding rather than practical optimization. Deliberately avoiding unlearning literature - believe it's superficial compared to never learning.",
+        "time": "04:44",
+        "tags": ["related-work", "differentiation", "unlearning"]
+      }
+    ]
+  }
+]

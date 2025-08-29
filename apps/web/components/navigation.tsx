@@ -36,9 +36,9 @@ export function Navigation() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container flex h-16 items-center">
-        <div className="mr-4 hidden md:flex">
+        <div className="mr-4 hidden min-[960px]:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block">
+            <span className="hidden font-bold sm:inline-block whitespace-nowrap">
               Core Francisco Park
             </span>
           </Link>
@@ -75,9 +75,9 @@ export function Navigation() {
           </nav>
         </div>
         
-        <div className="flex flex-1 items-center justify-between md:justify-end">
-          <Link href="/" className="flex items-center space-x-2 md:hidden">
-            <span className="font-bold">Core Francisco Park</span>
+        <div className="flex flex-1 items-center justify-between min-[960px]:justify-end">
+          <Link href="/" className="flex items-center space-x-2 min-[960px]:hidden">
+            <span className="font-bold whitespace-nowrap">Core Francisco Park</span>
           </Link>
           
           <div className="flex items-center space-x-2">
@@ -95,7 +95,7 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="min-[960px]:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <Menu className="h-5 w-5" />
@@ -106,7 +106,7 @@ export function Navigation() {
       </nav>
       
       {mobileMenuOpen && (
-        <div className="border-t md:hidden">
+        <div className="border-t min-[960px]:hidden">
           <nav className="container grid gap-2 py-4">
             {navigation.map((item) => (
               item.external ? (

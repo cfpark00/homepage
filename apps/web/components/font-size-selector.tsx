@@ -24,16 +24,23 @@ const fontSizeOptions: { value: FontSize; label: string; description: string }[]
 ]
 
 export function FontSizeSelector({ onSizeChange }: FontSizeSelectorProps) {
-  const [selectedSize, setSelectedSize] = useState<FontSize>("prose-base")
+  const [selectedSize, setSelectedSize] = useState<FontSize>(() => {
+    // Initialize with saved preference to prevent flash
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem("blog-font-size") as FontSize
+      if (saved && fontSizeOptions.some(opt => opt.value === saved)) {
+        return saved
+      }
+    }
+    return "prose-base"
+  })
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Load saved preference from localStorage
-    const saved = localStorage.getItem("blog-font-size") as FontSize
-    if (saved && fontSizeOptions.some(opt => opt.value === saved)) {
-      setSelectedSize(saved)
-      onSizeChange(saved)
-    }
-  }, [onSizeChange])
+    // Apply the initial size and mark as loaded
+    onSizeChange(selectedSize)
+    setIsLoading(false)
+  }, [selectedSize, onSizeChange])
 
   const handleSizeChange = (size: FontSize) => {
     setSelectedSize(size)
@@ -74,15 +81,21 @@ export function FontSizeSelector({ onSizeChange }: FontSizeSelectorProps) {
 
 // Alternative inline button group version
 export function FontSizeButtonGroup({ onSizeChange }: FontSizeSelectorProps) {
-  const [selectedSize, setSelectedSize] = useState<FontSize>("prose-base")
+  const [selectedSize, setSelectedSize] = useState<FontSize>(() => {
+    // Initialize with saved preference to prevent flash
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem("blog-font-size") as FontSize
+      if (saved && fontSizeOptions.some(opt => opt.value === saved)) {
+        return saved
+      }
+    }
+    return "prose-base"
+  })
 
   useEffect(() => {
-    const saved = localStorage.getItem("blog-font-size") as FontSize
-    if (saved && fontSizeOptions.some(opt => opt.value === saved)) {
-      setSelectedSize(saved)
-      onSizeChange(saved)
-    }
-  }, [onSizeChange])
+    // Apply the initial size
+    onSizeChange(selectedSize)
+  }, [selectedSize, onSizeChange])
 
   const handleSizeChange = (size: FontSize) => {
     setSelectedSize(size)

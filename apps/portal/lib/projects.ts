@@ -35,6 +35,7 @@ export interface ProjectMetadata {
   logo?: string
   color: string
   tabs: ProjectTab[]
+  focus?: boolean
 }
 
 export interface Thought {
@@ -53,6 +54,7 @@ export interface DailyThoughts {
 export interface Project extends ProjectMetadata {
   items: ProjectItem[]
   thoughts?: DailyThoughts[]
+  overview?: any
 }
 
 const PROJECTS_DIR = path.join(process.cwd(), 'content/projects')
@@ -90,10 +92,61 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       }
     }
     
+    // Add "Project created" thought at creation date
+    if (metadata.created) {
+      const createdDate = metadata.created.split('T')[0] // Get YYYY-MM-DD part
+      
+      // Check if we already have thoughts for the creation date
+      const existingCreationDateThoughts = thoughts.find(dt => dt.date === createdDate)
+      
+      if (existingCreationDateThoughts) {
+        // Check if "Project created" thought already exists
+        const hasProjectCreatedThought = existingCreationDateThoughts.thoughts.some(
+          t => t.content === 'Project created' && t.time === '00:00'
+        )
+        
+        if (!hasProjectCreatedThought) {
+          // Add "Project created" thought at the beginning
+          existingCreationDateThoughts.thoughts.unshift({
+            content: 'Project created',
+            time: '00:00',
+            tags: ['milestone', 'project']
+          })
+        }
+      } else {
+        // Create new daily thoughts entry for creation date
+        const creationDateThoughts: DailyThoughts = {
+          date: createdDate,
+          title: `Project ${metadata.name} Created`,
+          thoughts: [{
+            content: 'Project created',
+            time: '00:00',
+            tags: ['milestone', 'project']
+          }]
+        }
+        
+        // Insert at the correct position (maintain chronological order)
+        const insertIndex = thoughts.findIndex(dt => dt.date < createdDate)
+        if (insertIndex === -1) {
+          thoughts.push(creationDateThoughts)
+        } else {
+          thoughts.splice(insertIndex, 0, creationDateThoughts)
+        }
+      }
+    }
+    
+    // Read overview if file exists
+    let overview = null
+    const overviewPath = path.join(projectDir, 'overview.json')
+    if (fs.existsSync(overviewPath)) {
+      overview = JSON.parse(fs.readFileSync(overviewPath, 'utf-8'))
+    }
+    
     return {
       ...metadata,
       items: itemsData.items,
-      thoughts
+      thoughts,
+      overview
     }
   } catch (error) {
     console.error(`Error loading project ${slug}:`, error)

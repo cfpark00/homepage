@@ -7,6 +7,7 @@ import { Badge } from '@workspace/ui/components/badge'
 import { Button } from '@workspace/ui/components/button'
 import { PublicationCard } from '@workspace/ui/components/pub-card'
 import { ThoughtsDisplay } from './thoughts-display'
+import { ProjectOverview } from './project-overview'
 import { 
   FileText, 
   Home,
@@ -17,7 +18,9 @@ import {
   Lock,
   Folder,
   FlaskConical,
-  BarChart3
+  BarChart3,
+  Lightbulb,
+  BookOpen
 } from 'lucide-react'
 import { TfiThought } from 'react-icons/tfi'
 import Link from 'next/link'
@@ -45,6 +48,7 @@ interface ProjectTabsProps {
       label: string
       icon: string
     }>
+    overview?: any
     items?: Array<{
       id: string
       name: string
@@ -79,7 +83,9 @@ const iconMap: Record<string, any> = {
   FileText,
   Code,
   Folder,
-  Brain: TfiThought
+  Brain: TfiThought,
+  Lightbulb,
+  BookOpen
 }
 
 export function ProjectTabs({ projectSlug, projectData }: ProjectTabsProps) {
@@ -145,7 +151,9 @@ export function ProjectTabs({ projectSlug, projectData }: ProjectTabsProps) {
                 <CardTitle>{tab.label}</CardTitle>
               </CardHeader>
               <CardContent>
-                {tab.id === 'thoughts' ? (
+                {tab.id === 'overview' && projectData?.overview ? (
+                  <ProjectOverview overview={projectData.overview} />
+                ) : tab.id === 'thoughts' ? (
                   <ThoughtsDisplay dailyThoughts={projectData?.thoughts || []} />
                 ) : tabItems.length === 0 ? (
                   <p className="text-sm text-muted-foreground py-8 text-center">

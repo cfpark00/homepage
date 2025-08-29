@@ -1,0 +1,33 @@
+{
+  "slug": "context-to-weights",
+  "name": "Context to Weights",
+  "description": "Exploring how context-based learning can be transferred to model weights",
+  "status": "active",
+  "created": "2025-08-29",
+  "last_updated_at": "2025-08-29",
+  "icon": "Brain",
+  "logo": "/projects/context-to-weights/logo.png",
+  "color": "blue",
+  "tabs": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "icon": "Home"
+    },
+    {
+      "id": "thoughts",
+      "label": "Thoughts",
+      "icon": "Brain"
+    },
+    {
+      "id": "literature",
+      "label": "Literature",
+      "icon": "FileText"
+    },
+    {
+      "id": "experiments",
+      "label": "Experiments",
+      "icon": "Flask"
+    }
+  ]
+}
